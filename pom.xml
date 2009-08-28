@@ -9,6 +9,13 @@
   
   <url>http://wiki.hudson-ci.org/display/HUDSON/PlatformLabeler+Plugin</url>
   <description>Assigns labels to nodes based on their operating system properties</description>
+  <developers>
+    <developer>
+      <id>lifeless</id>
+      <name>Robert Collins</name>
+      <email>robertc@robertcollins.net</email>
+    </developer>
+  </developers>
 
   <artifactId>platformlabeler</artifactId>
   <packaging>hpi</packaging>
