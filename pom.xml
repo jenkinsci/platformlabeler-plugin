@@ -20,7 +20,7 @@
   <artifactId>platformlabeler</artifactId>
   <packaging>hpi</packaging>
   <name>Hudson platformlabeler plugin</name>
-  <version>1.0</version>
+  <version>1.0-SNAPSHOT</version>
   <dependencies>
     <dependency>
       <!-- Used to probe vendor and release on linux machines -->
