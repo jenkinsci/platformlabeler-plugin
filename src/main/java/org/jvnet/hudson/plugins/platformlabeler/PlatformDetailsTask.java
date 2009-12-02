@@ -63,9 +63,14 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
                 }
             }
         } else if (name.startsWith("linux")) {
+            String unknown_string = "unknown+check_lsb_release_installed";
             Release release = new Release();
             name = release.distributorId();
+            if (null == name)
+                name = unknown_string;
             version = release.release();
+            if (null == version)
+                version = unknown_string;
         } else if (name.startsWith("mac")) {
             name = "mac";
         } else {
