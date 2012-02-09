@@ -4,10 +4,14 @@
     <groupId>org.jvnet.hudson.plugins</groupId>
     <artifactId>plugin</artifactId>
     <version>1.323</version><!-- which version of Hudson is this plugin built against? -->
-    <relativePath>../pom.xml</relativePath>
   </parent>
-  
-  <url>http://wiki.hudson-ci.org/display/HUDSON/PlatformLabeler+Plugin</url>
+
+  <artifactId>platformlabeler</artifactId>
+  <packaging>hpi</packaging>
+  <name>Hudson platformlabeler plugin</name>
+  <version>1.2-SNAPSHOT</version>
+
+  <url>http://wiki.jenkins-ci.org/display/HUDSON/PlatformLabeler+Plugin</url>
   <description>Assigns labels to nodes based on their operating system properties</description>
   <developers>
     <developer>
@@ -15,12 +19,19 @@
       <name>Robert Collins</name>
       <email>robertc@robertcollins.net</email>
     </developer>
+    <developer>
+      <id>ndeloof</id>
+      <name>Nicolas De Loof</name>
+      <email>nicolas.deloof@gmail.com</email>
+    </developer>
   </developers>
 
-  <artifactId>platformlabeler</artifactId>
-  <packaging>hpi</packaging>
-  <name>Hudson platformlabeler plugin</name>
-  <version>1.2-SNAPSHOT</version>
+  <scm>
+    <connection>scm:git:git://github.com/jenkinsci/platformlabeler-plugin.git</connection>
+    <developerConnection>scm:git:git@github.com:jenkinsci/platformlabeler-plugin.git</developerConnection>
+    <url>https://github.com/jenkinsci/platformlabeler-plugin</url>
+  </scm>
+
   <dependencies>
     <dependency>
       <!-- Used to probe vendor and release on linux machines -->
