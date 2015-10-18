@@ -28,6 +28,7 @@ import hudson.model.Computer;
 import hudson.model.Hudson;
 import hudson.model.Node;
 import hudson.model.Label;
+import hudson.model.labels.LabelAtom;
 import hudson.model.TaskListener;
 import hudson.remoting.VirtualChannel;
 import hudson.slaves.ComputerListener;
@@ -35,6 +36,7 @@ import hudson.slaves.ComputerListener;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Collection;
 import java.util.WeakHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -53,7 +55,7 @@ public class NodeLabelCache extends ComputerListener {
     /**
      * The labels computed for nodes - accessible package wide.
      */
-    static transient WeakHashMap<Node, Set<Label>> nodeLabels = new WeakHashMap<Node, Set<Label>>();
+    static transient WeakHashMap<Node, Collection<LabelAtom>> nodeLabels = new WeakHashMap<Node, Collection<LabelAtom>>();
     /**
      * Logging of issues
      */
@@ -83,7 +85,7 @@ public class NodeLabelCache extends ComputerListener {
         computer.getNode().getAssignedLabels();
     }
 
-    private Set<Label> requestNodeLabels(Computer computer) throws IOException, InterruptedException {
+    private Collection<LabelAtom> requestNodeLabels(Computer computer) throws IOException, InterruptedException {
         final VirtualChannel channel = computer.getChannel();
         if (null == channel) {
             // Cannot obtain details from an unconnected node. While we should
@@ -91,12 +93,12 @@ public class NodeLabelCache extends ComputerListener {
             // ask while the computer was asynchronously disconnecting.
             throw new IOException("No virtual channel available");
         }
-        final Set<Label> result = new HashSet<Label>();
+        final Collection<LabelAtom> result = new HashSet<LabelAtom>();
         final Hudson hudson = Hudson.getInstance();
         try {
             final Set<String> labels = channel.call(new PlatformDetailsTask());
             for (String label : labels) {
-                result.add(hudson.getLabel(label));
+                result.add(hudson.getLabelAtom(label));
             }
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Failed to read labels", e);
