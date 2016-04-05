@@ -25,8 +25,9 @@ package org.jvnet.hudson.plugins.platformlabeler;
 
 import hudson.Extension;
 import hudson.model.Node;
-import hudson.model.Label;
 import hudson.model.LabelFinder;
+import hudson.model.labels.LabelAtom;
+import java.util.Collection;
 
 import java.util.Collections;
 import java.util.Set;
@@ -40,8 +41,8 @@ import java.util.Set;
 public class PlatformLabeler extends LabelFinder {
 
     @Override
-    public Set<Label> findLabels(Node node) {
-        Set<Label> result = NodeLabelCache.nodeLabels.get(node);
+    public Collection<LabelAtom> findLabels(Node node) {
+        Set<LabelAtom> result = NodeLabelCache.getNodeLabels(node);
         if (null == result)
             /* Node that has just attached and we don't have labels yet */
             return Collections.emptySet();

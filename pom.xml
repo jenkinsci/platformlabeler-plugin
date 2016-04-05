@@ -1,17 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.jvnet.hudson.plugins</groupId>
+    <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>1.323</version><!-- which version of Hudson is this plugin built against? -->
+    <version>1.509.1</version>
   </parent>
 
   <artifactId>platformlabeler</artifactId>
   <packaging>hpi</packaging>
-  <name>Hudson platformlabeler plugin</name>
+  <name>Jenkins platformlabeler plugin</name>
   <version>1.2-SNAPSHOT</version>
 
-  <url>http://wiki.jenkins-ci.org/display/HUDSON/PlatformLabeler+Plugin</url>
+  <url>https://wiki.jenkins-ci.org/display/JENKINS/PlatformLabeler+Plugin</url>
   <description>Assigns labels to nodes based on their operating system properties</description>
   <developers>
     <developer>

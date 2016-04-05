@@ -31,7 +31,6 @@ import hudson.remoting.Callable;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.lang.InterruptedException;
 import java.util.HashSet;
 
 class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
