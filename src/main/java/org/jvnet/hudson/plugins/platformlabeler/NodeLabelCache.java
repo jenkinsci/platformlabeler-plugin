@@ -25,10 +25,9 @@ package org.jvnet.hudson.plugins.platformlabeler;
 
 import hudson.Extension;
 import hudson.model.Computer;
-import hudson.model.Hudson;
 import hudson.model.Node;
-import hudson.model.Label;
 import hudson.model.TaskListener;
+import hudson.model.labels.LabelAtom;
 import hudson.remoting.VirtualChannel;
 import hudson.slaves.ComputerListener;
 
@@ -38,6 +37,7 @@ import java.util.Set;
 import java.util.WeakHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jenkins.model.Jenkins;
 
 /**
  * A cache of Node labels.
@@ -53,50 +53,80 @@ public class NodeLabelCache extends ComputerListener {
     /**
      * The labels computed for nodes - accessible package wide.
      */
-    static transient WeakHashMap<Node, Set<Label>> nodeLabels = new WeakHashMap<Node, Set<Label>>();
+    private static transient WeakHashMap<Node, Set<LabelAtom>> nodeLabels = new WeakHashMap<Node, Set<LabelAtom>>();
     /**
      * Logging of issues
      */
-    private final transient Logger logger = Logger.getLogger("org.jvnet.hudson.plugins.platformlabeler");
+    private static final transient Logger logger = Logger.getLogger("org.jvnet.hudson.plugins.platformlabeler");
+
+    private final transient PlatformDetailsTaskFactory platformDetailsTaskClassFactory;
+
+    public NodeLabelCache() {
+        this.platformDetailsTaskClassFactory = new PlatformDetailsTaskFactory();
+    }
+
+    /**
+     * For testing.
+     */
+    protected NodeLabelCache( PlatformDetailsTaskFactory factory ) {
+        platformDetailsTaskClassFactory = factory;
+    }
 
     /**
      * When a computer comes online, probe it for its platform labels.
      */
     @Override
     public void onOnline(Computer computer, TaskListener listener) throws IOException, InterruptedException {
-        cacheLabels(computer);
-        refreshModel(computer);
+        synchronized( NodeLabelCache.class ) {
+            cacheLabels(computer.getNode());
+        }
+        refreshModel(computer.getNode());
+    }
+
+    public static synchronized Set<LabelAtom> getNodeLabels( Node node ) {
+        Set<LabelAtom> ret = nodeLabels.get(node);
+        if ( ret != null ) return ret;
+
+        try {
+            NodeLabelCache cache = new NodeLabelCache();
+            ret = cache.requestNodeLabels(node.getChannel());
+            nodeLabels.put(node, ret);
+        }
+        catch ( IOException ex ) {
+            // exception already logged in requestNodeLabels
+        }
+        catch ( InterruptedException ex ) {} // shrug
+        return ret;
     }
 
     /**
      * Caches the labels for the computer against its node.
      */
-    void cacheLabels(Computer computer) throws IOException, InterruptedException {
+    protected void cacheLabels(Node node) throws IOException, InterruptedException {
         /* Cache the labels for the node */
-        nodeLabels.put(computer.getNode(), requestNodeLabels(computer));
+        nodeLabels.put(node, requestNodeLabels(node.getChannel()));
     }
 
     /**
      * Update Hudson's model so that labels for this computer are up to date.
      */
-    void refreshModel(final Computer computer) {
-        computer.getNode().getAssignedLabels();
+    private void refreshModel(final Node node) {
+        node.getAssignedLabels();
     }
 
-    private Set<Label> requestNodeLabels(Computer computer) throws IOException, InterruptedException {
-        final VirtualChannel channel = computer.getChannel();
+    private Set<LabelAtom> requestNodeLabels(VirtualChannel channel) throws IOException, InterruptedException {
         if (null == channel) {
             // Cannot obtain details from an unconnected node. While we should
             // never ask for such details, its possible that we may attempt to
             // ask while the computer was asynchronously disconnecting.
             throw new IOException("No virtual channel available");
         }
-        final Set<Label> result = new HashSet<Label>();
-        final Hudson hudson = Hudson.getInstance();
+        final Set<LabelAtom> result = new HashSet<LabelAtom>();
+        final Jenkins jenkins = Jenkins.getInstance();
         try {
-            final Set<String> labels = channel.call(new PlatformDetailsTask());
+            final Set<String> labels = channel.call(platformDetailsTaskClassFactory.newInstance());
             for (String label : labels) {
-                result.add(hudson.getLabel(label));
+                result.add(jenkins.getLabelAtom(label));
             }
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Failed to read labels", e);

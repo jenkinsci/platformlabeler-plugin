@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (C) 2009 Robert Collins
+ * Copyright (c) 2016, SAP SE
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,33 +21,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.jvnet.hudson.plugins.platformlabeler;
 
-import hudson.Extension;
-import hudson.model.Node;
-import hudson.model.LabelFinder;
-import hudson.model.labels.LabelAtom;
-import java.util.Collection;
-
-import java.util.Collections;
-import java.util.Set;
-
 /**
- * Obtain labels for Nodes at runtime by querying the operating system running
- * on it. Querying is done via the {@link NodeLabelCache} onOnline extension.
- * PlatformLabeler simply answers from the cache that that extension maintains.
+ * A factory pattern for the PlatformDetailsTask class.
  */
-@Extension
-public class PlatformLabeler extends LabelFinder {
-
-    @Override
-    public Collection<LabelAtom> findLabels(Node node) {
-        Set<LabelAtom> result = NodeLabelCache.getNodeLabels(node);
-        if (null == result)
-            /* Node that has just attached and we don't have labels yet */
-            return Collections.emptySet();
-        else
-            return result;
+public class PlatformDetailsTaskFactory {
+    public PlatformDetailsTask newInstance() {
+        return new PlatformDetailsTask();
     }
-
 }
