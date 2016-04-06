@@ -28,6 +28,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import org.jvnet.hudson.test.HudsonTestCase;
+import static org.mockito.Mockito.*;
 
 /**
  *
@@ -35,21 +36,25 @@ import org.jvnet.hudson.test.HudsonTestCase;
  */
 public class PlatformLabelerTest extends HudsonTestCase {
 
-//    public void testLookupCached() {
-//        Set<Label> expected = new HashSet<Label>();
-//        expected.add(hudson.getLabel("foo"));
-//        expected.add(hudson.getLabel("bar"));
-//        NodeLabelCache.nodeLabels.put(hudson, expected);
-//        Collection<? extends Label> labels = new PlatformLabeler().findLabels(hudson);
-//        assertEquals(expected, labels);
-//    }
-//
-//    public void testLookupUncached() throws Exception {
-//        /* remove the hudson node from the cache */
-//        if (NodeLabelCache.nodeLabels.containsKey(hudson)) {
-//            NodeLabelCache.nodeLabels.remove(hudson);
-//        }
-//        Collection<? extends Label> labels = new PlatformLabeler().findLabels(hudson);
-//        assertEquals(0, labels.size());
-//    }
+    public void testLookupCached() throws Exception {
+        Set<String> expected = new HashSet<String>();
+        expected.add("foo");
+        expected.add("bar");
+        Set<Label> expectedLabels = new HashSet<Label>();
+        for ( String l : expected ) {
+            expectedLabels.add(hudson.getLabel(l));
+        }
+
+        PlatformDetailsTask detailsTask = mock(PlatformDetailsTask.class);
+        when(detailsTask.call()).thenReturn(expected);
+        PlatformDetailsTaskFactory detailsTaskFactory = mock(PlatformDetailsTaskFactory.class);
+        when(detailsTaskFactory.newInstance()).thenReturn(detailsTask);
+
+        NodeLabelCache cache = new NodeLabelCache(detailsTaskFactory);
+        cache.cacheLabels(hudson);
+
+        Collection<? extends Label> labels = new PlatformLabeler().findLabels(hudson);
+        assertEquals(labels, expectedLabels);
+    }
+
 }

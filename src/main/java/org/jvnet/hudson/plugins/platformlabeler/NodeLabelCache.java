@@ -59,15 +59,28 @@ public class NodeLabelCache extends ComputerListener {
      */
     private static final transient Logger logger = Logger.getLogger("org.jvnet.hudson.plugins.platformlabeler");
 
+    private final transient PlatformDetailsTaskFactory platformDetailsTaskClassFactory;
+
+    public NodeLabelCache() {
+        this.platformDetailsTaskClassFactory = new PlatformDetailsTaskFactory();
+    }
+
+    /**
+     * For testing.
+     */
+    protected NodeLabelCache( PlatformDetailsTaskFactory factory ) {
+        platformDetailsTaskClassFactory = factory;
+    }
+
     /**
      * When a computer comes online, probe it for its platform labels.
      */
     @Override
     public void onOnline(Computer computer, TaskListener listener) throws IOException, InterruptedException {
         synchronized( NodeLabelCache.class ) {
-            cacheLabels(computer);
+            cacheLabels(computer.getNode());
         }
-        refreshModel(computer);
+        refreshModel(computer.getNode());
     }
 
     public static synchronized Set<LabelAtom> getNodeLabels( Node node ) {
@@ -75,7 +88,8 @@ public class NodeLabelCache extends ComputerListener {
         if ( ret != null ) return ret;
 
         try {
-            ret = requestNodeLabels(node.getChannel());
+            NodeLabelCache cache = new NodeLabelCache();
+            ret = cache.requestNodeLabels(node.getChannel());
             nodeLabels.put(node, ret);
         }
         catch ( IOException ex ) {
@@ -88,19 +102,19 @@ public class NodeLabelCache extends ComputerListener {
     /**
      * Caches the labels for the computer against its node.
      */
-    private void cacheLabels(Computer computer) throws IOException, InterruptedException {
+    protected void cacheLabels(Node node) throws IOException, InterruptedException {
         /* Cache the labels for the node */
-        nodeLabels.put(computer.getNode(), requestNodeLabels(computer.getChannel()));
+        nodeLabels.put(node, requestNodeLabels(node.getChannel()));
     }
 
     /**
      * Update Hudson's model so that labels for this computer are up to date.
      */
-    private void refreshModel(final Computer computer) {
-        computer.getNode().getAssignedLabels();
+    private void refreshModel(final Node node) {
+        node.getAssignedLabels();
     }
 
-    private static Set<LabelAtom> requestNodeLabels(VirtualChannel channel) throws IOException, InterruptedException {
+    private Set<LabelAtom> requestNodeLabels(VirtualChannel channel) throws IOException, InterruptedException {
         if (null == channel) {
             // Cannot obtain details from an unconnected node. While we should
             // never ask for such details, its possible that we may attempt to
@@ -110,7 +124,7 @@ public class NodeLabelCache extends ComputerListener {
         final Set<LabelAtom> result = new HashSet<LabelAtom>();
         final Jenkins jenkins = Jenkins.getInstance();
         try {
-            final Set<String> labels = channel.call(new PlatformDetailsTask());
+            final Set<String> labels = channel.call(platformDetailsTaskClassFactory.newInstance());
             for (String label : labels) {
                 result.add(jenkins.getLabelAtom(label));
             }

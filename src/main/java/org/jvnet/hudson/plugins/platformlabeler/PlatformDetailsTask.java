@@ -32,11 +32,12 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.HashSet;
+import java.util.Set;
 
-class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
+class PlatformDetailsTask implements Callable<Set<String>, IOException> {
 
     /** Performs computation and returns the result, or throws some exception. */
-    public HashSet<String> call() throws IOException {
+    public Set<String> call() throws IOException {
         String arch = System.getProperty("os.arch").toLowerCase();
         String name = System.getProperty("os.name").toLowerCase();
         String version = System.getProperty("os.version");
