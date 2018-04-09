@@ -120,13 +120,14 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
                 Process p = Runtime.getRuntime().exec("/bin/uname -m");
                 try {
                     p.waitFor();
-                    BufferedReader b = new BufferedReader(new InputStreamReader(p.getInputStream()));
-                    String line = b.readLine();
-                    if (line != null) {
-                        if ("x86_64".equals(line)) {
-                            arch = "amd64";
-                        } else {
-                            arch = line;
+                    try (BufferedReader b = new BufferedReader(new InputStreamReader(p.getInputStream(), "UTF-8"))) {
+                        String line = b.readLine();
+                        if (line != null) {
+                            if ("x86_64".equals(line)) {
+                                arch = "amd64";
+                            } else {
+                                arch = line;
+                            }
                         }
                     }
                 }

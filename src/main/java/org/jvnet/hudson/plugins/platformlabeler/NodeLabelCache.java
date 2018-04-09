@@ -82,7 +82,12 @@ public class NodeLabelCache extends ComputerListener {
      * Update Hudson's model so that labels for this computer are up to date.
      */
     void refreshModel(final Computer computer) {
-        computer.getNode().getAssignedLabels();
+        if (computer != null) {
+            Node node = computer.getNode();
+            if (node != null) {
+                node.getAssignedLabels();
+            }
+        }
     }
 
     private Collection<LabelAtom> requestNodeLabels(Computer computer) throws IOException, InterruptedException {
