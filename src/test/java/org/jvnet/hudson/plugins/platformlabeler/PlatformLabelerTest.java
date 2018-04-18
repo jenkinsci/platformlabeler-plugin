@@ -28,29 +28,38 @@ import hudson.model.labels.LabelAtom;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import org.jvnet.hudson.test.HudsonTestCase;
+
+import org.junit.Test;
+import org.junit.Rule;
+import org.jvnet.hudson.test.JenkinsRule;
+import static org.junit.Assert.*;
 
 /**
  *
  * @author robertc
  */
-public class PlatformLabelerTest extends HudsonTestCase {
+public class PlatformLabelerTest {
 
+    @Rule
+    public final JenkinsRule j = new JenkinsRule();
+
+    @Test
     public void testLookupCached() {
         Collection<LabelAtom> expected = new HashSet<LabelAtom>();
-        expected.add(hudson.getLabelAtom("foo"));
-        expected.add(hudson.getLabelAtom("bar"));
-        NodeLabelCache.nodeLabels.put(hudson, expected);
-        Collection labels = new PlatformLabeler().findLabels(hudson);
+        expected.add(j.jenkins.getLabelAtom("foo"));
+        expected.add(j.jenkins.getLabelAtom("bar"));
+        NodeLabelCache.nodeLabels.put(j.jenkins, expected);
+        Collection labels = new PlatformLabeler().findLabels(j.jenkins);
         assertEquals(expected, labels);
     }
 
+    @Test
     public void testLookupUncached() throws Exception {
-        /* remove the hudson node from the cache */
-        if (NodeLabelCache.nodeLabels.containsKey(hudson)) {
-            NodeLabelCache.nodeLabels.remove(hudson);
+        /* remove the Jenkins node from the cache */
+        if (NodeLabelCache.nodeLabels.containsKey(j.jenkins)) {
+            NodeLabelCache.nodeLabels.remove(j.jenkins);
         }
-        Collection labels = new PlatformLabeler().findLabels(hudson);
+        Collection labels = new PlatformLabeler().findLabels(j.jenkins);
         assertEquals(0, labels.size());
     }
 }
