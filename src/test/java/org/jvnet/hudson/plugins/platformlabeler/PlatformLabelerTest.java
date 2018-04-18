@@ -24,6 +24,7 @@
 package org.jvnet.hudson.plugins.platformlabeler;
 
 import hudson.model.Label;
+import hudson.model.labels.LabelAtom;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -36,11 +37,11 @@ import org.jvnet.hudson.test.HudsonTestCase;
 public class PlatformLabelerTest extends HudsonTestCase {
 
     public void testLookupCached() {
-        Set<Label> expected = new HashSet<Label>();
-        expected.add(hudson.getLabel("foo"));
-        expected.add(hudson.getLabel("bar"));
+        Collection<LabelAtom> expected = new HashSet<LabelAtom>();
+        expected.add(hudson.getLabelAtom("foo"));
+        expected.add(hudson.getLabelAtom("bar"));
         NodeLabelCache.nodeLabels.put(hudson, expected);
-        Collection<Label> labels = new PlatformLabeler().findLabels(hudson);
+        Collection labels = new PlatformLabeler().findLabels(hudson);
         assertEquals(expected, labels);
     }
 
@@ -49,7 +50,7 @@ public class PlatformLabelerTest extends HudsonTestCase {
         if (NodeLabelCache.nodeLabels.containsKey(hudson)) {
             NodeLabelCache.nodeLabels.remove(hudson);
         }
-        Collection<Label> labels = new PlatformLabeler().findLabels(hudson);
+        Collection labels = new PlatformLabeler().findLabels(hudson);
         assertEquals(0, labels.size());
     }
 }

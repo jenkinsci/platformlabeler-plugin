@@ -27,6 +27,9 @@ package org.jvnet.hudson.plugins.platformlabeler;
 
 import net.robertcollins.lsb.Release;
 
+import jenkins.security.Roles;
+import org.jenkinsci.remoting.RoleSensitive;
+import org.jenkinsci.remoting.RoleChecker;
 import hudson.remoting.Callable;
 import java.io.IOException;
 import java.io.BufferedReader;
@@ -35,6 +38,13 @@ import java.lang.InterruptedException;
 import java.util.HashSet;
 
 class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
+
+    /** Required abtract method definition; we need the permission to run on a slave
+     */
+    @Override
+    public void checkRoles(RoleChecker checker) throws SecurityException {
+        checker.check((RoleSensitive) this, Roles.SLAVE);
+    }
 
     /** Performs computation and returns the result, or throws some exception. */
     public HashSet<String> call() throws IOException {
