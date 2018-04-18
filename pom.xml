@@ -11,7 +11,7 @@
   <name>Hudson platformlabeler plugin</name>
   <version>1.2-SNAPSHOT</version>
 
-  <url>http://wiki.jenkins-ci.org/display/HUDSON/PlatformLabeler+Plugin</url>
+  <url>https://wiki.jenkins.io/display/JENKINS/PlatformLabeler+Plugin</url>
   <description>Assigns labels to nodes based on their operating system properties</description>
   <developers>
     <developer>
