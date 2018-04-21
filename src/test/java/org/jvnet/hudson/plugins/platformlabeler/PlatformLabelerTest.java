@@ -23,11 +23,9 @@
  */
 package org.jvnet.hudson.plugins.platformlabeler;
 
-import hudson.model.Label;
 import hudson.model.labels.LabelAtom;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.Test;
 import org.junit.Rule;
@@ -45,7 +43,7 @@ public class PlatformLabelerTest {
 
     @Test
     public void testLookupCached() {
-        Collection<LabelAtom> expected = new HashSet<LabelAtom>();
+        Collection<LabelAtom> expected = new HashSet<>();
         expected.add(j.jenkins.getLabelAtom("foo"));
         expected.add(j.jenkins.getLabelAtom("bar"));
         NodeLabelCache.nodeLabels.put(j.jenkins, expected);

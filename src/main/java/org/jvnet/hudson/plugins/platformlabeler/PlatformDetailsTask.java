@@ -22,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.jvnet.hudson.plugins.platformlabeler;
 
 import net.robertcollins.lsb.Release;
@@ -34,19 +33,22 @@ import hudson.remoting.Callable;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.lang.InterruptedException;
 import java.util.HashSet;
 
 class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
 
-    /** Required abtract method definition; we need the permission to run on a slave
+    /**
+     * Required abstract method definition; we need the permission to run on a slave
      */
     @Override
     public void checkRoles(RoleChecker checker) throws SecurityException {
         checker.check((RoleSensitive) this, Roles.SLAVE);
     }
 
-    /** Performs computation and returns the result, or throws some exception. */
+    /**
+     * Performs computation and returns the result, or throws some exception.
+     */
+    @Override
     public HashSet<String> call() throws IOException {
         String arch = System.getProperty("os.arch").toLowerCase();
         String name = System.getProperty("os.name").toLowerCase();
@@ -55,14 +57,16 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
             name = "solaris";
         } else if (name.startsWith("windows")) {
             name = "windows";
-            /** os.arch is really the JRE bitness, not the OS bitness. */
+            /**
+             * os.arch is really the JRE bitness, not the OS bitness.
+             */
             if ("x86".equals(arch)) {
-                final String env1 =
-                    System.getenv("PROCESSOR_ARCHITECTURE").toLowerCase();
+                final String env1 = System.getenv("PROCESSOR_ARCHITECTURE").toLowerCase();
                 String env2 = null;
                 try {
                     env2 = System.getenv("PROCESSOR_ARCHITEW6432").toLowerCase();
-                } catch (Exception e) {}
+                } catch (Exception e) {
+                }
 
                 if ("amd64".equals(env1) || "amd64".equals(env2)) {
                     arch = "amd64";
@@ -110,11 +114,13 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
             String unknown_string = "unknown+check_lsb_release_installed";
             Release release = new Release();
             name = release.distributorId();
-            if (null == name)
+            if (null == name) {
                 name = unknown_string;
+            }
             version = release.release();
-            if (null == version)
+            if (null == version) {
                 version = unknown_string;
+            }
 
             if ("x86".equals(arch)) {
                 Process p = Runtime.getRuntime().exec("/bin/uname -m");
@@ -130,15 +136,15 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
                             }
                         }
                     }
+                } catch (InterruptedException e) {
                 }
-                catch (InterruptedException e) {}
             }
         } else if (name.startsWith("mac")) {
             name = "mac";
         } else {
-                // Take the System.properties values verbatim.
+            // Take the System.properties values verbatim.
         }
-        HashSet<String> result = new HashSet<String>();
+        HashSet<String> result = new HashSet<>();
         result.add(arch);
         result.add(name);
         result.add(version);
