@@ -11,7 +11,7 @@
   <artifactId>platformlabeler</artifactId>
   <packaging>hpi</packaging>
   <name>Jenkins platformlabeler plugin</name>
-  <version>2.0-alpha1-SNAPSHOT</version>
+  <version>2.0-alpha2-SNAPSHOT</version>
 
   <url>https://wiki.jenkins.io/display/JENKINS/PlatformLabeler+Plugin</url>
   <description>Assigns labels to nodes based on their operating system properties</description>
