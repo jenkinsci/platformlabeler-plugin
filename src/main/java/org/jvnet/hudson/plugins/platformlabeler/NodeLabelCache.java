@@ -27,7 +27,6 @@ import hudson.Extension;
 import hudson.model.Computer;
 import hudson.model.Hudson;
 import hudson.model.Node;
-import hudson.model.Label;
 import hudson.model.labels.LabelAtom;
 import hudson.model.TaskListener;
 import hudson.remoting.VirtualChannel;
@@ -44,10 +43,9 @@ import java.util.logging.Logger;
 /**
  * A cache of Node labels.
  *
- * While it would be nice to have a single implementation extending both
- * FindLabels and ComputerListener, because Hudson uses subclassing its not
- * easy to do so. Instead we provide a static cache which the LabelFinder
- * in our package can read.
+ * While it would be nice to have a single implementation extending both FindLabels and ComputerListener, because Hudson
+ * uses subclassing its not easy to do so. Instead we provide a static cache which the LabelFinder in our package can
+ * read.
  */
 @Extension
 public class NodeLabelCache extends ComputerListener {
@@ -59,7 +57,7 @@ public class NodeLabelCache extends ComputerListener {
     /**
      * Logging of issues
      */
-    private final transient Logger logger = Logger.getLogger("org.jvnet.hudson.plugins.platformlabeler");
+    private static final transient Logger logger = Logger.getLogger("org.jvnet.hudson.plugins.platformlabeler");
 
     /**
      * When a computer comes online, probe it for its platform labels.
@@ -98,13 +96,13 @@ public class NodeLabelCache extends ComputerListener {
             // ask while the computer was asynchronously disconnecting.
             throw new IOException("No virtual channel available");
         }
-        final Collection<LabelAtom> result = new HashSet<LabelAtom>();
+        final Collection<LabelAtom> result = new HashSet<>();
         final Hudson hudson = Hudson.getInstance();
         try {
             final Set<String> labels = channel.call(new PlatformDetailsTask());
-            for (String label : labels) {
+            labels.forEach((label) -> {
                 result.add(hudson.getLabelAtom(label));
-            }
+            });
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Failed to read labels", e);
             throw e;
