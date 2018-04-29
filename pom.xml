@@ -54,6 +54,8 @@
       <version>1.0</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+    <!-- the lsb library bundled a very old commons-io version, this forces it newer -->
+    <!-- version 2.4 is the most widely chosen of the detected dependencies -->
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
