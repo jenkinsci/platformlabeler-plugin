@@ -70,6 +70,9 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
     }
 
     private String checkLinux32Bit(String arch) {
+        if (!"x86".equalsIgnoreCase(arch) || isWindows()) {
+            return arch;
+        }
         try {
             Process p = Runtime.getRuntime().exec("/bin/uname -m");
             p.waitFor();
@@ -127,5 +130,9 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
         result.add(name + "-" + version);
         result.add(arch + "-" + name + "-" + version);
         return result;
+    }
+
+    private boolean isWindows() {
+        return File.pathSeparatorChar == ';';
     }
 }
