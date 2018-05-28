@@ -3,7 +3,7 @@
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>3.9</version>
+    <version>3.12</version>
     <relativePath />
   </parent>
 
@@ -11,12 +11,14 @@
   <artifactId>platformlabeler</artifactId>
   <packaging>hpi</packaging>
   <name>Jenkins platformlabeler plugin</name>
-  <version>2.1-SNAPSHOT</version>
+  <version>${revision}${changelist}</version>
 
   <url>https://wiki.jenkins.io/display/JENKINS/PlatformLabeler+Plugin</url>
   <description>Assigns labels to nodes based on their operating system properties</description>
 
   <properties>
+    <revision>2.1</revision>
+    <changelist>-SNAPSHOT</changelist>
     <jenkins.version>2.60.3</jenkins.version>
     <java.level>8</java.level>
   </properties>
@@ -43,7 +45,7 @@
     <connection>scm:git:git://github.com/jenkinsci/platformlabeler-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/platformlabeler-plugin.git</developerConnection>
     <url>https://github.com/jenkinsci/platformlabeler-plugin</url>
-    <tag>HEAD</tag>
+    <tag>${scmTag}</tag>
   </scm>
 
   <dependencies>
