@@ -23,41 +23,37 @@
  */
 package org.jvnet.hudson.plugins.platformlabeler;
 
+import static org.junit.Assert.*;
+
 import hudson.model.labels.LabelAtom;
 import java.util.Collection;
 import java.util.HashSet;
-
-import org.junit.Test;
 import org.junit.Rule;
+import org.junit.Test;
 import org.jvnet.hudson.test.JenkinsRule;
-import static org.junit.Assert.*;
 
-/**
- *
- * @author robertc
- */
+/** @author robertc */
 public class PlatformLabelerTest {
 
-    @Rule
-    public final JenkinsRule j = new JenkinsRule();
+  @Rule public final JenkinsRule j = new JenkinsRule();
 
-    @Test
-    public void testLookupCached() {
-        Collection<LabelAtom> expected = new HashSet<>();
-        expected.add(j.jenkins.getLabelAtom("foo"));
-        expected.add(j.jenkins.getLabelAtom("bar"));
-        NodeLabelCache.nodeLabels.put(j.jenkins, expected);
-        Collection labels = new PlatformLabeler().findLabels(j.jenkins);
-        assertEquals(expected, labels);
-    }
+  @Test
+  public void testLookupCached() {
+    Collection<LabelAtom> expected = new HashSet<>();
+    expected.add(j.jenkins.getLabelAtom("foo"));
+    expected.add(j.jenkins.getLabelAtom("bar"));
+    NodeLabelCache.nodeLabels.put(j.jenkins, expected);
+    Collection labels = new PlatformLabeler().findLabels(j.jenkins);
+    assertEquals(expected, labels);
+  }
 
-    @Test
-    public void testLookupUncached() throws Exception {
-        /* remove the Jenkins node from the cache */
-        if (NodeLabelCache.nodeLabels.containsKey(j.jenkins)) {
-            NodeLabelCache.nodeLabels.remove(j.jenkins);
-        }
-        Collection labels = new PlatformLabeler().findLabels(j.jenkins);
-        assertEquals(0, labels.size());
+  @Test
+  public void testLookupUncached() throws Exception {
+    /* remove the Jenkins node from the cache */
+    if (NodeLabelCache.nodeLabels.containsKey(j.jenkins)) {
+      NodeLabelCache.nodeLabels.remove(j.jenkins);
     }
+    Collection labels = new PlatformLabeler().findLabels(j.jenkins);
+    assertEquals(0, labels.size());
+  }
 }
