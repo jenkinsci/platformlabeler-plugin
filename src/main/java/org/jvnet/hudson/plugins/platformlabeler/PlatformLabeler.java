@@ -24,29 +24,27 @@
 package org.jvnet.hudson.plugins.platformlabeler;
 
 import hudson.Extension;
+import hudson.model.LabelFinder;
 import hudson.model.Node;
 import hudson.model.labels.LabelAtom;
-import hudson.model.LabelFinder;
-
 import java.util.Collection;
 import java.util.Collections;
 
 /**
- * Obtain labels for Nodes at runtime by querying the operating system running on it. Querying is done via the
- * {@link NodeLabelCache} onOnline extension. PlatformLabeler simply answers from the cache that that extension
- * maintains.
+ * Obtain labels for Nodes at runtime by querying the operating system running on it. Querying is
+ * done via the {@link NodeLabelCache} onOnline extension. PlatformLabeler simply answers from the
+ * cache that that extension maintains.
  */
 @Extension
 public class PlatformLabeler extends LabelFinder {
 
-    @Override
-    public Collection<LabelAtom> findLabels(Node node) {
-        Collection<LabelAtom> result = NodeLabelCache.nodeLabels.get(node);
-        if (null == result) /* Node that has just attached and we don't have labels yet */ {
-            return Collections.emptySet();
-        } else {
-            return result;
-        }
+  @Override
+  public Collection<LabelAtom> findLabels(Node node) {
+    Collection<LabelAtom> result = NodeLabelCache.nodeLabels.get(node);
+    if (null == result) /* Node that has just attached and we don't have labels yet */ {
+      return Collections.emptySet();
+    } else {
+      return result;
     }
-
+  }
 }

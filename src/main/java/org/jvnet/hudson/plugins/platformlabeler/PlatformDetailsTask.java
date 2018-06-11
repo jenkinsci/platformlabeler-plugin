@@ -24,115 +24,112 @@
  */
 package org.jvnet.hudson.plugins.platformlabeler;
 
-import net.robertcollins.lsb.Release;
-
-import jenkins.security.Roles;
-import org.jenkinsci.remoting.RoleSensitive;
-import org.jenkinsci.remoting.RoleChecker;
 import hudson.remoting.Callable;
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.IOException;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashSet;
+import jenkins.security.Roles;
+import net.robertcollins.lsb.Release;
+import org.jenkinsci.remoting.RoleChecker;
+import org.jenkinsci.remoting.RoleSensitive;
 
 class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
 
-    /**
-     * Required abstract method definition; we need the permission to run on a slave
-     */
-    @Override
-    public void checkRoles(RoleChecker checker) throws SecurityException {
-        checker.check((RoleSensitive) this, Roles.SLAVE);
-    }
+  /** Required abstract method definition; we need the permission to run on a slave */
+  @Override
+  public void checkRoles(RoleChecker checker) throws SecurityException {
+    checker.check((RoleSensitive) this, Roles.SLAVE);
+  }
 
-    /**
-     * Performs computation and returns the result, or throws some exception.
-     */
-    @Override
-    public HashSet<String> call() throws IOException {
-        final String arch = System.getProperty("os.arch");
-        String name = System.getProperty("os.name");
-        String version = System.getProperty("os.version");
-        return computeLabels(arch, name, version);
-    }
+  /** Performs computation and returns the result, or throws some exception. */
+  @Override
+  public HashSet<String> call() throws IOException {
+    final String arch = System.getProperty("os.arch");
+    String name = System.getProperty("os.name");
+    String version = System.getProperty("os.version");
+    return computeLabels(arch, name, version);
+  }
 
-    private String checkWindows32Bit(String arch) {
-        if (!"x86".equalsIgnoreCase(arch)) {
-            return arch;
-        }
-        final String env1 = System.getenv("PROCESSOR_ARCHITECTURE");
-        final String env2 = System.getenv("PROCESSOR_ARCHITEW6432");
-        if ("amd64".equalsIgnoreCase(env1) || "amd64".equalsIgnoreCase(env2)) {
+  private String checkWindows32Bit(String arch) {
+    if (!"x86".equalsIgnoreCase(arch)) {
+      return arch;
+    }
+    final String env1 = System.getenv("PROCESSOR_ARCHITECTURE");
+    final String env2 = System.getenv("PROCESSOR_ARCHITEW6432");
+    if ("amd64".equalsIgnoreCase(env1) || "amd64".equalsIgnoreCase(env2)) {
+      arch = "amd64";
+    }
+    return arch;
+  }
+
+  private String checkLinux32Bit(String arch) {
+    if (!"x86".equalsIgnoreCase(arch) || isWindows()) {
+      return arch;
+    }
+    try {
+      Process p = Runtime.getRuntime().exec("/bin/uname -m");
+      p.waitFor();
+      try (BufferedReader b =
+          new BufferedReader(new InputStreamReader(p.getInputStream(), "UTF-8"))) {
+        String line = b.readLine();
+        if (line != null) {
+          if ("x86_64".equals(line)) {
             arch = "amd64";
+          } else {
+            arch = line;
+          }
         }
-        return arch;
+      }
+    } catch (IOException | InterruptedException e) {
     }
+    return arch;
+  }
 
-    private String checkLinux32Bit(String arch) {
-        if (!"x86".equalsIgnoreCase(arch) || isWindows()) {
-            return arch;
-        }
-        try {
-            Process p = Runtime.getRuntime().exec("/bin/uname -m");
-            p.waitFor();
-            try (BufferedReader b = new BufferedReader(new InputStreamReader(p.getInputStream(), "UTF-8"))) {
-                String line = b.readLine();
-                if (line != null) {
-                    if ("x86_64".equals(line)) {
-                        arch = "amd64";
-                    } else {
-                        arch = line;
-                    }
-                }
-            }
-        } catch (IOException | InterruptedException e) {
-        }
-        return arch;
+  protected HashSet<String> computeLabels(String arch, String name, String version)
+      throws IOException {
+    name = name.toLowerCase();
+    if (name.equals("solaris")) {
+      name = "solaris";
+    } else if (name.startsWith("windows")) {
+      name = "windows";
+      arch = checkWindows32Bit(arch);
+      if (version.startsWith("4.0")) {
+        version = "nt4";
+      } else if (version.startsWith("5.0")) {
+        version = "2000";
+      } else if (version.startsWith("5.1")) {
+        version = "xp";
+      } else if (version.startsWith("5.2")) {
+        version = "2003";
+      }
+    } else if (name.startsWith("linux")) {
+      String unknown_string = "unknown+check_lsb_release_installed";
+      Release release = new Release();
+      name = release.distributorId();
+      arch = checkLinux32Bit(arch);
+      if (null == name) {
+        name = unknown_string;
+      }
+      version = release.release();
+      if (null == version) {
+        version = unknown_string;
+      }
+    } else if (name.startsWith("mac")) {
+      name = "mac";
     }
+    HashSet<String> result = new HashSet<>();
+    result.add(arch);
+    result.add(name);
+    result.add(version);
+    result.add(arch + "-" + name);
+    result.add(name + "-" + version);
+    result.add(arch + "-" + name + "-" + version);
+    return result;
+  }
 
-    protected HashSet<String> computeLabels(String arch, String name, String version) throws IOException {
-        name = name.toLowerCase();
-        if (name.equals("solaris")) {
-            name = "solaris";
-        } else if (name.startsWith("windows")) {
-            name = "windows";
-            arch = checkWindows32Bit(arch);
-            if (version.startsWith("4.0")) {
-                version = "nt4";
-            } else if (version.startsWith("5.0")) {
-                version = "2000";
-            } else if (version.startsWith("5.1")) {
-                version = "xp";
-            } else if (version.startsWith("5.2")) {
-                version = "2003";
-            }
-        } else if (name.startsWith("linux")) {
-            String unknown_string = "unknown+check_lsb_release_installed";
-            Release release = new Release();
-            name = release.distributorId();
-            arch = checkLinux32Bit(arch);
-            if (null == name) {
-                name = unknown_string;
-            }
-            version = release.release();
-            if (null == version) {
-                version = unknown_string;
-            }
-        } else if (name.startsWith("mac")) {
-            name = "mac";
-        }
-        HashSet<String> result = new HashSet<>();
-        result.add(arch);
-        result.add(name);
-        result.add(version);
-        result.add(arch + "-" + name);
-        result.add(name + "-" + version);
-        result.add(arch + "-" + name + "-" + version);
-        return result;
-    }
-
-    private boolean isWindows() {
-        return File.pathSeparatorChar == ';';
-    }
+  private boolean isWindows() {
+    return File.pathSeparatorChar == ';';
+  }
 }
