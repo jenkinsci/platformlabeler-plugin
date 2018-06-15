@@ -3,7 +3,7 @@
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>3.14</version>
+    <version>3.15</version>
     <relativePath />
   </parent>
 
@@ -24,16 +24,6 @@
   </properties>
 
   <developers>
-    <developer>
-      <id>lifeless</id>
-      <name>Robert Collins</name>
-      <email>robertc@robertcollins.net</email>
-    </developer>
-    <developer>
-      <id>ndeloof</id>
-      <name>Nicolas De Loof</name>
-      <email>nicolas.deloof@gmail.com</email>
-    </developer>
     <developer>
       <id>MarkEWaite</id>
       <name>Mark Waite</name>
