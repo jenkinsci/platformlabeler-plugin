@@ -22,3 +22,6 @@ tags
 
 # emacs
 TAGS
+
+# Jenkins incrementals builds
+.@tmp/
