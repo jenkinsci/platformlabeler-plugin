@@ -25,7 +25,6 @@ package org.jvnet.hudson.plugins.platformlabeler;
 
 import hudson.Extension;
 import hudson.model.Computer;
-import hudson.model.Hudson;
 import hudson.model.Node;
 import hudson.model.TaskListener;
 import hudson.model.labels.LabelAtom;
@@ -38,12 +37,13 @@ import java.util.Set;
 import java.util.WeakHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jenkins.model.Jenkins;
 
 /**
  * A cache of Node labels.
  *
  * <p>While it would be nice to have a single implementation extending both FindLabels and
- * ComputerListener, because Hudson uses subclassing its not easy to do so. Instead we provide a
+ * ComputerListener, because Jenkins uses subclassing it is not easy to do so. Instead we provide a
  * static cache which the LabelFinder in our package can read.
  */
 @Extension
@@ -70,7 +70,7 @@ public class NodeLabelCache extends ComputerListener {
     nodeLabels.put(computer.getNode(), requestNodeLabels(computer));
   }
 
-  /** Update Hudson's model so that labels for this computer are up to date. */
+  /** Update Jenkins' model so that labels for this computer are up to date. */
   void refreshModel(final Computer computer) {
     if (computer != null) {
       Node node = computer.getNode();
@@ -90,12 +90,12 @@ public class NodeLabelCache extends ComputerListener {
       throw new IOException("No virtual channel available");
     }
     final Collection<LabelAtom> result = new HashSet<>();
-    final Hudson hudson = Hudson.getInstance();
+    final Jenkins jenkins = Jenkins.getInstanceOrNull();
     try {
       final Set<String> labels = channel.call(new PlatformDetailsTask());
       labels.forEach(
           (label) -> {
-            result.add(hudson.getLabelAtom(label));
+            result.add(jenkins.getLabelAtom(label));
           });
     } catch (IOException e) {
       logger.log(Level.SEVERE, "Failed to read labels", e);
