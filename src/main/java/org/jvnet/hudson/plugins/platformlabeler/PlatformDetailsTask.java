@@ -123,7 +123,7 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
    */
   protected HashSet<String> computeLabels(
       final String arch, final String name, final String version) throws IOException {
-    String unknown_string = "unknown+check_lsb_release_installed";
+    String unknown_string = "unknown+check_lsb_release_not_installed";
     String calculatedArch = arch;
     String calculatedName = unknown_string;
     if (name != null) {
