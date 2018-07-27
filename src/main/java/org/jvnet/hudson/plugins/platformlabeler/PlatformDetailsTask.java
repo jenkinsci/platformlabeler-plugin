@@ -129,19 +129,22 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
     if (name != null) {
       calculatedName = name.toLowerCase();
     }
-    String calculatedVersion = version;
+    String calculatedVersion = unknown_string;
+    if (version != null) {
+      calculatedVersion = version;
+    }
     if (calculatedName.equals("solaris")) {
       calculatedName = "solaris";
     } else if (calculatedName.startsWith("windows")) {
       calculatedName = "windows";
       calculatedArch = checkWindows32Bit(arch);
-      if (version.startsWith("4.0")) {
+      if (calculatedVersion.startsWith("4.0")) {
         calculatedVersion = "nt4";
-      } else if (version.startsWith("5.0")) {
+      } else if (calculatedVersion.startsWith("5.0")) {
         calculatedVersion = "2000";
-      } else if (version.startsWith("5.1")) {
+      } else if (calculatedVersion.startsWith("5.1")) {
         calculatedVersion = "xp";
-      } else if (version.startsWith("5.2")) {
+      } else if (calculatedVersion.startsWith("5.2")) {
         calculatedVersion = "2003";
       }
     } else if (calculatedName.startsWith("linux")) {
@@ -149,9 +152,6 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
       calculatedName = release.distributorId();
       calculatedArch = checkLinux32Bit(arch);
       calculatedVersion = release.release();
-      if (null == version) {
-        calculatedVersion = unknown_string;
-      }
     } else if (calculatedName.startsWith("mac")) {
       calculatedName = "mac";
     }
