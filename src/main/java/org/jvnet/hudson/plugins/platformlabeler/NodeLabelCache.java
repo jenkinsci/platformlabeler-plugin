@@ -52,7 +52,7 @@ public class NodeLabelCache extends ComputerListener {
   /** The labels computed for nodes - accessible package wide. */
   static transient WeakHashMap<Node, Collection<LabelAtom>> nodeLabels =
       new WeakHashMap<Node, Collection<LabelAtom>>();
-  /** Logging of issues */
+  /** Logging of issues. */
   private static final transient Logger logger =
       Logger.getLogger("org.jvnet.hudson.plugins.platformlabeler");
 
@@ -64,13 +64,19 @@ public class NodeLabelCache extends ComputerListener {
     refreshModel(computer);
   }
 
-  /** Caches the labels for the computer against its node. */
+  /** Caches the labels for the computer against its node.
+   * @param computer node whose labels will be cached
+   * @throws IOException on I/O error
+   * @throws InterruptedException on thread interruption
+   */
   void cacheLabels(Computer computer) throws IOException, InterruptedException {
     /* Cache the labels for the node */
     nodeLabels.put(computer.getNode(), requestNodeLabels(computer));
   }
 
-  /** Update Jenkins' model so that labels for this computer are up to date. */
+  /** Update Jenkins' model so that labels for this computer are up to date.
+   * @param computer node whose labels will be cached
+   */
   void refreshModel(final Computer computer) {
     if (computer != null) {
       Node node = computer.getNode();
