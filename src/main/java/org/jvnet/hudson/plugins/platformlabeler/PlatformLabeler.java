@@ -49,8 +49,7 @@ public class PlatformLabeler extends LabelFinder {
     Collection<LabelAtom> result = NodeLabelCache.nodeLabels.get(node);
     if (null == result) /* Node that has just attached and we don't have labels yet */ {
       return Collections.emptySet();
-    } else {
-      return result;
     }
+    return result;
   }
 }
