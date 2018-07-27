@@ -56,30 +56,36 @@ public class NodeLabelCache extends ComputerListener {
   private static final transient Logger logger =
       Logger.getLogger("org.jvnet.hudson.plugins.platformlabeler");
 
-  /** When a computer comes online, probe it for its platform labels.
-     * @param computer agent whose labels will be cached
-     * @param listener TaskListener that is ignored
-     * @throws java.io.IOException on IO error
-     * @throws java.lang.InterruptedException on thread interrupt
-     */
+  /**
+   * When a computer comes online, probe it for its platform labels.
+   *
+   * @param computer agent whose labels will be cached
+   * @param listener TaskListener that is ignored
+   * @throws java.io.IOException on IO error
+   * @throws java.lang.InterruptedException on thread interrupt
+   */
   @Override
-  public void onOnline(Computer computer, TaskListener listener)
+  public void onOnline(final Computer computer, final TaskListener listener)
       throws IOException, InterruptedException {
     cacheLabels(computer);
     refreshModel(computer);
   }
 
-  /** Caches the labels for the computer against its node.
+  /**
+   * Caches the labels for the computer against its node.
+   *
    * @param computer node whose labels will be cached
    * @throws IOException on I/O error
    * @throws InterruptedException on thread interruption
    */
-  void cacheLabels(Computer computer) throws IOException, InterruptedException {
+  void cacheLabels(final Computer computer) throws IOException, InterruptedException {
     /* Cache the labels for the node */
     nodeLabels.put(computer.getNode(), requestNodeLabels(computer));
   }
 
-  /** Update Jenkins' model so that labels for this computer are up to date.
+  /**
+   * Update Jenkins' model so that labels for this computer are up to date.
+   *
    * @param computer node whose labels will be cached
    */
   void refreshModel(final Computer computer) {
@@ -91,7 +97,15 @@ public class NodeLabelCache extends ComputerListener {
     }
   }
 
-  private Collection<LabelAtom> requestNodeLabels(Computer computer)
+  /**
+   * Return labels assigned to computer.
+   *
+   * @param computer agent whose labels will be returned
+   * @return labels assigned to computer
+   * @throws IOException on I/O error
+   * @throws InterruptedException on thread interrupt
+   */
+  private Collection<LabelAtom> requestNodeLabels(final Computer computer)
       throws IOException, InterruptedException {
     final VirtualChannel channel = computer.getChannel();
     if (null == channel) {

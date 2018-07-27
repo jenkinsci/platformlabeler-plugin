@@ -35,22 +35,24 @@ import net.robertcollins.lsb.Release;
 import org.jenkinsci.remoting.RoleChecker;
 import org.jenkinsci.remoting.RoleSensitive;
 
-/**
- * Platform details are identified and recorded in this class for labeling use.
- */
+/** Platform details are identified and recorded in this class for labeling use. */
 class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
 
-  /** Check roles are allowed.
-   * Required abstract method definition; we need the permission to run on a slave 
+  /**
+   * Check roles are allowed. Required abstract method definition; we need the permission to run on
+   * a slave
+   *
    * @param checker role checker to be called to check SLAVE role
    * @throws SecurityException on a security error
    */
   @Override
-  public void checkRoles(RoleChecker checker) throws SecurityException {
+  public void checkRoles(final RoleChecker checker) throws SecurityException {
     checker.check((RoleSensitive) this, Roles.SLAVE);
   }
 
-  /** Performs computation and returns the result, or throws some exception. 
+  /**
+   * Performs computation and returns the result, or throws some exception.
+   *
    * @return label computation result
    * @throws IOException on I/O error
    */
@@ -63,28 +65,31 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
   }
 
   /**
-   * Return "x86" or "amd64 as Windows architecture depending on the values of known Windows environment variables.
+   * Return "x86" or "amd64 as Windows architecture depending on the values of known Windows
+   * environment variables.
+   *
    * @param arch initial guess of architecture
    * @return actual architecture, either "x86" or "amd64"
    */
-  private String checkWindows32Bit(String arch) {
+  private String checkWindows32Bit(final String arch) {
     if (!"x86".equalsIgnoreCase(arch)) {
       return arch;
     }
     final String env1 = System.getenv("PROCESSOR_ARCHITECTURE");
     final String env2 = System.getenv("PROCESSOR_ARCHITEW6432");
     if ("amd64".equalsIgnoreCase(env1) || "amd64".equalsIgnoreCase(env2)) {
-      arch = "amd64";
+      return "amd64";
     }
     return arch;
   }
 
   /**
    * Return architecture "x86" or "amd64" based on information read from Linux system.
+   *
    * @param arch initial guess of architecture
    * @return actual architecture, either "x86" or "amd64"
    */
-  private String checkLinux32Bit(String arch) {
+  private String checkLinux32Bit(final String arch) {
     if (!"x86".equalsIgnoreCase(arch) || isWindows()) {
       return arch;
     }
@@ -96,9 +101,9 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
         String line = b.readLine();
         if (line != null) {
           if ("x86_64".equals(line)) {
-            arch = "amd64";
+            return "amd64";
           } else {
-            arch = line;
+            return line;
           }
         }
       }
@@ -109,56 +114,60 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
 
   /**
    * Compute labels to be assigned based on passed parameters.
+   *
    * @param arch architecture for label computation
    * @param name operating system name for label computation
    * @param version operating system version for label computation
    * @return computed labels as a set of String
    * @throws IOException on I/O errors
    */
-  protected HashSet<String> computeLabels(String arch, String name, String version)
-      throws IOException {
-    name = name.toLowerCase();
-    if (name.equals("solaris")) {
-      name = "solaris";
-    } else if (name.startsWith("windows")) {
-      name = "windows";
-      arch = checkWindows32Bit(arch);
+  protected HashSet<String> computeLabels(
+      final String arch, final String name, final String version) throws IOException {
+    String unknown_string = "unknown+check_lsb_release_installed";
+    String calculatedArch = arch;
+    String calculatedName = unknown_string;
+    if (name != null) {
+      calculatedName = name.toLowerCase();
+    }
+    String calculatedVersion = version;
+    if (calculatedName.equals("solaris")) {
+      calculatedName = "solaris";
+    } else if (calculatedName.startsWith("windows")) {
+      calculatedName = "windows";
+      calculatedArch = checkWindows32Bit(arch);
       if (version.startsWith("4.0")) {
-        version = "nt4";
+        calculatedVersion = "nt4";
       } else if (version.startsWith("5.0")) {
-        version = "2000";
+        calculatedVersion = "2000";
       } else if (version.startsWith("5.1")) {
-        version = "xp";
+        calculatedVersion = "xp";
       } else if (version.startsWith("5.2")) {
-        version = "2003";
+        calculatedVersion = "2003";
       }
-    } else if (name.startsWith("linux")) {
-      String unknown_string = "unknown+check_lsb_release_installed";
+    } else if (calculatedName.startsWith("linux")) {
       Release release = new Release();
-      name = release.distributorId();
-      arch = checkLinux32Bit(arch);
-      if (null == name) {
-        name = unknown_string;
-      }
-      version = release.release();
+      calculatedName = release.distributorId();
+      calculatedArch = checkLinux32Bit(arch);
+      calculatedVersion = release.release();
       if (null == version) {
-        version = unknown_string;
+        calculatedVersion = unknown_string;
       }
-    } else if (name.startsWith("mac")) {
-      name = "mac";
+    } else if (calculatedName.startsWith("mac")) {
+      calculatedName = "mac";
     }
     HashSet<String> result = new HashSet<>();
-    result.add(arch);
-    result.add(name);
-    result.add(version);
-    result.add(arch + "-" + name);
-    result.add(name + "-" + version);
-    result.add(arch + "-" + name + "-" + version);
+    result.add(calculatedArch);
+    result.add(calculatedName);
+    result.add(calculatedVersion);
+    result.add(calculatedArch + "-" + calculatedName);
+    result.add(calculatedName + "-" + calculatedVersion);
+    result.add(calculatedArch + "-" + calculatedName + "-" + calculatedVersion);
     return result;
   }
 
   /**
    * Returns true if this computer is running Microsoft Windows.
+   *
    * @return true if this computer is running Microsoft Windows
    */
   private boolean isWindows() {

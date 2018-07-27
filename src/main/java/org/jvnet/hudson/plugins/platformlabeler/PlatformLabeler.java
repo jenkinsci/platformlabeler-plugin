@@ -38,13 +38,14 @@ import java.util.Collections;
 @Extension
 public class PlatformLabeler extends LabelFinder {
 
-    /**
-     * Returns collection of LabelAtom for the node argument.
-     * @param node agent whose labels are returned
-     * @return collection of LabelAtom for the node argument
-     */
-    @Override
-  public Collection<LabelAtom> findLabels(Node node) {
+  /**
+   * Returns collection of LabelAtom for the node argument.
+   *
+   * @param node agent whose labels are returned
+   * @return collection of LabelAtom for the node argument
+   */
+  @Override
+  public Collection<LabelAtom> findLabels(final Node node) {
     Collection<LabelAtom> result = NodeLabelCache.nodeLabels.get(node);
     if (null == result) /* Node that has just attached and we don't have labels yet */ {
       return Collections.emptySet();
