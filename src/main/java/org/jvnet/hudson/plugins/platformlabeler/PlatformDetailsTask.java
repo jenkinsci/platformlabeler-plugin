@@ -29,15 +29,19 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.HashSet;
+import java.util.List;
 import jenkins.security.Roles;
 import net.robertcollins.lsb.Release;
 import org.jenkinsci.remoting.RoleChecker;
 import org.jenkinsci.remoting.RoleSensitive;
 
+/** Compute labels based on details computed on the agent. */
 class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
 
-  /** Required abstract method definition; we need the permission to run on a slave */
+  /** Required abstract method definition; we need the permission to run on a slave. */
   @Override
   public void checkRoles(RoleChecker checker) throws SecurityException {
     checker.check((RoleSensitive) this, Roles.SLAVE);
@@ -52,6 +56,15 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
     return computeLabels(arch, name, version);
   }
 
+  /**
+   * Returns standardized architecture of current Windows operating system, adapted for those cases
+   * where a 64 bit machine may be running a 32 bit Java virtual machine. Returns "amd64" if the
+   * processor environment variables report this is an AMD 64 architecture (modern Intel and AMD
+   * processors).
+   *
+   * @param arch architecture of the agent, as in "x86", "amd64", or "aarch64"
+   * @return standardized architecture of current Windows operating system
+   */
   private String checkWindows32Bit(String arch) {
     if (!"x86".equalsIgnoreCase(arch)) {
       return arch;
@@ -64,6 +77,14 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
     return arch;
   }
 
+  /**
+   * Returns standardized architecture of current Linux operating system, adapted for those cases
+   * where a 64 bit machine may identify architecture in different ways. Returns "amd64" if the
+   * 'uname -m' output is "x86_64".
+   *
+   * @param arch architecture of the agent, as in "x86", "amd64", or "aarch64"
+   * @return standardized architecture of current Linux operating system
+   */
   private String checkLinux32Bit(String arch) {
     if (!"x86".equalsIgnoreCase(arch) || isWindows()) {
       return arch;
@@ -87,6 +108,16 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
     return arch;
   }
 
+  /**
+   * Compute agent labels based on seed values provided as parameters.
+   *
+   * @param arch architecture of the agent, as in "x86", "amd64", or "aarch64"
+   * @param name name of the operating system or distribution as in "OpenBSD", "FreeBSD", "Windows",
+   *     or "Linux"
+   * @param version version of the operating system
+   * @throws IOException on I/O error
+   * @return agent labels as a set of strings
+   */
   protected HashSet<String> computeLabels(String arch, String name, String version)
       throws IOException {
     name = name.toLowerCase();
@@ -116,6 +147,16 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
       if (null == version) {
         version = unknown_string;
       }
+      if (name.equals(unknown_string)) {
+        File alpineVersion = new File("/etc/alpine-release");
+        if (alpineVersion.exists()) {
+          name = "Alpine";
+          List<String> lines = Files.readAllLines(alpineVersion.toPath(), StandardCharsets.UTF_8);
+          if (lines.size() > 0) {
+            version = lines.get(0);
+          }
+        }
+      }
     } else if (name.startsWith("mac")) {
       name = "mac";
     }
@@ -129,6 +170,11 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
     return result;
   }
 
+  /**
+   * Returns true if running on Windows.
+   *
+   * @return true if running on Windows
+   */
   private boolean isWindows() {
     return File.pathSeparatorChar == ';';
   }
