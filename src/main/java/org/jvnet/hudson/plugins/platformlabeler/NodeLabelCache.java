@@ -90,6 +90,14 @@ public class NodeLabelCache extends ComputerListener {
     }
   }
 
+  /**
+   * Return collection of labels for computer.
+   *
+   * @param computer agent whose labels are returned
+   * @throws IOException on I/O error
+   * @throws InterruptedException on thread interruption
+   * @return collection of labels for computer
+   */
   private Collection<LabelAtom> requestNodeLabels(Computer computer)
       throws IOException, InterruptedException {
     final VirtualChannel channel = computer.getChannel();
