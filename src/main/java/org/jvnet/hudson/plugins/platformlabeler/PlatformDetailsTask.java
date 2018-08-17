@@ -29,7 +29,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.HashSet;
+import java.util.List;
 import jenkins.security.Roles;
 import net.robertcollins.lsb.Release;
 import org.jenkinsci.remoting.RoleChecker;
@@ -113,55 +116,65 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
   }
 
   /**
-   * Compute labels to be assigned based on passed parameters.
+   * Compute agent labels based on seed values provided as parameters.
    *
-   * @param arch architecture for label computation
-   * @param name operating system name for label computation
-   * @param version operating system version for label computation
-   * @return computed labels as a set of String
-   * @throws IOException on I/O errors
+   * @param arch architecture of the agent, as in "x86", "amd64", or "aarch64"
+   * @param name name of the operating system or distribution as in "OpenBSD", "FreeBSD", "Windows",
+   *     or "Linux"
+   * @param version version of the operating system
+   * @throws IOException on I/O error
+   * @return agent labels as a set of strings
    */
   protected HashSet<String> computeLabels(
       final String arch, final String name, final String version) throws IOException {
-    String unknown_string = "unknown+check_lsb_release_not_installed";
-    String calculatedArch = arch;
-    String calculatedName = unknown_string;
-    if (name != null) {
-      calculatedName = name.toLowerCase();
-    }
-    String calculatedVersion = unknown_string;
-    if (version != null) {
-      calculatedVersion = version;
-    }
-    if (calculatedName.equals("solaris")) {
-      calculatedName = "solaris";
-    } else if (calculatedName.startsWith("windows")) {
-      calculatedName = "windows";
-      calculatedArch = checkWindows32Bit(arch);
-      if (calculatedVersion.startsWith("4.0")) {
-        calculatedVersion = "nt4";
-      } else if (calculatedVersion.startsWith("5.0")) {
-        calculatedVersion = "2000";
-      } else if (calculatedVersion.startsWith("5.1")) {
-        calculatedVersion = "xp";
-      } else if (calculatedVersion.startsWith("5.2")) {
-        calculatedVersion = "2003";
+    String computedName = name.toLowerCase();
+    String computedArch = arch;
+    String computedVersion = version;
+    if (computedName.startsWith("windows")) {
+      computedName = "windows";
+      computedArch = checkWindows32Bit(computedArch);
+      if (computedVersion.startsWith("4.0")) {
+        computedVersion = "nt4";
+      } else if (computedVersion.startsWith("5.0")) {
+        computedVersion = "2000";
+      } else if (computedVersion.startsWith("5.1")) {
+        computedVersion = "xp";
+      } else if (computedVersion.startsWith("5.2")) {
+        computedVersion = "2003";
       }
-    } else if (calculatedName.startsWith("linux")) {
+    } else if (computedName.startsWith("linux")) {
+      String unknownString = "unknown+check_lsb_release_installed";
       Release release = new Release();
-      calculatedName = release.distributorId();
-      calculatedArch = checkLinux32Bit(arch);
-      calculatedVersion = release.release();
-    } else if (calculatedName.startsWith("mac")) {
-      calculatedName = "mac";
+      computedName = release.distributorId();
+      computedArch = checkLinux32Bit(computedArch);
+      if (null == computedName) {
+        computedName = unknownString;
+      }
+      computedVersion = release.release();
+      if (null == computedVersion) {
+        computedVersion = unknownString;
+      }
+      if (computedName.equals(unknownString)) {
+        File alpineComputedVersion = new File("/etc/alpine-release");
+        if (alpineComputedVersion.exists()) {
+          computedName = "Alpine";
+          List<String> lines =
+              Files.readAllLines(alpineComputedVersion.toPath(), StandardCharsets.UTF_8);
+          if (lines.size() > 0) {
+            computedVersion = lines.get(0);
+          }
+        }
+      }
+    } else if (computedName.startsWith("mac")) {
+      computedName = "mac";
     }
     HashSet<String> result = new HashSet<>();
-    result.add(calculatedArch);
-    result.add(calculatedName);
-    result.add(calculatedVersion);
-    result.add(calculatedArch + "-" + calculatedName);
-    result.add(calculatedName + "-" + calculatedVersion);
-    result.add(calculatedArch + "-" + calculatedName + "-" + calculatedVersion);
+    result.add(computedArch);
+    result.add(computedName);
+    result.add(computedVersion);
+    result.add(computedArch + "-" + computedName);
+    result.add(computedName + "-" + computedVersion);
+    result.add(computedArch + "-" + computedName + "-" + computedVersion);
     return result;
   }
 
