@@ -136,18 +136,18 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
         version = "2003";
       }
     } else if (name.startsWith("linux")) {
-      String unknown_string = "unknown+check_lsb_release_installed";
+      String unknownString = "unknown+check_lsb_release_installed";
       Release release = new Release();
       name = release.distributorId();
       arch = checkLinux32Bit(arch);
       if (null == name) {
-        name = unknown_string;
+        name = unknownString;
       }
       version = release.release();
       if (null == version) {
-        version = unknown_string;
+        version = unknownString;
       }
-      if (name.equals(unknown_string)) {
+      if (name.equals(unknownString)) {
         File alpineVersion = new File("/etc/alpine-release");
         if (alpineVersion.exists()) {
           name = "Alpine";
