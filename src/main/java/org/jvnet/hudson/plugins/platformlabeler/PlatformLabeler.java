@@ -39,7 +39,7 @@ import java.util.Collections;
 public class PlatformLabeler extends LabelFinder {
 
   @Override
-  public Collection<LabelAtom> findLabels(Node node) {
+  public Collection<LabelAtom> findLabels(final Node node) {
     Collection<LabelAtom> result = NodeLabelCache.nodeLabels.get(node);
     if (null == result) /* Node that has just attached and we don't have labels yet */ {
       return Collections.emptySet();
