@@ -58,7 +58,7 @@ public class NodeLabelCache extends ComputerListener {
 
   /** When a computer comes online, probe it for its platform labels. */
   @Override
-  public void onOnline(Computer computer, TaskListener listener)
+  public void onOnline(final Computer computer, final TaskListener listener)
       throws IOException, InterruptedException {
     cacheLabels(computer);
     refreshModel(computer);
@@ -71,7 +71,7 @@ public class NodeLabelCache extends ComputerListener {
    * @throws IOException on I/O error
    * @throws InterruptedException on thread interruption
    */
-  void cacheLabels(Computer computer) throws IOException, InterruptedException {
+  void cacheLabels(final Computer computer) throws IOException, InterruptedException {
     /* Cache the labels for the node */
     nodeLabels.put(computer.getNode(), requestNodeLabels(computer));
   }
@@ -98,7 +98,7 @@ public class NodeLabelCache extends ComputerListener {
    * @throws InterruptedException on thread interruption
    * @return collection of labels for computer
    */
-  private Collection<LabelAtom> requestNodeLabels(Computer computer)
+  private Collection<LabelAtom> requestNodeLabels(final Computer computer)
       throws IOException, InterruptedException {
     final VirtualChannel channel = computer.getChannel();
     if (null == channel) {

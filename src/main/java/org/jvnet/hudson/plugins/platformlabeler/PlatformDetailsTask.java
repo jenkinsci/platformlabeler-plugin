@@ -43,7 +43,7 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
 
   /** Required abstract method definition; we need the permission to run on a slave. */
   @Override
-  public void checkRoles(RoleChecker checker) throws SecurityException {
+  public void checkRoles(final RoleChecker checker) throws SecurityException {
     checker.check((RoleSensitive) this, Roles.SLAVE);
   }
 
@@ -65,14 +65,14 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
    * @param arch architecture of the agent, as in "x86", "amd64", or "aarch64"
    * @return standardized architecture of current Windows operating system
    */
-  private String checkWindows32Bit(String arch) {
+  private String checkWindows32Bit(final String arch) {
     if (!"x86".equalsIgnoreCase(arch)) {
       return arch;
     }
     final String env1 = System.getenv("PROCESSOR_ARCHITECTURE");
     final String env2 = System.getenv("PROCESSOR_ARCHITEW6432");
     if ("amd64".equalsIgnoreCase(env1) || "amd64".equalsIgnoreCase(env2)) {
-      arch = "amd64";
+      return "amd64";
     }
     return arch;
   }
@@ -85,7 +85,7 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
    * @param arch architecture of the agent, as in "x86", "amd64", or "aarch64"
    * @return standardized architecture of current Linux operating system
    */
-  private String checkLinux32Bit(String arch) {
+  private String checkLinux32Bit(final String arch) {
     if (!"x86".equalsIgnoreCase(arch) || isWindows()) {
       return arch;
     }
@@ -97,9 +97,9 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
         String line = b.readLine();
         if (line != null) {
           if ("x86_64".equals(line)) {
-            arch = "amd64";
+            return "amd64";
           } else {
-            arch = line;
+            return line;
           }
         }
       }
@@ -118,55 +118,56 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
    * @throws IOException on I/O error
    * @return agent labels as a set of strings
    */
-  protected HashSet<String> computeLabels(String arch, String name, String version)
-      throws IOException {
-    name = name.toLowerCase();
-    if (name.equals("solaris")) {
-      name = "solaris";
-    } else if (name.startsWith("windows")) {
-      name = "windows";
-      arch = checkWindows32Bit(arch);
-      if (version.startsWith("4.0")) {
-        version = "nt4";
-      } else if (version.startsWith("5.0")) {
-        version = "2000";
-      } else if (version.startsWith("5.1")) {
-        version = "xp";
-      } else if (version.startsWith("5.2")) {
-        version = "2003";
+  protected HashSet<String> computeLabels(
+      final String arch, final String name, final String version) throws IOException {
+    String computedName = name.toLowerCase();
+    String computedArch = arch;
+    String computedVersion = version;
+    if (computedName.startsWith("windows")) {
+      computedName = "windows";
+      computedArch = checkWindows32Bit(computedArch);
+      if (computedVersion.startsWith("4.0")) {
+        computedVersion = "nt4";
+      } else if (computedVersion.startsWith("5.0")) {
+        computedVersion = "2000";
+      } else if (computedVersion.startsWith("5.1")) {
+        computedVersion = "xp";
+      } else if (computedVersion.startsWith("5.2")) {
+        computedVersion = "2003";
       }
-    } else if (name.startsWith("linux")) {
+    } else if (computedName.startsWith("linux")) {
       String unknownString = "unknown+check_lsb_release_installed";
       Release release = new Release();
-      name = release.distributorId();
-      arch = checkLinux32Bit(arch);
-      if (null == name) {
-        name = unknownString;
+      computedName = release.distributorId();
+      computedArch = checkLinux32Bit(computedArch);
+      if (null == computedName) {
+        computedName = unknownString;
       }
-      version = release.release();
-      if (null == version) {
-        version = unknownString;
+      computedVersion = release.release();
+      if (null == computedVersion) {
+        computedVersion = unknownString;
       }
-      if (name.equals(unknownString)) {
-        File alpineVersion = new File("/etc/alpine-release");
-        if (alpineVersion.exists()) {
-          name = "Alpine";
-          List<String> lines = Files.readAllLines(alpineVersion.toPath(), StandardCharsets.UTF_8);
+      if (computedName.equals(unknownString)) {
+        File alpineComputedVersion = new File("/etc/alpine-release");
+        if (alpineComputedVersion.exists()) {
+          computedName = "Alpine";
+          List<String> lines =
+              Files.readAllLines(alpineComputedVersion.toPath(), StandardCharsets.UTF_8);
           if (lines.size() > 0) {
-            version = lines.get(0);
+            computedVersion = lines.get(0);
           }
         }
       }
-    } else if (name.startsWith("mac")) {
-      name = "mac";
+    } else if (computedName.startsWith("mac")) {
+      computedName = "mac";
     }
     HashSet<String> result = new HashSet<>();
-    result.add(arch);
-    result.add(name);
-    result.add(version);
-    result.add(arch + "-" + name);
-    result.add(name + "-" + version);
-    result.add(arch + "-" + name + "-" + version);
+    result.add(computedArch);
+    result.add(computedName);
+    result.add(computedVersion);
+    result.add(computedArch + "-" + computedName);
+    result.add(computedName + "-" + computedVersion);
+    result.add(computedArch + "-" + computedName + "-" + computedVersion);
     return result;
   }
 
