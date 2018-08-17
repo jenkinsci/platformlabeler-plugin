@@ -53,7 +53,7 @@ public class NodeLabelCache extends ComputerListener {
   static transient WeakHashMap<Node, Collection<LabelAtom>> nodeLabels =
       new WeakHashMap<Node, Collection<LabelAtom>>();
   /** Logging of issues. */
-  private static final transient Logger logger =
+  private static final transient Logger LOGGER =
       Logger.getLogger("org.jvnet.hudson.plugins.platformlabeler");
 
   /** When a computer comes online, probe it for its platform labels. */
@@ -116,7 +116,7 @@ public class NodeLabelCache extends ComputerListener {
             result.add(jenkins.getLabelAtom(label));
           });
     } catch (IOException e) {
-      logger.log(Level.SEVERE, "Failed to read labels", e);
+      LOGGER.log(Level.SEVERE, "Failed to read labels", e);
       throw e;
     }
     return result;
