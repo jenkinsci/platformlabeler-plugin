@@ -129,6 +129,10 @@ public class PlatformDetailsTaskStaticStringTest {
     if (name.startsWith("Windows")) {
       return "windows";
     }
+    // Handle cases like "Mac OS X" in the same way as the validation code
+    if (name.startsWith("Mac")) {
+      return "mac";
+    }
     return name.toLowerCase();
   }
 
