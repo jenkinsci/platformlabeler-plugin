@@ -1,27 +1,22 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>3.19</version>
+    <version>3.22</version>
     <relativePath />
   </parent>
 
   <groupId>org.jvnet.hudson.plugins</groupId>
   <artifactId>platformlabeler</artifactId>
-  <packaging>hpi</packaging>
-  <name>Jenkins platformlabeler plugin</name>
   <version>${revision}${changelist}</version>
+  <packaging>hpi</packaging>
 
-  <url>https://wiki.jenkins.io/display/JENKINS/PlatformLabeler+Plugin</url>
+  <name>Jenkins platformlabeler plugin</name>
   <description>Assigns labels to nodes based on their operating system properties</description>
-
-  <properties>
-    <revision>2.2</revision>
-    <changelist>-SNAPSHOT</changelist>
-    <jenkins.version>2.60.3</jenkins.version>
-    <java.level>8</java.level>
-  </properties>
+  <url>https://wiki.jenkins.io/display/JENKINS/PlatformLabeler+Plugin</url>
 
   <developers>
     <developer>
@@ -38,9 +33,17 @@
     <tag>${scmTag}</tag>
   </scm>
 
+  <properties>
+    <revision>2.2</revision>
+    <changelist>-SNAPSHOT</changelist>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <argLine>-Dfile.encoding=${project.build.sourceEncoding}</argLine>
+    <jenkins.version>2.60.3</jenkins.version>
+    <java.level>8</java.level>
+  </properties>
+
   <dependencies>
-    <dependency>
-      <!-- Used to probe vendor and release on linux machines -->
+    <dependency><!-- Used to probe vendor and release on linux machines -->
       <groupId>net.robertcollins</groupId>
       <artifactId>lsb</artifactId>
       <version>1.0</version>
@@ -61,7 +64,6 @@
       <url>https://repo.jenkins-ci.org/public/</url>
     </repository>
   </repositories>
-
   <pluginRepositories>
     <pluginRepository>
       <id>repo.jenkins-ci.org</id>
