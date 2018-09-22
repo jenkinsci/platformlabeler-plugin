@@ -56,9 +56,16 @@ public class NodeLabelCache extends ComputerListener {
   private static final transient Logger LOGGER =
       Logger.getLogger("org.jvnet.hudson.plugins.platformlabeler");
 
-  /** When a computer comes online, probe it for its platform labels. */
+  /**
+   * When a computer comes online, probe it for its platform labels.
+   *
+   * @param computer agent whose labels will be cached
+   * @param listener TaskListener that is ignored
+   * @throws java.io.IOException on IO error
+   * @throws java.lang.InterruptedException on thread interrupt
+   */
   @Override
-  public void onOnline(final Computer computer, final TaskListener listener)
+  public final void onOnline(final Computer computer, final TaskListener listener)
       throws IOException, InterruptedException {
     cacheLabels(computer);
     refreshModel(computer);
@@ -71,7 +78,7 @@ public class NodeLabelCache extends ComputerListener {
    * @throws IOException on I/O error
    * @throws InterruptedException on thread interruption
    */
-  void cacheLabels(final Computer computer) throws IOException, InterruptedException {
+  final void cacheLabels(final Computer computer) throws IOException, InterruptedException {
     /* Cache the labels for the node */
     nodeLabels.put(computer.getNode(), requestNodeLabels(computer));
   }
@@ -81,7 +88,7 @@ public class NodeLabelCache extends ComputerListener {
    *
    * @param computer node whose labels will be cached
    */
-  void refreshModel(final Computer computer) {
+  final void refreshModel(final Computer computer) {
     if (computer != null) {
       Node node = computer.getNode();
       if (node != null) {
@@ -91,12 +98,12 @@ public class NodeLabelCache extends ComputerListener {
   }
 
   /**
-   * Return collection of labels for computer.
+   * Return labels assigned to computer.
    *
-   * @param computer agent whose labels are returned
+   * @param computer agent whose labels will be returned
+   * @return labels assigned to computer
    * @throws IOException on I/O error
-   * @throws InterruptedException on thread interruption
-   * @return collection of labels for computer
+   * @throws InterruptedException on thread interrupt
    */
   private Collection<LabelAtom> requestNodeLabels(final Computer computer)
       throws IOException, InterruptedException {
