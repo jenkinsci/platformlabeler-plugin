@@ -93,8 +93,9 @@
         <version>2.5.0</version>
         <executions>
           <execution>
+            <phase>process-sources</phase>
             <goals>
-              <goal>format</goal>
+              <goal>check</goal>
             </goals>
           </execution>
         </executions>
