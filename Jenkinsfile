@@ -4,5 +4,5 @@
 buildPlugin(jenkinsVersions: [null],
             jdkVersions: ['8', '11'],
             findbugs: [run:true, archive:true, unstableTotalAll: '0'],
-            checkstyle: [run:true, archive:true, unstableTotalAll: '19'],
+            checkstyle: [run:true, archive:true, unstableTotalAll: '16'],
             failFast: false)

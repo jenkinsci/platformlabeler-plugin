@@ -45,12 +45,11 @@ public class PlatformLabeler extends LabelFinder {
    * @return collection of LabelAtom for the node argument
    */
   @Override
-  public Collection<LabelAtom> findLabels(final Node node) {
+  public final Collection<LabelAtom> findLabels(final Node node) {
     Collection<LabelAtom> result = NodeLabelCache.nodeLabels.get(node);
     if (null == result) /* Node that has just attached and we don't have labels yet */ {
       return Collections.emptySet();
-    } else {
-      return result;
     }
+    return result;
   }
 }

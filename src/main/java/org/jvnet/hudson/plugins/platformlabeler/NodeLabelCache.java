@@ -59,7 +59,7 @@ public class NodeLabelCache extends ComputerListener {
    * @throws java.lang.InterruptedException on thread interrupt
    */
   @Override
-  public void onOnline(final Computer computer, final TaskListener ignored)
+  public final void onOnline(final Computer computer, final TaskListener ignored)
       throws IOException, InterruptedException {
     cacheLabels(computer);
     refreshModel(computer);
@@ -72,7 +72,7 @@ public class NodeLabelCache extends ComputerListener {
    * @throws IOException on I/O error
    * @throws InterruptedException on thread interruption
    */
-  void cacheLabels(final Computer computer) throws IOException, InterruptedException {
+  final void cacheLabels(final Computer computer) throws IOException, InterruptedException {
     /* Cache the labels for the node */
     nodeLabels.put(computer.getNode(), requestNodeLabels(computer));
   }
@@ -82,7 +82,7 @@ public class NodeLabelCache extends ComputerListener {
    *
    * @param computer node whose labels will be cached
    */
-  void refreshModel(final Computer computer) {
+  final void refreshModel(final Computer computer) {
     if (computer != null) {
       Node node = computer.getNode();
       if (node != null) {
