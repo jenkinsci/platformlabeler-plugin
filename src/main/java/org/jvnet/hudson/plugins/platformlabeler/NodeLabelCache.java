@@ -39,13 +39,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import jenkins.model.Jenkins;
 
-/**
- * A cache of Node labels.
- *
- * <p>While it would be nice to have a single implementation extending both FindLabels and
- * ComputerListener, because Jenkins uses subclassing it is not easy to do so. Instead we provide a
- * static cache which the LabelFinder in our package can read.
- */
+/** A cache of Node labels for the LabelFinder in our package. */
 @Extension
 public class NodeLabelCache extends ComputerListener {
 
@@ -56,9 +50,16 @@ public class NodeLabelCache extends ComputerListener {
   private static final transient Logger LOGGER =
       Logger.getLogger("org.jvnet.hudson.plugins.platformlabeler");
 
-  /** When a computer comes online, probe it for its platform labels. */
+  /**
+   * When a computer comes online, probe it for its platform labels.
+   *
+   * @param computer agent whose labels will be cached
+   * @param ignored TaskListener that is ignored
+   * @throws java.io.IOException on IO error
+   * @throws java.lang.InterruptedException on thread interrupt
+   */
   @Override
-  public void onOnline(final Computer computer, final TaskListener listener)
+  public void onOnline(final Computer computer, final TaskListener ignored)
       throws IOException, InterruptedException {
     cacheLabels(computer);
     refreshModel(computer);

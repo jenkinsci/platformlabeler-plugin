@@ -41,13 +41,23 @@ import org.jenkinsci.remoting.RoleSensitive;
 /** Compute labels based on details computed on the agent. */
 class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
 
-  /** Required abstract method definition; we need the permission to run on a slave. */
+  /**
+   * Checks that required SLAVE role is allowed.
+   *
+   * @param checker role checker to be called to check SLAVE role
+   * @throws SecurityException on a security error
+   */
   @Override
   public void checkRoles(final RoleChecker checker) throws SecurityException {
     checker.check((RoleSensitive) this, Roles.SLAVE);
   }
 
-  /** Performs computation and returns the result, or throws some exception. */
+  /**
+   * Performs label computation and returns the result as a HashSet.
+   *
+   * @return label computation result
+   * @throws IOException on I/O error
+   */
   @Override
   public HashSet<String> call() throws IOException {
     final String arch = System.getProperty("os.arch");
