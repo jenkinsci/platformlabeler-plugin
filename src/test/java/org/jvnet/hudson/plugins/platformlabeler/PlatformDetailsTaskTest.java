@@ -26,7 +26,12 @@ public class PlatformDetailsTaskTest {
       assertThat(details, not(hasItems("Linux")));
       assertThat(
           details,
-          anyOf(hasItems("Alpine"), hasItems("Debian"), hasItems("CentOS"), hasItems("Ubuntu")));
+          anyOf(
+              hasItems("Alpine"),
+              hasItems("AmazonAMI"),
+              hasItems("Debian"),
+              hasItems("CentOS"),
+              hasItems("Ubuntu")));
     }
   }
 
@@ -41,7 +46,12 @@ public class PlatformDetailsTaskTest {
       assertThat(details, not(hasItems("Linux")));
       assertThat(
           details,
-          anyOf(hasItems("Alpine"), hasItems("Debian"), hasItems("CentOS"), hasItems("Ubuntu")));
+          anyOf(
+              hasItems("Alpine"),
+              hasItems("AmazonAMI"),
+              hasItems("Debian"),
+              hasItems("CentOS"),
+              hasItems("Ubuntu")));
       // Yes, this is a dirty trick to detect the hardware architecture on some JVM's
       String expectedArch =
           System.getProperty("sun.arch.data.model", "23").equals("32") ? "x86" : "amd64";
