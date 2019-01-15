@@ -13,3 +13,7 @@ Labels commonly include operating system name, version, and architecture.
 
 On Linux computers, the plugin uses the output of the `lsb_release` command.
 If `lsb_release` is not installed, the labels on Linux machines will be incorrect.
+
+Source code is formatted with the command:
+
+    mvn com.coveo:fmt-maven-plugin:format
