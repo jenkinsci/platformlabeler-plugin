@@ -40,6 +40,10 @@
     <argLine>-Dfile.encoding=${project.build.sourceEncoding}</argLine>
     <jenkins.version>2.150.1</jenkins.version>
     <java.level>8</java.level>
+    <!-- This plugin intentionally does not deliver javadoc. -->
+    <!-- No API's intended to be used, none should be called from outside. -->
+    <!-- Java 11 javadoc command fails from maven. -->
+    <maven.javadoc.skip>true</maven.javadoc.skip>
   </properties>
 
   <dependencies>
@@ -78,11 +82,6 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.8.0</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.0.1</version>
         </plugin>
       </plugins>
     </pluginManagement>
