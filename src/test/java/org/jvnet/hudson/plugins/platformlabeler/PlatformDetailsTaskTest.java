@@ -28,6 +28,7 @@ public class PlatformDetailsTaskTest {
           details,
           anyOf(
               hasItems("Alpine"),
+              hasItems("Amazon"),
               hasItems("AmazonAMI"),
               hasItems("Debian"),
               hasItems("CentOS"),
@@ -48,6 +49,7 @@ public class PlatformDetailsTaskTest {
           details,
           anyOf(
               hasItems("Alpine"),
+              hasItems("Amazon"),
               hasItems("AmazonAMI"),
               hasItems("Debian"),
               hasItems("CentOS"),
