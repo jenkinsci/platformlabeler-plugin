@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.jvnet.hudson.plugins.platformlabeler;
 
 import hudson.Extension;
@@ -95,9 +96,9 @@ public class NodeLabelCache extends ComputerListener {
    * Return collection of labels for computer.
    *
    * @param computer agent whose labels are returned
+   * @return collection of labels for computer
    * @throws IOException on I/O error
    * @throws InterruptedException on thread interruption
-   * @return collection of labels for computer
    */
   private Collection<LabelAtom> requestNodeLabels(final Computer computer)
       throws IOException, InterruptedException {
