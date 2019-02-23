@@ -125,8 +125,8 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
    * @param name name of the operating system or distribution as in "OpenBSD", "FreeBSD", "Windows",
    *     or "Linux"
    * @param version version of the operating system
-   * @throws IOException on I/O error
    * @return agent labels as a set of strings
+   * @throws IOException on I/O error
    */
   protected HashSet<String> computeLabels(
       final String arch, final String name, final String version) throws IOException {
