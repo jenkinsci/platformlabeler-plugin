@@ -114,6 +114,7 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
         }
       }
     } catch (IOException | InterruptedException e) {
+      /* Return arch instead of throwing an exception */
     }
     return arch;
   }
