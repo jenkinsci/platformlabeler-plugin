@@ -40,6 +40,8 @@
     <argLine>-Dfile.encoding=${project.build.sourceEncoding}</argLine>
     <jenkins.version>2.107.3</jenkins.version>
     <java.level>8</java.level>
+    <maven.checkstyle.plugin.version>3.0.0</maven.checkstyle.plugin.version>
+    <maven.checkstyle.version>8.17</maven.checkstyle.version>
   </properties>
 
   <dependencies>
@@ -99,6 +101,22 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>${maven.checkstyle.plugin.version}</version>
+	<dependencies>
+	  <dependency>
+	    <groupId>com.puppycrawl.tools</groupId>
+	    <artifactId>checkstyle</artifactId>
+	    <version>${maven.checkstyle.version}</version>
+	  </dependency>
+	</dependencies>
+        <configuration>
+          <configLocation>google_checks.xml</configLocation>
+          <failOnViolation>true</failOnViolation>
+        </configuration>
       </plugin>
     </plugins>
   </build>
