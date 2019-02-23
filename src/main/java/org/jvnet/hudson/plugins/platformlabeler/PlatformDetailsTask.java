@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.jvnet.hudson.plugins.platformlabeler;
 
 import hudson.remoting.Callable;
@@ -114,6 +115,7 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
         }
       }
     } catch (IOException | InterruptedException e) {
+      /* Return arch instead of throwing an exception */
     }
     return arch;
   }
@@ -125,8 +127,8 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
    * @param name name of the operating system or distribution as in "OpenBSD", "FreeBSD", "Windows",
    *     or "Linux"
    * @param version version of the operating system
-   * @throws IOException on I/O error
    * @return agent labels as a set of strings
+   * @throws IOException on I/O error
    */
   protected HashSet<String> computeLabels(
       final String arch, final String name, final String version) throws IOException {
