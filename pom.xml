@@ -41,7 +41,7 @@
     <jenkins.version>2.107.3</jenkins.version>
     <java.level>8</java.level>
     <maven.checkstyle.plugin.version>3.0.0</maven.checkstyle.plugin.version>
-    <maven.checkstyle.version>8.17</maven.checkstyle.version>
+    <maven.checkstyle.version>8.18</maven.checkstyle.version>
   </properties>
 
   <dependencies>
