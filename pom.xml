@@ -13,6 +13,7 @@
   <artifactId>platformlabeler</artifactId>
   <version>${revision}${changelist}</version>
   <packaging>hpi</packaging>
+  <inceptionYear>2009</inceptionYear>
 
   <name>Jenkins platformlabeler plugin</name>
   <description>Assigns labels to nodes based on their operating system properties</description>
