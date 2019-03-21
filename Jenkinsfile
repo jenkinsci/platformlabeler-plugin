@@ -1,8 +1,8 @@
 #!groovy
 
-// test base Jenkins version and 2.150.3
-buildPlugin(jenkinsVersions: [null, '2.150.3'],
+// test base Jenkins version and 2.164.1
+buildPlugin(jenkinsVersions: [null, '2.164.1'],
             jdkVersions: ['8'],
-            findbugs: [run:true, archive:true, unstableTotalAll: '0'],
+            spotbugs: [run:true, archive:true, unstableTotalAll: '0'],
             checkstyle: [run:true, archive:true, unstableTotalAll: '16'],
             failFast: false)
