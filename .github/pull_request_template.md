@@ -11,7 +11,7 @@ _Put an `x` in the boxes that apply. You can also fill these out after creating 
 - [ ] I have added tests that verify my changes
 - [ ] Unit tests pass locally with my changes
 - [ ] I have added documentation as necessary
-- [ ] No findbugs warnings were introduced with my changes
+- [ ] No spotbugs warnings were introduced with my changes
 - [ ] I have interactively tested my changes
 
 ## Types of changes
