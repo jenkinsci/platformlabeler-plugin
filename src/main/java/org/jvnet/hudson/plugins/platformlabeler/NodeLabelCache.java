@@ -62,8 +62,10 @@ public class NodeLabelCache extends ComputerListener {
   @Override
   public final void onOnline(final Computer computer, final TaskListener ignored)
       throws IOException, InterruptedException {
-    cacheLabels(computer);
-    refreshModel(computer);
+    if (computer.getNumExecutors() > 0) {
+      cacheLabels(computer);
+      refreshModel(computer);
+    }
   }
 
   /**
