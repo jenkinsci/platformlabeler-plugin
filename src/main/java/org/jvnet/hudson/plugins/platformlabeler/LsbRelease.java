@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.jvnet.hudson.plugins.platformlabeler;
 
 import java.io.BufferedReader;
@@ -30,10 +31,12 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
+/** Linux standard base release class. Provides distributor ID and release. */
 public class LsbRelease {
   private final String distributorId;
   private final String release;
 
+  /** Extract distributor ID and release for current platform. */
   public LsbRelease() {
     Map<String, String> newProps = new HashMap<>();
     try {
@@ -53,10 +56,20 @@ public class LsbRelease {
     this.release = newProps.get("Release");
   }
 
+  /**
+   * Return the Linux distributor ID for this agent.
+   *
+   * @return Linux distributor ID for this agent
+   */
   public String distributorId() {
     return distributorId;
   }
 
+  /**
+   * Return the Linux release for this agent.
+   *
+   * @return Linux release for this agent
+   */
   public String release() {
     return release;
   }
