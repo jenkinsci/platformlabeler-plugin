@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.jvnet.hudson.plugins.platformlabeler;
 
 import java.io.BufferedReader;
@@ -56,7 +57,7 @@ public class LsbRelease {
   }
 
   /**
-   * Return the Linux distributor ID for this agent
+   * Return the Linux distributor ID for this agent.
    *
    * @return Linux distributor ID for this agent
    */
@@ -65,7 +66,7 @@ public class LsbRelease {
   }
 
   /**
-   * Return the Linux release for this agent
+   * Return the Linux release for this agent.
    *
    * @return Linux release for this agent
    */
