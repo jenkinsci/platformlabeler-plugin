@@ -48,22 +48,6 @@
     <maven.javadoc.skip>true</maven.javadoc.skip>
   </properties>
 
-  <dependencies>
-    <dependency><!-- Used to probe vendor and release on linux machines -->
-      <groupId>net.robertcollins</groupId>
-      <artifactId>lsb</artifactId>
-      <version>1.0</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
-    <!-- the lsb library bundled a very old commons-io version, this forces it newer -->
-    <!-- version 2.4 is the most widely chosen of the detected dependencies -->
-    <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-      <version>2.6</version>
-    </dependency>
-  </dependencies>
-
   <repositories>
     <repository>
       <id>repo.jenkins-ci.org</id>

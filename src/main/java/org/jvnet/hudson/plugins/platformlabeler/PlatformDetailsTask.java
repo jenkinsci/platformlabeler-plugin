@@ -35,7 +35,6 @@ import java.nio.file.Files;
 import java.util.HashSet;
 import java.util.List;
 import jenkins.security.Roles;
-import net.robertcollins.lsb.Release;
 import org.jenkinsci.remoting.RoleChecker;
 import org.jenkinsci.remoting.RoleSensitive;
 
@@ -149,7 +148,7 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
       }
     } else if (computedName.startsWith("linux")) {
       String unknownString = "unknown+check_lsb_release_installed";
-      Release release = new Release();
+      LsbRelease release = new LsbRelease();
       computedName = release.distributorId();
       computedArch = checkLinux32Bit(computedArch);
       if (null == computedName) {
