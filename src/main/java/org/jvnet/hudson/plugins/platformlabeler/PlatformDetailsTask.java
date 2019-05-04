@@ -75,12 +75,10 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
    * @param arch architecture of the agent, as in "x86", "amd64", or "aarch64"
    * @return standardized architecture of current Windows operating system
    */
-  private String checkWindows32Bit(final String arch) {
+  protected String checkWindows32Bit(final String arch, final String env1, final String env2) {
     if (!"x86".equalsIgnoreCase(arch)) {
       return arch;
     }
-    final String env1 = System.getenv("PROCESSOR_ARCHITECTURE");
-    final String env2 = System.getenv("PROCESSOR_ARCHITEW6432");
     if ("amd64".equalsIgnoreCase(env1) || "amd64".equalsIgnoreCase(env2)) {
       return "amd64";
     }
@@ -136,7 +134,11 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
     String computedVersion = version;
     if (computedName.startsWith("windows")) {
       computedName = "windows";
-      computedArch = checkWindows32Bit(computedArch);
+      computedArch =
+          checkWindows32Bit(
+              computedArch,
+              System.getenv("PROCESSOR_ARCHITECTURE"),
+              System.getenv("PROCESSOR_ARCHITEW6432"));
       if (computedVersion.startsWith("4.0")) {
         computedVersion = "nt4";
       } else if (computedVersion.startsWith("5.0")) {
