@@ -1,0 +1,2 @@
+_extends: .github
+tag-template: platformlabeler-$NEXT_MINOR_VERSION
