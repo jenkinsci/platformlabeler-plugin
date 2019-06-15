@@ -196,15 +196,6 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
     return result;
   }
 
-  /**
-   * Returns true if running on Windows.
-   *
-   * @return true if running on Windows
-   */
-  private boolean isWindows() {
-    return File.pathSeparatorChar == ';';
-  }
-
   private static final Map<String, String> PREFERRED_LINUX_OS_NAMES = new HashMap();
 
   static {
