@@ -94,7 +94,7 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
    * @return standardized architecture of current Linux operating system
    */
   private String checkLinux32Bit(final String arch) {
-    if (!"x86".equalsIgnoreCase(arch) || isWindows()) {
+    if (!"x86".equalsIgnoreCase(arch)) {
       return arch;
     }
     try {
