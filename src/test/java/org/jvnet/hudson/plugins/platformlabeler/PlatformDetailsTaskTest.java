@@ -2,8 +2,11 @@ package org.jvnet.hudson.plugins.platformlabeler;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
+import static org.junit.Assume.*;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,8 +14,6 @@ import org.junit.Test;
 public class PlatformDetailsTaskTest {
 
   private PlatformDetailsTask platformDetailsTask;
-
-  public PlatformDetailsTaskTest() {}
 
   @Before
   public void createPlatformDetailsTask() {
@@ -76,6 +77,33 @@ public class PlatformDetailsTaskTest {
   @Test
   public void testCheckWindows32BitAMD64SecondArgument() {
     assertThat(platformDetailsTask.checkWindows32Bit("x86", "x86", "AMD64"), is("amd64"));
+  }
+
+  @Test
+  public void compareOSName() throws Exception {
+    assumeTrue(!isWindows() && Files.exists(Paths.get("/etc/os-release")));
+    Set<String> details = platformDetailsTask.computeLabels("x86", "linux", "xyzzy");
+    String name = platformDetailsTask.readReleaseIdentifier("ID");
+    assertThat(details, hasItems(name));
+  }
+
+  @Test
+  public void compareOSVersion() throws Exception {
+    assumeTrue(!isWindows() && Files.exists(Paths.get("/etc/os-release")));
+    Set<String> details = platformDetailsTask.computeLabels("x86", "linux", "xyzzy");
+    String version = platformDetailsTask.readReleaseIdentifier("VERSION_ID");
+    /* Check that the version string returned by readReleaseIdentifier
+    is at least at the beginning of one of the detail values. Allow
+    Debian 8 and Debian 9 and CentOS 7 to report their base version
+    in the /etc/os-release file without reporting their incremental
+    version */
+    String foundValue = version;
+    for (String detail : details) {
+      if (detail.startsWith(version)) {
+        foundValue = detail;
+      }
+    }
+    assertThat(details, anyOf(hasItems(version), hasItems(foundValue)));
   }
 
   private boolean isWindows() {

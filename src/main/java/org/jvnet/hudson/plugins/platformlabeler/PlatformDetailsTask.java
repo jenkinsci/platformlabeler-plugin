@@ -32,8 +32,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import jenkins.security.Roles;
 import org.jenkinsci.remoting.RoleChecker;
 import org.jenkinsci.remoting.RoleSensitive;
@@ -94,7 +96,7 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
    * @return standardized architecture of current Linux operating system
    */
   private String checkLinux32Bit(final String arch) {
-    if (!"x86".equalsIgnoreCase(arch) || isWindows()) {
+    if (!"x86".equalsIgnoreCase(arch)) {
       return arch;
     }
     try {
@@ -171,6 +173,16 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
           }
         }
       }
+      /* Fallback to /etc/os-release file */
+      if (computedName.equals(unknownString)) {
+        computedName = readReleaseIdentifier("ID");
+      }
+      if (computedVersion.equals(unknownString)) {
+        computedVersion = readReleaseIdentifier("VERSION_ID");
+      }
+      if (computedVersion.equals(unknownString)) {
+        computedVersion = readReleaseIdentifier("BUILD_ID");
+      }
     } else if (computedName.startsWith("mac")) {
       computedName = "mac";
     }
@@ -191,5 +203,39 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
    */
   private boolean isWindows() {
     return File.pathSeparatorChar == ';';
+  }
+
+  private static final Map<String, String> PREFERRED_LINUX_OS_NAMES = new HashMap();
+
+  static {
+    PREFERRED_LINUX_OS_NAMES.put("alpine", "Alpine");
+    PREFERRED_LINUX_OS_NAMES.put("amazon", "Amazon");
+    PREFERRED_LINUX_OS_NAMES.put("amazonami", "AmazonAMI");
+    PREFERRED_LINUX_OS_NAMES.put("centos", "CentOS");
+    PREFERRED_LINUX_OS_NAMES.put("debian", "Debian");
+    PREFERRED_LINUX_OS_NAMES.put("opensuse", "openSUSE");
+    PREFERRED_LINUX_OS_NAMES.put("ubuntu", "Ubuntu");
+  }
+
+  /* Package protected for use in tests */
+  String readReleaseIdentifier(String field) {
+    File osRelease = new File("/etc/os-release");
+    String value = "unknown+check_lsb_release_installed";
+    try (BufferedReader br =
+        new BufferedReader(Files.newBufferedReader(osRelease.toPath(), StandardCharsets.UTF_8))) {
+      String line;
+      while ((line = br.readLine()) != null) {
+        if (line.startsWith(field + "=")) {
+          String[] parts = line.split("=");
+          value = parts[1].replace("\"", "");
+        }
+      }
+    } catch (IOException notFound) {
+      // Ignore IOException
+    }
+    if (PREFERRED_LINUX_OS_NAMES.containsKey(value)) {
+      return PREFERRED_LINUX_OS_NAMES.get(value);
+    }
+    return value;
   }
 }

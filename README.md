@@ -16,7 +16,7 @@ Labels commonly include operating system name, version, and architecture.
 | Windows 10       | `10.0` `amd64` `amd64-windows` `amd64-windows-10.0` `windows` `windows-10.0`                         |
 
 On Linux computers, the plugin uses the output of the `lsb_release` command.
-If `lsb_release` is not installed, the labels on Linux machines will be incorrect.
+If `lsb_release` is not installed, labels on Linux machines will be guessed based on values in /etc/os-release.
 
 Source code is formatted with the command:
 
