@@ -200,8 +200,7 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
 
   static {
     PREFERRED_LINUX_OS_NAMES.put("alpine", "Alpine");
-    PREFERRED_LINUX_OS_NAMES.put("amazon", "Amazon");
-    PREFERRED_LINUX_OS_NAMES.put("amazonami", "AmazonAMI");
+    PREFERRED_LINUX_OS_NAMES.put("amzn", "Amazon");
     PREFERRED_LINUX_OS_NAMES.put("centos", "CentOS");
     PREFERRED_LINUX_OS_NAMES.put("debian", "Debian");
     PREFERRED_LINUX_OS_NAMES.put("opensuse", "openSUSE");
