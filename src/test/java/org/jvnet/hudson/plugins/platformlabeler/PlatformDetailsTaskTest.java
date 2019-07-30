@@ -103,7 +103,17 @@ public class PlatformDetailsTaskTest {
         foundValue = detail;
       }
     }
-    assertThat(details, anyOf(hasItems(version), hasItems(foundValue)));
+    /* If VERSION_ID has the unknown value then handle it as a special
+      case.  Debian testing does not include a VERSION_ID value in
+      the /etc/os-release file.  If there is no value for VERSION_ID,
+      then confirm that the details are for Debian testing and skip
+      the VERSION_ID assertion.
+    */
+    if (version.startsWith("unknown")) {
+      assertThat(details, hasItems("Debian", "testing"));
+    } else {
+      assertThat(details, anyOf(hasItems(version), hasItems(foundValue)));
+    }
   }
 
   private boolean isWindows() {
