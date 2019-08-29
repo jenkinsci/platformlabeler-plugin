@@ -94,7 +94,7 @@ public class PlatformDetailsTaskTest {
     String version = platformDetailsTask.readReleaseIdentifier("VERSION_ID");
     /* Check that the version string returned by readReleaseIdentifier
     is at least at the beginning of one of the detail values. Allow
-    Debian 8 and Debian 9 and CentOS 7 to report their base version
+    Debian 8, 9, and 10 and CentOS 7 to report their base version
     in the /etc/os-release file without reporting their incremental
     version */
     String foundValue = version;
