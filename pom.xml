@@ -17,7 +17,7 @@
 
   <name>Jenkins platformlabeler plugin</name>
   <description>Assigns labels to nodes based on their operating system properties</description>
-  <url>https://plugins.jenkins.io/platformlabeler</url>
+  <url>https://github.com/jenkinsci/platformlabeler-plugin</url>
 
   <developers>
     <developer>
