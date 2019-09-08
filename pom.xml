@@ -43,6 +43,7 @@
     <java.level>8</java.level>
     <maven.checkstyle.plugin.version>3.1.0</maven.checkstyle.plugin.version>
     <maven.checkstyle.version>8.24</maven.checkstyle.version>
+    <linkXRef>false</linkXRef>
     <!-- This plugin intentionally does not deliver javadoc. -->
     <!-- No API's intended to be used, none should be called from outside. -->
     <maven.javadoc.skip>true</maven.javadoc.skip>
