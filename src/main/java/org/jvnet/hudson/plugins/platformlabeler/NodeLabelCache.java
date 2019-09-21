@@ -24,6 +24,7 @@
 
 package org.jvnet.hudson.plugins.platformlabeler;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
 import hudson.model.Computer;
 import hudson.model.Node;
@@ -100,6 +101,7 @@ public class NodeLabelCache extends ComputerListener {
    * @throws IOException on I/O error
    * @throws InterruptedException on thread interruption
    */
+  @NonNull
   private Collection<LabelAtom> requestNodeLabels(final Computer computer)
       throws IOException, InterruptedException {
     final VirtualChannel channel = computer.getChannel();

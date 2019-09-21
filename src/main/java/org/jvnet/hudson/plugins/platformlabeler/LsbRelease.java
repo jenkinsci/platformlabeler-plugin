@@ -24,6 +24,7 @@
 
 package org.jvnet.hudson.plugins.platformlabeler;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -33,8 +34,8 @@ import java.util.Map;
 
 /** Linux standard base release class. Provides distributor ID and release. */
 public class LsbRelease {
-  private final String distributorId;
-  private final String release;
+  @NonNull private final String distributorId;
+  @NonNull private final String release;
 
   /** Extract distributor ID and release for current platform. */
   public LsbRelease() {
@@ -52,8 +53,10 @@ public class LsbRelease {
     } catch (IOException e) {
       // IGNORE
     }
-    this.distributorId = newProps.get("Distributor ID");
-    this.release = newProps.get("Release");
+    String id = newProps.get("Distributor ID");
+    this.distributorId = id != null ? id : PlatformDetailsTask.UNKNOWN_VALUE_STRING;
+    String rel = newProps.get("Release");
+    this.release = rel != null ? rel : PlatformDetailsTask.UNKNOWN_VALUE_STRING;
   }
 
   /**
@@ -61,6 +64,7 @@ public class LsbRelease {
    *
    * @return Linux distributor ID for this agent
    */
+  @NonNull
   public String distributorId() {
     return distributorId;
   }
@@ -70,6 +74,7 @@ public class LsbRelease {
    *
    * @return Linux release for this agent
    */
+  @NonNull
   public String release() {
     return release;
   }
