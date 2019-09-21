@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>3.49</version>
+    <version>3.50</version>
     <relativePath />
   </parent>
 
@@ -13,11 +13,11 @@
   <artifactId>platformlabeler</artifactId>
   <version>${revision}${changelist}</version>
   <packaging>hpi</packaging>
-  <inceptionYear>2009</inceptionYear>
 
   <name>Jenkins platformlabeler plugin</name>
   <description>Assigns labels to nodes based on their operating system properties</description>
   <url>https://github.com/jenkinsci/platformlabeler-plugin</url>
+  <inceptionYear>2009</inceptionYear>
 
   <developers>
     <developer>
@@ -39,15 +39,38 @@
     <changelist>-SNAPSHOT</changelist>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <argLine>-Dfile.encoding=${project.build.sourceEncoding}</argLine>
-    <jenkins.version>2.150.1</jenkins.version>
+    <jenkins.version>2.164.3</jenkins.version>
     <java.level>8</java.level>
-    <maven.checkstyle.plugin.version>3.1.0</maven.checkstyle.plugin.version>
-    <maven.checkstyle.version>8.24</maven.checkstyle.version>
     <linkXRef>false</linkXRef>
     <!-- This plugin intentionally does not deliver javadoc. -->
     <!-- No API's intended to be used, none should be called from outside. -->
     <maven.javadoc.skip>true</maven.javadoc.skip>
   </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>io.jenkins.tools.bom</groupId>
+        <artifactId>bom</artifactId>
+        <version>2.164.2</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  <dependencies>
+    <dependency>
+      <groupId>com.github.spotbugs</groupId>
+      <artifactId>spotbugs-annotations</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>com.google.code.findbugs</groupId>
+          <artifactId>jsr305</artifactId>
+        </exclusion>
+      </exclusions>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
 
   <repositories>
     <repository>
@@ -62,23 +85,26 @@
     </pluginRepository>
   </pluginRepositories>
 
-  <dependencies>
-    <dependency>
-      <groupId>com.github.spotbugs</groupId>
-      <artifactId>spotbugs-annotations</artifactId>
-      <version>3.1.12</version>
-      <optional>true</optional>
-      <exclusions>
-        <exclusion>
-          <groupId>com.google.code.findbugs</groupId>
-          <artifactId>jsr305</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-  </dependencies>
-
   <build>
     <plugins>
+      <!-- Fail build on pom formatting errors -->
+      <!-- Fix with mvn tidy:pom -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>tidy-maven-plugin</artifactId>
+        <version>1.1.0</version>
+        <executions>
+          <execution>
+            <id>validate</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- Fail build on Java formatting errors -->
+      <!-- Fix with mvn fmt:format -->
       <plugin>
         <groupId>com.coveo</groupId>
         <artifactId>fmt-maven-plugin</artifactId>
@@ -95,14 +121,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>${maven.checkstyle.plugin.version}</version>
-	<dependencies>
-	  <dependency>
-	    <groupId>com.puppycrawl.tools</groupId>
-	    <artifactId>checkstyle</artifactId>
-	    <version>${maven.checkstyle.version}</version>
-	  </dependency>
-	</dependencies>
+        <version>3.1.0</version>
         <configuration>
           <configLocation>google_checks.xml</configLocation>
           <failOnViolation>true</failOnViolation>
