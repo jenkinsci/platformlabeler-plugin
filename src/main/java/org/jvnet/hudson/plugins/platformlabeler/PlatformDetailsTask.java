@@ -25,6 +25,7 @@
 
 package org.jvnet.hudson.plugins.platformlabeler;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.remoting.Callable;
 import java.io.BufferedReader;
 import java.io.File;
@@ -42,6 +43,9 @@ import org.jenkinsci.remoting.RoleSensitive;
 
 /** Compute labels based on details computed on the agent. */
 class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
+
+  /** Unknown field value string. Package protected for us by LsbRelease class */
+  static final String UNKNOWN_VALUE_STRING = "unknown+check_lsb_release_installed";
 
   /**
    * Checks that required SLAVE role is allowed.
@@ -62,9 +66,9 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
    */
   @Override
   public HashSet<String> call() throws IOException {
-    final String arch = System.getProperty("os.arch");
-    String name = System.getProperty("os.name");
-    String version = System.getProperty("os.version");
+    final String arch = System.getProperty("os.arch", UNKNOWN_VALUE_STRING);
+    final String name = System.getProperty("os.name", UNKNOWN_VALUE_STRING);
+    final String version = System.getProperty("os.version", UNKNOWN_VALUE_STRING);
     return computeLabels(arch, name, version);
   }
 
@@ -77,7 +81,9 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
    * @param arch architecture of the agent, as in "x86", "amd64", or "aarch64"
    * @return standardized architecture of current Windows operating system
    */
-  protected String checkWindows32Bit(final String arch, final String env1, final String env2) {
+  @NonNull
+  protected String checkWindows32Bit(
+      @NonNull final String arch, @NonNull final String env1, @NonNull final String env2) {
     if (!"x86".equalsIgnoreCase(arch)) {
       return arch;
     }
@@ -95,7 +101,8 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
    * @param arch architecture of the agent, as in "x86", "amd64", or "aarch64"
    * @return standardized architecture of current Linux operating system
    */
-  private String checkLinux32Bit(final String arch) {
+  @NonNull
+  private String checkLinux32Bit(@NonNull final String arch) {
     if (!"x86".equalsIgnoreCase(arch)) {
       return arch;
     }
@@ -129,8 +136,10 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
    * @return agent labels as a set of strings
    * @throws IOException on I/O error
    */
+  @NonNull
   protected HashSet<String> computeLabels(
-      final String arch, final String name, final String version) throws IOException {
+      @NonNull final String arch, @NonNull final String name, @NonNull final String version)
+      throws IOException {
     String computedName = name.toLowerCase();
     String computedArch = arch;
     String computedVersion = version;
@@ -151,18 +160,11 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
         computedVersion = "2003";
       }
     } else if (computedName.startsWith("linux")) {
-      String unknownString = "unknown+check_lsb_release_installed";
       LsbRelease release = new LsbRelease();
       computedName = release.distributorId();
       computedArch = checkLinux32Bit(computedArch);
-      if (null == computedName) {
-        computedName = unknownString;
-      }
       computedVersion = release.release();
-      if (null == computedVersion) {
-        computedVersion = unknownString;
-      }
-      if (computedName.equals(unknownString)) {
+      if (computedName.equals(UNKNOWN_VALUE_STRING)) {
         File alpineComputedVersion = new File("/etc/alpine-release");
         if (alpineComputedVersion.exists()) {
           computedName = "Alpine";
@@ -174,13 +176,13 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
         }
       }
       /* Fallback to /etc/os-release file */
-      if (computedName.equals(unknownString)) {
+      if (computedName.equals(UNKNOWN_VALUE_STRING)) {
         computedName = readReleaseIdentifier("ID");
       }
-      if (computedVersion.equals(unknownString)) {
+      if (computedVersion.equals(UNKNOWN_VALUE_STRING)) {
         computedVersion = readReleaseIdentifier("VERSION_ID");
       }
-      if (computedVersion.equals(unknownString)) {
+      if (computedVersion.equals(UNKNOWN_VALUE_STRING)) {
         computedVersion = readReleaseIdentifier("BUILD_ID");
       }
     } else if (computedName.startsWith("mac")) {
@@ -208,9 +210,10 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
   }
 
   /* Package protected for use in tests */
-  String readReleaseIdentifier(String field) {
+  @NonNull
+  String readReleaseIdentifier(@NonNull String field) {
     File osRelease = new File("/etc/os-release");
-    String value = "unknown+check_lsb_release_installed";
+    String value = UNKNOWN_VALUE_STRING;
     try (BufferedReader br =
         new BufferedReader(Files.newBufferedReader(osRelease.toPath(), StandardCharsets.UTF_8))) {
       String line;
