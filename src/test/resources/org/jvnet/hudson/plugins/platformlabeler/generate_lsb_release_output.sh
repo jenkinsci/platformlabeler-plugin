@@ -17,12 +17,9 @@ for dockerfile in $(find * -type f -name Dockerfile); do
         parent=$(dirname $dockerfile)
         version=$(basename $parent)
         image=$(dirname $parent)
-        echo parent=$parent version=$version image=$image
+        echo ==== Generating lsb_release test data in $parent for image $image:$version
         (cd $parent \
-                 && pwd \
                  && docker build -t platformlabeler/$image:$version . \
                  && docker run -t platformlabeler/$image:$version lsb_release -a | tr -d '\015' > lsb_release-a \
         )
 done
-
-exit 0
