@@ -3,7 +3,7 @@
 Adds labels to Jenkins agents based on characteristics of the operating system running the agent.
 Labels commonly include operating system name, version, and architecture.
 
-| Operating System | Labels assigned by plugin                                                                            |
+| Platform         | Labels assigned by plugin                                                                            |
 | ---------------- | ---------------------------------------------------------------------------------------------------- |
 | Alpine           | `3.9.4` `Alpine` `Alpine-3.9.4` `amd64` `amd64-Alpine` `amd64-Alpine-3.9.4`                          |
 | Amazon Linux     | `2018.03` `AmazonAMI` `AmazonAMI-2018.03` `amd64` `amd64-AmazonAMI` `amd64-AmazonAMI-2018.03`        |
@@ -29,7 +29,7 @@ If `lsb_release` is not installed, labels on Linux agents will be guessed based 
 When /etc/os-release is used, less detailed labels are provided.
 For example:
 
-| Operating System | Labels assigned by plugin when lsb-release is not installed     |
+| Platform         | Labels assigned by plugin when lsb-release is not installed     |
 | ---------------- | --------------------------------------------------------------- |
 | CentOS 7         | `7` `CentOS` `CentOS-7` `amd64` `amd64-CentOS` `amd64-CentOS-7` |
 
