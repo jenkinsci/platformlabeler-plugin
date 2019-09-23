@@ -25,6 +25,7 @@
 
 package org.jvnet.hudson.plugins.platformlabeler;
 
+import edu.umd.cs.findbugs.annotations.CheckForNull;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.remoting.Callable;
 import java.io.BufferedReader;
@@ -35,7 +36,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import jenkins.security.Roles;
 import org.jenkinsci.remoting.RoleChecker;
@@ -140,6 +140,33 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
   protected HashSet<String> computeLabels(
       @NonNull final String arch, @NonNull final String name, @NonNull final String version)
       throws IOException {
+    LsbRelease release;
+    if (name.toLowerCase().startsWith("linux")) {
+      release = new LsbRelease();
+    } else {
+      release = null;
+    }
+    return computeLabels(arch, name, version, release);
+  }
+
+  /**
+   * Compute agent labels based on seed values provided as parameters.
+   *
+   * @param arch architecture of the agent, as in "x86", "amd64", or "aarch64"
+   * @param name name of the operating system or distribution as in "OpenBSD", "FreeBSD", "Windows",
+   *     or "Linux"
+   * @param version version of the operating system
+   * @param release Linux standard base release data (name, distributorId, version, etc.)
+   * @return agent labels as a set of strings
+   * @throws IOException on I/O error
+   */
+  @NonNull
+  protected HashSet<String> computeLabels(
+      @NonNull final String arch,
+      @NonNull final String name,
+      @NonNull final String version,
+      @CheckForNull LsbRelease release)
+      throws IOException {
     String computedName = name.toLowerCase();
     String computedArch = arch;
     String computedVersion = version;
@@ -160,21 +187,12 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
         computedVersion = "2003";
       }
     } else if (computedName.startsWith("linux")) {
-      LsbRelease release = new LsbRelease();
+      if (release == null) {
+        release = new LsbRelease();
+      }
       computedName = release.distributorId();
       computedArch = checkLinux32Bit(computedArch);
       computedVersion = release.release();
-      if (computedName.equals(UNKNOWN_VALUE_STRING)) {
-        File alpineComputedVersion = new File("/etc/alpine-release");
-        if (alpineComputedVersion.exists()) {
-          computedName = "Alpine";
-          List<String> lines =
-              Files.readAllLines(alpineComputedVersion.toPath(), StandardCharsets.UTF_8);
-          if (lines.size() > 0) {
-            computedVersion = lines.get(0);
-          }
-        }
-      }
       /* Fallback to /etc/os-release file */
       if (computedName.equals(UNKNOWN_VALUE_STRING)) {
         computedName = readReleaseIdentifier("ID");
@@ -209,10 +227,16 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
     PREFERRED_LINUX_OS_NAMES.put("ubuntu", "Ubuntu");
   }
 
+  private File osRelease = new File("/etc/os-release");
+
+  /* Package protected for use in tests */
+  void setOsReleaseFile(File osRelease) {
+    this.osRelease = osRelease;
+  }
+
   /* Package protected for use in tests */
   @NonNull
   String readReleaseIdentifier(@NonNull String field) {
-    File osRelease = new File("/etc/os-release");
     String value = UNKNOWN_VALUE_STRING;
     try (BufferedReader br =
         new BufferedReader(Files.newBufferedReader(osRelease.toPath(), StandardCharsets.UTF_8))) {
@@ -226,9 +250,6 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
     } catch (IOException notFound) {
       // Ignore IOException
     }
-    if (PREFERRED_LINUX_OS_NAMES.containsKey(value)) {
-      return PREFERRED_LINUX_OS_NAMES.get(value);
-    }
-    return value;
+    return PREFERRED_LINUX_OS_NAMES.getOrDefault(value, value);
   }
 }

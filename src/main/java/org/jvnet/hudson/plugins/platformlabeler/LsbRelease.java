@@ -26,7 +26,10 @@ package org.jvnet.hudson.plugins.platformlabeler;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -42,14 +45,7 @@ public class LsbRelease {
     Map<String, String> newProps = new HashMap<>();
     try {
       Process process = new ProcessBuilder("lsb_release", "-a").start();
-      try (BufferedReader reader =
-          new BufferedReader(
-              new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8))) {
-        reader
-            .lines()
-            .map(line -> line.split(":", 2))
-            .forEach(parts -> newProps.put(parts[0], parts[1].trim()));
-      }
+      readLsbReleaseOutput(process.getInputStream(), newProps);
     } catch (IOException e) {
       // IGNORE
     }
@@ -57,6 +53,36 @@ public class LsbRelease {
     this.distributorId = id != null ? id : PlatformDetailsTask.UNKNOWN_VALUE_STRING;
     String rel = newProps.get("Release");
     this.release = rel != null ? rel : PlatformDetailsTask.UNKNOWN_VALUE_STRING;
+  }
+
+  /** Assign distributor ID and release. Package protected for tests. */
+  LsbRelease(String distributorId, String release) {
+    this.distributorId = distributorId;
+    this.release = release;
+  }
+
+  /** Read file to assign distributor ID and release. Package protected for tests. */
+  LsbRelease(File lsbReleaseFile) throws IOException {
+    Map<String, String> newProps = new HashMap<>();
+    try (FileInputStream stream = new FileInputStream(lsbReleaseFile)) {
+      readLsbReleaseOutput(stream, newProps);
+    }
+    String id = newProps.get("Distributor ID");
+    this.distributorId = id != null ? id : PlatformDetailsTask.UNKNOWN_VALUE_STRING;
+    String rel = newProps.get("Release");
+    this.release = rel != null ? rel : PlatformDetailsTask.UNKNOWN_VALUE_STRING;
+  }
+
+  private void readLsbReleaseOutput(InputStream inputStream, Map<String, String> newProps)
+      throws IOException {
+    try (BufferedReader reader =
+        new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+      reader
+          .lines()
+          .filter(s -> s.contains(":"))
+          .map(line -> line.split(":", 2))
+          .forEach(parts -> newProps.put(parts[0], parts[1].trim()));
+    }
   }
 
   /**
