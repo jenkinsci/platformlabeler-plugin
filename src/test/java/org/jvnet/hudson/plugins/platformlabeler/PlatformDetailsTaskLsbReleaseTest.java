@@ -90,6 +90,9 @@ public class PlatformDetailsTaskLsbReleaseTest {
     if (filename.contains("debian")) {
       return "Debian";
     }
+    if (filename.contains("oraclelinux")) {
+      return "OracleServer";
+    }
     if (filename.contains("rhel") || filename.contains("ubi")) {
       return "rhel";
     }

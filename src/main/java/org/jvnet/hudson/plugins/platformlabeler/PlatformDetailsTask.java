@@ -223,6 +223,7 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
     PREFERRED_LINUX_OS_NAMES.put("amzn", "Amazon");
     PREFERRED_LINUX_OS_NAMES.put("centos", "CentOS");
     PREFERRED_LINUX_OS_NAMES.put("debian", "Debian");
+    PREFERRED_LINUX_OS_NAMES.put("ol", "OracleServer");
     PREFERRED_LINUX_OS_NAMES.put("opensuse", "openSUSE");
     PREFERRED_LINUX_OS_NAMES.put("ubuntu", "Ubuntu");
   }
@@ -244,7 +245,7 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
       while ((line = br.readLine()) != null) {
         if (line.startsWith(field + "=")) {
           String[] parts = line.split("=");
-          value = parts[1].replace("\"", "");
+          value = parts[1].replace("\"", "").trim();
         }
       }
     } catch (IOException notFound) {

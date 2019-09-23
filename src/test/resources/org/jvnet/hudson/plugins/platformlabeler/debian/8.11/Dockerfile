@@ -1,4 +1,2 @@
-FROM debian:8
-RUN apt-get update
-RUN apt-get dist-upgrade -y
-RUN apt-get install -y lsb-release
+FROM debian:8-slim
+RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y lsb-release

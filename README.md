@@ -15,6 +15,9 @@ Labels commonly include operating system name, version, and architecture.
 | Debian testing   | `testing` `Debian` `Debian-testing` `amd64` `amd64-Debian` `amd64-Debian-testing`                    |
 | FreeBSD 11       | `11.1-STABLE` `amd64` `amd64-freebsd` `amd64-freebsd-11.1-STABLE` `freebsd` `freebsd-11.1-STABLE`    |
 | FreeBSD 12       | `12.0-RELEASE` `amd64` `amd64-freebsd` `amd64-freebsd-12.0-RELEASE` `freebsd` `freebsd-12.0-RELEASE` |
+| Oracle Linux 6   | `6.10` `OracleServer` `OracleServer-6.10` `amd64` `amd64-OracleServer` `amd64-OracleServer-6.10`     |
+| Oracle Linux 7   | `7.6` `OracleServer` `OracleServer-7.6` `amd64` `amd64-OracleServer` `amd64-OracleServer-7.6`        |
+| Oracle Linux 8   | `8.0` `OracleServer` `OracleServer-8.0` `amd64` `amd64-OracleServer` `amd64-OracleServer-8.0`        |
 | Ubuntu 14.04     | `14.04` `Ubuntu` `Ubuntu-14.04` `amd64` `amd64-Ubuntu` `amd64-Ubuntu-14.04`                          |
 | Ubuntu 16.04     | `16.04` `Ubuntu` `Ubuntu-16.04` `amd64` `amd64-Ubuntu` `amd64-Ubuntu-16.04`                          |
 | Ubuntu 18.04     | `18.04` `Ubuntu` `Ubuntu-18.04` `amd64` `amd64-Ubuntu` `amd64-Ubuntu-18.04`                          |
