@@ -16,5 +16,3 @@ for os_release in $(find * -type f -name os-release); do
         echo parent=$parent version=$version image=$image
         (cd $parent && docker run -t $image:$version cat /etc/os-release | tr -d '\015' > os-release)
 done
-
-exit 0
