@@ -14,8 +14,8 @@
   <version>${revision}${changelist}</version>
   <packaging>hpi</packaging>
 
-  <name>Jenkins platformlabeler plugin</name>
-  <description>Assigns labels to nodes based on their operating system properties</description>
+  <name>Jenkins platform labeler plugin</name>
+  <description>Labels agents based on their operating system (platform) version and architecture</description>
   <url>https://github.com/jenkinsci/platformlabeler-plugin</url>
   <inceptionYear>2009</inceptionYear>
 
