@@ -1,0 +1,5 @@
+LSB Version:	:base-4.0-amd64:base-4.0-noarch:core-4.0-amd64:core-4.0-noarch
+Distributor ID:	AmazonAMI
+Description:	Amazon Linux AMI release 2018.03
+Release:	2018.03
+Codename:	n/a

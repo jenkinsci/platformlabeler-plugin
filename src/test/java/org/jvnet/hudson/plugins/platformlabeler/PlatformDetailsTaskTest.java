@@ -28,28 +28,13 @@ public class PlatformDetailsTaskTest {
     } else {
       assertThat(details, not(hasItems("windows")));
     }
-    String osName = System.getProperty("os.name", "os.name.is.unknown");
-    if (osName.toLowerCase().startsWith("linux")) {
-      assertThat(details, not(hasItems("linux")));
-      assertThat(details, not(hasItems("Linux")));
-      assertThat(
-          details,
-          anyOf(
-              hasItems("Alpine"),
-              hasItems("Amazon"),
-              hasItems("AmazonAMI"),
-              hasItems("Debian"),
-              hasItems("CentOS"),
-              hasItems("Ubuntu")));
-    }
+    assertPlatformDetails(details);
   }
 
-  @Test
-  public void testComputeLabelsLinux32Bit() throws Exception {
-    Set<String> details = platformDetailsTask.computeLabels("x86", "linux", "xyzzy");
-    assertThat(details, not(hasItems("windows")));
+  private void assertPlatformDetails(Set<String> details) {
     String osName = System.getProperty("os.name", "os.name.is.unknown");
     if (osName.toLowerCase().startsWith("linux")) {
+      assertThat(details, not(hasItems("windows")));
       assertThat(details, not(hasItems("linux")));
       assertThat(details, not(hasItems("Linux")));
       assertThat(
@@ -67,6 +52,30 @@ public class PlatformDetailsTaskTest {
       // Assumes tests run in JVM that matches operating system
       assertThat(details, hasItems(expectedArch));
     }
+  }
+
+  @Test
+  public void testComputeLabelsLinux32Bit() throws Exception {
+    Set<String> details = platformDetailsTask.computeLabels("x86", "linux", "xyzzy");
+    assertPlatformDetails(details);
+  }
+
+  @Test
+  public void testComputeLabelsLinuxWithoutLsbRelease() throws Exception {
+    assumeTrue(!isWindows() && Files.exists(Paths.get("/etc/os-release")));
+    String unknown = PlatformDetailsTask.UNKNOWN_VALUE_STRING;
+    LsbRelease release = new LsbRelease(unknown, unknown);
+    Set<String> details = platformDetailsTask.computeLabels("x86", "linux", "xyzzy", release);
+    assertPlatformDetails(details);
+  }
+
+  @Test
+  public void testComputeLabelsLinuxWithNullLsbRelease() throws Exception {
+    assumeTrue(!isWindows() && Files.exists(Paths.get("/etc/os-release")));
+    String unknown = PlatformDetailsTask.UNKNOWN_VALUE_STRING;
+    LsbRelease release = null;
+    Set<String> details = platformDetailsTask.computeLabels("x86", "linux", "xyzzy", release);
+    assertPlatformDetails(details);
   }
 
   @Test
