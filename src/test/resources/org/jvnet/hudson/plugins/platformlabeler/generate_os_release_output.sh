@@ -2,6 +2,12 @@
 
 # Generate os-release test data files from operating system images
 
+# Copy the /etc/os-release file from the operating system into a directory
+# named for the operating system docker image and the operating system version.
+# Once that file is created, this script will detect the existence of the file
+# and uses the docker image and version from the directory name to insert
+# the content of the file.
+
 if [ ! -d alpine ]; then
         cd src/test/resources/org/jvnet/hudson/plugins/platformlabeler || exit 1
 fi
