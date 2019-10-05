@@ -18,16 +18,16 @@ import org.reflections.Reflections;
 import org.reflections.scanners.ResourcesScanner;
 
 @RunWith(Parameterized.class)
-public class PlatformDetailsTaskLsbReleaseTest {
+public class PlatformDetailsTaskRedhatReleaseTest {
 
-  private final String lsbReleaseFileName;
+  private final String redhatReleaseFileName;
   private final String expectedName;
   private final String expectedVersion;
   private final String expectedArch;
 
-  public PlatformDetailsTaskLsbReleaseTest(
-      String lsbReleaseFileName, String expectedName, String expectedVersion, String expectedArch) {
-    this.lsbReleaseFileName = lsbReleaseFileName;
+  public PlatformDetailsTaskRedhatReleaseTest(
+      String osReleaseFileName, String expectedName, String expectedVersion, String expectedArch) {
+    this.redhatReleaseFileName = osReleaseFileName;
     this.expectedName = expectedName;
     this.expectedVersion = expectedVersion;
     this.expectedArch = expectedArch;
@@ -40,11 +40,12 @@ public class PlatformDetailsTaskLsbReleaseTest {
    */
   @Parameters(name = "{1}-{2}-{3}")
   public static Collection<Object[]> generateReleaseFileNames() {
-    String packageName = PlatformDetailsTaskLsbReleaseTest.class.getPackage().getName();
+    String packageName = PlatformDetailsTaskRedhatReleaseTest.class.getPackage().getName();
     Reflections reflections = new Reflections(packageName, new ResourcesScanner());
-    Set<String> fileNames = reflections.getResources(Pattern.compile(".*lsb_release-a"));
+    Set<String> fileNames = reflections.getResources(Pattern.compile(".*redhat-release"));
     Collection<Object[]> data = new ArrayList<>(fileNames.size());
     for (String fileName : fileNames) {
+      System.out.println(fileName);
       String oneExpectedName = computeExpectedName(fileName);
       String oneExpectedVersion = computeExpectedVersion(fileName);
       String oneExpectedArch = "amd64";
@@ -58,10 +59,12 @@ public class PlatformDetailsTaskLsbReleaseTest {
   @Test
   public void testComputeLabelsForOsRelease() throws Exception {
     PlatformDetailsTask details = new PlatformDetailsTask();
-    URL resource = getClass().getResource(lsbReleaseFileName);
-    File lsbReleaseFile = new File(resource.toURI());
-    assertTrue("File not found " + lsbReleaseFile, lsbReleaseFile.exists());
-    LsbRelease release = new LsbRelease(lsbReleaseFile);
+    URL resource = getClass().getResource(redhatReleaseFileName);
+    File redhatReleaseFile = new File(resource.toURI());
+    assertTrue("File not found " + redhatReleaseFile, redhatReleaseFile.exists());
+    details.setRedhatRelease(redhatReleaseFile);
+    String unknown = PlatformDetailsTask.UNKNOWN_VALUE_STRING;
+    LsbRelease release = new LsbRelease(unknown, unknown);
     HashSet<String> result = details.computeLabels("amd64", "linux", "xyzzy-abc", release);
     assertThat(
         result,
@@ -75,34 +78,14 @@ public class PlatformDetailsTaskLsbReleaseTest {
   }
 
   private static String computeExpectedName(String filename) {
-    if (filename.contains("amzn")) {
-      if (filename.contains("amzn/2018.03")) {
-        return "AmazonAMI";
-      }
-      return "Amazon";
-    }
-    if (filename.contains("alpine")) {
-      return "Alpine";
-    }
-    if (filename.contains("centos")) {
-      return "CentOS";
-    }
-    if (filename.contains("debian")) {
-      return "Debian";
-    }
-    if (filename.contains("oraclelinux")) {
-      return "OracleServer";
-    }
     if (filename.contains("rhel") || filename.contains("ubi")) {
-      return "rhel";
-    }
-    if (filename.contains("ubuntu")) {
-      return "Ubuntu";
+      return "Red Hat Enterprise Linux Server";
     }
     if (filename.contains("scientific")) {
-      return "Scientific";
+      return "Scientific Linux";
     }
-    return filename.toLowerCase();
+    System.out.println(filename);
+    return null;
   }
 
   private static String computeExpectedVersion(String filename) {

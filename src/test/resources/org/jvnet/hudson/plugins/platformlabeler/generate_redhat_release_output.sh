@@ -12,14 +12,14 @@ if [ ! -d alpine ]; then
         cd src/test/resources/org/jvnet/hudson/plugins/platformlabeler || exit 1
 fi
 
-for os_release in $(find * -type f -name os-release); do
+for os_release in $(find * -type f -name redhat-release); do
         parent=$(dirname $os_release)
         version=$(basename $parent)
         image=$(dirname $parent)
         if [ "$image" == "amzn" ]; then
                 image="amazonlinux"
         fi
-         if [ "$image" == "scientific" ]; then
+        if [ "$image" == "scientific" ]; then
                 image="sl"
                 if [ "$version" == "6.10" ]; then
                 	version="6"
@@ -27,7 +27,7 @@ for os_release in $(find * -type f -name os-release); do
                 if [ "$version" == "7.7" ]; then
                 	version="7"
                 fi                
-        fi    
+        fi        
         echo parent=$parent version=$version image=$image
-        (cd $parent && docker run -t $image:$version cat /etc/os-release | tr -d '\015' > os-release)
+        (cd $parent && docker run -t $image:$version cat /etc/redhat-release | tr -d '\015' > redhat-release)
 done

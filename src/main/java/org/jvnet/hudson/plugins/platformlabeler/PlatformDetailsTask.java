@@ -44,6 +44,7 @@ import org.jenkinsci.remoting.RoleSensitive;
 /** Compute labels based on details computed on the agent. */
 class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
 
+  private static final String RELEASE = "release";
   /** Unknown field value string. Package protected for us by LsbRelease class */
   static final String UNKNOWN_VALUE_STRING = "unknown+check_lsb_release_installed";
 
@@ -203,6 +204,12 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
       if (computedVersion.equals(UNKNOWN_VALUE_STRING)) {
         computedVersion = readReleaseIdentifier("BUILD_ID");
       }
+      if (computedName.equals(UNKNOWN_VALUE_STRING)) {
+        computedName = readRedhatReleaseIdentifier("ID");
+      }
+      if (computedVersion.equals(UNKNOWN_VALUE_STRING)) {
+        computedVersion = readRedhatReleaseIdentifier("VERSION_ID");
+      }
     } else if (computedName.startsWith("mac")) {
       computedName = "mac";
     }
@@ -216,7 +223,7 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
     return result;
   }
 
-  private static final Map<String, String> PREFERRED_LINUX_OS_NAMES = new HashMap();
+  private static final Map<String, String> PREFERRED_LINUX_OS_NAMES = new HashMap<>();
 
   static {
     PREFERRED_LINUX_OS_NAMES.put("alpine", "Alpine");
@@ -230,10 +237,15 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
   }
 
   private File osRelease = new File("/etc/os-release");
+  private File redhatRelease = new File("/etc/redhat-release");
 
   /* Package protected for use in tests */
   void setOsReleaseFile(File osRelease) {
     this.osRelease = osRelease;
+  }
+
+  void setRedhatRelease(File redhatRelease) {
+    this.redhatRelease = redhatRelease;
   }
 
   /* Package protected for use in tests */
@@ -247,6 +259,31 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
         if (line.startsWith(field + "=")) {
           String[] parts = line.split("=");
           value = parts[1].replace("\"", "").trim();
+        }
+      }
+    } catch (IOException notFound) {
+      // Ignore IOException
+    }
+    return PREFERRED_LINUX_OS_NAMES.getOrDefault(value, value);
+  }
+
+  /* Package protected for use in tests */
+  @NonNull
+  String readRedhatReleaseIdentifier(@NonNull String field) {
+    String value = UNKNOWN_VALUE_STRING;
+    try (BufferedReader br =
+        new BufferedReader(
+            Files.newBufferedReader(redhatRelease.toPath(), StandardCharsets.UTF_8))) {
+      String line;
+      while ((line = br.readLine()) != null) {
+        if (line.contains(RELEASE)) {
+          if (field.equals("ID")) {
+            value = line.substring(0, line.indexOf(RELEASE)).trim();
+            System.out.println(value);
+          }
+          if (field.equals("VERSION_ID"))
+            value =
+                line.substring(line.indexOf(RELEASE) + RELEASE.length(), line.indexOf("(")).trim();
         }
       }
     } catch (IOException notFound) {
