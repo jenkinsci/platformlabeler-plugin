@@ -279,7 +279,6 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
         if (line.contains(RELEASE)) {
           if (field.equals("ID")) {
             value = line.substring(0, line.indexOf(RELEASE)).trim();
-            System.out.println(value);
           }
           if (field.equals("VERSION_ID"))
             value =
