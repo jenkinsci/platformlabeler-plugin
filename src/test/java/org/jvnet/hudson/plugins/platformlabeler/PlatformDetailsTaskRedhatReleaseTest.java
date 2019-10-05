@@ -56,7 +56,7 @@ public class PlatformDetailsTaskRedhatReleaseTest {
   }
 
   @Test
-  public void testComputeLabelsForOsRelease() throws Exception {
+  public void testComputeLabelsForrRedhatRelease() throws Exception {
     PlatformDetailsTask details = new PlatformDetailsTask();
     URL resource = getClass().getResource(redhatReleaseFileName);
     File redhatReleaseFile = new File(resource.toURI());
