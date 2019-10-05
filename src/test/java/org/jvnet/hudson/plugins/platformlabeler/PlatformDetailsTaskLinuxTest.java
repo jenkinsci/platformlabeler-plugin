@@ -98,6 +98,9 @@ public class PlatformDetailsTaskLinuxTest {
     if (filename.contains("ubuntu")) {
       return "Ubuntu";
     }
+    if (filename.contains("scientific")) {
+      return "Scientific";
+    }
     return filename.toLowerCase();
   }
 
