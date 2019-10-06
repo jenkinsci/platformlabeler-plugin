@@ -34,4 +34,4 @@ For example:
 
 Source code is formatted with the command:
 
-    mvn com.coveo:fmt-maven-plugin:format
+    mvn tidy:pom com.coveo:fmt-maven-plugin:format
