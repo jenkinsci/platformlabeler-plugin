@@ -97,6 +97,38 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
+  public void readReleaseIdentifierMissingFileReturnsUnknownValue() throws Exception {
+    Set<String> details = platformDetailsTask.computeLabels("x86", "linux", "xyzzy");
+    platformDetailsTask.setOsReleaseFile(new File("/this/file/does/not/exist"));
+    String name = platformDetailsTask.readReleaseIdentifier("ID");
+    assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
+  }
+
+  @Test
+  public void readRedhatReleaseIdentifierMissingFileReturnsUnknownValue() throws Exception {
+    Set<String> details = platformDetailsTask.computeLabels("x86", "linux", "xyzzy");
+    platformDetailsTask.setRedhatRelease(new File("/this/file/does/not/exist"));
+    String name = platformDetailsTask.readRedhatReleaseIdentifier("ID");
+    assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
+  }
+
+  @Test
+  public void readRedhatReleaseIdentifierNullFileReturnsUnknownValue() throws Exception {
+    Set<String> details = platformDetailsTask.computeLabels("x86", "linux", "xyzzy");
+    platformDetailsTask.setRedhatRelease(null);
+    String name = platformDetailsTask.readRedhatReleaseIdentifier("ID");
+    assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
+  }
+
+  @Test
+  public void readRedhatReleaseIdentifierWrongFileReturnsUnknownValue() throws Exception {
+    Set<String> details = platformDetailsTask.computeLabels("x86", "linux", "xyzzy");
+    platformDetailsTask.setRedhatRelease(new File("/etc/hosts")); // Not redhat-release file
+    String name = platformDetailsTask.readRedhatReleaseIdentifier("ID");
+    assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
+  }
+
+  @Test
   public void compareOSVersion() throws Exception {
     assumeTrue(!isWindows() && Files.exists(Paths.get("/etc/os-release")));
     Set<String> details = platformDetailsTask.computeLabels("x86", "linux", "xyzzy");
