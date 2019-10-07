@@ -36,7 +36,3 @@ For example:
 | Platform         | Labels assigned by plugin when lsb-release is not installed     |
 | ---------------- | --------------------------------------------------------------- |
 | CentOS 7         | `7` `CentOS` `CentOS-7` `amd64` `amd64-CentOS` `amd64-CentOS-7` |
-
-Source code is formatted with the command:
-
-    mvn tidy:pom com.coveo:fmt-maven-plugin:format
