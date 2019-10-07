@@ -27,7 +27,7 @@ Labels commonly include operating system name, version, and architecture.
 | Ubuntu 18.04                 | `Ubuntu`           | `18.04`        | `amd64`  |
 | Windows 10                   | `windows`          | `10.0`         | `amd64`  |
 
-On Linux computers, the plugin uses the output of the `[lsb_release](https://linux.die.net/man/1/lsb_release)` command.
+On Linux computers, the plugin uses the output of the [`lsb_release`](https://linux.die.net/man/1/lsb_release) command.
 If `lsb_release` is not installed, labels on Linux agents will be guessed based on values in /etc/os-release.
 Redhat and Scientific agents have another fallback based on /etc/redhat-release.
 When /etc/os-release is used, less detailed labels are provided.
