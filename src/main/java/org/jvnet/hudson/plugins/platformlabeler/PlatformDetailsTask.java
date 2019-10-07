@@ -232,6 +232,7 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
     PREFERRED_LINUX_OS_NAMES.put("debian", "Debian");
     PREFERRED_LINUX_OS_NAMES.put("ol", "OracleServer");
     PREFERRED_LINUX_OS_NAMES.put("opensuse", "openSUSE");
+    PREFERRED_LINUX_OS_NAMES.put("rhel", "RedHatEnterprise");
     PREFERRED_LINUX_OS_NAMES.put("ubuntu", "Ubuntu");
     PREFERRED_LINUX_OS_NAMES.put("scientific", "Scientific");
     PREFERRED_LINUX_OS_NAMES.put("Scientific Linux", "Scientific");
