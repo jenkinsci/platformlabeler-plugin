@@ -92,7 +92,7 @@ public class NodeLabelCache extends ComputerListener {
    */
   final void cacheLabels(final Computer computer) throws IOException, InterruptedException {
     /* Cache the labels for the node */
-    nodePlatformProperties.put(computer, requestComputerOSProperties(computer));
+    nodePlatformProperties.put(computer, requestComputerPlatformDetails(computer));
   }
 
   /**
@@ -111,15 +111,15 @@ public class NodeLabelCache extends ComputerListener {
   }
 
   /**
-   * Return a Map of the properties of the OS of the node
+   * Return PlatformDetails of the computer.
    *
-   * @param computer agent whose labels are returned
-   * @return collection of labels for computer
+   * @param computer agent whose platform details are returned
+   * @return PlatformDeatils for computer
    * @throws IOException on I/O error
    * @throws InterruptedException on thread interruption
    */
   @NonNull
-  private PlatformDetails requestComputerOSProperties(final Computer computer)
+  private PlatformDetails requestComputerPlatformDetails(final Computer computer)
       throws IOException, InterruptedException {
     final VirtualChannel channel = computer.getChannel();
     if (null == channel) {
