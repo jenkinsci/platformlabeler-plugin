@@ -1,2 +1,2 @@
-FROM centos:7-slim
+FROM centos:7
 RUN yum update -y && yum install -y redhat-lsb-core
