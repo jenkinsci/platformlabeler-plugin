@@ -223,6 +223,11 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
     return result;
   }
 
+  /**
+   * Maps the ID string from /etc/os-release and /etc/redhat-release to the Distributor ID value
+   * output by lsb_release -a so that users have the same operating system name in the label whether
+   * the label was generated using os-release or using lsb_release
+   */
   private static final Map<String, String> PREFERRED_LINUX_OS_NAMES = new HashMap<>();
 
   static {
@@ -232,12 +237,12 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
     PREFERRED_LINUX_OS_NAMES.put("debian", "Debian");
     PREFERRED_LINUX_OS_NAMES.put("ol", "OracleServer");
     PREFERRED_LINUX_OS_NAMES.put("opensuse", "openSUSE");
+    PREFERRED_LINUX_OS_NAMES.put("Red Hat Enterprise Linux", "RedHatEnterprise");
+    PREFERRED_LINUX_OS_NAMES.put("Red Hat Enterprise Linux Server", "RedHatEnterprise");
     PREFERRED_LINUX_OS_NAMES.put("rhel", "RedHatEnterprise");
-    PREFERRED_LINUX_OS_NAMES.put("ubuntu", "Ubuntu");
-    PREFERRED_LINUX_OS_NAMES.put("scientific", "Scientific");
     PREFERRED_LINUX_OS_NAMES.put("Scientific Linux", "Scientific");
-    PREFERRED_LINUX_OS_NAMES.put("Red Hat Enterprise Linux", "rhel");
-    PREFERRED_LINUX_OS_NAMES.put("Red Hat Enterprise Linux Server", "rhel");
+    PREFERRED_LINUX_OS_NAMES.put("scientific", "Scientific");
+    PREFERRED_LINUX_OS_NAMES.put("ubuntu", "Ubuntu");
   }
 
   private File osRelease = new File("/etc/os-release");
