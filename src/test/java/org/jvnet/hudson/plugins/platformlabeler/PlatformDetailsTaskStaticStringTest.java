@@ -1,13 +1,12 @@
 package org.jvnet.hudson.plugins.platformlabeler;
 
-import static org.hamcrest.Matchers.containsInAnyOrder;
-import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertThat;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -101,16 +100,10 @@ public class PlatformDetailsTaskStaticStringTest {
   @Test
   public void testComputeLabels() throws Exception {
     PlatformDetailsTask details = new PlatformDetailsTask();
-    HashSet<String> result = details.computeLabels(arch, name, version);
-    assertThat(
-        result,
-        containsInAnyOrder(
-            expectedArch,
-            expectedName,
-            expectedVersion,
-            expectedArch + "-" + expectedName,
-            expectedName + "-" + expectedVersion,
-            expectedArch + "-" + expectedName + "-" + expectedVersion));
+    PlatformDetails result = details.computeLabels(arch, name, version);
+    assertThat(result.getArchitecture(), equalTo(expectedArch));
+    assertThat(result.getName(), equalTo(expectedName));
+    assertThat(result.getVersion(), equalTo(expectedVersion));
   }
 
   private static String computeExpectedArch(String name, String arch) {

@@ -34,20 +34,25 @@ import hudson.remoting.VirtualChannel;
 import hudson.slaves.ComputerListener;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.WeakHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jenkins.model.GlobalConfiguration;
 import jenkins.model.Jenkins;
 
 /** A cache of Node labels for the LabelFinder in our package. */
 @Extension
 public class NodeLabelCache extends ComputerListener {
 
+  /** The OS properties for nodes * */
+  private static transient Map<Computer, PlatformDetails> nodePlatformProperties =
+      Collections.synchronizedMap(new WeakHashMap<>());
   /** The labels computed for nodes - accessible package wide. */
-  static transient WeakHashMap<Node, Collection<LabelAtom>> nodeLabels =
-      new WeakHashMap<Node, Collection<LabelAtom>>();
+  static transient Map<Node, Collection<LabelAtom>> nodeLabels = new WeakHashMap<>();
   /** Logging of issues. */
   private static final transient Logger LOGGER =
       Logger.getLogger("org.jvnet.hudson.plugins.platformlabeler");
@@ -67,6 +72,17 @@ public class NodeLabelCache extends ComputerListener {
     refreshModel(computer);
   }
 
+  /** When any computer has changed, update the platform labels according to the configuration */
+  @Override
+  public final void onConfigurationChange() {
+    synchronized (nodePlatformProperties) {
+      nodePlatformProperties.forEach(
+          (node, labels) -> {
+            refreshModel(node);
+          });
+    }
+  }
+
   /**
    * Caches the labels for the computer against its node.
    *
@@ -76,7 +92,7 @@ public class NodeLabelCache extends ComputerListener {
    */
   final void cacheLabels(final Computer computer) throws IOException, InterruptedException {
     /* Cache the labels for the node */
-    nodeLabels.put(computer.getNode(), requestNodeLabels(computer));
+    nodePlatformProperties.put(computer, requestComputerOSProperties(computer));
   }
 
   /**
@@ -88,13 +104,14 @@ public class NodeLabelCache extends ComputerListener {
     if (computer != null) {
       Node node = computer.getNode();
       if (node != null) {
+        nodeLabels.put(node, getLabelsForNode(node));
         node.getAssignedLabels();
       }
     }
   }
 
   /**
-   * Return collection of labels for computer.
+   * Return a Map of the properties of the OS of the node
    *
    * @param computer agent whose labels are returned
    * @return collection of labels for computer
@@ -102,7 +119,7 @@ public class NodeLabelCache extends ComputerListener {
    * @throws InterruptedException on thread interruption
    */
   @NonNull
-  private Collection<LabelAtom> requestNodeLabels(final Computer computer)
+  private PlatformDetails requestComputerOSProperties(final Computer computer)
       throws IOException, InterruptedException {
     final VirtualChannel channel = computer.getChannel();
     if (null == channel) {
@@ -111,18 +128,82 @@ public class NodeLabelCache extends ComputerListener {
       // ask while the computer was asynchronously disconnecting.
       throw new IOException("No virtual channel available");
     }
-    final Collection<LabelAtom> result = new HashSet<>();
-    final Jenkins jenkins = Jenkins.getInstanceOrNull();
+
     try {
-      final Set<String> labels = channel.call(new PlatformDetailsTask());
-      labels.forEach(
-          (label) -> {
-            result.add(jenkins.getLabelAtom(label));
-          });
+      return channel.call(new PlatformDetailsTask());
     } catch (IOException e) {
       LOGGER.log(Level.SEVERE, "Failed to read labels", e);
       throw e;
     }
+  }
+
+  /**
+   * Return collection of generated labels for the given node.
+   *
+   * @param node Node whose labels should be generated
+   * @return Collection with labels
+   */
+  Collection<LabelAtom> getLabelsForNode(final Node node) {
+
+    Set<LabelAtom> result = new HashSet<>();
+
+    Computer computer = node.toComputer();
+
+    if (computer == null) {
+      return result;
+    }
+
+    PlatformDetails pp = nodePlatformProperties.get(computer);
+
+    LabelConfig labelConfig = getLabelConfig(node);
+
+    final Jenkins jenkins = Jenkins.getInstanceOrNull();
+
+    if (labelConfig.isArchitecture()) {
+      result.add(jenkins.getLabelAtom(pp.getArchitecture()));
+    }
+
+    if (labelConfig.isName()) {
+      result.add(jenkins.getLabelAtom(pp.getName()));
+    }
+
+    if (labelConfig.isVersion()) {
+      result.add(jenkins.getLabelAtom(pp.getVersion()));
+    }
+
+    if (labelConfig.isNameVersion()) {
+      result.add(jenkins.getLabelAtom(pp.getNameVersion()));
+    }
+
+    if (labelConfig.isArchitectureName()) {
+      result.add(jenkins.getLabelAtom(pp.getArchitectureName()));
+    }
+
+    if (labelConfig.isArchitectureNameVersion()) {
+      result.add(jenkins.getLabelAtom(pp.getArchitectureNameVersion()));
+    }
+
     return result;
+  }
+
+  /**
+   * Returns the labelConfig of the given node if defined or the globally configured one.
+   *
+   * @param node The node to check.
+   * @return The labelConfig to be used for the node
+   */
+  private LabelConfig getLabelConfig(final Node node) {
+    LabelConfig labelConfig =
+        GlobalConfiguration.all()
+            .getInstance(PlatformLabelerGlobalConfiguration.class)
+            .getLabelConfig();
+
+    PlatformLabelerNodeProperty nodeProperty =
+        node.getNodeProperty(PlatformLabelerNodeProperty.class);
+
+    if (nodeProperty != null) {
+      labelConfig = nodeProperty.getLabelConfig();
+    }
+    return labelConfig;
   }
 }

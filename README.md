@@ -36,3 +36,6 @@ For example:
 | Platform                     | Operating System   | Version        | Platform |
 | ---------------------------- | ------------------ | -------------- | -------- |
 | CentOS 7                     | `CentOS`           | `7`            | `amd64`  |
+
+It can be configured globally and per agent which labels should be generated. 
+To define for an agent, just check 'Automatic Platform Labels' and select the labels you want.

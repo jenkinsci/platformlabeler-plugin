@@ -1,0 +1,21 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+  <f:entry field="architecture" title="Generate label with OS architecture">
+    <f:checkbox default="true"/>
+  </f:entry>
+  <f:entry field="name" title="Generate label with OS name">
+    <f:checkbox default="true"/>
+  </f:entry>
+  <f:entry field="version" title="Generate label with OS version">
+    <f:checkbox default="true"/>
+  </f:entry>
+  <f:entry field="architectureName" title="Generate label with OS architecture and name">
+    <f:checkbox default="true"/>
+  </f:entry>
+  <f:entry field="nameVersion" title="Generate label with OS name and version">
+    <f:checkbox default="true"/>
+  </f:entry>
+  <f:entry field="architectureNameVersion" title="Generate label with OS architecture, name and version">
+    <f:checkbox default="true"/>
+  </f:entry>
+</j:jelly>
