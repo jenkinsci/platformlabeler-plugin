@@ -42,3 +42,11 @@ To install the pre-commit framework into this repository on your computer, use t
 $ pip install --user pre-commit
 $ pre-commit install
 ```
+
+Pre-commit checks are run on modified files during `git commit`.
+Files which fail pre-commit checks will abort the `git commit`.
+
+Run pre-commit checks on all files:
+```
+$ pre-commit run --all-files
+```

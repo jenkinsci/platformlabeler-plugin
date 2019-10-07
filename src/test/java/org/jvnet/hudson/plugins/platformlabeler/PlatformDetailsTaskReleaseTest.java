@@ -39,7 +39,7 @@ public class PlatformDetailsTaskReleaseTest {
    *
    * @return parameter values to be tested
    */
-  @Parameters(name = "{1}-{2}-{3}")
+  @Parameters(name = "{1}-{2}-{3}-{0}")
   public static Collection<Object[]> generateReleaseFileNames() {
     String packageName = PlatformDetailsTaskReleaseTest.class.getPackage().getName();
     Reflections reflections = new Reflections(packageName, new ResourcesScanner());
@@ -100,7 +100,7 @@ public class PlatformDetailsTaskReleaseTest {
       return "OracleServer";
     }
     if (filename.contains("rhel") || filename.contains("ubi")) {
-      return "rhel";
+      return "RedHatEnterprise";
     }
     if (filename.contains("ubuntu")) {
       return "Ubuntu";

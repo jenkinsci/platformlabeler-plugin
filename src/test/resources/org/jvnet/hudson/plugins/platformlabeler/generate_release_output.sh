@@ -29,8 +29,8 @@ do
 	                fi
 	                if [ "$version" == "7.7" ]; then
 	                	version="7"
-	                fi                
-	        fi    
+	                fi
+	        fi
 	        id=`docker ps -lqf ancestor=$image:$version`
 	        echo id=$id parent=$parent version=$version image=$image $name
 	        (cd $parent && docker cp -L $id:/etc/$name $name)
