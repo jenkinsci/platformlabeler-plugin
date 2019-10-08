@@ -36,6 +36,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import jenkins.security.Roles;
 import org.jenkinsci.remoting.RoleChecker;
 
@@ -43,6 +45,8 @@ import org.jenkinsci.remoting.RoleChecker;
 class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
 
   private static final String RELEASE = "release";
+  private static final String VERSION = "VERSION =";
+  private static final String PATCHLEVEL = "PATCHLEVEL =";
   /** Unknown field value string. Package protected for us by LsbRelease class */
   static final String UNKNOWN_VALUE_STRING = "unknown+check_lsb_release_installed";
 
@@ -208,6 +212,27 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
       if (computedVersion.equals(UNKNOWN_VALUE_STRING)) {
         computedVersion = readRedhatReleaseIdentifier("VERSION_ID");
       }
+      if (computedName.equals(UNKNOWN_VALUE_STRING)) {
+        computedName = readSuseReleaseIdentifier("ID");
+      }
+      /* This is kind of a hack. lsb_release -a returns only the major version on SLES 11 and older,
+       * so trying to fall back to reading SuSE-release file to get a more detailed version */
+      if (computedName.equals("SUSE LINUX")) {
+        try {
+          int intVersion = Integer.parseInt(computedVersion);
+          if (intVersion <= 11) {
+            String newVersion = readSuseReleaseIdentifier("VERSION_ID");
+            if (!newVersion.equals(UNKNOWN_VALUE_STRING)) {
+              computedVersion = readSuseReleaseIdentifier("VERSION_ID");
+            }
+          }
+        } catch (NumberFormatException nfe) {
+          // Ignore IOException
+        }
+      }
+      if (computedVersion.equals(UNKNOWN_VALUE_STRING)) {
+        computedVersion = readSuseReleaseIdentifier("VERSION_ID");
+      }
     } else if (computedName.startsWith("mac")) {
       computedName = "mac";
     }
@@ -232,6 +257,8 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
     PREFERRED_LINUX_OS_NAMES.put("Red Hat Enterprise Linux", "RedHatEnterprise");
     PREFERRED_LINUX_OS_NAMES.put("Red Hat Enterprise Linux Server", "RedHatEnterprise");
     PREFERRED_LINUX_OS_NAMES.put("rhel", "RedHatEnterprise");
+    PREFERRED_LINUX_OS_NAMES.put("sles", "SUSE");
+    PREFERRED_LINUX_OS_NAMES.put("SUSE Linux Enterprise Server", "SUSE");
     PREFERRED_LINUX_OS_NAMES.put("Scientific Linux", "Scientific");
     PREFERRED_LINUX_OS_NAMES.put("scientific", "Scientific");
     PREFERRED_LINUX_OS_NAMES.put("ubuntu", "Ubuntu");
@@ -239,6 +266,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
 
   private File osRelease = new File("/etc/os-release");
   private File redhatRelease = new File("/etc/redhat-release");
+  private File suseRelease = new File("/etc/SuSE-release");
 
   /* Package protected for use in tests */
   void setOsReleaseFile(File osRelease) {
@@ -247,6 +275,10 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
 
   void setRedhatRelease(File redhatRelease) {
     this.redhatRelease = redhatRelease;
+  }
+
+  void setSuseRelease(File suseRelease) {
+    this.suseRelease = suseRelease;
   }
 
   /* Package protected for use in tests */
@@ -294,6 +326,50 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
       }
     } catch (IOException notFound) {
       // Ignore IOException
+    }
+    return PREFERRED_LINUX_OS_NAMES.getOrDefault(value, value);
+  }
+
+  @NonNull
+  String readSuseReleaseIdentifier(@NonNull String field) {
+    String value = UNKNOWN_VALUE_STRING;
+    String version = null;
+    String patchLevel = null;
+    String name = UNKNOWN_VALUE_STRING;
+    Pattern pattern = Pattern.compile("^(SUSE.*?)\\d+.*$");
+    if (suseRelease == null) {
+      return value;
+    }
+    try (BufferedReader br =
+        new BufferedReader(Files.newBufferedReader(suseRelease.toPath(), StandardCharsets.UTF_8))) {
+      String line;
+      while ((line = br.readLine()) != null) {
+        if (line.startsWith(VERSION)) {
+          version = line.substring(VERSION.length()).trim();
+        }
+        if (line.startsWith(PATCHLEVEL)) {
+          patchLevel = line.substring(PATCHLEVEL.length()).trim();
+        }
+        Matcher matcher = pattern.matcher(line.trim());
+        if (matcher.matches()) {
+          name = matcher.group(1).trim();
+        }
+      }
+    } catch (IOException notFound) {
+      return value;
+    }
+    if (field.equals("ID")) {
+      value = name;
+    }
+    if (field.equals("VERSION_ID")) {
+      if (version == null) {
+        return value;
+      } else {
+        value = version;
+        if (patchLevel != null) {
+          value += "." + patchLevel;
+        }
+      }
     }
     return PREFERRED_LINUX_OS_NAMES.getOrDefault(value, value);
   }

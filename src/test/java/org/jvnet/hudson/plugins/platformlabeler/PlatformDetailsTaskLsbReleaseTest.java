@@ -61,6 +61,10 @@ public class PlatformDetailsTaskLsbReleaseTest {
     File lsbReleaseFile = new File(resource.toURI());
     assertTrue("File not found " + lsbReleaseFile, lsbReleaseFile.exists());
     LsbRelease release = new LsbRelease(lsbReleaseFile);
+    File suseReleaseFile = new File(lsbReleaseFile.getParentFile(), "SuSE-release");
+    if (suseReleaseFile.isFile()) {
+      details.setSuseRelease(suseReleaseFile);
+    }
     PlatformDetails result = details.computeLabels("amd64", "linux", "xyzzy-abc", release);
     assertThat(result.getArchitecture(), is(expectedArch));
     assertThat(result.getName(), is(expectedName));
@@ -98,6 +102,12 @@ public class PlatformDetailsTaskLsbReleaseTest {
     }
     if (filename.contains("scientific")) {
       return "Scientific";
+    }
+    if (filename.contains("sles")) {
+      if (filename.contains("sles/12.1") || filename.contains("sles/11")) {
+        return "SUSE LINUX";
+      }
+      return "SUSE";
     }
     return filename.toLowerCase();
   }

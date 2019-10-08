@@ -22,6 +22,10 @@ Labels commonly include operating system name, version, and architecture.
 | Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.0`          | `amd64`  |
 | Scientific 6.10            | `Scientific`       | `6.10`         | `amd64`  |
 | Scientific 7.7             | `Scientific`       | `7.7`          | `amd64`  |
+| SLES 11.3                  | `SUSE LINUX`       | `11.3`          | `amd64`  |
+| SLES 12.1                  | `SUSE LINUX`       | `12.1`          | `amd64`  |
+| SLES 12.2                  | `SUSE`              | `12.2`          | `amd64`  |
+| SLES 15                    | `SUSE`              | `15`          | `amd64`  |
 | Ubuntu 14                  | `Ubuntu`           | `14.04`        | `amd64`  |
 | Ubuntu 16                  | `Ubuntu`           | `16.04`        | `amd64`  |
 | Ubuntu 18                  | `Ubuntu`           | `18.04`        | `amd64`  |
