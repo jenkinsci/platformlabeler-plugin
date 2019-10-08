@@ -1,7 +1,7 @@
 package org.jvnet.hudson.plugins.platformlabeler;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.*;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -101,9 +101,9 @@ public class PlatformDetailsTaskStaticStringTest {
   public void testComputeLabels() throws Exception {
     PlatformDetailsTask details = new PlatformDetailsTask();
     PlatformDetails result = details.computeLabels(arch, name, version);
-    assertThat(result.getArchitecture(), equalTo(expectedArch));
-    assertThat(result.getName(), equalTo(expectedName));
-    assertThat(result.getVersion(), equalTo(expectedVersion));
+    assertThat(result.getArchitecture(), is(expectedArch));
+    assertThat(result.getName(), is(expectedName));
+    assertThat(result.getVersion(), is(expectedVersion));
   }
 
   private static String computeExpectedArch(String name, String arch) {

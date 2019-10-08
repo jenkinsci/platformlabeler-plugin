@@ -1,7 +1,7 @@
 package org.jvnet.hudson.plugins.platformlabeler;
 
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.*;
 
 import hudson.model.Computer;
 import hudson.model.labels.LabelAtom;
@@ -39,7 +39,6 @@ public class ConfigurationTest {
 
     nodeLabelCache.onConfigurationChange();
     Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
-    System.err.println(labelsAfter);
     assertThat(labelsAfter.size(), is(2));
   }
 
@@ -56,7 +55,6 @@ public class ConfigurationTest {
 
     nodeLabelCache.onConfigurationChange();
     Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
-    System.err.println(labelsAfter);
     assertThat(nodeLabelCache.getLabelsForNode(computer.getNode()).size(), is(2));
     assertThat(labelsAfter.size(), is(3));
   }
@@ -70,7 +68,6 @@ public class ConfigurationTest {
 
     nodeLabelCache.onConfigurationChange();
     Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
-    System.err.println(labelsAfter);
     assertThat(labelsAfter.size(), is(7));
   }
 
@@ -95,7 +92,6 @@ public class ConfigurationTest {
 
     nodeLabelCache.onConfigurationChange();
     Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
-    System.err.println(labelsAfter);
     assertThat(nodeLabelCache.getLabelsForNode(computer.getNode()).size(), is(5));
     assertThat(labelsAfter.size(), is(6));
   }
