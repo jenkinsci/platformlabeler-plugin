@@ -37,5 +37,6 @@ For example:
 | ---------------------------- | ------------------ | -------------- | -------- |
 | CentOS 7                     | `CentOS`           | `7`            | `amd64`  |
 
-It can be configured globally and per agent which labels should be generated. 
-To define for an agent, just check 'Automatic Platform Labels' and select the labels you want.
+
+One can configure globally and per agent which labels should be generated. 
+To define the labels for an agent, just check 'Automatic Platform Labels' in the Node Properties section and select the labels you want to have.
