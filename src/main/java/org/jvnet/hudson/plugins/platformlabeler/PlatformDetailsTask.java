@@ -216,9 +216,9 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
   }
 
   /**
-   * Maps the ID string from /etc/os-release and /etc/redhat-release to the Distributor ID value
-   * output by lsb_release -a so that users have the same operating system name in the label whether
-   * the label was generated using os-release or using lsb_release
+   * Maps the ID string from /etc/os-release and /etc/redhat-release to the Distributor ID value.
+   * Matches output by lsb_release -a so that users have the same operating system name in the label
+   * whether the label was generated using os-release or using lsb_release.
    */
   private static final Map<String, String> PREFERRED_LINUX_OS_NAMES = new HashMap<>();
 
@@ -287,9 +287,10 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
           if (field.equals("ID")) {
             value = line.substring(0, line.indexOf(RELEASE)).trim();
           }
-          if (field.equals("VERSION_ID"))
+          if (field.equals("VERSION_ID")) {
             value =
                 line.substring(line.indexOf(RELEASE) + RELEASE.length(), line.indexOf("(")).trim();
+          }
         }
       }
     } catch (IOException notFound) {

@@ -48,7 +48,7 @@ import jenkins.model.Jenkins;
 @Extension
 public class NodeLabelCache extends ComputerListener {
 
-  /** The OS properties for nodes * */
+  /** The OS properties for nodes. */
   private static transient Map<Computer, PlatformDetails> nodePlatformProperties =
       Collections.synchronizedMap(new WeakHashMap<>());
   /** The labels computed for nodes - accessible package wide. */
@@ -72,7 +72,7 @@ public class NodeLabelCache extends ComputerListener {
     refreshModel(computer);
   }
 
-  /** When any computer has changed, update the platform labels according to the configuration */
+  /** When any computer has changed, update the platform labels according to the configuration. */
   @Override
   public final void onConfigurationChange() {
     synchronized (nodePlatformProperties) {

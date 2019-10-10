@@ -7,7 +7,7 @@ import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 
-/** Stores configuration about labels to generate */
+/** Stores configuration about labels to generate. */
 public class LabelConfig extends AbstractDescribableImpl<LabelConfig> {
 
   private boolean architecture = true;
