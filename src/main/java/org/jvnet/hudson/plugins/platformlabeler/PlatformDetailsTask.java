@@ -35,14 +35,12 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import jenkins.security.Roles;
 import org.jenkinsci.remoting.RoleChecker;
-import org.jenkinsci.remoting.RoleSensitive;
 
 /** Compute labels based on details computed on the agent. */
-class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
+class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
 
   private static final String RELEASE = "release";
   /** Unknown field value string. Package protected for us by LsbRelease class */
@@ -56,7 +54,7 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
    */
   @Override
   public void checkRoles(final RoleChecker checker) throws SecurityException {
-    checker.check((RoleSensitive) this, Roles.SLAVE);
+    checker.check(this, Roles.SLAVE);
   }
 
   /**
@@ -66,7 +64,7 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
    * @throws IOException on I/O error
    */
   @Override
-  public HashSet<String> call() throws IOException {
+  public PlatformDetails call() throws IOException {
     final String arch = System.getProperty("os.arch", UNKNOWN_VALUE_STRING);
     final String name = System.getProperty("os.name", UNKNOWN_VALUE_STRING);
     final String version = System.getProperty("os.version", UNKNOWN_VALUE_STRING);
@@ -128,17 +126,17 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
   }
 
   /**
-   * Compute agent labels based on seed values provided as parameters.
+   * Compute agent OS properties based on seed values provided as parameters.
    *
    * @param arch architecture of the agent, as in "x86", "amd64", or "aarch64"
    * @param name name of the operating system or distribution as in "OpenBSD", "FreeBSD", "Windows",
    *     or "Linux"
    * @param version version of the operating system
-   * @return agent labels as a set of strings
+   * @return agent OS properties
    * @throws IOException on I/O error
    */
   @NonNull
-  protected HashSet<String> computeLabels(
+  protected PlatformDetails computeLabels(
       @NonNull final String arch, @NonNull final String name, @NonNull final String version)
       throws IOException {
     LsbRelease release;
@@ -151,7 +149,7 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
   }
 
   /**
-   * Compute agent labels based on seed values provided as parameters.
+   * Compute agent OS properties based on seed values provided as parameters.
    *
    * @param arch architecture of the agent, as in "x86", "amd64", or "aarch64"
    * @param name name of the operating system or distribution as in "OpenBSD", "FreeBSD", "Windows",
@@ -162,7 +160,7 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
    * @throws IOException on I/O error
    */
   @NonNull
-  protected HashSet<String> computeLabels(
+  protected PlatformDetails computeLabels(
       @NonNull final String arch,
       @NonNull final String name,
       @NonNull final String version,
@@ -213,14 +211,8 @@ class PlatformDetailsTask implements Callable<HashSet<String>, IOException> {
     } else if (computedName.startsWith("mac")) {
       computedName = "mac";
     }
-    HashSet<String> result = new HashSet<>();
-    result.add(computedArch);
-    result.add(computedName);
-    result.add(computedVersion);
-    result.add(computedArch + "-" + computedName);
-    result.add(computedName + "-" + computedVersion);
-    result.add(computedArch + "-" + computedName + "-" + computedVersion);
-    return result;
+    PlatformDetails properties = new PlatformDetails(computedName, computedArch, computedVersion);
+    return properties;
   }
 
   /**
