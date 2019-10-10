@@ -2,7 +2,7 @@ package org.jvnet.hudson.plugins.platformlabeler;
 
 import java.io.Serializable;
 
-/** Stores the platform details of a node */
+/** Stores the platform details of a node. */
 public class PlatformDetails implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -14,6 +14,13 @@ public class PlatformDetails implements Serializable {
   private final String architectureName;
   private final String nameVersion;
 
+  /**
+   * Platform details constructor.
+   *
+   * @param name name of operating system, as in windows, debian, ubuntu, etc.
+   * @param architecture hardware architecture, as in amd64, aarh64, etc.
+   * @param version version of operating system, as in 9.1, 14.04, etc.
+   */
   public PlatformDetails(String name, String architecture, String version) {
     this.name = name;
     this.architecture = architecture;
