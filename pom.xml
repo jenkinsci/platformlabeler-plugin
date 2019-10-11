@@ -119,6 +119,14 @@
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.jenkins-ci.tools</groupId>
+        <artifactId>maven-hpi-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <compatibleSinceVersion>4.1</compatibleSinceVersion>
+        </configuration>
+      </plugin>       
       <!-- Fail build on pom formatting errors -->
       <!-- Fix with mvn tidy:pom -->
       <plugin>

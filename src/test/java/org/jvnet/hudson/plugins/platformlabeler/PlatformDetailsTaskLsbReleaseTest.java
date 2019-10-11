@@ -33,7 +33,7 @@ public class PlatformDetailsTaskLsbReleaseTest {
   }
 
   /**
-   * Generate test parameters for Linux os-release sample files stored as resources.
+   * Generate test parameters for Linux lsb_release-a sample files stored as resources.
    *
    * @return parameter values to be tested
    */
@@ -61,6 +61,10 @@ public class PlatformDetailsTaskLsbReleaseTest {
     File lsbReleaseFile = new File(resource.toURI());
     assertTrue("File not found " + lsbReleaseFile, lsbReleaseFile.exists());
     LsbRelease release = new LsbRelease(lsbReleaseFile);
+    File suseReleaseFile = new File(lsbReleaseFile.getParentFile(), "SuSE-release");
+    if (suseReleaseFile.isFile()) {
+      details.setSuseRelease(suseReleaseFile);
+    }
     PlatformDetails result = details.computeLabels("amd64", "linux", "xyzzy-abc", release);
     assertThat(result.getArchitecture(), is(expectedArch));
     assertThat(result.getName(), is(expectedName));
@@ -98,6 +102,9 @@ public class PlatformDetailsTaskLsbReleaseTest {
     }
     if (filename.contains("scientific")) {
       return "Scientific";
+    }
+    if (filename.contains("sles")) {
+      return "SUSE";
     }
     return filename.toLowerCase();
   }

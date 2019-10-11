@@ -33,8 +33,8 @@ public class PlatformDetailsTaskReleaseTest {
   }
 
   /**
-   * Generate test parameters for Linux os-release and redhat-release sample files stored as
-   * resources.
+   * Generate test parameters for Linux os-release, redhat-release and SuSE-release sample files
+   * stored as resources.
    *
    * @return parameter values to be tested
    */
@@ -64,9 +64,15 @@ public class PlatformDetailsTaskReleaseTest {
     if (releaseFile.getName().startsWith("redhat")) {
       details.setOsReleaseFile(null);
       details.setRedhatRelease(releaseFile);
+      details.setSuseRelease(null);
+    } else if (releaseFile.getName().startsWith("SuSE")) {
+      details.setOsReleaseFile(null);
+      details.setSuseRelease(releaseFile);
+      details.setRedhatRelease(null);
     } else {
       details.setOsReleaseFile(releaseFile);
       details.setRedhatRelease(null);
+      details.setSuseRelease(null);
     }
     String unknown = PlatformDetailsTask.UNKNOWN_VALUE_STRING;
     LsbRelease release = new LsbRelease(unknown, unknown);
@@ -105,6 +111,9 @@ public class PlatformDetailsTaskReleaseTest {
     }
     if (filename.contains("scientific")) {
       return "Scientific";
+    }
+    if (filename.contains("sles")) {
+      return "SUSE";
     }
     return filename.toLowerCase();
   }
