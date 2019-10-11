@@ -35,7 +35,7 @@
   </scm>
 
   <properties>
-    <revision>4.1</revision>
+    <revision>5.0</revision>
     <changelist>-SNAPSHOT</changelist>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <argLine>-Dfile.encoding=${project.build.sourceEncoding}</argLine>
@@ -46,6 +46,7 @@
     <!-- No API's intended to be used, none should be called from outside. -->
     <maven.javadoc.skip>true</maven.javadoc.skip>
     <forkCount>1C</forkCount>
+    <hpi.compatibleSinceVersion>5.0</hpi.compatibleSinceVersion>
   </properties>
 
   <dependencyManagement>
@@ -119,14 +120,6 @@
 
   <build>
     <plugins>
-      <plugin>
-        <groupId>org.jenkins-ci.tools</groupId>
-        <artifactId>maven-hpi-plugin</artifactId>
-        <extensions>true</extensions>
-        <configuration>
-          <compatibleSinceVersion>4.1</compatibleSinceVersion>
-        </configuration>
-      </plugin>       
       <!-- Fail build on pom formatting errors -->
       <!-- Fix with mvn tidy:pom -->
       <plugin>
