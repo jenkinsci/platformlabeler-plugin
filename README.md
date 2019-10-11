@@ -22,10 +22,10 @@ Labels commonly include operating system name, version, and architecture.
 | Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.0`          | `amd64`  |
 | Scientific 6.10            | `Scientific`       | `6.10`         | `amd64`  |
 | Scientific 7.7             | `Scientific`       | `7.7`          | `amd64`  |
-| SLES 11.3                  | `SUSE`              | `11.3`          | `amd64`  |
-| SLES 12.1                  | `SUSE`              | `12.1`          | `amd64`  |
-| SLES 12.2                  | `SUSE`              | `12.2`          | `amd64`  |
-| SLES 15                    | `SUSE`              | `15`          | `amd64`  |
+| SLES 11.3                  | `SUSE`             | `11.3`         | `amd64`  |
+| SLES 12.1                  | `SUSE`             | `12.1`         | `amd64`  |
+| SLES 12.2                  | `SUSE`             | `12.2`         | `amd64`  |
+| SLES 15                    | `SUSE`             | `15`           | `amd64`  |
 | Ubuntu 14                  | `Ubuntu`           | `14.04`        | `amd64`  |
 | Ubuntu 16                  | `Ubuntu`           | `16.04`        | `amd64`  |
 | Ubuntu 18                  | `Ubuntu`           | `18.04`        | `amd64`  |
@@ -34,7 +34,7 @@ Labels commonly include operating system name, version, and architecture.
 On Linux computers, the plugin uses the output of the [`lsb_release`](https://linux.die.net/man/1/lsb_release) command.
 If `lsb_release` is not installed, labels on Linux agents will be guessed based on values in /etc/os-release.
 Redhat and Scientific agents have another fallback based on /etc/redhat-release.
-Agents with an older version of SuSE will fallback to /etc/SuSE-release. Older versions of this plugin might return "sles" or "SUSE LINUX" as OS name. 
+Agents with an older version of SuSE will fallback to /etc/SuSE-release. Older versions of this plugin might return "sles" or "SUSE LINUX" as OS name.
 This has been unified to "SUSE" as this is the lsb_release ID since SLES 12 SP2.
 
 When /etc/os-release is used, less detailed labels are provided.
@@ -44,6 +44,5 @@ For example:
 | ---------------------------- | ------------------ | -------------- | -------- |
 | CentOS 7                     | `CentOS`           | `7`            | `amd64`  |
 
-
-One can configure globally and per agent which labels should be generated. 
+One can configure globally and per agent which labels should be generated.
 To define the labels for an agent, just check 'Automatic Platform Labels' in the Node Properties section and select the labels you want to have.
