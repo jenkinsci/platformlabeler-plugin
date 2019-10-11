@@ -215,10 +215,14 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
       if (computedName.equals(UNKNOWN_VALUE_STRING)) {
         computedName = readSuseReleaseIdentifier("ID");
       }
-      /* This is kind of a hack. lsb_release -a returns only the major version on SLES 11 and older,
-       * so trying to fall back to reading SuSE-release file to get a more detailed version including the SP
-       * Up to SLES 12 SP1, lsb_release returned "SUSE LINUX" as ID. As spaces in labels make label management
-       * more complex and we want to have the same label, we replace "SUSE LINUX" with "SUSE".
+      /* This is kind of a hack. lsb_release -a returns only the major
+       * version on SLES 11 and older, so trying to fall back to
+       * reading SuSE-release file to get a more detailed version
+       * including the SP Up to SLES 12 SP1, lsb_release returned
+       * "SUSE LINUX" as ID. As spaces in labels make label management
+       * more complex and we want to have the same label on SUSE Linux
+       * whether running SUSE 11 or SUSE 12 SP3+, we replace "SUSE
+       * LINUX" with "SUSE".
        */
       if (computedName.equals("SUSE LINUX")) {
         computedName = "SUSE";
