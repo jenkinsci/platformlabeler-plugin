@@ -34,6 +34,9 @@ Labels commonly include operating system name, version, and architecture.
 On Linux computers, the plugin uses the output of the [`lsb_release`](https://linux.die.net/man/1/lsb_release) command.
 If `lsb_release` is not installed, labels on Linux agents will be guessed based on values in /etc/os-release.
 Redhat and Scientific agents have another fallback based on /etc/redhat-release.
+Agents with an older version of SuSE will fallback to /etc/SuSE-release. Older versions of this plugin might return "sles" or "SUSE LINUX" as OS name. 
+This has been unified to "SUSE" as this is the lsb_release ID since SLES 12 SP2.
+
 When /etc/os-release is used, less detailed labels are provided.
 For example:
 
