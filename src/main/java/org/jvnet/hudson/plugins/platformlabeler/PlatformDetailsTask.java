@@ -216,8 +216,12 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         computedName = readSuseReleaseIdentifier("ID");
       }
       /* This is kind of a hack. lsb_release -a returns only the major version on SLES 11 and older,
-       * so trying to fall back to reading SuSE-release file to get a more detailed version */
+       * so trying to fall back to reading SuSE-release file to get a more detailed version including the SP
+       * Up to SLES 12 SP1, lsb_release returned "SUSE LINUX" as ID. As spaces in labels make label management
+       * more complex and we want to have the same label, we replace "SUSE LINUX" with "SUSE".
+       */
       if (computedName.equals("SUSE LINUX")) {
+        computedName = "SUSE";
         try {
           int intVersion = Integer.parseInt(computedVersion);
           if (intVersion <= 11) {
@@ -227,7 +231,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
             }
           }
         } catch (NumberFormatException nfe) {
-          // Ignore IOException
+          // Ignore NumberFormatException
         }
       }
       if (computedVersion.equals(UNKNOWN_VALUE_STRING)) {

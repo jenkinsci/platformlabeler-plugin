@@ -33,8 +33,8 @@ public class PlatformDetailsTaskReleaseTest {
   }
 
   /**
-   * Generate test parameters for Linux os-release and redhat-release sample files stored as
-   * resources.
+   * Generate test parameters for Linux os-release, redhat-release and SuSE-release sample files
+   * stored as resources.
    *
    * @return parameter values to be tested
    */

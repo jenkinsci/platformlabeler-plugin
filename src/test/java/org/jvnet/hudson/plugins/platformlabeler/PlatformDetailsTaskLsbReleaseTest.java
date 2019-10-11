@@ -33,7 +33,7 @@ public class PlatformDetailsTaskLsbReleaseTest {
   }
 
   /**
-   * Generate test parameters for Linux os-release sample files stored as resources.
+   * Generate test parameters for Linux lsb_release-a sample files stored as resources.
    *
    * @return parameter values to be tested
    */
@@ -104,9 +104,6 @@ public class PlatformDetailsTaskLsbReleaseTest {
       return "Scientific";
     }
     if (filename.contains("sles")) {
-      if (filename.contains("sles/12.1") || filename.contains("sles/11")) {
-        return "SUSE LINUX";
-      }
       return "SUSE";
     }
     return filename.toLowerCase();
