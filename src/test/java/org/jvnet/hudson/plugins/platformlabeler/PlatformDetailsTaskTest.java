@@ -130,14 +130,14 @@ public class PlatformDetailsTaskTest {
   @Test
   public void readSuseReleaseIdentifierMissingFileReturnsUnknownValue() throws Exception {
     platformDetailsTask.setSuseRelease(new File("/this/file/does/not/exist"));
-    String name = platformDetailsTask.readRedhatReleaseIdentifier("ID");
+    String name = platformDetailsTask.readSuseReleaseIdentifier("ID");
     assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
   }
 
   @Test
   public void readSuseReleaseIdentifierNullFileReturnsUnknownValue() throws Exception {
     platformDetailsTask.setSuseRelease(null);
-    String name = platformDetailsTask.readRedhatReleaseIdentifier("ID");
+    String name = platformDetailsTask.readSuseReleaseIdentifier("ID");
     assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
   }
 
@@ -145,7 +145,7 @@ public class PlatformDetailsTaskTest {
   public void readSuseReleaseIdentifierWrongFileReturnsUnknownValue() throws Exception {
     assumeTrue(!isWindows() && Files.exists(Paths.get("/etc/hosts")));
     platformDetailsTask.setSuseRelease(new File("/etc/hosts")); // Not SuSE-release file
-    String name = platformDetailsTask.readRedhatReleaseIdentifier("ID");
+    String name = platformDetailsTask.readSuseReleaseIdentifier("ID");
     assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
   }
 
