@@ -31,12 +31,14 @@ public class PlatformDetailsTaskTest {
   }
 
   private void assertPlatformDetails(PlatformDetails details) {
-    String osName = System.getProperty("os.name", "os.name.is.unknown");
+    String osName = System.getProperty("os.name", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
+    assertThat(osName, is(not(PlatformDetailsTask.UNKNOWN_VALUE_STRING)));
     if (osName.toLowerCase().startsWith("linux")) {
       String name = details.getName();
       assertThat(name, is(not("windows")));
       assertThat(name, is(not("linux")));
       assertThat(name, is(not("Linux")));
+      assertThat(name, is(not(PlatformDetailsTask.UNKNOWN_VALUE_STRING)));
       assertThat(
           name,
           anyOf(
@@ -47,8 +49,11 @@ public class PlatformDetailsTaskTest {
               is("CentOS"),
               is("Ubuntu")));
       // Yes, this is a dirty trick to detect the hardware architecture on some JVM's
-      String expectedArch =
-          System.getProperty("sun.arch.data.model", "23").equals("32") ? "x86" : "amd64";
+      String expectedArch = System.getProperty("os.arch", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
+      if (expectedArch.equals("amd64")) {
+        expectedArch =
+            System.getProperty("sun.arch.data.model", "23").equals("32") ? "x86" : "amd64";
+      }
       // Assumes tests run in JVM that matches operating system
       assertThat(details.getArchitecture(), is(expectedArch));
     }
