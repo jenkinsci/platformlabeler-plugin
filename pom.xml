@@ -11,7 +11,7 @@
 
   <groupId>org.jvnet.hudson.plugins</groupId>
   <artifactId>platformlabeler</artifactId>
-  <version>${revision}${changelist}</version>
+  <version>5.0</version>
   <packaging>hpi</packaging>
 
   <name>Jenkins platform labeler plugin</name>
@@ -31,7 +31,7 @@
     <connection>scm:git:git://github.com/jenkinsci/platformlabeler-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/platformlabeler-plugin.git</developerConnection>
     <url>https://github.com/jenkinsci/platformlabeler-plugin</url>
-    <tag>${scmTag}</tag>
+    <tag>platformlabeler-5.0</tag>
   </scm>
 
   <properties>
