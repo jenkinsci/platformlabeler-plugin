@@ -45,7 +45,6 @@
     <!-- This plugin intentionally does not deliver javadoc. -->
     <!-- No API's intended to be used, none should be called from outside. -->
     <maven.javadoc.skip>true</maven.javadoc.skip>
-    <forkCount>1C</forkCount>
     <hpi.compatibleSinceVersion>5.0</hpi.compatibleSinceVersion>
   </properties>
 
