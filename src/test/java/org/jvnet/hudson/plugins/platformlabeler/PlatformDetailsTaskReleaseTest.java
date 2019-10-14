@@ -103,6 +103,9 @@ public class PlatformDetailsTaskReleaseTest {
     if (filename.contains("oraclelinux")) {
       return "OracleServer";
     }
+    if (filename.contains("raspbian")) {
+      return "Raspbian";
+    }
     if (filename.contains("rhel") || filename.contains("ubi")) {
       return "RedHatEnterprise";
     }
