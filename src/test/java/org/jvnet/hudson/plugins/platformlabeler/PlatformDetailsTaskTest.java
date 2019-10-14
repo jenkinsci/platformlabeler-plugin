@@ -45,8 +45,9 @@ public class PlatformDetailsTaskTest {
               is("Alpine"),
               is("Amazon"),
               is("AmazonAMI"),
-              is("Debian"),
               is("CentOS"),
+              is("Debian"),
+              is("Raspbian"),
               is("Ubuntu")));
       // Yes, this is a dirty trick to detect the hardware architecture on some JVM's
       String expectedArch = System.getProperty("os.arch", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
