@@ -49,8 +49,9 @@ public class LsbRelease {
     } catch (IOException e) {
       // IGNORE
     }
-    this.distributorId = readProperty(newProps, "Distributor ID");
-    this.release = readProperty(newProps, "Release");
+    this.distributorId =
+        newProps.getOrDefault("Distributor ID", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
+    this.release = newProps.getOrDefault("Release", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
   }
 
   /** Assign distributor ID and release. Package protected for tests. */
@@ -65,14 +66,9 @@ public class LsbRelease {
     try (FileInputStream stream = new FileInputStream(lsbReleaseFile)) {
       readLsbReleaseOutput(stream, newProps);
     }
-    this.distributorId = readProperty(newProps, "Distributor ID");
-    this.release = readProperty(newProps, "Release");
-  }
-
-  /** Package protected for tests. */
-  String readProperty(Map<String, String> newProps, String propertyName) {
-    String value = newProps.get(propertyName);
-    return value != null ? value : PlatformDetailsTask.UNKNOWN_VALUE_STRING;
+    this.distributorId =
+        newProps.getOrDefault("Distributor ID", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
+    this.release = newProps.getOrDefault("Release", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
   }
 
   private void readLsbReleaseOutput(InputStream inputStream, Map<String, String> newProps)
