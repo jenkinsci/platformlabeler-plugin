@@ -19,6 +19,8 @@ Labels commonly include operating system name, version, and architecture.
 | Oracle Linux 6             | `OracleServer`     | `6.10`         | `amd64`      |
 | Oracle Linux 7             | `OracleServer`     | `7.6`          | `amd64`      |
 | Oracle Linux 8             | `OracleServer`     | `8.0`          | `amd64`      |
+| Raspbian 9                 | `Raspbian`         | `9.11`         | `arm`        |
+| Raspbian 10                | `Raspbian`         | `10`           | `arm`        |
 | Red Hat Enterprise Linux 7 | `RedHatEnterprise` | `7.7`          | `amd64`      |
 | Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.0`          | `amd64`      |
 | Scientific 6.10            | `Scientific`       | `6.10`         | `amd64`      |
@@ -38,7 +40,7 @@ Redhat and Scientific agents have another fallback based on /etc/redhat-release.
 Agents with an older version of SuSE will fallback to /etc/SuSE-release. Older versions of this plugin might return "sles" or "SUSE LINUX" as OS name.
 This has been unified to "SUSE" as this is the lsb_release ID since SLES 12 SP2.
 
-When /etc/os-release is used, less detailed labels are provided.
+When /etc/os-release is used, less detailed labels may be provided because more specific version information is not included in the file.
 For example:
 
 | Platform                   | Operating System   | Version        | Architecture |
