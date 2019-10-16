@@ -183,20 +183,21 @@ public class PlatformDetailsTaskTest {
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
     String version = platformDetailsTask.readReleaseIdentifier("VERSION_ID");
     /* Check that the version string returned by readReleaseIdentifier
-    is at least at the beginning of one of the detail values. Allow
-    Debian 8, 9, and 10 and CentOS 7 to report their base version
-    in the /etc/os-release file without reporting their incremental
-    version */
+     * is at least at the beginning of one of the detail values. Allow
+     * Debian 8, 9, and 10 and CentOS 7 to report their base version
+     * in the /etc/os-release file without reporting their incremental
+     * version
+     */
     String foundValue = version;
     if (details.getVersion().startsWith(version)) {
       foundValue = details.getVersion();
     }
     /* If VERSION_ID has the unknown value then handle it as a special
-      case.  Debian testing does not include a VERSION_ID value in
-      the /etc/os-release file.  If there is no value for VERSION_ID,
-      then confirm that the details are for Debian testing and skip
-      the VERSION_ID assertion.
-    */
+     * case.  Debian testing does not include a VERSION_ID value in
+     * the /etc/os-release file.  If there is no value for VERSION_ID,
+     * then confirm that the details are for Debian testing and skip
+     * the VERSION_ID assertion.
+     */
     if (version.startsWith("unknown")) {
       assertThat(details.getName(), is("Debian"));
       assertThat(details.getVersion(), is("testing"));
