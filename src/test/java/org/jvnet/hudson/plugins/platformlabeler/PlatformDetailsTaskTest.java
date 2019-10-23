@@ -1,14 +1,14 @@
 package org.jvnet.hudson.plugins.platformlabeler;
 
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
-import static org.junit.Assume.*;
+import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class PlatformDetailsTaskTest {
 
@@ -25,7 +25,7 @@ public class PlatformDetailsTaskTest {
   private static final String SPECIAL_CASE_ARCH =
       SYSTEM_OS_ARCH.contains("amd") ? "x86" : SYSTEM_OS_ARCH;
 
-  @Before
+  @BeforeEach
   public void createPlatformDetailsTask() {
     platformDetailsTask = new PlatformDetailsTask();
   }
@@ -100,7 +100,7 @@ public class PlatformDetailsTaskTest {
   @Test
   public void testCheckWindows32Bit() {
     /* Always testing this case, no SPECIAL_CASE_ARCH needed */
-    assertThat(platformDetailsTask.checkWindows32Bit("x86", "AMD64", null), is("amd64"));
+    assertThat(platformDetailsTask.checkWindows32Bit("x86", "AMD64", ""), is("amd64"));
   }
 
   @Test

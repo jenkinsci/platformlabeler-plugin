@@ -9,36 +9,20 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
 import java.util.regex.Pattern;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
+import java.util.stream.Stream;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.reflections.Reflections;
 import org.reflections.scanners.ResourcesScanner;
 
-@RunWith(Parameterized.class)
 public class PlatformDetailsTaskLsbReleaseTest {
-
-  private final String lsbReleaseFileName;
-  private final String expectedName;
-  private final String expectedVersion;
-  private final String expectedArch;
-
-  public PlatformDetailsTaskLsbReleaseTest(
-      String lsbReleaseFileName, String expectedName, String expectedVersion, String expectedArch) {
-    this.lsbReleaseFileName = lsbReleaseFileName;
-    this.expectedName = expectedName;
-    this.expectedVersion = expectedVersion;
-    this.expectedArch = expectedArch;
-  }
 
   /**
    * Generate test parameters for Linux lsb_release-a sample files stored as resources.
    *
    * @return parameter values to be tested
    */
-  @Parameters(name = "{1}-{2}-{3}")
-  public static Collection<Object[]> generateReleaseFileNames() {
+  public static Stream<Object[]> generateReleaseFileNames() {
     String packageName = PlatformDetailsTaskLsbReleaseTest.class.getPackage().getName();
     Reflections reflections = new Reflections(packageName, new ResourcesScanner());
     Set<String> fileNames = reflections.getResources(Pattern.compile(".*lsb_release-a"));
@@ -51,11 +35,14 @@ public class PlatformDetailsTaskLsbReleaseTest {
       Object[] oneTest = {trimmedName, oneExpectedName, oneExpectedVersion, oneExpectedArch};
       data.add(oneTest);
     }
-    return data;
+    return data.stream();
   }
 
-  @Test
-  public void testComputeLabelsForOsRelease() throws Exception {
+  @ParameterizedTest
+  @MethodSource("generateReleaseFileNames")
+  public void testComputeLabelsForOsRelease(
+      String lsbReleaseFileName, String expectedName, String expectedVersion, String expectedArch)
+      throws Exception {
     PlatformDetailsTask details = new PlatformDetailsTask();
     URL resource = getClass().getResource(lsbReleaseFileName);
     File lsbReleaseFile = new File(resource.toURI());
