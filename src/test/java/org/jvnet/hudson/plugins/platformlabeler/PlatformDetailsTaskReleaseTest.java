@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.reflections.Reflections;
@@ -41,6 +42,7 @@ public class PlatformDetailsTaskReleaseTest {
 
   @ParameterizedTest
   @MethodSource("generateReleaseFileNames")
+  @DisplayName("Compute platform details from release file")
   public void testComputeLabelsForRelease(
       String releaseFileName, String expectedName, String expectedVersion, String expectedArch)
       throws Exception {

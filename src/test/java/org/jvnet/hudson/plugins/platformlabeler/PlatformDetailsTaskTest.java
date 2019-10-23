@@ -8,6 +8,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class PlatformDetailsTaskTest {
@@ -31,6 +32,7 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
+  @DisplayName("test remote call for platform details")
   public void testCall() throws Exception {
     PlatformDetails details = platformDetailsTask.call();
     if (isWindows()) {
@@ -72,6 +74,7 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
+  @DisplayName("test 32 bit Linux label computation")
   public void testComputeLabelsLinux32Bit() throws Exception {
     PlatformDetails details =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
@@ -79,6 +82,7 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
+  @DisplayName("test Linux label computation without lsb_release")
   public void testComputeLabelsLinuxWithoutLsbRelease() throws Exception {
     assumeTrue(!isWindows() && Files.exists(Paths.get("/etc/os-release")));
     String unknown = PlatformDetailsTask.UNKNOWN_VALUE_STRING;
@@ -89,6 +93,7 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
+  @DisplayName("test Linux label computation with null lsb_release")
   public void testComputeLabelsLinuxWithNullLsbRelease() throws Exception {
     assumeTrue(!isWindows() && Files.exists(Paths.get("/etc/os-release")));
     LsbRelease release = null;
@@ -98,18 +103,21 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
+  @DisplayName("test Windows 32 bit")
   public void testCheckWindows32Bit() {
     /* Always testing this case, no SPECIAL_CASE_ARCH needed */
     assertThat(platformDetailsTask.checkWindows32Bit("x86", "AMD64", ""), is("amd64"));
   }
 
   @Test
+  @DisplayName("test Windows 32 bit with amd64")
   public void testCheckWindows32BitAMD64SecondArgument() {
     /* Always testing this case, no SPECIAL_CASE_ARCH needed */
     assertThat(platformDetailsTask.checkWindows32Bit("x86", "x86", "AMD64"), is("amd64"));
   }
 
   @Test
+  @DisplayName("test operating system name")
   public void compareOSName() throws Exception {
     assumeTrue(!isWindows() && Files.exists(Paths.get("/etc/os-release")));
     String computedName =
@@ -119,6 +127,7 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
+  @DisplayName("test release identifier on missing file")
   public void readReleaseIdentifierMissingFileReturnsUnknownValue() throws Exception {
     PlatformDetails details =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
@@ -128,6 +137,7 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
+  @DisplayName("Read Red Hat release identifier")
   public void readRedhatReleaseIdentifierMissingFileReturnsUnknownValue() throws Exception {
     PlatformDetails details =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
@@ -137,6 +147,7 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
+  @DisplayName("Read Red Hat release identifier null file")
   public void readRedhatReleaseIdentifierNullFileReturnsUnknownValue() throws Exception {
     PlatformDetails details =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
@@ -146,6 +157,7 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
+  @DisplayName("Read Red Hat release identifier wrong file")
   public void readRedhatReleaseIdentifierWrongFileReturnsUnknownValue() throws Exception {
     PlatformDetails details =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
@@ -155,6 +167,7 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
+  @DisplayName("Read SUSE release identifier missing file")
   public void readSuseReleaseIdentifierMissingFileReturnsUnknownValue() throws Exception {
     platformDetailsTask.setSuseRelease(new File("/this/file/does/not/exist"));
     String name = platformDetailsTask.readSuseReleaseIdentifier("ID");
@@ -162,6 +175,7 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
+  @DisplayName("Read SUSE release identifier null file")
   public void readSuseReleaseIdentifierNullFileReturnsUnknownValue() throws Exception {
     platformDetailsTask.setSuseRelease(null);
     String name = platformDetailsTask.readSuseReleaseIdentifier("ID");
@@ -169,6 +183,7 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
+  @DisplayName("Read SUSE release identifier wrong file")
   public void readSuseReleaseIdentifierWrongFileReturnsUnknownValue() throws Exception {
     assumeTrue(!isWindows() && Files.exists(Paths.get("/etc/hosts")));
     platformDetailsTask.setSuseRelease(new File("/etc/hosts")); // Not SuSE-release file
@@ -177,6 +192,7 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
+  @DisplayName("Compare operating system version")
   public void compareOSVersion() throws Exception {
     assumeTrue(!isWindows() && Files.exists(Paths.get("/etc/os-release")));
     PlatformDetails details =

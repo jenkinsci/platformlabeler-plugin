@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Stream;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -80,6 +81,7 @@ public class PlatformDetailsTaskStaticStringTest {
 
   @ParameterizedTest
   @MethodSource("generateTestParameters")
+  @DisplayName("Compute labels from static strings")
   public void testComputeLabels(String name, String arch, String version) throws Exception {
     String expectedName = computeExpectedName(name);
     String expectedArch = computeExpectedArch(name, arch);
