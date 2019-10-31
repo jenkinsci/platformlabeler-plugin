@@ -4,7 +4,11 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import org.junit.jupiter.api.BeforeEach;
@@ -79,6 +83,32 @@ public class PlatformDetailsTaskTest {
     PlatformDetails details =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
     assertPlatformDetails(details);
+  }
+
+  @Test
+  @DisplayName("test Linux32Bit stream")
+  public void testLinux32BitStream() throws IOException {
+    String unameOutput = "x86_64";
+    InputStream stream = new ByteArrayInputStream(unameOutput.getBytes(StandardCharsets.UTF_8));
+    assertThat(platformDetailsTask.checkLinux32BitStream(stream, SPECIAL_CASE_ARCH), is("amd64"));
+  }
+
+  @Test
+  @DisplayName("test Linux32Bit stream ARM")
+  public void testLinux32BitStreamARM() throws IOException {
+    String unameOutput = "aarch64";
+    InputStream stream = new ByteArrayInputStream(unameOutput.getBytes(StandardCharsets.UTF_8));
+    assertThat(
+        platformDetailsTask.checkLinux32BitStream(stream, SPECIAL_CASE_ARCH), is(unameOutput));
+  }
+
+  @Test
+  @DisplayName("test Linux32Bit stream empty")
+  public void testLinux32BitStreamEmpty() throws IOException {
+    String unameOutput = "";
+    String expectedArch = "Expected-Arch";
+    InputStream stream = new ByteArrayInputStream(unameOutput.getBytes(StandardCharsets.UTF_8));
+    assertThat(platformDetailsTask.checkLinux32BitStream(stream, expectedArch), is(expectedArch));
   }
 
   @Test

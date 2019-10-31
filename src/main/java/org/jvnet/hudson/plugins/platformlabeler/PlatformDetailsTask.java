@@ -31,6 +31,7 @@ import hudson.remoting.Callable;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -112,19 +113,25 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
     try {
       Process p = Runtime.getRuntime().exec("/bin/uname -m");
       p.waitFor();
-      try (BufferedReader b =
-          new BufferedReader(new InputStreamReader(p.getInputStream(), "UTF-8"))) {
-        String line = b.readLine();
-        if (line != null) {
-          if ("x86_64".equals(line)) {
-            return "amd64";
-          } else {
-            return line;
-          }
-        }
-      }
+      return checkLinux32BitStream(p.getInputStream(), arch);
     } catch (IOException | InterruptedException e) {
       /* Return arch instead of throwing an exception */
+    }
+    return arch;
+  }
+
+  /* Package protected for testing */
+  String checkLinux32BitStream(@NonNull InputStream stream, @NonNull String arch)
+      throws IOException {
+    try (BufferedReader b = new BufferedReader(new InputStreamReader(stream, "UTF-8"))) {
+      String line = b.readLine();
+      if (line != null) {
+        if ("x86_64".equals(line)) {
+          return "amd64";
+        } else {
+          return line;
+        }
+      }
     }
     return arch;
   }
