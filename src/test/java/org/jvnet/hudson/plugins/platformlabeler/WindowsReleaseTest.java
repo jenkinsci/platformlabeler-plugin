@@ -23,8 +23,8 @@
  */
 package org.jvnet.hudson.plugins.platformlabeler;
 
+import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assumptions.*;
 
 import java.io.File;
@@ -37,7 +37,7 @@ public class WindowsReleaseTest {
   private final WindowsRelease windowsReleaseFile;
 
   public WindowsReleaseTest() throws IOException {
-    File dataFile = new File(getClass().getResource("windows/10.0/reg-query").getFile());
+    File dataFile = new File(getClass().getResource("windows/10.0.1903/reg-query").getFile());
     windowsReleaseFile = new WindowsRelease(dataFile);
   }
 
@@ -60,8 +60,8 @@ public class WindowsReleaseTest {
 
   @Test
   public void testDistributorId() {
-    assertEquals(windowsRelease.distributorId(), "Microsoft");
-    assertEquals(windowsReleaseFile.distributorId(), "Microsoft");
+    assertThat(windowsRelease.distributorId(), is("Microsoft"));
+    assertThat(windowsReleaseFile.distributorId(), is("Microsoft"));
   }
 
   private static boolean isWindows() {
