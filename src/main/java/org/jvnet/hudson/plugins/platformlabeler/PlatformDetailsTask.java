@@ -194,7 +194,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
       @NonNull final String arch,
       @NonNull final String name,
       @NonNull final String version,
-      @CheckForNull LsbRelease release)
+      @CheckForNull PlatformDetailsRelease release)
       throws IOException {
     String computedName = toLowerCase(name);
     String computedArch = arch;
