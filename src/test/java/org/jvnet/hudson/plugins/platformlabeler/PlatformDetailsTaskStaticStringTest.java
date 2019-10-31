@@ -45,6 +45,8 @@ public class PlatformDetailsTaskStaticStringTest {
               {"Windows XP", "amd64", "5.1"}, // WinXP
               {"Windows XP", "x86", "5.1"}, // WinXP
               /** General Windows version cases using version numbers in platformlabeler-1.1 */
+              {"Windows 10", "amd64", "10.0"}, // Win10
+              {"Windows 10", "x86", "10.0"}, // Win10
               {"Windows 2008R2", "amd64", "6.1"}, // Win2008R2
               {"Windows 7", "amd64", "6.1"}, // Win7
               {"Windows 7", "x86", "6.1"}, // Win7
@@ -165,6 +167,10 @@ public class PlatformDetailsTaskStaticStringTest {
       }
     } catch (IOException | InterruptedException e) {
       /* Return version instead of throwing an exception */
+    }
+    if (isWindows() && version.startsWith("10")) {
+      WindowsRelease windowsFeatureUpdate = new WindowsRelease();
+      version = version + "." + windowsFeatureUpdate.release();
     }
     return version;
   }
