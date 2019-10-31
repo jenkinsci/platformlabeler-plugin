@@ -238,7 +238,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
           if (intVersion <= 11) {
             String newVersion = readSuseReleaseIdentifier("VERSION_ID");
             if (!newVersion.equals(UNKNOWN_VALUE_STRING)) {
-              computedVersion = readSuseReleaseIdentifier("VERSION_ID");
+              computedVersion = newVersion;
             }
           }
         } catch (NumberFormatException nfe) {
