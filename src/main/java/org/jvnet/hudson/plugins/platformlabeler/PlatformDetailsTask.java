@@ -50,8 +50,10 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
   private static final String RELEASE = "release";
   private static final String VERSION = "VERSION =";
   private static final String PATCHLEVEL = "PATCHLEVEL =";
-  /** Unknown field value string. Package protected for us by LsbRelease class */
+  /** Unknown field value string. Package protected for use by LsbRelease class */
   static final String UNKNOWN_VALUE_STRING = "unknown+check_lsb_release_installed";
+  /** Unknown Windows field value string. Package protected for use by WindowsRelease class */
+  static final String UNKNOWN_WINDOWS_VALUE_STRING = "unknown+check_reg_query_installed";
 
   // Added Apr 16, 2020 to resolve spotbugs warning
   private static final long serialVersionUID = 2020 - 04 - 16;
@@ -162,13 +164,13 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
   protected PlatformDetails computeLabels(
       @NonNull final String arch, @NonNull final String name, @NonNull final String version)
       throws IOException {
-    LsbRelease release;
     if (name.toLowerCase(Locale.ENGLISH).startsWith("linux")) {
-      release = new LsbRelease();
-    } else {
-      release = null;
+      return computeLabels(arch, name, version, new LsbRelease());
     }
-    return computeLabels(arch, name, version, release);
+    if (name.toLowerCase(Locale.ENGLISH).startsWith("windows")) {
+      return computeLabels(arch, name, version, new WindowsRelease());
+    }
+    return computeLabels(arch, name, version, null);
   }
 
   @SuppressFBWarnings(
@@ -214,6 +216,13 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         computedVersion = "xp";
       } else if (computedVersion.startsWith("5.2")) {
         computedVersion = "2003";
+      }
+      final boolean recentWindows = computedVersion.startsWith("10");
+      if (release != null && recentWindows) { // Feature updates only in recent Windows versions
+        String windowsFeatureUpdate = release.release();
+        if (!windowsFeatureUpdate.equals(PlatformDetailsTask.UNKNOWN_WINDOWS_VALUE_STRING)) {
+          computedVersion = computedVersion + "." + windowsFeatureUpdate;
+        }
       }
     } else if (computedName.startsWith("linux")) {
       if (release == null) {
