@@ -89,6 +89,9 @@ public class PlatformDetailsTaskReleaseTest {
     if (filename.contains("debian")) {
       return "Debian";
     }
+    if (filename.contains("fedora")) {
+      return "Fedora";
+    }
     if (filename.contains("oraclelinux")) {
       return "OracleServer";
     }
