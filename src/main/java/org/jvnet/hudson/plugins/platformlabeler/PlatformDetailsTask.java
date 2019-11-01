@@ -267,6 +267,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
     PREFERRED_LINUX_OS_NAMES.put("amzn", "Amazon");
     PREFERRED_LINUX_OS_NAMES.put("centos", "CentOS");
     PREFERRED_LINUX_OS_NAMES.put("debian", "Debian");
+    PREFERRED_LINUX_OS_NAMES.put("fedora", "Fedora");
     PREFERRED_LINUX_OS_NAMES.put("ol", "OracleServer");
     PREFERRED_LINUX_OS_NAMES.put("opensuse", "openSUSE");
     PREFERRED_LINUX_OS_NAMES.put("raspbian", "Raspbian");

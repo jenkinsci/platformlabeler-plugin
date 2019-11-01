@@ -14,6 +14,11 @@ Labels commonly include operating system name, version, and architecture.
 | Debian 10                  | `Debian`           | `10`           | `aarch64`    |
 | Debian 10                  | `Debian`           | `10`           | `amd64`      |
 | Debian testing             | `Debian`           | `testing`      | `amd64`      |
+| Fedora 26                  | `Fedora`           | `26`           | `amd64`      |
+| Fedora 27                  | `Fedora`           | `27`           | `amd64`      |
+| Fedora 28                  | `Fedora`           | `28`           | `amd64`      |
+| Fedora 29                  | `Fedora`           | `29`           | `amd64`      |
+| Fedora 30                  | `Fedora`           | `30`           | `amd64`      |
 | FreeBSD 11                 | `freebsd`          | `11.1-STABLE`  | `amd64`      |
 | FreeBSD 12                 | `freebsd`          | `12.0-RELEASE` | `amd64`      |
 | Oracle Linux 6             | `OracleServer`     | `6.10`         | `amd64`      |
