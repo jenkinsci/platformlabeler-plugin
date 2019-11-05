@@ -50,7 +50,7 @@ public class NodeLabelCacheTest {
   @After
   public void tearDown() {
     Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
-    assertThat(labelsBefore, everyItem(isIn(labelsAfter)));
+    assertThat(labelsBefore, everyItem(in(labelsAfter)));
   }
 
   @Test
