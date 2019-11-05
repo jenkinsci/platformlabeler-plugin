@@ -19,6 +19,7 @@ Labels commonly include operating system name, version, and architecture.
 | Fedora 31                  | `Fedora`           | `31`           | `amd64`      |
 | FreeBSD 11                 | `freebsd`          | `11.1-STABLE`  | `amd64`      |
 | FreeBSD 12                 | `freebsd`          | `12.0-RELEASE` | `amd64`      |
+| Linux Mint 19.3            | `LinuxMint`        | `19.03`        | `amd64`      |
 | Oracle Linux 6             | `OracleServer`     | `6.10`         | `amd64`      |
 | Oracle Linux 7             | `OracleServer`     | `7.6`          | `amd64`      |
 | Oracle Linux 8             | `OracleServer`     | `8.0`          | `amd64`      |
