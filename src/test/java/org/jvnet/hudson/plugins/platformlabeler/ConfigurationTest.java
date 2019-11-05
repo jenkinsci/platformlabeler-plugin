@@ -154,4 +154,17 @@ public class ConfigurationTest {
     Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
     assertEquals(expected, labelsAfter);
   }
+
+  @Test
+  public void configRoundTripTest() throws Exception {
+    PlatformLabelerGlobalConfiguration globalConfig =
+        GlobalConfiguration.all().getInstance(PlatformLabelerGlobalConfiguration.class);
+    LabelConfig globalLabelConfigBefore = globalConfig.getLabelConfig();
+    r.configRoundtrip();
+    LabelConfig globalLabelConfigAfter = globalConfig.getLabelConfig();
+    assertThat(
+        globalLabelConfigBefore.isArchitecture(), is(globalLabelConfigAfter.isArchitecture()));
+    assertThat(globalLabelConfigBefore.isName(), is(globalLabelConfigAfter.isName()));
+    assertThat(globalLabelConfigBefore.isVersion(), is(globalLabelConfigAfter.isVersion()));
+  }
 }
