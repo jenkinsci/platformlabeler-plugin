@@ -168,10 +168,6 @@ public class PlatformDetailsTaskStaticStringTest {
     } catch (IOException | InterruptedException e) {
       /* Return version instead of throwing an exception */
     }
-    if (isWindows() && version.startsWith("10")) {
-      WindowsRelease windowsFeatureUpdate = new WindowsRelease();
-      version = version + "." + windowsFeatureUpdate.release();
-    }
     return version;
   }
 

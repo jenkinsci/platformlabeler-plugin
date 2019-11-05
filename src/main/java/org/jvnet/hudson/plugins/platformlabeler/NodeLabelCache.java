@@ -155,9 +155,18 @@ public class NodeLabelCache extends ComputerListener {
 
     PlatformDetails pp = nodePlatformProperties.get(computer);
 
+    if (pp == null) {
+      return result;
+    }
+
     LabelConfig labelConfig = getLabelConfig(node);
 
     final Jenkins jenkins = Jenkins.getInstanceOrNull();
+
+    String versionSuffix = "";
+    if (labelConfig.isIncludeWindowsFeatureUpdate() && pp.getWindowsFeatureUpdate() != null) {
+      versionSuffix = "." + pp.getWindowsFeatureUpdate();
+    }
 
     if (labelConfig.isArchitecture()) {
       result.add(jenkins.getLabelAtom(pp.getArchitecture()));
@@ -168,11 +177,11 @@ public class NodeLabelCache extends ComputerListener {
     }
 
     if (labelConfig.isVersion()) {
-      result.add(jenkins.getLabelAtom(pp.getVersion()));
+      result.add(jenkins.getLabelAtom(pp.getVersion() + versionSuffix));
     }
 
     if (labelConfig.isNameVersion()) {
-      result.add(jenkins.getLabelAtom(pp.getNameVersion()));
+      result.add(jenkins.getLabelAtom(pp.getNameVersion() + versionSuffix));
     }
 
     if (labelConfig.isArchitectureName()) {
@@ -180,7 +189,7 @@ public class NodeLabelCache extends ComputerListener {
     }
 
     if (labelConfig.isArchitectureNameVersion()) {
-      result.add(jenkins.getLabelAtom(pp.getArchitectureNameVersion()));
+      result.add(jenkins.getLabelAtom(pp.getArchitectureNameVersion() + versionSuffix));
     }
 
     return result;

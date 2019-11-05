@@ -16,6 +16,7 @@ public class LabelConfig extends AbstractDescribableImpl<LabelConfig> {
   private boolean architectureName = true;
   private boolean nameVersion = true;
   private boolean architectureNameVersion = true;
+  private boolean includeWindowsFeatureUpdate = true;
 
   @DataBoundConstructor
   public LabelConfig() {
@@ -74,6 +75,15 @@ public class LabelConfig extends AbstractDescribableImpl<LabelConfig> {
   @DataBoundSetter
   public void setArchitectureNameVersion(boolean archNameVersion) {
     this.architectureNameVersion = archNameVersion;
+  }
+
+  public boolean isIncludeWindowsFeatureUpdate() {
+    return includeWindowsFeatureUpdate;
+  }
+
+  @DataBoundSetter
+  public void setIncludeWindowsFeatureUpdate(boolean includeWindowsFeatureUpdate) {
+    this.includeWindowsFeatureUpdate = includeWindowsFeatureUpdate;
   }
 
   @Extension

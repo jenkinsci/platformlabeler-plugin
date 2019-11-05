@@ -201,6 +201,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
     String computedName = toLowerCase(name);
     String computedArch = arch;
     String computedVersion = version;
+    String windowsFeatureUpdate = null;
     if (computedName.startsWith("windows")) {
       computedName = "windows";
       computedArch =
@@ -219,9 +220,9 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
       }
       final boolean recentWindows = computedVersion.startsWith("10");
       if (release != null && recentWindows) { // Feature updates only in recent Windows versions
-        String windowsFeatureUpdate = release.release();
-        if (!windowsFeatureUpdate.equals(PlatformDetailsTask.UNKNOWN_WINDOWS_VALUE_STRING)) {
-          computedVersion = computedVersion + "." + windowsFeatureUpdate;
+        windowsFeatureUpdate = release.release();
+        if (windowsFeatureUpdate.isEmpty()) {
+          windowsFeatureUpdate = null;
         }
       }
     } else if (computedName.startsWith("linux")) {
@@ -294,7 +295,8 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
     } else if (computedName.startsWith("mac")) {
       computedName = "mac";
     }
-    PlatformDetails properties = new PlatformDetails(computedName, computedArch, computedVersion);
+    PlatformDetails properties =
+        new PlatformDetails(computedName, computedArch, computedVersion, windowsFeatureUpdate);
     return properties;
   }
 

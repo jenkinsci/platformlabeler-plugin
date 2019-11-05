@@ -18,4 +18,8 @@
   <f:entry field="architectureNameVersion" title="Generate label with OS architecture, name and version">
     <f:checkbox default="true"/>
   </f:entry>
+  <f:entry field="includeWindowsFeatureUpdate" title="Include Windows feature update string in version">
+    <f:checkbox default="true"/>
+  </f:entry>
+
 </j:jelly>

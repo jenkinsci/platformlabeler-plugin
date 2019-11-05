@@ -56,12 +56,13 @@ public class PlatformDetailsTaskWindowsReleaseTest {
     WindowsRelease release = new WindowsRelease(windowsReleaseFile);
     PlatformDetails result = details.computeLabels("amd64", "windows", "10.0", release);
     assertThat(result.getArchitecture(), is(expectedArch));
-    assertThat(result.getName(), is(expectedName));
     assertThat(result.getArchitectureName(), is(expectedArch + "-" + expectedName));
     assertThat(
         result.getArchitectureNameVersion(),
         is(expectedArch + "-" + expectedName + "-" + expectedVersion));
+    assertThat(result.getName(), is(expectedName));
     assertThat(result.getNameVersion(), is(expectedName + "-" + expectedVersion));
+    assertThat(result.getVersion(), is(expectedVersion));
   }
 
   private static String computeExpectedName(String filename) {
@@ -74,6 +75,10 @@ public class PlatformDetailsTaskWindowsReleaseTest {
   private static String computeExpectedVersion(String filename) {
     File file = new File(filename);
     File parentDir = file.getParentFile();
-    return parentDir.getName();
+    String expectedVersion = parentDir.getName();
+    if (filename.contains("windows")) {
+      expectedVersion = expectedVersion.replaceAll("[.][0-9][0-9][0-9][0-9]$", "");
+    }
+    return expectedVersion;
   }
 }
