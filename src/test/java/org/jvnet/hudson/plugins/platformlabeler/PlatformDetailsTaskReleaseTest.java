@@ -92,6 +92,9 @@ public class PlatformDetailsTaskReleaseTest {
     if (filename.contains("fedora")) {
       return "Fedora";
     }
+    if (filename.contains("linuxmint")) {
+      return "LinuxMint";
+    }
     if (filename.contains("oraclelinux")) {
       return "OracleServer";
     }
