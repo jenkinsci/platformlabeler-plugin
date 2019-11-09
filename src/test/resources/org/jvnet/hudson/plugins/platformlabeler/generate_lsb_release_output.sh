@@ -17,8 +17,6 @@ args=$@
 all_files=$(find * -type f -name Dockerfile)
 dockerfiles=${args:-$all_files}
 
-echo processing $dockerfiles
-
 for dockerfile in $dockerfiles; do
         parent=$(dirname $dockerfile)
         version=$(basename $parent)
