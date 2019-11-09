@@ -13,7 +13,13 @@ fi
 # platformlabeler is used as a prefix for the tags because some of the tags are
 # the same as the tags used in the official Docker images.
 
-for dockerfile in $(find * -type f -name Dockerfile); do
+args=$@
+all_files=$(find * -type f -name Dockerfile)
+dockerfiles=${args:-$all_files}
+
+echo processing $dockerfiles
+
+for dockerfile in $dockerfiles; do
         parent=$(dirname $dockerfile)
         version=$(basename $parent)
         image=$(dirname $parent)

@@ -12,10 +12,15 @@ if [ ! -d alpine ]; then
         cd src/test/resources/org/jvnet/hudson/plugins/platformlabeler || exit 1
 fi
 
+args=$@
+
 files=("os-release" "redhat-release")
 for name in "${files[@]}"
 do
-	for os_release in $(find * -type f -name $name); do
+        all_files=$(find * -type f -name $name)
+        release_files=${args:-$all_files}
+        echo processing $release_files
+	for os_release in $release_files; do
 	        parent=$(dirname $os_release)
 	        version=$(basename $parent)
 	        image=$(dirname $parent)
