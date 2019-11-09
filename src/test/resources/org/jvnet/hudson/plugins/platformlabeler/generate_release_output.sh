@@ -19,7 +19,6 @@ for name in "${files[@]}"
 do
         all_files=$(find * -type f -name $name)
         release_files=${args:-$all_files}
-        echo processing $release_files
 	for os_release in $release_files; do
 	        parent=$(dirname $os_release)
 	        version=$(basename $parent)
