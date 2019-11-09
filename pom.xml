@@ -42,7 +42,7 @@
     <jenkins.version>2.176.4</jenkins.version>
     <java.level>8</java.level>
     <linkXRef>false</linkXRef>
-    <!-- This plugin intentionally does not deliver javadoc. -->
+    <!-- Plugin intentionally does not deliver javadoc. -->
     <!-- No API's intended to be used, none should be called from outside. -->
     <maven.javadoc.skip>true</maven.javadoc.skip>
     <hpi.compatibleSinceVersion>5.0</hpi.compatibleSinceVersion>
