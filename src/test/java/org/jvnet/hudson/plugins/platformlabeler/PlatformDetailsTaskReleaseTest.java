@@ -40,7 +40,7 @@ public class PlatformDetailsTaskReleaseTest {
     return data.stream();
   }
 
-  @ParameterizedTest
+  @ParameterizedTest(name = "file: {0}, expected: '{1}', {2}, {3}")
   @MethodSource("generateReleaseFileNames")
   @DisplayName("Compute platform details from release file")
   public void testComputeLabelsForRelease(

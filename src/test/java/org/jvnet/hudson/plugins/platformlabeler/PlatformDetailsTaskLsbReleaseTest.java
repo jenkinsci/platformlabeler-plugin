@@ -39,7 +39,7 @@ public class PlatformDetailsTaskLsbReleaseTest {
     return data.stream();
   }
 
-  @ParameterizedTest
+  @ParameterizedTest(name = "file: {0}, expected: '{1}', {2}, {3}")
   @MethodSource("generateReleaseFileNames")
   @DisplayName("Compute os-release labels")
   public void testComputeLabelsForOsRelease(

@@ -79,7 +79,7 @@ public class PlatformDetailsTaskStaticStringTest {
     return augmentedData.stream();
   }
 
-  @ParameterizedTest
+  @ParameterizedTest(name = "file: {0}, expected: '{1}', {2}, {3}")
   @MethodSource("generateTestParameters")
   @DisplayName("Compute labels from static strings")
   public void testComputeLabels(String name, String arch, String version) throws Exception {
