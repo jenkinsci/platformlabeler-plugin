@@ -11,6 +11,7 @@ Labels commonly include operating system name, version, and architecture.
 | CentOS 6                   | `CentOS`           | `6.10`         | `amd64`      |
 | CentOS 7                   | `CentOS`           | `7.7.1908`     | `amd64`      |
 | CentOS 8                   | `CentOS`           | `8.0.1905`     | `amd64`      |
+| Clear Linux                | `clear-linux-os`   | `31890`        | `amd64`      |
 | Debian 9                   | `Debian`           | `9.11`         | `amd64`      |
 | Debian 10                  | `Debian`           | `10`           | `aarch64`    |
 | Debian 10                  | `Debian`           | `10`           | `amd64`      |
@@ -41,7 +42,8 @@ Labels commonly include operating system name, version, and architecture.
 
 On Linux computers, the plugin uses the output of the [`lsb_release`](https://linux.die.net/man/1/lsb_release) command.
 If `lsb_release` is not installed, labels on Linux agents will be guessed based on values in /etc/os-release.
-Red Hat Linux and Scientific LInux agents have another fallback based on /etc/redhat-release.
+Red Hat Linux and Scientific Linux agents have another fallback based on /etc/redhat-release.
+
 Agents with an older version of SuSE Linux will fallback to /etc/SuSE-release. Older versions of this plugin might return "sles" or "SUSE LINUX" as OS name.
 This has been unified to "SUSE" as this is the lsb_release ID since SLES 12 SP2.
 
@@ -52,5 +54,5 @@ For example:
 | -------------------------- | ------------------ | -------------- | ------------ |
 | CentOS 7                   | `CentOS`           | `7`            | `amd64`      |
 
-One can configure globally and per agent which labels should be generated.
-To define the labels for an agent, just check 'Automatic Platform Labels' in the Node Properties section and select the labels you want to have.
+The types of labels can be configured globally and per agent with the 'Automatic Platform Labels' setting.
+To define the labels for an agent, activate 'Automatic Platform Labels' in the Node Properties section and select the desired labels.
