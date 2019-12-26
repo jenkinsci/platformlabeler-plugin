@@ -50,3 +50,7 @@ Run pre-commit checks on all files:
 ```
 $ pre-commit run --all-files
 ```
+
+## Security Issues
+
+Follow the [Jenkins project vulnerability reporting instructions](https://jenkins.io/security/reporting/) to report vulnerabilities.
