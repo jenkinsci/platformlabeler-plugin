@@ -16,7 +16,7 @@
 
   <name>Jenkins Platform Labeler Plugin</name>
   <description>Labels agents based on their operating system (platform) version and architecture</description>
-  <url>https://github.com/jenkinsci/platformlabeler-plugin/README.md</url>
+  <url>https://github.com/jenkinsci/platformlabeler-plugin/blob/master/README.md</url>
   <inceptionYear>2009</inceptionYear>
 
   <developers>
