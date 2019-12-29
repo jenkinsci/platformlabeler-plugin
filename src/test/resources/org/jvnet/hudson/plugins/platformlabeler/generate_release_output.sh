@@ -35,6 +35,11 @@ do
 	                	version="7"
 	                fi
 	        fi
+	        if [ "$name" == "redhat-release" ]; then
+	                if [ "$image" == "ubuntu" -o "$image" == "debian" ]; then
+	                        continue # No redhat-release file on distributions not derived from Red Hat
+	                fi
+	        fi
 	        id=`docker ps -lqf ancestor=$image:$version`
 	        echo id=$id parent=$parent version=$version image=$image $name
 	        (cd $parent && docker cp -L $id:/etc/$name $name)

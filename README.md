@@ -45,6 +45,7 @@ Labels commonly include operating system name, version, and architecture.
 | Ubuntu 14                  | `Ubuntu`           | `14.04`        | `amd64`      |
 | Ubuntu 16                  | `Ubuntu`           | `16.04`        | `amd64`      |
 | Ubuntu 18                  | `Ubuntu`           | `18.04`        | `amd64`      |
+| Ubuntu 19                  | `Ubuntu`           | `19.10`        | `amd64`      |
 | Windows 10                 | `windows`          | `10.0`         | `amd64`      |
 
 On Linux computers, the plugin uses the output of the [`lsb_release`](https://linux.die.net/man/1/lsb_release) command.
