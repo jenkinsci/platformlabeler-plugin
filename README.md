@@ -1,7 +1,7 @@
 # Platform Labeler Plugin
 
 [![Build Status](https://ci.jenkins.io/job/Plugins/job/platformlabeler-plugin/job/master/badge/icon)](https://ci.jenkins.io/job/Plugins/job/platformlabeler-plugin/job/master/)
-[![Contributors](https://img.shields.io/github/contributors/jenkinsci/platformlabeler-plugin.svg)](https://github.com/jenkinsci/platformlabeler-plugin/graphs/contributors)
+<!-- [![Contributors](https://img.shields.io/github/contributors/jenkinsci/platformlabeler-plugin.svg)](https://github.com/jenkinsci/platformlabeler-plugin/graphs/contributors) -->
 [![Jenkins Plugin](https://img.shields.io/jenkins/plugin/v/platformlabeler.svg)](https://plugins.jenkins.io/platformlabeler)
 [![GitHub release](https://img.shields.io/github/release/jenkinsci/platformlabeler-plugin.svg?label=changelog)](https://github.com/jenkinsci/platformlabeler-plugin/releases/latest)
 [![Jenkins Plugin Installs](https://img.shields.io/jenkins/plugin/i/platformlabeler.svg?color=blue)](https://plugins.jenkins.io/platformlabeler)
