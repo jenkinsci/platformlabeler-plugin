@@ -22,7 +22,7 @@ do
 	for os_release in $release_files; do
 	        parent=$(dirname $os_release)
 	        version=$(basename $parent)
-	        image=$(dirname $parent)
+	        image=platformlabeler/$(dirname $parent)
 	        if [ "$image" == "amzn" ]; then
 	                image="amazonlinux"
 	        fi
@@ -40,8 +40,15 @@ do
 	                        continue # No redhat-release file on distributions not derived from Red Hat
 	                fi
 	        fi
+	        echo
+	        echo "================"
+	        echo "= Finding image identifier"
+	        echo "docker ps -lqf ancestor=$image:$version"
 	        id=`docker ps -lqf ancestor=$image:$version`
-	        echo id=$id parent=$parent version=$version image=$image $name
+	        echo "id is $id parent is $parent version is version image is $image $name"
+	        echo "cd $parent && docker cp -L $id:/etc/$name $name"
 	        (cd $parent && docker cp -L $id:/etc/$name $name)
+	        echo "finished id=$id parent=$parent version=$version image=$image $name"
+	        echo "================"
 	done
 done
