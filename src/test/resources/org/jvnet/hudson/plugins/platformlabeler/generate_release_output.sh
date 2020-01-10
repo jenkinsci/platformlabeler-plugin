@@ -40,9 +40,13 @@ do
 	                        continue # No redhat-release file on distributions not derived from Red Hat
 	                fi
 	        fi
+                if ! docker images | grep -q $image; then
+	            echo "Skipping image: $image"
+	            continue
+                fi
 	        echo
 	        echo "================"
-	        echo "= Finding image identifier"
+	        echo "= Finding image identifier: $image"
 	        echo "docker ps -lqf ancestor=$image:$version"
 	        id=`docker ps -lqf ancestor=$image:$version`
 	        echo "id is $id parent is $parent version is version image is $image $name"
