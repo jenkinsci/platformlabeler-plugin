@@ -5,8 +5,8 @@ repos:
     rev: v2.0.0
     hooks:
     -   id: trailing-whitespace
-        exclude: ".*/[A-Za-z_]+-release(-a)?$"
+        exclude: ".*/[-A-Za-z_]+release(-a)?$"
     -   id: end-of-file-fixer
-        exclude: ".*/[A-Za-z_]+-release(-a)?$"
+        exclude: ".*/[-A-Za-z_]+release(-a)?$"
     -   id: check-yaml
     -   id: check-added-large-files

@@ -14,7 +14,7 @@ fi
 # the same as the tags used in the official Docker images.
 
 args=$@
-all_files=$(find * -type f -name Dockerfile)
+all_files=$(find * -type f -name Dockerfile ! -path '*clearlinux*') # No lsb_release on clearlinux
 dockerfiles=${args:-$all_files}
 
 for dockerfile in $dockerfiles; do
