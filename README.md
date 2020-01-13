@@ -32,7 +32,7 @@ Labels commonly include operating system name, version, and architecture.
 | Linux Mint 19.3            | `LinuxMint`        | `19.03`        | `amd64`      |
 | Oracle Linux 6             | `OracleServer`     | `6.10`         | `amd64`      |
 | Oracle Linux 7             | `OracleServer`     | `7.6`          | `amd64`      |
-| Oracle Linux 8             | `OracleServer`     | `8.0`          | `amd64`      |
+| Oracle Linux 8             | `OracleServer`     | `8.1`          | `amd64`      |
 | Raspbian 9                 | `Raspbian`         | `9.11`         | `arm`        |
 | Raspbian 10                | `Raspbian`         | `10`           | `arm`        |
 | Red Hat Enterprise Linux 7 | `RedHatEnterprise` | `7.7`          | `amd64`      |
