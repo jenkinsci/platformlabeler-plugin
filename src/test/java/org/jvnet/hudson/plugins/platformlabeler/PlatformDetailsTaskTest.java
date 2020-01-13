@@ -1,8 +1,8 @@
 package org.jvnet.hudson.plugins.platformlabeler;
 
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
+import static org.junit.Assert.*;
+import static org.junit.Assume.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -11,9 +11,8 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 public class PlatformDetailsTaskTest {
 
@@ -30,13 +29,12 @@ public class PlatformDetailsTaskTest {
   private static final String SPECIAL_CASE_ARCH =
       SYSTEM_OS_ARCH.contains("amd") ? "x86" : SYSTEM_OS_ARCH;
 
-  @BeforeEach
+  @Before
   public void createPlatformDetailsTask() {
     platformDetailsTask = new PlatformDetailsTask();
   }
 
   @Test
-  @DisplayName("test remote call for platform details")
   public void testCall() throws Exception {
     PlatformDetails details = platformDetailsTask.call();
     if (isWindows()) {
@@ -78,7 +76,6 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
-  @DisplayName("test 32 bit Linux label computation")
   public void testComputeLabelsLinux32Bit() throws Exception {
     PlatformDetails details =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
@@ -86,7 +83,6 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
-  @DisplayName("test Linux32Bit stream")
   public void testLinux32BitStream() throws IOException {
     String unameOutput = "x86_64";
     InputStream stream = new ByteArrayInputStream(unameOutput.getBytes(StandardCharsets.UTF_8));
@@ -94,7 +90,6 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
-  @DisplayName("test Linux32Bit stream ARM")
   public void testLinux32BitStreamARM() throws IOException {
     String unameOutput = "aarch64";
     InputStream stream = new ByteArrayInputStream(unameOutput.getBytes(StandardCharsets.UTF_8));
@@ -103,7 +98,6 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
-  @DisplayName("test Linux32Bit stream empty")
   public void testLinux32BitStreamEmpty() throws IOException {
     String unameOutput = "";
     String expectedArch = "Expected-Arch";
@@ -112,7 +106,6 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
-  @DisplayName("test Linux label computation without lsb_release")
   public void testComputeLabelsLinuxWithoutLsbRelease() throws Exception {
     assumeTrue(!isWindows() && Files.exists(Paths.get("/etc/os-release")));
     String unknown = PlatformDetailsTask.UNKNOWN_VALUE_STRING;
@@ -123,7 +116,6 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
-  @DisplayName("test Linux label computation with null lsb_release")
   public void testComputeLabelsLinuxWithNullLsbRelease() throws Exception {
     assumeTrue(!isWindows() && Files.exists(Paths.get("/etc/os-release")));
     LsbRelease release = null;
@@ -133,21 +125,18 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
-  @DisplayName("test Windows 32 bit")
   public void testCheckWindows32Bit() {
     /* Always testing this case, no SPECIAL_CASE_ARCH needed */
-    assertThat(platformDetailsTask.checkWindows32Bit("x86", "AMD64", ""), is("amd64"));
+    assertThat(platformDetailsTask.checkWindows32Bit("x86", "AMD64", null), is("amd64"));
   }
 
   @Test
-  @DisplayName("test Windows 32 bit with amd64")
   public void testCheckWindows32BitAMD64SecondArgument() {
     /* Always testing this case, no SPECIAL_CASE_ARCH needed */
     assertThat(platformDetailsTask.checkWindows32Bit("x86", "x86", "AMD64"), is("amd64"));
   }
 
   @Test
-  @DisplayName("test operating system name")
   public void compareOSName() throws Exception {
     assumeTrue(!isWindows() && Files.exists(Paths.get("/etc/os-release")));
     String computedName =
@@ -157,7 +146,6 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
-  @DisplayName("test release identifier on missing file")
   public void readReleaseIdentifierMissingFileReturnsUnknownValue() throws Exception {
     PlatformDetails details =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
@@ -167,7 +155,6 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
-  @DisplayName("Read Red Hat release identifier")
   public void readRedhatReleaseIdentifierMissingFileReturnsUnknownValue() throws Exception {
     PlatformDetails details =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
@@ -177,7 +164,6 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
-  @DisplayName("Read Red Hat release identifier null file")
   public void readRedhatReleaseIdentifierNullFileReturnsUnknownValue() throws Exception {
     PlatformDetails details =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
@@ -187,7 +173,6 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
-  @DisplayName("Read Red Hat release identifier wrong file")
   public void readRedhatReleaseIdentifierWrongFileReturnsUnknownValue() throws Exception {
     PlatformDetails details =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
@@ -197,7 +182,6 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
-  @DisplayName("Read SUSE release identifier missing file")
   public void readSuseReleaseIdentifierMissingFileReturnsUnknownValue() throws Exception {
     platformDetailsTask.setSuseRelease(new File("/this/file/does/not/exist"));
     String name = platformDetailsTask.readSuseReleaseIdentifier("ID");
@@ -205,7 +189,6 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
-  @DisplayName("Read SUSE release identifier null file")
   public void readSuseReleaseIdentifierNullFileReturnsUnknownValue() throws Exception {
     platformDetailsTask.setSuseRelease(null);
     String name = platformDetailsTask.readSuseReleaseIdentifier("ID");
@@ -213,7 +196,6 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
-  @DisplayName("Read SUSE release identifier wrong file")
   public void readSuseReleaseIdentifierWrongFileReturnsUnknownValue() throws Exception {
     assumeTrue(!isWindows() && Files.exists(Paths.get("/etc/hosts")));
     platformDetailsTask.setSuseRelease(new File("/etc/hosts")); // Not SuSE-release file
@@ -222,7 +204,6 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
-  @DisplayName("Compare operating system version")
   public void compareOSVersion() throws Exception {
     assumeTrue(!isWindows() && Files.exists(Paths.get("/etc/os-release")));
     PlatformDetails details =

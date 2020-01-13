@@ -9,14 +9,28 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 import org.reflections.Reflections;
 import org.reflections.scanners.ResourcesScanner;
 
+@RunWith(Parameterized.class)
 public class PlatformDetailsTaskReleaseTest {
+
+  private final String releaseFileName;
+  private final String expectedName;
+  private final String expectedVersion;
+  private final String expectedArch;
+
+  public PlatformDetailsTaskReleaseTest(
+      String releaseFileName, String expectedName, String expectedVersion, String expectedArch) {
+    this.releaseFileName = releaseFileName;
+    this.expectedName = expectedName;
+    this.expectedVersion = expectedVersion;
+    this.expectedArch = expectedArch;
+  }
 
   /**
    * Generate test parameters for Linux os-release, redhat-release and SuSE-release sample files
@@ -24,7 +38,8 @@ public class PlatformDetailsTaskReleaseTest {
    *
    * @return parameter values to be tested
    */
-  public static Stream<Object[]> generateReleaseFileNames() {
+  @Parameters(name = "{1}-{2}-{3}-{0}")
+  public static Collection<Object[]> generateReleaseFileNames() {
     String packageName = PlatformDetailsTaskReleaseTest.class.getPackage().getName();
     Reflections reflections = new Reflections(packageName, new ResourcesScanner());
     Set<String> fileNames = reflections.getResources(Pattern.compile(".*-release"));
@@ -37,15 +52,11 @@ public class PlatformDetailsTaskReleaseTest {
       Object[] oneTest = {trimmedName, oneExpectedName, oneExpectedVersion, oneExpectedArch};
       data.add(oneTest);
     }
-    return data.stream();
+    return data;
   }
 
-  @ParameterizedTest(name = "file: {0}, expected: '{1}', {2}, {3}")
-  @MethodSource("generateReleaseFileNames")
-  @DisplayName("Compute platform details from release file")
-  public void testComputeLabelsForRelease(
-      String releaseFileName, String expectedName, String expectedVersion, String expectedArch)
-      throws Exception {
+  @Test
+  public void testComputeLabelsForRelease() throws Exception {
     PlatformDetailsTask details = new PlatformDetailsTask();
     URL resource = getClass().getResource(releaseFileName);
     File releaseFile = new File(resource.toURI());

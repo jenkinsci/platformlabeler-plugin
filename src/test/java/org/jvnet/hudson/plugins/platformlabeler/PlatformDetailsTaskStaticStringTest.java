@@ -8,21 +8,39 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Stream;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
+@RunWith(Parameterized.class)
 public class PlatformDetailsTaskStaticStringTest {
+
+  private final String name;
+  private final String arch;
+  private final String version;
+  private final String expectedName;
+  private final String expectedArch;
+  private final String expectedVersion;
+
+  public PlatformDetailsTaskStaticStringTest(String name, String arch, String version) {
+    this.name = name;
+    this.arch = arch;
+    this.version = version;
+    this.expectedName = computeExpectedName(name);
+    this.expectedArch = computeExpectedArch(name, arch);
+    this.expectedVersion = computeVersion(version);
+  }
 
   /**
    * Generate test parameters for cases which can be tested with static string conversions. Linux
    * platform labeling can't be tested with static string conversions. Refer to other tests for
-   * Linux platform labeling tests.
+   * Linux platform labeling tests. Expected values are computed in the test contructor.
    *
    * @return parameter values to be tested
    */
-  public static Stream<Object[]> generateTestParameters() {
+  @Parameters(name = "{0}-{1}-{2}")
+  public static Collection<Object[]> generateTestParameters() {
     Collection<Object[]> data =
         Arrays.asList(
             new Object[][] {
@@ -57,7 +75,7 @@ public class PlatformDetailsTaskStaticStringTest {
     /* Don't add data for this platform if linux - linux decodes the distribution as a label */
     String myName = System.getProperty("os.name");
     if (myName.equalsIgnoreCase("linux")) {
-      return data.stream();
+      return data;
     }
 
     /* Check this platform is in the test data */
@@ -67,7 +85,7 @@ public class PlatformDetailsTaskStaticStringTest {
       if (testData[0].equals(myName)
           && testData[1].equals(myArch)
           && testData[2].equals(myVersion)) {
-        return data.stream();
+        return data;
       }
     }
 
@@ -76,16 +94,11 @@ public class PlatformDetailsTaskStaticStringTest {
     List<Object[]> augmentedData = new ArrayList<>();
     augmentedData.add(myTestData);
     augmentedData.addAll(data);
-    return augmentedData.stream();
+    return augmentedData;
   }
 
-  @ParameterizedTest(name = "file: {0}, expected: '{1}', {2}, {3}")
-  @MethodSource("generateTestParameters")
-  @DisplayName("Compute labels from static strings")
-  public void testComputeLabels(String name, String arch, String version) throws Exception {
-    String expectedName = computeExpectedName(name);
-    String expectedArch = computeExpectedArch(name, arch);
-    String expectedVersion = computeVersion(name, version);
+  @Test
+  public void testComputeLabels() throws Exception {
     PlatformDetailsTask details = new PlatformDetailsTask();
     PlatformDetails result = details.computeLabels(arch, name, version);
     assertThat(result.getArchitecture(), is(expectedArch));
@@ -116,7 +129,7 @@ public class PlatformDetailsTaskStaticStringTest {
     return name.toLowerCase();
   }
 
-  private String computeVersion(String name, String version) {
+  private String computeVersion(String version) {
     if (!name.startsWith("Windows")) {
       return version;
     }
