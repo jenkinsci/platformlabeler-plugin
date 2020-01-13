@@ -48,8 +48,6 @@
     <hpi.compatibleSinceVersion>5.0</hpi.compatibleSinceVersion>
     <junit.version>4.13</junit.version>
     <junit.jupiter.version>5.6.0-RC1</junit.jupiter.version>
-    <junit.params.version>5.6.0-RC1</junit.params.version>
-    <junit.vintage.version>5.6.0-RC1</junit.vintage.version>
   </properties>
 
   <dependencyManagement>
@@ -122,13 +120,13 @@
     <dependency>
       <groupId>org.junit.vintage</groupId>
       <artifactId>junit-vintage-engine</artifactId>
-      <version>${junit.vintage.version}</version>
+      <version>${junit.jupiter.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-params</artifactId>
-      <version>${junit.params.version}</version>
+      <version>${junit.jupiter.version}</version>
       <type>jar</type>
       <scope>test</scope>
     </dependency>
