@@ -48,7 +48,7 @@
     <hpi.compatibleSinceVersion>5.0</hpi.compatibleSinceVersion>
     <junit.version>4.12</junit.version>
     <junit.jupiter.version>5.6.0-RC1</junit.jupiter.version>
-    <junit.params.version>5.6.0-M1</junit.params.version>
+    <junit.params.version>5.6.0-RC1</junit.params.version>
     <junit.vintage.version>5.6.0-M1</junit.vintage.version>
   </properties>
 
