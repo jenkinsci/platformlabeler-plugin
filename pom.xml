@@ -37,6 +37,7 @@
   <properties>
     <revision>5.5</revision>
     <changelist>-SNAPSHOT</changelist>
+    <concurrency>3</concurrency>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <argLine>-Dfile.encoding=${project.build.sourceEncoding}</argLine>
     <jenkins.version>2.176.4</jenkins.version>
@@ -46,10 +47,8 @@
     <!-- No API's intended to be used, none should be called from outside. -->
     <maven.javadoc.skip>true</maven.javadoc.skip>
     <hpi.compatibleSinceVersion>5.0</hpi.compatibleSinceVersion>
-    <junit.version>4.12</junit.version>
+    <junit.version>4.13</junit.version>
     <junit.jupiter.version>5.6.0-RC1</junit.jupiter.version>
-    <junit.params.version>5.6.0-M1</junit.params.version>
-    <junit.vintage.version>5.6.0-M1</junit.vintage.version>
   </properties>
 
   <dependencyManagement>
@@ -108,6 +107,18 @@
       <optional>true</optional>
     </dependency>
     <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.hamcrest</groupId>
+          <artifactId>hamcrest-core</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
       <version>${junit.jupiter.version}</version>
@@ -122,13 +133,13 @@
     <dependency>
       <groupId>org.junit.vintage</groupId>
       <artifactId>junit-vintage-engine</artifactId>
-      <version>${junit.vintage.version}</version>
+      <version>${junit.jupiter.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-params</artifactId>
-      <version>${junit.params.version}</version>
+      <version>${junit.jupiter.version}</version>
       <type>jar</type>
       <scope>test</scope>
     </dependency>
