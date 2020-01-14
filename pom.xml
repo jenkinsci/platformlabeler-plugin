@@ -37,7 +37,6 @@
   <properties>
     <revision>5.5</revision>
     <changelist>-SNAPSHOT</changelist>
-    <concurrency>3</concurrency>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <argLine>-Dfile.encoding=${project.build.sourceEncoding}</argLine>
     <jenkins.version>2.176.4</jenkins.version>
