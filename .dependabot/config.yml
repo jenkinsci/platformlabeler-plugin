@@ -16,3 +16,6 @@ update_configs:
           dependency_name: "org.jenkins-ci.plugins*"
       - match:
           dependency_name: "io.jenkins*"
+      - match:
+          # Required for Jenkins 2.190.1 tests
+          dependency_name: "org.slf4j*"
