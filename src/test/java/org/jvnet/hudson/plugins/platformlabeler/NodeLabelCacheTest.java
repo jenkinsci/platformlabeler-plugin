@@ -11,6 +11,7 @@ import hudson.remoting.VirtualChannel;
 import hudson.slaves.RetentionStrategy;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Future;
@@ -85,6 +86,13 @@ public class NodeLabelCacheTest {
     nodeLabelCache.cacheLabels(nullingComputer);
   }
 
+  @Test
+  public void testGetLabelsForNode_IsNull() throws Exception {
+    Node nullingNode = new NullingNode();
+    Collection<LabelAtom> labels = nodeLabelCache.getLabelsForNode(nullingNode);
+    assertThat(labels, is(empty()));
+  }
+
   /** Class that intentionally returns nulls for test purposes. */
   private class NullingComputer extends Computer {
 
@@ -137,6 +145,63 @@ public class NodeLabelCacheTest {
 
     @Override
     public RetentionStrategy getRetentionStrategy() {
+      throw new UnsupportedOperationException("Unsupported");
+    }
+  }
+
+  private class NullingNode extends Node {
+    public hudson.remoting.Callable<hudson.util.ClockDifference, IOException>
+        getClockDifferenceCallable() {
+      throw new UnsupportedOperationException("Unsupported");
+    }
+
+    public hudson.slaves.NodeDescriptor getDescriptor() {
+      throw new UnsupportedOperationException("Unsupported");
+    }
+
+    public hudson.util.DescribableList<
+            hudson.slaves.NodeProperty<?>, hudson.slaves.NodePropertyDescriptor>
+        getNodeProperties() {
+      throw new UnsupportedOperationException("Unsupported");
+    }
+
+    public hudson.FilePath getRootPath() {
+      throw new UnsupportedOperationException("Unsupported");
+    }
+
+    public hudson.FilePath getWorkspaceFor(hudson.model.TopLevelItem item) {
+      throw new UnsupportedOperationException("Unsupported");
+    }
+
+    public String getLabelString() {
+      throw new UnsupportedOperationException("Unsupported");
+    }
+
+    public Computer createComputer() {
+      throw new UnsupportedOperationException("Unsupported");
+    }
+
+    public Node.Mode getMode() {
+      throw new UnsupportedOperationException("Unsupported");
+    }
+
+    public int getNumExecutors() {
+      throw new UnsupportedOperationException("Unsupported");
+    }
+
+    public hudson.Launcher createLauncher(TaskListener listener) {
+      throw new UnsupportedOperationException("Unsupported");
+    }
+
+    public String getNodeDescription() {
+      throw new UnsupportedOperationException("Unsupported");
+    }
+
+    public void setNodeName(String name) {
+      throw new UnsupportedOperationException("Unsupported");
+    }
+
+    public String getNodeName() {
       throw new UnsupportedOperationException("Unsupported");
     }
   }
