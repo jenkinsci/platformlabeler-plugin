@@ -1,7 +1,8 @@
 package org.jvnet.hudson.plugins.platformlabeler;
 
+import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.io.FileMatchers.*;
 
 import java.io.File;
 import java.net.URL;
@@ -48,7 +49,7 @@ public class PlatformDetailsTaskLsbReleaseTest {
     PlatformDetailsTask details = new PlatformDetailsTask();
     URL resource = getClass().getResource(lsbReleaseFileName);
     File lsbReleaseFile = new File(resource.toURI());
-    assertTrue("File not found " + lsbReleaseFile, lsbReleaseFile.exists());
+    assertThat(lsbReleaseFile, is(anExistingFile()));
     LsbRelease release = new LsbRelease(lsbReleaseFile);
     File suseReleaseFile = new File(lsbReleaseFile.getParentFile(), "SuSE-release");
     if (suseReleaseFile.isFile()) {

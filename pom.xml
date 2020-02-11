@@ -200,6 +200,12 @@
           <failOnViolation>true</failOnViolation>
         </configuration>
       </plugin>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <compilerArgument>-Xlint:deprecation</compilerArgument>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 </project>
