@@ -1,7 +1,7 @@
 package org.jvnet.hudson.plugins.platformlabeler;
 
+import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
 
 import hudson.model.Computer;
 import hudson.model.labels.LabelAtom;
@@ -49,7 +49,7 @@ public class ConfigurationTest {
     expected.add(r.jenkins.getLabelAtom(platformDetails.getName()));
 
     Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
-    assertEquals(expected, labelsAfter);
+    assertThat(expected, is(labelsAfter));
   }
 
   @Test
@@ -71,7 +71,7 @@ public class ConfigurationTest {
     expected.add(r.jenkins.getLabelAtom(platformDetails.getVersion()));
 
     Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
-    assertEquals(expected, labelsAfter);
+    assertThat(expected, is(labelsAfter));
   }
 
   @Test
@@ -93,7 +93,7 @@ public class ConfigurationTest {
     expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitectureNameVersion()));
 
     Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
-    assertEquals(expected, labelsAfter);
+    assertThat(expected, is(labelsAfter));
   }
 
   @Test
@@ -126,7 +126,7 @@ public class ConfigurationTest {
     expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitectureNameVersion()));
 
     Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
-    assertEquals(expected, labelsAfter);
+    assertThat(expected, is(labelsAfter));
   }
 
   @Test
@@ -152,7 +152,7 @@ public class ConfigurationTest {
     expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitecture()));
 
     Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
-    assertEquals(expected, labelsAfter);
+    assertThat(expected, is(labelsAfter));
   }
 
   @Test

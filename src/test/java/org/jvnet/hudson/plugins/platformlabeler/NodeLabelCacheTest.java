@@ -1,7 +1,7 @@
 package org.jvnet.hudson.plugins.platformlabeler;
 
+import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
 
 import hudson.model.Computer;
 import hudson.model.Node;
@@ -197,6 +197,7 @@ public class NodeLabelCacheTest {
       throw new UnsupportedOperationException("Unsupported");
     }
 
+    @Deprecated
     public void setNodeName(String name) {
       throw new UnsupportedOperationException("Unsupported");
     }

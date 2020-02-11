@@ -1,7 +1,8 @@
 package org.jvnet.hudson.plugins.platformlabeler;
 
+import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.io.FileMatchers.*;
 
 import java.io.File;
 import java.net.URL;
@@ -49,7 +50,7 @@ public class PlatformDetailsTaskReleaseTest {
     PlatformDetailsTask details = new PlatformDetailsTask();
     URL resource = getClass().getResource(releaseFileName);
     File releaseFile = new File(resource.toURI());
-    assertTrue("File not found " + releaseFile, releaseFile.exists());
+    assertThat(releaseFile, is(anExistingFile()));
     if (releaseFile.getName().startsWith("redhat")) {
       details.setOsReleaseFile(null);
       details.setRedhatRelease(releaseFile);
