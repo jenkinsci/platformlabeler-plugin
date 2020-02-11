@@ -3,12 +3,21 @@ package org.jvnet.hudson.plugins.platformlabeler;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
+import hudson.FilePath;
+import hudson.Launcher;
 import hudson.model.Computer;
 import hudson.model.Node;
 import hudson.model.TaskListener;
+import hudson.model.TopLevelItem;
 import hudson.model.labels.LabelAtom;
+import hudson.remoting.Callable;
 import hudson.remoting.VirtualChannel;
+import hudson.slaves.NodeDescriptor;
+import hudson.slaves.NodeProperty;
+import hudson.slaves.NodePropertyDescriptor;
 import hudson.slaves.RetentionStrategy;
+import hudson.util.ClockDifference;
+import hudson.util.DescribableList;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Collection;
@@ -93,11 +102,25 @@ public class NodeLabelCacheTest {
     assertThat(labels, is(empty()));
   }
 
+  @Test(expected = IOException.class)
+  public void testRequestComputerPlatformDetails_ChannelThrows() throws Exception {
+    Computer throwingComputer = new NullingComputer(computer.getNode(), new IOException());
+    nodeLabelCache.requestComputerPlatformDetails(throwingComputer);
+  }
+
   /** Class that intentionally returns nulls for test purposes. */
   private class NullingComputer extends Computer {
 
+    private final IOException exceptionToThrow;
+
     public NullingComputer(Node node) {
       super(node);
+      exceptionToThrow = null;
+    }
+
+    public NullingComputer(Node node, IOException throwThisException) {
+      super(node);
+      exceptionToThrow = throwThisException;
     }
 
     @Override
@@ -108,6 +131,9 @@ public class NodeLabelCacheTest {
 
     @Override
     public VirtualChannel getChannel() {
+      if (exceptionToThrow != null) {
+        return new ThrowingChannel(exceptionToThrow);
+      }
       /* Intentionally return null to test null channel handling */
       return null;
     }
@@ -149,27 +175,63 @@ public class NodeLabelCacheTest {
     }
   }
 
+  private class ThrowingChannel implements VirtualChannel {
+    private final IOException exceptionToThrow;
+
+    public ThrowingChannel(IOException exceptionToThrow) {
+      this.exceptionToThrow = exceptionToThrow;
+    }
+
+    public <V, T extends Throwable> V call(Callable<V, T> callable) throws IOException {
+      if (exceptionToThrow != null) {
+        throw exceptionToThrow;
+      }
+      return null;
+    }
+
+    public <V, T extends Throwable> hudson.remoting.Future<V> callAsync(Callable<V, T> callable) {
+      return null;
+    }
+
+    public <T> T export(java.lang.Class<T> type, T instance) {
+      return null;
+    }
+
+    public void join() {
+      throw new UnsupportedOperationException("Unsupported");
+    }
+
+    public void join(long timeout) {
+      throw new UnsupportedOperationException("Unsupported");
+    }
+
+    public void syncLocalIO() {
+      throw new UnsupportedOperationException("Unsupported");
+    }
+
+    public void close() {
+      throw new UnsupportedOperationException("Unsupported");
+    }
+  }
+
   private class NullingNode extends Node {
-    public hudson.remoting.Callable<hudson.util.ClockDifference, IOException>
-        getClockDifferenceCallable() {
+    public Callable<ClockDifference, IOException> getClockDifferenceCallable() {
       throw new UnsupportedOperationException("Unsupported");
     }
 
-    public hudson.slaves.NodeDescriptor getDescriptor() {
+    public NodeDescriptor getDescriptor() {
       throw new UnsupportedOperationException("Unsupported");
     }
 
-    public hudson.util.DescribableList<
-            hudson.slaves.NodeProperty<?>, hudson.slaves.NodePropertyDescriptor>
-        getNodeProperties() {
+    public DescribableList<NodeProperty<?>, NodePropertyDescriptor> getNodeProperties() {
       throw new UnsupportedOperationException("Unsupported");
     }
 
-    public hudson.FilePath getRootPath() {
+    public FilePath getRootPath() {
       throw new UnsupportedOperationException("Unsupported");
     }
 
-    public hudson.FilePath getWorkspaceFor(hudson.model.TopLevelItem item) {
+    public FilePath getWorkspaceFor(TopLevelItem item) {
       throw new UnsupportedOperationException("Unsupported");
     }
 
@@ -189,7 +251,7 @@ public class NodeLabelCacheTest {
       throw new UnsupportedOperationException("Unsupported");
     }
 
-    public hudson.Launcher createLauncher(TaskListener listener) {
+    public Launcher createLauncher(TaskListener listener) {
       throw new UnsupportedOperationException("Unsupported");
     }
 
