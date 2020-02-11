@@ -17,5 +17,5 @@ update_configs:
       - match:
           dependency_name: "io.jenkins*"
       - match:
-          # Required for Jenkins 2.190.1 tests
+          # Required for Jenkins 2.204.2 tests
           dependency_name: "org.slf4j*"
