@@ -36,78 +36,78 @@ public class LabelConfigTest {
   }
 
   @Test
-  public void testIsArchitecture() {
+  void testIsArchitecture() {
     assertTrue(labelConfig.isArchitecture());
   }
 
   @Test
-  public void testSetArchitecture() {
+  void testSetArchitecture() {
     labelConfig.setArchitecture(false);
     assertFalse(labelConfig.isArchitecture());
   }
 
   @Test
-  public void testIsName() {
+  void testIsName() {
     assertTrue(labelConfig.isName());
   }
 
   @Test
-  public void testSetName() {
+  void testSetName() {
     labelConfig.setName(false);
     assertFalse(labelConfig.isName());
   }
 
   @Test
-  public void testIsVersion() {
+  void testIsVersion() {
     assertTrue(labelConfig.isVersion());
   }
 
   @Test
-  public void testSetVersion() {
+  void testSetVersion() {
     labelConfig.setVersion(false);
     assertFalse(labelConfig.isVersion());
   }
 
   @Test
-  public void testIsArchitectureName() {
+  void testIsArchitectureName() {
     assertTrue(labelConfig.isArchitectureName());
   }
 
   @Test
-  public void testSetArchitectureName() {
+  void testSetArchitectureName() {
     labelConfig.setArchitectureName(false);
     assertFalse(labelConfig.isArchitectureName());
   }
 
   @Test
-  public void testIsNameVersion() {
+  void testIsNameVersion() {
     assertTrue(labelConfig.isNameVersion());
   }
 
   @Test
-  public void testSetNameVersion() {
+  void testSetNameVersion() {
     labelConfig.setNameVersion(false);
     assertFalse(labelConfig.isNameVersion());
   }
 
   @Test
-  public void testIsArchitectureNameVersion() {
+  void testIsArchitectureNameVersion() {
     assertTrue(labelConfig.isArchitectureNameVersion());
   }
 
   @Test
-  public void testSetArchitectureNameVersion() {
+  void testSetArchitectureNameVersion() {
     labelConfig.setArchitectureNameVersion(false);
     assertFalse(labelConfig.isArchitectureNameVersion());
   }
 
   @Test
-  public void testIsIncludeWindowsFeatureUpdate() {
+  void testIsIncludeWindowsFeatureUpdate() {
     assertTrue(labelConfig.isIncludeWindowsFeatureUpdate());
   }
 
   @Test
-  public void testSetIncludeWindowsFeatureUpdate() {
+  void testSetIncludeWindowsFeatureUpdate() {
     labelConfig.setIncludeWindowsFeatureUpdate(true);
     assertTrue(labelConfig.isIncludeWindowsFeatureUpdate());
   }

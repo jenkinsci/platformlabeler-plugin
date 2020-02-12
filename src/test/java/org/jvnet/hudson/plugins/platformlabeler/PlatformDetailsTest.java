@@ -50,42 +50,42 @@ public class PlatformDetailsTest {
   }
 
   @Test
-  public void testGetName() {
+  void testGetName() {
     assertThat(details.getName(), is(name));
   }
 
   @Test
-  public void testGetArchitecture() {
+  void testGetArchitecture() {
     assertThat(details.getArchitecture(), is(arch));
   }
 
   @Test
-  public void testGetVersion() {
+  void testGetVersion() {
     assertThat(details.getVersion(), is(version));
   }
 
   @Test
-  public void testGetArchitectureNameVersion() {
+  void testGetArchitectureNameVersion() {
     assertThat(details.getArchitectureNameVersion(), is(arch + "-" + name + "-" + version));
   }
 
   @Test
-  public void testGetArchitectureName() {
+  void testGetArchitectureName() {
     assertThat(details.getArchitectureName(), is(arch + "-" + name));
   }
 
   @Test
-  public void testGetNameVersion() {
+  void testGetNameVersion() {
     assertThat(details.getNameVersion(), is(name + "-" + version));
   }
 
   @Test
-  public void testGetWindowsFeatureUpdate() {
+  void testGetWindowsFeatureUpdate() {
     assertThat(details.getWindowsFeatureUpdate(), is(windowsFeatureUpdate));
   }
 
   @Test
-  public void testGetWindowsFeatureUpdateNull() {
+  void testGetWindowsFeatureUpdateNull() {
     PlatformDetails nullInDetails = new PlatformDetails(name, arch, version, null);
     assertThat(nullInDetails.getWindowsFeatureUpdate(), is(nullValue()));
   }

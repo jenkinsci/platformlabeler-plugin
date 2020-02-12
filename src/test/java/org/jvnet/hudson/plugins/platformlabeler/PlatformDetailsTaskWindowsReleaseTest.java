@@ -43,7 +43,7 @@ public class PlatformDetailsTaskWindowsReleaseTest {
   @ParameterizedTest
   @MethodSource("generateWindowsReleaseFileNames")
   @DisplayName("Compute reg-query labels")
-  public void testComputeLabelsForOsRelease(
+  void testComputeLabelsForOsRelease(
       String windowsReleaseFileName,
       String expectedName,
       String expectedVersion,

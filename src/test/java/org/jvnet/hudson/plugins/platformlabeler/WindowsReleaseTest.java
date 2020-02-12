@@ -42,24 +42,24 @@ public class WindowsReleaseTest {
   }
 
   @Test
-  public void testReleaseFile() {
+  void testReleaseFile() {
     assertThat(windowsReleaseFile.release(), is("1903"));
   }
 
   @Test
-  public void testReleaseNotWindows() {
+  void testReleaseNotWindows() {
     assumeFalse(isWindows());
     assertThat(windowsRelease.release(), is(PlatformDetailsTask.UNKNOWN_WINDOWS_VALUE_STRING));
   }
 
   @Test
-  public void testRelease() {
+  void testRelease() {
     assumeTrue(isWindows());
     assertThat(windowsRelease.release(), matchesPattern("[12][0-9][0-9][0-9]"));
   }
 
   @Test
-  public void testDistributorId() {
+  void testDistributorId() {
     assertThat(windowsRelease.distributorId(), is("Microsoft"));
     assertThat(windowsReleaseFile.distributorId(), is("Microsoft"));
   }
