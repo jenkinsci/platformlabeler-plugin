@@ -1,0 +1,14 @@
+<FindBugsFilter>
+  <!-- disable all findsecbugs findings -->
+<!--    <Match>
+        <Bug category="SECURITY"/>
+    </Match>  -->
+  <Match>
+    <!--Jenkins handles this issue differently or doesn't care about it.-->
+    <Bug pattern="CRLF_INJECTION_LOGS"/>
+  </Match>
+  <Match>
+    <!--Jenkins handles this issue differently or doesn't care about it.-->
+    <Bug pattern="INFORMATION_EXPOSURE_THROUGH_AN_ERROR_MESSAGE"/>
+  </Match>
+</FindBugsFilter>

@@ -26,6 +26,7 @@ public class PlatformLabelerGlobalConfiguration extends GlobalConfiguration {
   @Override
   public boolean configure(StaplerRequest req, JSONObject json) throws FormException {
     boolean result = super.configure(req, json);
+    java.util.logging.Logger.getLogger("foo").warning(req.getHeader("foo"));
     NodeLabelCache nlc = ComputerListener.all().get(NodeLabelCache.class);
     if (nlc != null) {
       nlc.onConfigurationChange();

@@ -49,6 +49,7 @@
     <junit.version>4.13</junit.version>
     <junit.jupiter.version>5.6.0</junit.jupiter.version>
     <concurrency>2C</concurrency>
+<!--    <spotbugs.excludeFilterFile>${project.basedir}/src/spotbugs/spotbugs-excludes.xml</spotbugs.excludeFilterFile>-->
   </properties>
 
   <dependencyManagement>
@@ -205,6 +206,28 @@
         <configuration>
           <compilerArgument>-Xlint:deprecation</compilerArgument>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>spotbugs</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <configuration>
+              <plugins>
+                <plugin>
+                  <groupId>com.h3xstream.findsecbugs</groupId>
+                  <artifactId>findsecbugs-plugin</artifactId>
+                  <version>1.10.1</version>
+                </plugin>
+              </plugins>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
