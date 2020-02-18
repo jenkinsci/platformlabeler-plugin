@@ -49,7 +49,7 @@
     <junit.version>4.13</junit.version>
     <junit.jupiter.version>5.6.0</junit.jupiter.version>
     <concurrency>2C</concurrency>
-<!--    <spotbugs.excludeFilterFile>${project.basedir}/src/spotbugs/spotbugs-excludes.xml</spotbugs.excludeFilterFile>-->
+    <spotbugs.excludeFilterFile>${project.basedir}/src/spotbugs/spotbugs-excludes.xml</spotbugs.excludeFilterFile>
   </properties>
 
   <dependencyManagement>
