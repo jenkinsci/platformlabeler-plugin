@@ -20,6 +20,7 @@ Labels commonly include operating system name, version, and architecture.
 | CentOS 6                   | `CentOS`           | `6.10`         | `amd64`      |
 | CentOS 7                   | `CentOS`           | `7.7.1908`     | `amd64`      |
 | CentOS 8                   | `CentOS`           | `8.0.1905`     | `amd64`      |
+| CentOS 8.1                 | `CentOS`           | `8.1.1911`     | `amd64`      |
 | Clear Linux                | `clear-linux-os`   | `31890`        | `amd64`      |
 | Debian 9                   | `Debian`           | `9.11`         | `amd64`      |
 | Debian 10                  | `Debian`           | `10`           | `aarch64`    |
@@ -28,6 +29,8 @@ Labels commonly include operating system name, version, and architecture.
 | Fedora 29                  | `Fedora`           | `29`           | `amd64`      |
 | Fedora 30                  | `Fedora`           | `30`           | `amd64`      |
 | Fedora 31                  | `Fedora`           | `31`           | `amd64`      |
+| Fedora 32                  | `Fedora`           | `32`           | `amd64`      |
+| Fedora 33                  | `Fedora`           | `33`           | `amd64`      |
 | FreeBSD 11                 | `freebsd`          | `11.2-STABLE`  | `amd64`      |
 | FreeBSD 12                 | `freebsd`          | `12.0-RELEASE` | `amd64`      |
 | Linux Mint 19.3            | `LinuxMint`        | `19.03`        | `amd64`      |
