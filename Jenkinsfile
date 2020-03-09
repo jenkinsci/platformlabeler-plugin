@@ -9,4 +9,12 @@ subsetConfiguration = [ [ jdk: '8',  platform: 'windows', jenkins: null         
                         [ jdk: '11', platform: 'linux',   jenkins:  use_newer_jenkins ? '2.204.2' : '2.220', javaLevel: '8' ]
                       ]
 
+node('docker && linux') {
+  stage('Clean') {
+    deleteDir()
+    sh 'rm -rf /tmp/*'
+    sh 'docker system prune -y'
+  }
+}
+
 buildPlugin(forceAci: true, configurations: subsetConfiguration, failFast: false)
