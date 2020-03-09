@@ -12,7 +12,7 @@ subsetConfiguration = [ [ jdk: '8',  platform: 'windows', jenkins: null         
 node('docker && linux') {
   stage('Clean') {
     deleteDir()
-    sh 'rm -rf /tmp/*'
+    sh 'df -h'
     sh 'docker system prune -y'
   }
 }
