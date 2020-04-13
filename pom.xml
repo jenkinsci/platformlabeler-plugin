@@ -16,7 +16,7 @@
 
   <name>Jenkins Platform Labeler Plugin</name>
   <description>Labels agents based on their operating system (platform) version and architecture</description>
-  <url>https://github.com/jenkinsci/platformlabeler-plugin/blob/master/README.md</url>
+  <url>https://github.com/jenkinsci/platformlabeler-plugin/</url>
   <inceptionYear>2009</inceptionYear>
 
   <developers>
@@ -48,14 +48,15 @@
     <hpi.compatibleSinceVersion>5.0</hpi.compatibleSinceVersion>
     <junit.jupiter.version>5.6.2</junit.jupiter.version>
     <concurrency>2C</concurrency>
+    <slf4jVersion>1.7.26</slf4jVersion>
   </properties>
 
   <dependencyManagement>
     <dependencies>
       <dependency>
         <groupId>io.jenkins.tools.bom</groupId>
-        <artifactId>bom-2.176.x</artifactId>
-        <version>5</version>
+        <artifactId>bom-2.190.x</artifactId>
+        <version>7</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -67,30 +68,6 @@
       <groupId>org.reflections</groupId>
       <artifactId>reflections</artifactId>
       <version>0.9.12</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency><!-- Jenkins 2.204.2 requires this newer version -->
-      <groupId>org.slf4j</groupId>
-      <artifactId>log4j-over-slf4j</artifactId>
-      <version>1.7.26</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency><!-- Jenkins 2.204.2 requires this newer version -->
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>1.7.26</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency><!-- Jenkins 2.204.2 requires this newer version -->
-      <groupId>org.slf4j</groupId>
-      <artifactId>jcl-over-slf4j</artifactId>
-      <version>1.7.26</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency><!-- Jenkins 2.204.2 requires this newer version -->
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-jdk14</artifactId>
-      <version>1.7.26</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -109,10 +86,16 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <scope>test</scope>
+      <exclusions>
+        <exclusion><!-- Hamcrest 2.x bundles all hamcrest-core functionality in the hamcrest artifact -->
+          <groupId>org.hamcrest</groupId>
+          <artifactId>hamcrest-core</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest-core</artifactId>
+      <artifactId>hamcrest</artifactId>
       <version>2.2</version>
       <scope>test</scope>
     </dependency>
