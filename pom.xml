@@ -48,6 +48,7 @@
     <hpi.compatibleSinceVersion>5.0</hpi.compatibleSinceVersion>
     <junit.jupiter.version>5.6.2</junit.jupiter.version>
     <concurrency>2C</concurrency>
+    <slf4jVersion>1.7.26</slf4jVersion>
   </properties>
 
   <dependencyManagement>
@@ -67,30 +68,6 @@
       <groupId>org.reflections</groupId>
       <artifactId>reflections</artifactId>
       <version>0.9.12</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency><!-- Jenkins 2.204.2 requires this newer version -->
-      <groupId>org.slf4j</groupId>
-      <artifactId>log4j-over-slf4j</artifactId>
-      <version>1.7.26</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency><!-- Jenkins 2.204.2 requires this newer version -->
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>1.7.26</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency><!-- Jenkins 2.204.2 requires this newer version -->
-      <groupId>org.slf4j</groupId>
-      <artifactId>jcl-over-slf4j</artifactId>
-      <version>1.7.26</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency><!-- Jenkins 2.204.2 requires this newer version -->
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-jdk14</artifactId>
-      <version>1.7.26</version>
       <scope>test</scope>
     </dependency>
     <dependency>
