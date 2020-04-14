@@ -23,7 +23,8 @@
  */
 package org.jvnet.hudson.plugins.platformlabeler;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 import hudson.model.labels.LabelAtom;
 import java.util.Collection;
@@ -44,7 +45,7 @@ public class PlatformLabelerTest {
     expected.add(j.jenkins.getLabelAtom("bar"));
     NodeLabelCache.nodeLabels.put(j.jenkins, expected);
     Collection<LabelAtom> labels = new PlatformLabeler().findLabels(j.jenkins);
-    assertEquals(expected, labels);
+    assertThat(labels, is(expected));
   }
 
   @Test
@@ -54,6 +55,6 @@ public class PlatformLabelerTest {
       NodeLabelCache.nodeLabels.remove(j.jenkins);
     }
     Collection<LabelAtom> labels = new PlatformLabeler().findLabels(j.jenkins);
-    assertEquals(0, labels.size());
+    assertThat(labels, is(empty()));
   }
 }
