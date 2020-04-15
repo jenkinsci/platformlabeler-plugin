@@ -248,6 +248,8 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
       if (computedVersion.equals(UNKNOWN_VALUE_STRING)) {
         computedVersion = readSuseReleaseIdentifier("VERSION_ID");
       }
+    } else if (computedName.startsWith("freebsd")) {
+      computedVersion = readFreeBSDVersion(computedVersion);
     } else if (computedName.startsWith("mac")) {
       computedName = "mac";
     }
@@ -391,5 +393,23 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
       }
     }
     return PREFERRED_LINUX_OS_NAMES.getOrDefault(value, value);
+  }
+
+  @NonNull
+  String readFreeBSDVersion(String version) {
+    try {
+      Process p = Runtime.getRuntime().exec("/bin/freebsd-version -u");
+      p.waitFor();
+      try (BufferedReader b =
+          new BufferedReader(new InputStreamReader(p.getInputStream(), "UTF-8"))) {
+        String line = b.readLine();
+        if (line != null) {
+          version = line;
+        }
+      }
+    } catch (IOException | InterruptedException e) {
+      /* Return version instead of throwing an exception */
+    }
+    return version;
   }
 }
