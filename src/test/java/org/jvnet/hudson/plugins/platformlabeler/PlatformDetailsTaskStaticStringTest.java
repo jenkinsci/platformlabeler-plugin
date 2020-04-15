@@ -3,7 +3,10 @@ package org.jvnet.hudson.plugins.platformlabeler;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -117,24 +120,48 @@ public class PlatformDetailsTaskStaticStringTest {
   }
 
   private String computeVersion(String name, String version) {
-    if (!name.startsWith("Windows")) {
+    if (name.startsWith("Windows")) {
+      switch (version) {
+        case "4.0":
+          version = "nt4";
+          break;
+        case "5.0":
+          version = "2000";
+          break;
+        case "5.1":
+          version = "xp";
+          break;
+        case "5.2":
+          version = "2003";
+          break;
+        default:
+          break;
+      }
+    } else if (name.startsWith("FreeBSD")) {
+      return readFreeBSDVersion(version);
+    }
+    return version;
+  }
+
+  private String readFreeBSDVersion(String version) {
+    /* If no freebsd-version command, return the provided default value */
+    File freebsdVersionCommand = new File("/bin/freebsd-version");
+    if (!freebsdVersionCommand.exists()) {
       return version;
     }
-    switch (version) {
-      case "4.0":
-        version = "nt4";
-        break;
-      case "5.0":
-        version = "2000";
-        break;
-      case "5.1":
-        version = "xp";
-        break;
-      case "5.2":
-        version = "2003";
-        break;
-      default:
-        break;
+    /* Compute the expected version number value */
+    try {
+      Process p = Runtime.getRuntime().exec("/bin/freebsd-version -u");
+      p.waitFor();
+      try (BufferedReader b =
+          new BufferedReader(new InputStreamReader(p.getInputStream(), "UTF-8"))) {
+        String line = b.readLine();
+        if (line != null) {
+          version = line;
+        }
+      }
+    } catch (IOException | InterruptedException e) {
+      /* Return version instead of throwing an exception */
     }
     return version;
   }
