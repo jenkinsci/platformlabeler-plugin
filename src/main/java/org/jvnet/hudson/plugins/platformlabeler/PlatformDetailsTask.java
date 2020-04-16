@@ -51,6 +51,9 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
   /** Unknown field value string. Package protected for us by LsbRelease class */
   static final String UNKNOWN_VALUE_STRING = "unknown+check_lsb_release_installed";
 
+  // Added Apr 16, 2020 to resolve spotbugs warning
+  private static final long serialVersionUID = 2020 - 04 - 16;
+
   /**
    * Checks that required SLAVE role is allowed.
    *
