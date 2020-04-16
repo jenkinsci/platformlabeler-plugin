@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Locale;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -50,7 +51,7 @@ public class PlatformDetailsTaskTest {
   private void assertPlatformDetails(PlatformDetails details) {
     String osName = SYSTEM_OS_NAME;
     assertThat(osName, is(not(PlatformDetailsTask.UNKNOWN_VALUE_STRING)));
-    if (osName.toLowerCase().startsWith("linux")) {
+    if (osName.toLowerCase(Locale.ENGLISH).startsWith("linux")) {
       String name = details.getName();
       assertThat(name, is(not("windows")));
       assertThat(name, is(not("linux")));

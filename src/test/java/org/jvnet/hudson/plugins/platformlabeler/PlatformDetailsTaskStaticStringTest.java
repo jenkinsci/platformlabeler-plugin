@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -116,7 +117,7 @@ public class PlatformDetailsTaskStaticStringTest {
     if (name.startsWith("Mac")) {
       return "mac";
     }
-    return name.toLowerCase();
+    return name.toLowerCase(Locale.ENGLISH);
   }
 
   private String computeVersion(String name, String version) {
