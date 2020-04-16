@@ -49,6 +49,7 @@
     <junit.jupiter.version>5.6.2</junit.jupiter.version>
     <slf4jVersion>1.7.26</slf4jVersion>
     <spotbugs.effort>Max</spotbugs.effort>
+    <spotbugs.failOnError>true</spotbugs.failOnError>
     <spotbugs.threshold>Low</spotbugs.threshold>
   </properties>
 
@@ -193,7 +194,6 @@
         <artifactId>spotbugs-maven-plugin</artifactId>
         <version>4.0.0</version>
         <configuration>
-          <failOnError>true</failOnError>
           <plugins>
             <plugin>
               <groupId>com.h3xstream.findsecbugs</groupId>
