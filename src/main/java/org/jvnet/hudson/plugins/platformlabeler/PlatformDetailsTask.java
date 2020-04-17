@@ -36,6 +36,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -50,6 +51,9 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
   private static final String PATCHLEVEL = "PATCHLEVEL =";
   /** Unknown field value string. Package protected for us by LsbRelease class */
   static final String UNKNOWN_VALUE_STRING = "unknown+check_lsb_release_installed";
+
+  // Added Apr 16, 2020 to resolve spotbugs warning
+  private static final long serialVersionUID = 2020 - 04 - 16;
 
   /**
    * Checks that required SLAVE role is allowed.
@@ -151,7 +155,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
       @NonNull final String arch, @NonNull final String name, @NonNull final String version)
       throws IOException {
     LsbRelease release;
-    if (name.toLowerCase().startsWith("linux")) {
+    if (name.toLowerCase(Locale.ENGLISH).startsWith("linux")) {
       release = new LsbRelease();
     } else {
       release = null;
@@ -177,7 +181,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
       @NonNull final String version,
       @CheckForNull LsbRelease release)
       throws IOException {
-    String computedName = name.toLowerCase();
+    String computedName = name.toLowerCase(Locale.ENGLISH);
     String computedArch = arch;
     String computedVersion = version;
     if (computedName.startsWith("windows")) {

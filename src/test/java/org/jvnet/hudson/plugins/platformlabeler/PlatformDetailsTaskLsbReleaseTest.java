@@ -8,6 +8,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Locale;
 import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -105,7 +106,7 @@ public class PlatformDetailsTaskLsbReleaseTest {
     if (filename.contains("sles")) {
       return "SUSE";
     }
-    return filename.toLowerCase();
+    return filename.toLowerCase(Locale.ENGLISH);
   }
 
   private static String computeExpectedVersion(String filename) {
