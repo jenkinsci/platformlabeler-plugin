@@ -33,8 +33,8 @@ Labels commonly include operating system name, version, and architecture.
 | Fedora 33                  | `Fedora`           | `33`           | `amd64`      |
 | FreeBSD 11                 | `freebsd`          | `11.2-STABLE`  | `amd64`      |
 | FreeBSD 12                 | `freebsd`          | `12.0-RELEASE` | `amd64`      |
-| IBM PowerPC Ubuntu 18.04   | `Ubuntu'           | `18.04`        | `ppc64le`    |
-| IBM s390x Ubuntu 18.04     | `Ubuntu'           | `18.04`        | `s390x`      |
+| IBM PowerPC Ubuntu 18.04   | `Ubuntu`           | `18.04`        | `ppc64le`    |
+| IBM s390x Ubuntu 18.04     | `Ubuntu`           | `18.04`        | `s390x`      |
 | Linux Mint 19.3            | `LinuxMint`        | `19.03`        | `amd64`      |
 | Oracle Linux 6             | `OracleServer`     | `6.10`         | `amd64`      |
 | Oracle Linux 7             | `OracleServer`     | `7.6`          | `amd64`      |
