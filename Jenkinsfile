@@ -6,7 +6,9 @@ use_newer_jenkins = random.nextBoolean() // Use newer Jenkins on one build but s
 // build recommended configurations
 subsetConfiguration = [ [ jdk: '8',  platform: 'windows', jenkins: null                                                     ],
                         [ jdk: '8',  platform: 'linux',   jenkins: !use_newer_jenkins ? '2.204.2' : '2.220', javaLevel: '8' ],
-                        [ jdk: '11', platform: 'linux',   jenkins:  use_newer_jenkins ? '2.204.2' : '2.220', javaLevel: '8' ]
+                        [ jdk: '11', platform: 'linux',   jenkins:  use_newer_jenkins ? '2.204.2' : '2.220', javaLevel: '8' ],
+                        [ jdk: '8',  platform: 'arm64',   jenkins: !use_newer_jenkins ? '2.204.2' : '2.220', javaLevel: '8' ],
+                        [ jdk: '11',  platform: 'arm64',   jenkins: !use_newer_jenkins ? '2.204.2' : '2.220', javaLevel: '8' ],
                       ]
 
 buildPlugin(forceAci: true, configurations: subsetConfiguration, failFast: false)
