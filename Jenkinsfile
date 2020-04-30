@@ -18,4 +18,4 @@ subsetConfiguration = [ [ jdk: '8',  platform: 'windows', jenkins: null         
                         [ jdk: '11', platform: 's390x',   jenkins:  use_newer_jenkins ? '2.222.3' : '2.234', javaLevel: '8' ]
                       ]
 
-buildPlugin(forceAci: true, configurations: subsetConfiguration, failFast: false)
+buildPlugin(configurations: subsetConfiguration, failFast: false)
