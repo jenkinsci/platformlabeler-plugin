@@ -18,7 +18,9 @@ public class LabelConfig extends AbstractDescribableImpl<LabelConfig> {
   private boolean architectureNameVersion = true;
 
   @DataBoundConstructor
-  public LabelConfig() {}
+  public LabelConfig() {
+    /* Intentionally empty constructor */
+  }
 
   public boolean isArchitecture() {
     return architecture;
@@ -76,5 +78,7 @@ public class LabelConfig extends AbstractDescribableImpl<LabelConfig> {
 
   @Extension
   @Symbol("platformlabelerconfig")
-  public static class DescriptorImpl extends Descriptor<LabelConfig> {}
+  public static class DescriptorImpl extends Descriptor<LabelConfig> {
+    /* Intentionally empty constructor */
+  }
 }
