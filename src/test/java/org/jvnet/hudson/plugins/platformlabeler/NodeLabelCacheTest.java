@@ -43,7 +43,9 @@ public class NodeLabelCacheTest {
 
   @Rule public JenkinsRule r = new JenkinsRule();
 
-  public NodeLabelCacheTest() {}
+  public NodeLabelCacheTest() {
+    /* Intentionally empty constructor */
+  }
 
   private Computer computer;
   private Set<LabelAtom> labelsBefore;

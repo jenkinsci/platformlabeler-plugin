@@ -13,7 +13,9 @@ public class PlatformLabelerNodeProperty extends NodeProperty<Node> {
   private LabelConfig labelConfig;
 
   @DataBoundConstructor
-  public PlatformLabelerNodeProperty() {}
+  public PlatformLabelerNodeProperty() {
+    /* Intentionally empty constructor */
+  }
 
   public LabelConfig getLabelConfig() {
     return labelConfig;
