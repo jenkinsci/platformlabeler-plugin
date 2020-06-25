@@ -193,15 +193,16 @@
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
         <version>4.0.4</version>
-        <configuration>
-          <plugins>
-            <plugin>
-              <groupId>com.h3xstream.findsecbugs</groupId>
-              <artifactId>findsecbugs-plugin</artifactId>
-              <version>1.10.1</version>
-            </plugin>
-          </plugins>
-        </configuration>
+        <!-- findsecbugs breaks spotbugs 4.0.5 -->
+        <!-- <configuration> -->
+        <!--   <plugins> -->
+        <!--     <plugin> -->
+        <!--       <groupId>com.h3xstream.findsecbugs</groupId> -->
+        <!--       <artifactId>findsecbugs-plugin</artifactId> -->
+        <!--       <version>1.10.1</version> -->
+        <!--     </plugin> -->
+        <!--   </plugins> -->
+        <!-- </configuration> -->
         <dependencies>
           <dependency>
             <groupId>com.github.spotbugs</groupId>
