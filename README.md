@@ -6,8 +6,6 @@
 [![Jenkins Plugin Installs](https://img.shields.io/jenkins/plugin/i/platformlabeler.svg?color=blue)](https://plugins.jenkins.io/platformlabeler)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=MarkEWaite_platformlabeler-plugin&metric=alert_status)](https://sonarcloud.io/dashboard?id=MarkEWaite_platformlabeler-plugin)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/3537/badge)](https://bestpractices.coreinfrastructure.org/projects/3537)
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=jenkinsci/platformlabeler-plugin)](https://dependabot.com)
-<!-- [![Contributors](https://img.shields.io/github/contributors/jenkinsci/platformlabeler-plugin.svg)](https://github.com/jenkinsci/platformlabeler-plugin/graphs/contributors) -->
 
 Adds labels to Jenkins agents based on characteristics of the operating system running the agent.
 Labels commonly include operating system name, version, and architecture.
