@@ -35,7 +35,7 @@
   </scm>
 
   <properties>
-    <revision>6.2</revision>
+    <revision>7.0</revision>
     <changelist>-SNAPSHOT</changelist>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <argLine>-Dfile.encoding=${project.build.sourceEncoding}</argLine>
