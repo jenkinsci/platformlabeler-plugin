@@ -25,7 +25,6 @@ package org.jvnet.hudson.plugins.platformlabeler;
 
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assumptions.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,14 +47,16 @@ public class WindowsReleaseTest {
 
   @Test
   void testReleaseNotWindows() {
-    assumeFalse(isWindows());
-    assertThat(windowsRelease.release(), is(PlatformDetailsTask.UNKNOWN_WINDOWS_VALUE_STRING));
+    if (!isWindows()) {
+      assertThat(windowsRelease.release(), is(PlatformDetailsTask.UNKNOWN_WINDOWS_VALUE_STRING));
+    }
   }
 
   @Test
   void testRelease() {
-    assumeTrue(isWindows());
-    assertThat(windowsRelease.release(), matchesPattern("[12][0-9][0-9][0-9]"));
+    if (isWindows()) {
+      assertThat(windowsRelease.release(), matchesPattern("[12][0-9][0-9][0-9]"));
+    }
   }
 
   @Test
