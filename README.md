@@ -8,6 +8,7 @@
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/3537/badge)](https://bestpractices.coreinfrastructure.org/projects/3537)
 
 Adds labels to Jenkins agents based on characteristics of the operating system running the agent.
+
 Labels commonly include operating system name, version, and architecture.
 
 | Platform                   | Operating System   | Version        | Architecture |
@@ -55,13 +56,13 @@ Labels commonly include operating system name, version, and architecture.
 | Windows 10                 | `windows`          | `10.0`         | `amd64`      |
 
 On Linux computers, the plugin uses the output of the [`lsb_release`](https://linux.die.net/man/1/lsb_release) command.
+
 If `lsb_release` is not installed, labels on Linux agents will be guessed based on values in /etc/os-release.
 Red Hat Linux and Scientific Linux agents have another fallback based on /etc/redhat-release.
+Agents with an older version of SuSE Linux will fallback to `/etc/SuSE-release`. Older versions of this plugin might return "sles" or "SUSE LINUX" as OS name.
+This has been unified to "SUSE" as this is the lsb_release ID since 'SLES 12 SP2'.
 
-Agents with an older version of SuSE Linux will fallback to /etc/SuSE-release. Older versions of this plugin might return "sles" or "SUSE LINUX" as OS name.
-This has been unified to "SUSE" as this is the lsb_release ID since SLES 12 SP2.
-
-When /etc/os-release is used, less detailed labels may be provided because more specific version information is not included in the file.
+When `/etc/os-release` is used, less detailed labels may be provided because more specific version information is not included in the file.
 For example:
 
 | Platform                   | Operating System   | Version        | Architecture |
@@ -69,4 +70,5 @@ For example:
 | CentOS 7                   | `CentOS`           | `7`            | `amd64`      |
 
 The types of labels can be configured globally and per agent with the 'Automatic Platform Labels' setting.
+
 To define the labels for an agent, activate 'Automatic Platform Labels' in the Node Properties section and select the desired labels.
