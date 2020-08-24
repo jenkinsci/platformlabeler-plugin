@@ -75,7 +75,7 @@
     <dependency>
       <groupId>com.github.spotbugs</groupId>
       <artifactId>spotbugs-annotations</artifactId>
-      <version>4.1.1</version>
+      <version>4.1.2</version>
       <exclusions>
         <exclusion><!-- prevent transitive inclusion of jsr305 -->
           <groupId>com.google.code.findbugs</groupId>
