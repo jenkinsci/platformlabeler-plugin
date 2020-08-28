@@ -17,7 +17,7 @@ subsetConfiguration = [ [ jdk: '8',  platform: 'windows', jenkins: testJenkinsVe
                         [ jdk: '8',  platform: 'arm64',   jenkins: testJenkinsVersions[3], javaLevel: '8' ],
 
                         // PowerPC 64 and s390x labels are also Linux
-                        // [ jdk: '8',  platform: 'ppc64le', jenkins: testJenkinsVersions[4], javaLevel: '8' ],
+                        [ jdk: '8',  platform: 'ppc64le', jenkins: testJenkinsVersions[4], javaLevel: '8' ],
                         [ jdk: '11', platform: 's390x',   jenkins: testJenkinsVersions[5], javaLevel: '8' ],
                       ]
 
