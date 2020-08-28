@@ -14,14 +14,15 @@ Labels commonly include operating system name, version, and architecture.
 | Platform                   | Operating System   | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
 | Alpine                     | `Alpine`           | `3.9.4`        | `amd64`      |
+| Alpine                     | `Alpine`           | `3.12.0`       | `amd64`      |
 | Amazon Linux               | `AmazonAMI`        | `2018.03`      | `amd64`      |
 | Amazon Linux 2             | `Amazon`           | `2`            | `amd64`      |
 | CentOS 6                   | `CentOS`           | `6.10`         | `amd64`      |
-| CentOS 7                   | `CentOS`           | `7.7.1908`     | `amd64`      |
+| CentOS 7                   | `CentOS`           | `7.8.2003`     | `amd64`      |
 | CentOS 8                   | `CentOS`           | `8.0.1905`     | `amd64`      |
-| CentOS 8.1                 | `CentOS`           | `8.1.1911`     | `amd64`      |
+| CentOS 8.2                 | `CentOS`           | `8.2.2004`     | `amd64`      |
 | Clear Linux                | `clear-linux-os`   | `31890`        | `amd64`      |
-| Debian 9                   | `Debian`           | `9.11`         | `amd64`      |
+| Debian 9                   | `Debian`           | `9.13`         | `amd64`      |
 | Debian 10                  | `Debian`           | `10`           | `aarch64`    |
 | Debian 10                  | `Debian`           | `10`           | `amd64`      |
 | Debian testing             | `Debian`           | `testing`      | `amd64`      |
@@ -36,14 +37,14 @@ Labels commonly include operating system name, version, and architecture.
 | IBM s390x Ubuntu 18.04     | `Ubuntu`           | `18.04`        | `s390x`      |
 | Linux Mint 19.3            | `LinuxMint`        | `19.03`        | `amd64`      |
 | Oracle Linux 6             | `OracleServer`     | `6.10`         | `amd64`      |
-| Oracle Linux 7             | `OracleServer`     | `7.6`          | `amd64`      |
-| Oracle Linux 8             | `OracleServer`     | `8.1`          | `amd64`      |
+| Oracle Linux 7             | `OracleServer`     | `7.8`          | `amd64`      |
+| Oracle Linux 8             | `OracleServer`     | `8.2`          | `amd64`      |
 | Raspbian 9                 | `Raspbian`         | `9.11`         | `arm`        |
 | Raspbian 10                | `Raspbian`         | `10`           | `arm`        |
-| Red Hat Enterprise Linux 7 | `RedHatEnterprise` | `7.7`          | `amd64`      |
-| Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.0`          | `amd64`      |
+| Red Hat Enterprise Linux 7 | `RedHatEnterprise` | `7.8`          | `amd64`      |
+| Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.2`          | `amd64`      |
 | Scientific 6.10            | `Scientific`       | `6.10`         | `amd64`      |
-| Scientific 7.7             | `Scientific`       | `7.7`          | `amd64`      |
+| Scientific 7.7             | `Scientific`       | `7.8`          | `amd64`      |
 | SLES 11.3                  | `SUSE`             | `11.3`         | `amd64`      |
 | SLES 12.1                  | `SUSE`             | `12.1`         | `amd64`      |
 | SLES 12.2                  | `SUSE`             | `12.2`         | `amd64`      |
