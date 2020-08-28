@@ -2,7 +2,6 @@ package org.jvnet.hudson.plugins.platformlabeler;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -115,7 +114,9 @@ public class PlatformDetailsTaskTest {
   @Test
   @DisplayName("test Linux label computation without lsb_release")
   public void testComputeLabelsLinuxWithoutLsbRelease() throws Exception {
-    assumeTrue(!isWindows() && Files.exists(Paths.get("/etc/os-release")));
+    if (isWindows() || !Files.exists(Paths.get("/etc/os-release"))) {
+      return;
+    }
     String unknown = PlatformDetailsTask.UNKNOWN_VALUE_STRING;
     LsbRelease release = new LsbRelease(unknown, unknown);
     PlatformDetails details =
@@ -126,7 +127,9 @@ public class PlatformDetailsTaskTest {
   @Test
   @DisplayName("test Linux label computation with null lsb_release")
   public void testComputeLabelsLinuxWithNullLsbRelease() throws Exception {
-    assumeTrue(!isWindows() && Files.exists(Paths.get("/etc/os-release")));
+    if (isWindows() || !Files.exists(Paths.get("/etc/os-release"))) {
+      return;
+    }
     LsbRelease release = null;
     PlatformDetails details =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy", release);
@@ -150,7 +153,9 @@ public class PlatformDetailsTaskTest {
   @Test
   @DisplayName("test operating system name")
   public void compareOSName() throws Exception {
-    assumeTrue(!isWindows() && Files.exists(Paths.get("/etc/os-release")));
+    if (isWindows() || !Files.exists(Paths.get("/etc/os-release"))) {
+      return;
+    }
     String computedName =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy").getName();
     String readName = platformDetailsTask.readReleaseIdentifier("ID");
@@ -216,7 +221,9 @@ public class PlatformDetailsTaskTest {
   @Test
   @DisplayName("Read SUSE release identifier wrong file")
   public void readSuseReleaseIdentifierWrongFileReturnsUnknownValue() throws Exception {
-    assumeTrue(!isWindows() && Files.exists(Paths.get("/etc/hosts")));
+    if (isWindows() || !Files.exists(Paths.get("/etc/os-release"))) {
+      return;
+    }
     platformDetailsTask.setSuseRelease(new File("/etc/hosts")); // Not SuSE-release file
     String name = platformDetailsTask.readSuseReleaseIdentifier("ID");
     assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
@@ -225,7 +232,9 @@ public class PlatformDetailsTaskTest {
   @Test
   @DisplayName("Compare operating system version")
   public void compareOSVersion() throws Exception {
-    assumeTrue(!isWindows() && Files.exists(Paths.get("/etc/os-release")));
+    if (isWindows() || !Files.exists(Paths.get("/etc/os-release"))) {
+      return;
+    }
     PlatformDetails details =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
     String version = platformDetailsTask.readReleaseIdentifier("VERSION_ID");
