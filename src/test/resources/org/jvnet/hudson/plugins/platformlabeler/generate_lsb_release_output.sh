@@ -21,6 +21,9 @@ for dockerfile in $dockerfiles; do
         parent=$(dirname $dockerfile)
         version=$(basename $parent)
         image=$(dirname $parent)
+        if [[ "$image" == "alpine" ]]; then
+	        continue
+        fi
         echo ==== Generating lsb_release test data in $parent for image $image:$version
         (cd $parent \
                  && docker build -t platformlabeler/$image:$version . \
