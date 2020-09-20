@@ -137,6 +137,20 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
+  @DisplayName("test Windows 32 bit empty second and third arguments")
+  public void testCheckWindows32BitEmptyArgs() {
+    /* Always testing this case, no SPECIAL_CASE_ARCH needed */
+    assertThat(platformDetailsTask.checkWindows32Bit("x86", "", ""), is("x86"));
+  }
+
+  @Test
+  @DisplayName("test Windows 32 bit arbitrary arch")
+  public void testCheckWindows32BitArbitraryArch() {
+    /* Always testing this case, no SPECIAL_CASE_ARCH needed */
+    assertThat(platformDetailsTask.checkWindows32Bit("not-x86", "", ""), is("not-x86"));
+  }
+
+  @Test
   @DisplayName("test Windows 32 bit")
   public void testCheckWindows32Bit() {
     /* Always testing this case, no SPECIAL_CASE_ARCH needed */
