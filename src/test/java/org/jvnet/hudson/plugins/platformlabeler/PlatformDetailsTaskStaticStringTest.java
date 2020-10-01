@@ -139,12 +139,12 @@ public class PlatformDetailsTaskStaticStringTest {
           break;
       }
     } else if (name.startsWith("FreeBSD")) {
-      return readFreeBsdVersion(version);
+      return getFreeBsdVersion(version);
     }
     return version;
   }
 
-  private String readFreeBsdVersion(String version) {
+  private String getFreeBsdVersion(String version) {
     /* If no freebsd-version command, return the provided default value */
     File freebsdVersionCommand = new File("/bin/freebsd-version");
     if (!freebsdVersionCommand.exists()) {

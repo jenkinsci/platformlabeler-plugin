@@ -253,7 +253,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         computedVersion = readSuseReleaseIdentifier("VERSION_ID");
       }
     } else if (computedName.startsWith("freebsd")) {
-      computedVersion = readFreeBsdVersion(computedVersion);
+      computedVersion = getFreeBsdVersion(computedVersion);
     } else if (computedName.startsWith("mac")) {
       computedName = "mac";
     }
@@ -400,7 +400,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
   }
 
   @NonNull
-  String readFreeBsdVersion(String version) {
+  String getFreeBsdVersion(String version) {
     try {
       Process p = Runtime.getRuntime().exec("/bin/freebsd-version -u");
       p.waitFor();
