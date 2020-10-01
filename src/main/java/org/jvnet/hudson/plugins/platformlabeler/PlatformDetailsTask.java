@@ -209,13 +209,13 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
       computedVersion = release.release();
       /* Fallback to /etc/os-release file */
       if (computedName.equals(UNKNOWN_VALUE_STRING)) {
-        computedName = readReleaseIdentifier("ID");
+        computedName = getReleaseIdentifier("ID");
       }
       if (computedVersion.equals(UNKNOWN_VALUE_STRING)) {
-        computedVersion = readReleaseIdentifier("VERSION_ID");
+        computedVersion = getReleaseIdentifier("VERSION_ID");
       }
       if (computedVersion.equals(UNKNOWN_VALUE_STRING)) {
-        computedVersion = readReleaseIdentifier("BUILD_ID");
+        computedVersion = getReleaseIdentifier("BUILD_ID");
       }
       if (computedName.equals(UNKNOWN_VALUE_STRING)) {
         computedName = readRedhatReleaseIdentifier("ID");
@@ -307,7 +307,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
 
   /* Package protected for use in tests */
   @NonNull
-  String readReleaseIdentifier(@NonNull String field) {
+  String getReleaseIdentifier(@NonNull String field) {
     String value = UNKNOWN_VALUE_STRING;
     if (osRelease == null) {
       return value;

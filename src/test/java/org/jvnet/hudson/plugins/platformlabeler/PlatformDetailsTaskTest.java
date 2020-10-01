@@ -175,17 +175,17 @@ public class PlatformDetailsTaskTest {
     }
     String computedName =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy").getName();
-    String readName = platformDetailsTask.readReleaseIdentifier("ID");
+    String readName = platformDetailsTask.getReleaseIdentifier("ID");
     assertThat(computedName, is(readName));
   }
 
   @Test
   @DisplayName("test release identifier on missing file")
-  public void readReleaseIdentifierMissingFileReturnsUnknownValue() throws Exception {
+  public void getReleaseIdentifierMissingFileReturnsUnknownValue() throws Exception {
     PlatformDetails details =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
     platformDetailsTask.setOsReleaseFile(new File("/this/file/does/not/exist"));
-    String name = platformDetailsTask.readReleaseIdentifier("ID");
+    String name = platformDetailsTask.getReleaseIdentifier("ID");
     assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
   }
 
@@ -254,8 +254,8 @@ public class PlatformDetailsTaskTest {
     }
     PlatformDetails details =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
-    String version = platformDetailsTask.readReleaseIdentifier("VERSION_ID");
-    /* Check that the version string returned by readReleaseIdentifier
+    String version = platformDetailsTask.getReleaseIdentifier("VERSION_ID");
+    /* Check that the version string returned by getReleaseIdentifier
      * is at least at the beginning of one of the detail values. Allow
      * Debian 8, 9, and 10 and CentOS 7 to report their base version
      * in the /etc/os-release file without reporting their incremental
