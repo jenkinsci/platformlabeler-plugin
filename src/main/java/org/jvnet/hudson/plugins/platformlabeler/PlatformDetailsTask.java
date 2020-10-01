@@ -110,14 +110,14 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
    * @return standardized architecture of current Linux operating system
    */
   @NonNull
-  private String checkLinux32Bit(@NonNull final String arch) {
+  private String getCanonicalLinuxArch(@NonNull final String arch) {
     if (!"x86".equalsIgnoreCase(arch)) {
       return arch;
     }
     try {
       Process p = Runtime.getRuntime().exec("/bin/uname -m");
       p.waitFor();
-      return checkLinux32BitStream(p.getInputStream(), arch);
+      return getCanonicalLinuxArchStream(p.getInputStream(), arch);
     } catch (IOException | InterruptedException e) {
       /* Return arch instead of throwing an exception */
     }
@@ -125,7 +125,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
   }
 
   /* Package protected for testing */
-  String checkLinux32BitStream(@NonNull InputStream stream, @NonNull String arch)
+  String getCanonicalLinuxArchStream(@NonNull InputStream stream, @NonNull String arch)
       throws IOException {
     try (BufferedReader b = new BufferedReader(new InputStreamReader(stream, "UTF-8"))) {
       String line = b.readLine();
@@ -205,26 +205,26 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         release = new LsbRelease();
       }
       computedName = release.distributorId();
-      computedArch = checkLinux32Bit(computedArch);
+      computedArch = getCanonicalLinuxArch(computedArch);
       computedVersion = release.release();
       /* Fallback to /etc/os-release file */
       if (computedName.equals(UNKNOWN_VALUE_STRING)) {
-        computedName = readReleaseIdentifier("ID");
+        computedName = getReleaseIdentifier("ID");
       }
       if (computedVersion.equals(UNKNOWN_VALUE_STRING)) {
-        computedVersion = readReleaseIdentifier("VERSION_ID");
+        computedVersion = getReleaseIdentifier("VERSION_ID");
       }
       if (computedVersion.equals(UNKNOWN_VALUE_STRING)) {
-        computedVersion = readReleaseIdentifier("BUILD_ID");
+        computedVersion = getReleaseIdentifier("BUILD_ID");
       }
       if (computedName.equals(UNKNOWN_VALUE_STRING)) {
-        computedName = readRedhatReleaseIdentifier("ID");
+        computedName = getRedhatReleaseIdentifier("ID");
       }
       if (computedVersion.equals(UNKNOWN_VALUE_STRING)) {
-        computedVersion = readRedhatReleaseIdentifier("VERSION_ID");
+        computedVersion = getRedhatReleaseIdentifier("VERSION_ID");
       }
       if (computedName.equals(UNKNOWN_VALUE_STRING)) {
-        computedName = readSuseReleaseIdentifier("ID");
+        computedName = getSuseReleaseIdentifier("ID");
       }
       /* This is kind of a hack. lsb_release -a returns only the major
        * version on SLES 11 and older, so trying to fall back to
@@ -240,7 +240,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         try {
           int intVersion = Integer.parseInt(computedVersion);
           if (intVersion <= 11) {
-            String newVersion = readSuseReleaseIdentifier("VERSION_ID");
+            String newVersion = getSuseReleaseIdentifier("VERSION_ID");
             if (!newVersion.equals(UNKNOWN_VALUE_STRING)) {
               computedVersion = newVersion;
             }
@@ -250,10 +250,10 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         }
       }
       if (computedVersion.equals(UNKNOWN_VALUE_STRING)) {
-        computedVersion = readSuseReleaseIdentifier("VERSION_ID");
+        computedVersion = getSuseReleaseIdentifier("VERSION_ID");
       }
     } else if (computedName.startsWith("freebsd")) {
-      computedVersion = readFreeBsdVersion(computedVersion);
+      computedVersion = getFreeBsdVersion(computedVersion);
     } else if (computedName.startsWith("mac")) {
       computedName = "mac";
     }
@@ -307,7 +307,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
 
   /* Package protected for use in tests */
   @NonNull
-  String readReleaseIdentifier(@NonNull String field) {
+  String getReleaseIdentifier(@NonNull String field) {
     String value = UNKNOWN_VALUE_STRING;
     if (osRelease == null) {
       return value;
@@ -329,7 +329,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
 
   /* Package protected for use in tests */
   @NonNull
-  String readRedhatReleaseIdentifier(@NonNull String field) {
+  String getRedhatReleaseIdentifier(@NonNull String field) {
     String value = UNKNOWN_VALUE_STRING;
     if (redhatRelease == null) {
       return value;
@@ -356,7 +356,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
   }
 
   @NonNull
-  String readSuseReleaseIdentifier(@NonNull String field) {
+  String getSuseReleaseIdentifier(@NonNull String field) {
     String value = UNKNOWN_VALUE_STRING;
     String version = null;
     String patchLevel = null;
@@ -400,7 +400,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
   }
 
   @NonNull
-  String readFreeBsdVersion(String version) {
+  String getFreeBsdVersion(String version) {
     try {
       Process p = Runtime.getRuntime().exec("/bin/freebsd-version -u");
       p.waitFor();

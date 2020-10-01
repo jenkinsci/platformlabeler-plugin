@@ -33,6 +33,7 @@ import org.junit.Test;
 import org.jvnet.hudson.test.JenkinsRule;
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.StaplerResponse;
+import org.kohsuke.stapler.interceptor.RequirePOST;
 
 /**
  * Test NodeLabelCache in a few potential error cases.
@@ -151,6 +152,7 @@ public class NodeLabelCacheTest {
     }
 
     @Override
+    @RequirePOST
     public void doLaunchSlaveAgent(StaplerRequest sr, StaplerResponse sr1)
         throws IOException, ServletException {
       throw new UnsupportedOperationException("Unsupported");

@@ -79,36 +79,39 @@ public class PlatformDetailsTaskTest {
 
   @Test
   @DisplayName("test 32 bit Linux label computation")
-  public void testComputeLabelsLinux32Bit() throws Exception {
+  void testComputeLabelsCanonicalLinuxArch() throws Exception {
     PlatformDetails details =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
     assertPlatformDetails(details);
   }
 
   @Test
-  @DisplayName("test Linux32Bit stream")
-  public void testLinux32BitStream() throws IOException {
+  @DisplayName("test CanonicalLinuxArch stream")
+  void testCanonicalLinuxArchStream() throws IOException {
     String unameOutput = "x86_64";
     InputStream stream = new ByteArrayInputStream(unameOutput.getBytes(StandardCharsets.UTF_8));
-    assertThat(platformDetailsTask.checkLinux32BitStream(stream, SPECIAL_CASE_ARCH), is("amd64"));
+    assertThat(
+        platformDetailsTask.getCanonicalLinuxArchStream(stream, SPECIAL_CASE_ARCH), is("amd64"));
   }
 
   @Test
-  @DisplayName("test Linux32Bit stream ARM")
-  public void testLinux32BitStreamARM() throws IOException {
+  @DisplayName("test CanonicalLinuxArch stream ARM")
+  void testCanonicalLinuxArchStreamARM() throws IOException {
     String unameOutput = "aarch64";
     InputStream stream = new ByteArrayInputStream(unameOutput.getBytes(StandardCharsets.UTF_8));
     assertThat(
-        platformDetailsTask.checkLinux32BitStream(stream, SPECIAL_CASE_ARCH), is(unameOutput));
+        platformDetailsTask.getCanonicalLinuxArchStream(stream, SPECIAL_CASE_ARCH),
+        is(unameOutput));
   }
 
   @Test
-  @DisplayName("test Linux32Bit stream empty")
-  public void testLinux32BitStreamEmpty() throws IOException {
+  @DisplayName("test CanonicalLinuxArch stream empty")
+  void testCanonicalLinuxArchStreamEmpty() throws IOException {
     String unameOutput = "";
     String expectedArch = "Expected-Arch";
     InputStream stream = new ByteArrayInputStream(unameOutput.getBytes(StandardCharsets.UTF_8));
-    assertThat(platformDetailsTask.checkLinux32BitStream(stream, expectedArch), is(expectedArch));
+    assertThat(
+        platformDetailsTask.getCanonicalLinuxArchStream(stream, expectedArch), is(expectedArch));
   }
 
   @Test
@@ -172,74 +175,74 @@ public class PlatformDetailsTaskTest {
     }
     String computedName =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy").getName();
-    String readName = platformDetailsTask.readReleaseIdentifier("ID");
+    String readName = platformDetailsTask.getReleaseIdentifier("ID");
     assertThat(computedName, is(readName));
   }
 
   @Test
   @DisplayName("test release identifier on missing file")
-  public void readReleaseIdentifierMissingFileReturnsUnknownValue() throws Exception {
+  public void getReleaseIdentifierMissingFileReturnsUnknownValue() throws Exception {
     PlatformDetails details =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
     platformDetailsTask.setOsReleaseFile(new File("/this/file/does/not/exist"));
-    String name = platformDetailsTask.readReleaseIdentifier("ID");
+    String name = platformDetailsTask.getReleaseIdentifier("ID");
     assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
   }
 
   @Test
   @DisplayName("Read Red Hat release identifier")
-  public void readRedhatReleaseIdentifierMissingFileReturnsUnknownValue() throws Exception {
+  public void getRedhatReleaseIdentifierMissingFileReturnsUnknownValue() throws Exception {
     PlatformDetails details =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
     platformDetailsTask.setRedhatRelease(new File("/this/file/does/not/exist"));
-    String name = platformDetailsTask.readRedhatReleaseIdentifier("ID");
+    String name = platformDetailsTask.getRedhatReleaseIdentifier("ID");
     assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
   }
 
   @Test
   @DisplayName("Read Red Hat release identifier null file")
-  public void readRedhatReleaseIdentifierNullFileReturnsUnknownValue() throws Exception {
+  public void getRedhatReleaseIdentifierNullFileReturnsUnknownValue() throws Exception {
     PlatformDetails details =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
     platformDetailsTask.setRedhatRelease(null);
-    String name = platformDetailsTask.readRedhatReleaseIdentifier("ID");
+    String name = platformDetailsTask.getRedhatReleaseIdentifier("ID");
     assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
   }
 
   @Test
   @DisplayName("Read Red Hat release identifier wrong file")
-  public void readRedhatReleaseIdentifierWrongFileReturnsUnknownValue() throws Exception {
+  public void getRedhatReleaseIdentifierWrongFileReturnsUnknownValue() throws Exception {
     PlatformDetails details =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
     platformDetailsTask.setRedhatRelease(new File("/etc/hosts")); // Not redhat-release file
-    String name = platformDetailsTask.readRedhatReleaseIdentifier("ID");
+    String name = platformDetailsTask.getRedhatReleaseIdentifier("ID");
     assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
   }
 
   @Test
   @DisplayName("Read SUSE release identifier missing file")
-  public void readSuseReleaseIdentifierMissingFileReturnsUnknownValue() throws Exception {
+  public void getSuseReleaseIdentifierMissingFileReturnsUnknownValue() throws Exception {
     platformDetailsTask.setSuseRelease(new File("/this/file/does/not/exist"));
-    String name = platformDetailsTask.readSuseReleaseIdentifier("ID");
+    String name = platformDetailsTask.getSuseReleaseIdentifier("ID");
     assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
   }
 
   @Test
   @DisplayName("Read SUSE release identifier null file")
-  public void readSuseReleaseIdentifierNullFileReturnsUnknownValue() throws Exception {
+  public void getSuseReleaseIdentifierNullFileReturnsUnknownValue() throws Exception {
     platformDetailsTask.setSuseRelease(null);
-    String name = platformDetailsTask.readSuseReleaseIdentifier("ID");
+    String name = platformDetailsTask.getSuseReleaseIdentifier("ID");
     assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
   }
 
   @Test
   @DisplayName("Read SUSE release identifier wrong file")
-  public void readSuseReleaseIdentifierWrongFileReturnsUnknownValue() throws Exception {
+  public void getSuseReleaseIdentifierWrongFileReturnsUnknownValue() throws Exception {
     if (isWindows() || !Files.exists(Paths.get("/etc/os-release"))) {
       return;
     }
     platformDetailsTask.setSuseRelease(new File("/etc/hosts")); // Not SuSE-release file
-    String name = platformDetailsTask.readSuseReleaseIdentifier("ID");
+    String name = platformDetailsTask.getSuseReleaseIdentifier("ID");
     assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
   }
 
@@ -251,8 +254,8 @@ public class PlatformDetailsTaskTest {
     }
     PlatformDetails details =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
-    String version = platformDetailsTask.readReleaseIdentifier("VERSION_ID");
-    /* Check that the version string returned by readReleaseIdentifier
+    String version = platformDetailsTask.getReleaseIdentifier("VERSION_ID");
+    /* Check that the version string returned by getReleaseIdentifier
      * is at least at the beginning of one of the detail values. Allow
      * Debian 8, 9, and 10 and CentOS 7 to report their base version
      * in the /etc/os-release file without reporting their incremental
