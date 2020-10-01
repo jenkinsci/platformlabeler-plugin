@@ -218,10 +218,10 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         computedVersion = getReleaseIdentifier("BUILD_ID");
       }
       if (computedName.equals(UNKNOWN_VALUE_STRING)) {
-        computedName = readRedhatReleaseIdentifier("ID");
+        computedName = getRedhatReleaseIdentifier("ID");
       }
       if (computedVersion.equals(UNKNOWN_VALUE_STRING)) {
-        computedVersion = readRedhatReleaseIdentifier("VERSION_ID");
+        computedVersion = getRedhatReleaseIdentifier("VERSION_ID");
       }
       if (computedName.equals(UNKNOWN_VALUE_STRING)) {
         computedName = readSuseReleaseIdentifier("ID");
@@ -329,7 +329,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
 
   /* Package protected for use in tests */
   @NonNull
-  String readRedhatReleaseIdentifier(@NonNull String field) {
+  String getRedhatReleaseIdentifier(@NonNull String field) {
     String value = UNKNOWN_VALUE_STRING;
     if (redhatRelease == null) {
       return value;

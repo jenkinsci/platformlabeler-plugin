@@ -191,31 +191,31 @@ public class PlatformDetailsTaskTest {
 
   @Test
   @DisplayName("Read Red Hat release identifier")
-  public void readRedhatReleaseIdentifierMissingFileReturnsUnknownValue() throws Exception {
+  public void getRedhatReleaseIdentifierMissingFileReturnsUnknownValue() throws Exception {
     PlatformDetails details =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
     platformDetailsTask.setRedhatRelease(new File("/this/file/does/not/exist"));
-    String name = platformDetailsTask.readRedhatReleaseIdentifier("ID");
+    String name = platformDetailsTask.getRedhatReleaseIdentifier("ID");
     assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
   }
 
   @Test
   @DisplayName("Read Red Hat release identifier null file")
-  public void readRedhatReleaseIdentifierNullFileReturnsUnknownValue() throws Exception {
+  public void getRedhatReleaseIdentifierNullFileReturnsUnknownValue() throws Exception {
     PlatformDetails details =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
     platformDetailsTask.setRedhatRelease(null);
-    String name = platformDetailsTask.readRedhatReleaseIdentifier("ID");
+    String name = platformDetailsTask.getRedhatReleaseIdentifier("ID");
     assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
   }
 
   @Test
   @DisplayName("Read Red Hat release identifier wrong file")
-  public void readRedhatReleaseIdentifierWrongFileReturnsUnknownValue() throws Exception {
+  public void getRedhatReleaseIdentifierWrongFileReturnsUnknownValue() throws Exception {
     PlatformDetails details =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
     platformDetailsTask.setRedhatRelease(new File("/etc/hosts")); // Not redhat-release file
-    String name = platformDetailsTask.readRedhatReleaseIdentifier("ID");
+    String name = platformDetailsTask.getRedhatReleaseIdentifier("ID");
     assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
   }
 
