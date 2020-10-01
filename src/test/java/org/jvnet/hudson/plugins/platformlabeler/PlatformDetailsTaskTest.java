@@ -221,28 +221,28 @@ public class PlatformDetailsTaskTest {
 
   @Test
   @DisplayName("Read SUSE release identifier missing file")
-  public void readSuseReleaseIdentifierMissingFileReturnsUnknownValue() throws Exception {
+  public void getSuseReleaseIdentifierMissingFileReturnsUnknownValue() throws Exception {
     platformDetailsTask.setSuseRelease(new File("/this/file/does/not/exist"));
-    String name = platformDetailsTask.readSuseReleaseIdentifier("ID");
+    String name = platformDetailsTask.getSuseReleaseIdentifier("ID");
     assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
   }
 
   @Test
   @DisplayName("Read SUSE release identifier null file")
-  public void readSuseReleaseIdentifierNullFileReturnsUnknownValue() throws Exception {
+  public void getSuseReleaseIdentifierNullFileReturnsUnknownValue() throws Exception {
     platformDetailsTask.setSuseRelease(null);
-    String name = platformDetailsTask.readSuseReleaseIdentifier("ID");
+    String name = platformDetailsTask.getSuseReleaseIdentifier("ID");
     assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
   }
 
   @Test
   @DisplayName("Read SUSE release identifier wrong file")
-  public void readSuseReleaseIdentifierWrongFileReturnsUnknownValue() throws Exception {
+  public void getSuseReleaseIdentifierWrongFileReturnsUnknownValue() throws Exception {
     if (isWindows() || !Files.exists(Paths.get("/etc/os-release"))) {
       return;
     }
     platformDetailsTask.setSuseRelease(new File("/etc/hosts")); // Not SuSE-release file
-    String name = platformDetailsTask.readSuseReleaseIdentifier("ID");
+    String name = platformDetailsTask.getSuseReleaseIdentifier("ID");
     assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
   }
 

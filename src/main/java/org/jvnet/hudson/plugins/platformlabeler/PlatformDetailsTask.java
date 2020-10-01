@@ -224,7 +224,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         computedVersion = getRedhatReleaseIdentifier("VERSION_ID");
       }
       if (computedName.equals(UNKNOWN_VALUE_STRING)) {
-        computedName = readSuseReleaseIdentifier("ID");
+        computedName = getSuseReleaseIdentifier("ID");
       }
       /* This is kind of a hack. lsb_release -a returns only the major
        * version on SLES 11 and older, so trying to fall back to
@@ -240,7 +240,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         try {
           int intVersion = Integer.parseInt(computedVersion);
           if (intVersion <= 11) {
-            String newVersion = readSuseReleaseIdentifier("VERSION_ID");
+            String newVersion = getSuseReleaseIdentifier("VERSION_ID");
             if (!newVersion.equals(UNKNOWN_VALUE_STRING)) {
               computedVersion = newVersion;
             }
@@ -250,7 +250,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         }
       }
       if (computedVersion.equals(UNKNOWN_VALUE_STRING)) {
-        computedVersion = readSuseReleaseIdentifier("VERSION_ID");
+        computedVersion = getSuseReleaseIdentifier("VERSION_ID");
       }
     } else if (computedName.startsWith("freebsd")) {
       computedVersion = getFreeBsdVersion(computedVersion);
@@ -356,7 +356,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
   }
 
   @NonNull
-  String readSuseReleaseIdentifier(@NonNull String field) {
+  String getSuseReleaseIdentifier(@NonNull String field) {
     String value = UNKNOWN_VALUE_STRING;
     String version = null;
     String patchLevel = null;
