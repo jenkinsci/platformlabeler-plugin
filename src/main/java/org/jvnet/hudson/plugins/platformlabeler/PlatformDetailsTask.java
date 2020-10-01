@@ -110,14 +110,14 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
    * @return standardized architecture of current Linux operating system
    */
   @NonNull
-  private String checkLinux32Bit(@NonNull final String arch) {
+  private String getCanonicalLinuxArch(@NonNull final String arch) {
     if (!"x86".equalsIgnoreCase(arch)) {
       return arch;
     }
     try {
       Process p = Runtime.getRuntime().exec("/bin/uname -m");
       p.waitFor();
-      return checkLinux32BitStream(p.getInputStream(), arch);
+      return getCanonicalLinuxArchStream(p.getInputStream(), arch);
     } catch (IOException | InterruptedException e) {
       /* Return arch instead of throwing an exception */
     }
@@ -125,7 +125,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
   }
 
   /* Package protected for testing */
-  String checkLinux32BitStream(@NonNull InputStream stream, @NonNull String arch)
+  String getCanonicalLinuxArchStream(@NonNull InputStream stream, @NonNull String arch)
       throws IOException {
     try (BufferedReader b = new BufferedReader(new InputStreamReader(stream, "UTF-8"))) {
       String line = b.readLine();
@@ -205,7 +205,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         release = new LsbRelease();
       }
       computedName = release.distributorId();
-      computedArch = checkLinux32Bit(computedArch);
+      computedArch = getCanonicalLinuxArch(computedArch);
       computedVersion = release.release();
       /* Fallback to /etc/os-release file */
       if (computedName.equals(UNKNOWN_VALUE_STRING)) {

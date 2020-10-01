@@ -79,36 +79,39 @@ public class PlatformDetailsTaskTest {
 
   @Test
   @DisplayName("test 32 bit Linux label computation")
-  public void testComputeLabelsLinux32Bit() throws Exception {
+  void testComputeLabelsCanonicalLinuxArch() throws Exception {
     PlatformDetails details =
         platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
     assertPlatformDetails(details);
   }
 
   @Test
-  @DisplayName("test Linux32Bit stream")
-  public void testLinux32BitStream() throws IOException {
+  @DisplayName("test CanonicalLinuxArch stream")
+  void testCanonicalLinuxArchStream() throws IOException {
     String unameOutput = "x86_64";
     InputStream stream = new ByteArrayInputStream(unameOutput.getBytes(StandardCharsets.UTF_8));
-    assertThat(platformDetailsTask.checkLinux32BitStream(stream, SPECIAL_CASE_ARCH), is("amd64"));
+    assertThat(
+        platformDetailsTask.getCanonicalLinuxArchStream(stream, SPECIAL_CASE_ARCH), is("amd64"));
   }
 
   @Test
-  @DisplayName("test Linux32Bit stream ARM")
-  public void testLinux32BitStreamARM() throws IOException {
+  @DisplayName("test CanonicalLinuxArch stream ARM")
+  void testCanonicalLinuxArchStreamARM() throws IOException {
     String unameOutput = "aarch64";
     InputStream stream = new ByteArrayInputStream(unameOutput.getBytes(StandardCharsets.UTF_8));
     assertThat(
-        platformDetailsTask.checkLinux32BitStream(stream, SPECIAL_CASE_ARCH), is(unameOutput));
+        platformDetailsTask.getCanonicalLinuxArchStream(stream, SPECIAL_CASE_ARCH),
+        is(unameOutput));
   }
 
   @Test
-  @DisplayName("test Linux32Bit stream empty")
-  public void testLinux32BitStreamEmpty() throws IOException {
+  @DisplayName("test CanonicalLinuxArch stream empty")
+  void testCanonicalLinuxArchStreamEmpty() throws IOException {
     String unameOutput = "";
     String expectedArch = "Expected-Arch";
     InputStream stream = new ByteArrayInputStream(unameOutput.getBytes(StandardCharsets.UTF_8));
-    assertThat(platformDetailsTask.checkLinux32BitStream(stream, expectedArch), is(expectedArch));
+    assertThat(
+        platformDetailsTask.getCanonicalLinuxArchStream(stream, expectedArch), is(expectedArch));
   }
 
   @Test
