@@ -64,6 +64,7 @@ public class PlatformDetailsTaskTest {
               is("AmazonAMI"),
               is("CentOS"),
               is("Debian"),
+              is("openSUSE"),
               is("Raspbian"),
               is("Ubuntu")));
       // Yes, this is a dirty trick to detect the hardware architecture on some JVM's
