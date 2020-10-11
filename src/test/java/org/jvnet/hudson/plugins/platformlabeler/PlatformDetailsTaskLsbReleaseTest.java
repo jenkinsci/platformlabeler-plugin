@@ -106,6 +106,12 @@ public class PlatformDetailsTaskLsbReleaseTest {
     if (filename.contains("sles")) {
       return "SUSE";
     }
+    if (filename.contains("opensuse-leap")) {
+      return "openSUSE";
+    }
+    if (filename.contains("opensuse-tumbleweed")) {
+      return "openSUSE";
+    }
     return filename.toLowerCase(Locale.ENGLISH);
   }
 

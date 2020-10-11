@@ -277,6 +277,8 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
     PREFERRED_LINUX_OS_NAMES.put("linuxmint", "LinuxMint");
     PREFERRED_LINUX_OS_NAMES.put("ol", "OracleServer");
     PREFERRED_LINUX_OS_NAMES.put("opensuse", "openSUSE");
+    PREFERRED_LINUX_OS_NAMES.put("opensuse-leap", "openSUSE");
+    PREFERRED_LINUX_OS_NAMES.put("opensuse-tumbleweed", "openSUSE");
     PREFERRED_LINUX_OS_NAMES.put("raspbian", "Raspbian");
     PREFERRED_LINUX_OS_NAMES.put("Red Hat Enterprise Linux", "RedHatEnterprise");
     PREFERRED_LINUX_OS_NAMES.put("Red Hat Enterprise Linux Server", "RedHatEnterprise");

@@ -100,6 +100,9 @@ public class PlatformDetailsTaskReleaseTest {
     if (filename.contains("linuxmint")) {
       return "LinuxMint";
     }
+    if (filename.contains("opensuse")) {
+      return "openSUSE";
+    }
     if (filename.contains("oraclelinux")) {
       return "OracleServer";
     }
