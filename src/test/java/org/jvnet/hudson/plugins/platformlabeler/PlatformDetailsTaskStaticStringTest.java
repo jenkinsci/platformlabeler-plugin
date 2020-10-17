@@ -86,7 +86,7 @@ public class PlatformDetailsTaskStaticStringTest {
   @ParameterizedTest(name = "file: {0}, expected: '{1}', {2}, {3}")
   @MethodSource("generateTestParameters")
   @DisplayName("Compute labels from static strings")
-  public void testComputeLabels(String name, String arch, String version) throws Exception {
+  void testComputeLabels(String name, String arch, String version) throws Exception {
     String expectedName = computeExpectedName(name);
     String expectedArch = computeExpectedArch(name, arch);
     String expectedVersion = computeVersion(name, version);

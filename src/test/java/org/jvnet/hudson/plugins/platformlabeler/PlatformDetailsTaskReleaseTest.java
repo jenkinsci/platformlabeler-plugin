@@ -45,7 +45,7 @@ public class PlatformDetailsTaskReleaseTest {
   @ParameterizedTest(name = "file: {0}, expected: '{1}', {2}, {3}")
   @MethodSource("generateReleaseFileNames")
   @DisplayName("Compute platform details from release file")
-  public void testComputeLabelsForRelease(
+  void testComputeLabelsForRelease(
       String releaseFileName, String expectedName, String expectedVersion, String expectedArch)
       throws Exception {
     PlatformDetailsTask details = new PlatformDetailsTask();

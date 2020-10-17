@@ -44,7 +44,7 @@ public class PlatformDetailsTaskLsbReleaseTest {
   @ParameterizedTest(name = "file: {0}, expected: '{1}', {2}, {3}")
   @MethodSource("generateReleaseFileNames")
   @DisplayName("Compute os-release labels")
-  public void testComputeLabelsForOsRelease(
+  void testComputeLabelsForOsRelease(
       String lsbReleaseFileName, String expectedName, String expectedVersion, String expectedArch)
       throws Exception {
     PlatformDetailsTask details = new PlatformDetailsTask();
