@@ -27,6 +27,7 @@ package org.jvnet.hudson.plugins.platformlabeler;
 
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import hudson.remoting.Callable;
 import java.io.BufferedReader;
 import java.io.File;
@@ -80,6 +81,13 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
     return computeLabels(arch, name, version);
   }
 
+  @SuppressFBWarnings(
+      value = "IMPROPER_UNICODE",
+      justification = "Strings are ASCII, safe to ignore case")
+  private boolean equalsIgnoreCase(@NonNull String s1, @NonNull String s2) {
+    return s1.equalsIgnoreCase(s2);
+  }
+
   /**
    * Returns standardized architecture of current Windows operating system, adapted for those cases
    * where a 64 bit machine may be running a 32 bit Java virtual machine. Returns "amd64" if the
@@ -92,10 +100,10 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
   @NonNull
   protected String checkWindows32Bit(
       @NonNull final String arch, @NonNull final String env1, @NonNull final String env2) {
-    if (!"x86".equalsIgnoreCase(arch)) {
+    if (!equalsIgnoreCase("x86", arch)) {
       return arch;
     }
-    if ("amd64".equalsIgnoreCase(env1) || "amd64".equalsIgnoreCase(env2)) {
+    if (equalsIgnoreCase("amd64", env1) || equalsIgnoreCase("amd64", env2)) {
       return "amd64";
     }
     return arch;
@@ -111,7 +119,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
    */
   @NonNull
   private String getCanonicalLinuxArch(@NonNull final String arch) {
-    if (!"x86".equalsIgnoreCase(arch)) {
+    if (!equalsIgnoreCase("x86", arch)) {
       return arch;
     }
     try {
@@ -163,6 +171,13 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
     return computeLabels(arch, name, version, release);
   }
 
+  @SuppressFBWarnings(
+      value = "IMPROPER_UNICODE",
+      justification = "Strings are ASCII, safe to lower case")
+  private String toLowerCase(@NonNull String s1) {
+    return s1.toLowerCase(Locale.ENGLISH);
+  }
+
   /**
    * Compute agent OS properties based on seed values provided as parameters.
    *
@@ -181,7 +196,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
       @NonNull final String version,
       @CheckForNull LsbRelease release)
       throws IOException {
-    String computedName = name.toLowerCase(Locale.ENGLISH);
+    String computedName = toLowerCase(name);
     String computedArch = arch;
     String computedVersion = version;
     if (computedName.startsWith("windows")) {
