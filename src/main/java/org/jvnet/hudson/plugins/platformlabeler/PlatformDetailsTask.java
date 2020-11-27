@@ -238,6 +238,11 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
       if (computedVersion.equals(UNKNOWN_VALUE_STRING)) {
         computedVersion = getRedhatReleaseIdentifier("VERSION_ID");
       }
+      if (computedName.equals("debian") && computedVersion.equals(UNKNOWN_VALUE_STRING)) {
+        /* Debian unstable and Debian testing don't include version in os-release */
+        /* Try reading it from a different location */
+        computedVersion = getDebianVersionIdentifier();
+      }
       /* JENKINS-64324 notes that labels with '/' break various Jenkins components */
       /* For example, Debian testing reports its version as "testing/unstable" */
       /* Take the portion of the version string that precedes the '/' character */
@@ -313,6 +318,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
   }
 
   private File osRelease = new File("/etc/os-release");
+  private File debianVersion = new File("/etc/debian_version");
   private File redhatRelease = new File("/etc/redhat-release");
   private File suseRelease = new File("/etc/SuSE-release");
 
@@ -327,6 +333,10 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
 
   void setSuseRelease(File suseRelease) {
     this.suseRelease = suseRelease;
+  }
+
+  void setDebianVersion(File debianVersion) {
+    this.debianVersion = debianVersion;
   }
 
   /* Package protected for use in tests */
@@ -421,6 +431,23 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
       }
     }
     return PREFERRED_LINUX_OS_NAMES.getOrDefault(value, value);
+  }
+
+  @NonNull
+  String getDebianVersionIdentifier() {
+    if (debianVersion != null) {
+      try (BufferedReader br =
+          new BufferedReader(
+              Files.newBufferedReader(debianVersion.toPath(), StandardCharsets.UTF_8))) {
+        String line;
+        while ((line = br.readLine()) != null) {
+          return line.trim();
+        }
+      } catch (IOException notFound) {
+        return UNKNOWN_VALUE_STRING;
+      }
+    }
+    return UNKNOWN_VALUE_STRING;
   }
 
   @NonNull

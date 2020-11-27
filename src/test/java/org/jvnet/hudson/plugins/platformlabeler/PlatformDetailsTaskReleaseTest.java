@@ -70,6 +70,12 @@ public class PlatformDetailsTaskReleaseTest {
     PlatformDetails result = details.computeLabels("amd64", "linux", "xyzzy-abc", release);
     assertThat(result.getName(), is(expectedName));
     assertThat(result.getArchitecture(), is(expectedArch));
+    if (releaseFileName.matches("debian.(testing|unstable).os-release")) {
+      /* Debian testing and Debian unstable do not include a version in /etc/os-release.
+       * Expected version string is the unknown string because the value truly is unknown.
+       */
+      expectedVersion = unknown;
+    }
     assertThat(result.getVersion(), is(expectedVersion));
     assertThat(result.getArchitectureName(), is(expectedArch + "-" + expectedName));
     assertThat(

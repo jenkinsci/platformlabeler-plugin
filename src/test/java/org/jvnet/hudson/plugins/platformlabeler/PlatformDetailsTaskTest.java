@@ -66,6 +66,7 @@ public class PlatformDetailsTaskTest {
               is("Debian"),
               is("openSUSE"),
               is("Raspbian"),
+              is("SUSE"),
               is("Ubuntu")));
       // Yes, this is a dirty trick to detect the hardware architecture on some JVM's
       String expectedArch = SYSTEM_OS_ARCH;
@@ -188,6 +189,22 @@ public class PlatformDetailsTaskTest {
     platformDetailsTask.setOsReleaseFile(new File("/this/file/does/not/exist"));
     String name = platformDetailsTask.getReleaseIdentifier("ID");
     assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
+  }
+
+  @Test
+  @DisplayName("Read Debian version identifier missing file")
+  void getDebianVersionIdentifierMissingFileReturnsUnknownValue() throws Exception {
+    platformDetailsTask.setDebianVersion(new File("/this/file/does/not/exist"));
+    String version = platformDetailsTask.getDebianVersionIdentifier();
+    assertThat(version, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
+  }
+
+  @Test
+  @DisplayName("Read Debian version identifier null file")
+  void getDebianVersionNullFileReturnsUnknownValue() throws Exception {
+    platformDetailsTask.setDebianVersion(null);
+    String version = platformDetailsTask.getDebianVersionIdentifier();
+    assertThat(version, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
   }
 
   @Test
