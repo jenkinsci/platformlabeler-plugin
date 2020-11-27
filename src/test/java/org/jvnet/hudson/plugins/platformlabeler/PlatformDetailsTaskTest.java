@@ -66,6 +66,7 @@ public class PlatformDetailsTaskTest {
               is("Debian"),
               is("openSUSE"),
               is("Raspbian"),
+              is("SUSE"),
               is("Ubuntu")));
       // Yes, this is a dirty trick to detect the hardware architecture on some JVM's
       String expectedArch = SYSTEM_OS_ARCH;
