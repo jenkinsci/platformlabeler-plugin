@@ -238,6 +238,13 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
       if (computedVersion.equals(UNKNOWN_VALUE_STRING)) {
         computedVersion = getRedhatReleaseIdentifier("VERSION_ID");
       }
+      /* JENKINS-64324 notes that labels with '/' break various Jenkins components */
+      /* For example, Debian testing reports its version as "testing/unstable" */
+      /* Take the portion of the version string that precedes the '/' character */
+      if (computedVersion.contains("/")) {
+        int slashLocation = computedVersion.indexOf("/");
+        computedVersion = computedVersion.substring(0, slashLocation);
+      }
       if (computedName.equals(UNKNOWN_VALUE_STRING)) {
         computedName = getSuseReleaseIdentifier("ID");
       }
