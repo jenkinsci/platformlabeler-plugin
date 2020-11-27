@@ -191,6 +191,22 @@ public class PlatformDetailsTaskTest {
   }
 
   @Test
+  @DisplayName("Read Debian version identifier missing file")
+  void getDebianVersionIdentifierMissingFileReturnsUnknownValue() throws Exception {
+    platformDetailsTask.setDebianVersion(new File("/this/file/does/not/exist"));
+    String version = platformDetailsTask.getDebianVersionIdentifier();
+    assertThat(version, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
+  }
+
+  @Test
+  @DisplayName("Read Debian version identifier null file")
+  void getDebianVersionNullFileReturnsUnknownValue() throws Exception {
+    platformDetailsTask.setDebianVersion(null);
+    String version = platformDetailsTask.getDebianVersionIdentifier();
+    assertThat(version, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
+  }
+
+  @Test
   @DisplayName("Read Red Hat release identifier")
   void getRedhatReleaseIdentifierMissingFileReturnsUnknownValue() throws Exception {
     PlatformDetails details =
