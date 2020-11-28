@@ -238,7 +238,8 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
       if (computedVersion.equals(UNKNOWN_VALUE_STRING)) {
         computedVersion = getRedhatReleaseIdentifier("VERSION_ID");
       }
-      if (computedName.equals("debian") && computedVersion.equals(UNKNOWN_VALUE_STRING)) {
+      if (equalsIgnoreCase(computedName, "debian")
+          && computedVersion.equals(UNKNOWN_VALUE_STRING)) {
         /* Debian unstable and Debian testing don't include version in os-release */
         /* Try reading it from a different location */
         computedVersion = getDebianVersionIdentifier();
