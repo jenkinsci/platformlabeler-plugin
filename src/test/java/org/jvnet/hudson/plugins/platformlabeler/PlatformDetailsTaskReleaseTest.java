@@ -53,13 +53,25 @@ public class PlatformDetailsTaskReleaseTest {
     File releaseFile = new File(resource.toURI());
     assertThat(releaseFile, is(anExistingFile()));
     if (releaseFile.getName().startsWith("redhat")) {
+      /* Replaces os-release with Red Hat additional file */
       details.setOsReleaseFile(null);
+      details.setDebianVersion(null);
       details.setRedhatRelease(releaseFile);
       details.setSuseRelease(null);
     } else if (releaseFile.getName().startsWith("SuSE")) {
+      /* Replaces os-release with SuSE additional file */
       details.setOsReleaseFile(null);
+      details.setDebianVersion(null);
       details.setSuseRelease(releaseFile);
       details.setRedhatRelease(null);
+    } else if (releaseFileName.startsWith("debian")) {
+      /* Adds another file to consider in addition to os-release */
+      details.setOsReleaseFile(releaseFile);
+      details.setSuseRelease(null);
+      details.setRedhatRelease(null);
+      /* Extra file needed for Debian testing and unstable. No version in os-release */
+      File debianVersionFile = new File(releaseFile.getParentFile(), "debian_version");
+      details.setDebianVersion(debianVersionFile.exists() ? debianVersionFile : null);
     } else {
       details.setOsReleaseFile(releaseFile);
       details.setRedhatRelease(null);
@@ -70,12 +82,6 @@ public class PlatformDetailsTaskReleaseTest {
     PlatformDetails result = details.computeLabels("amd64", "linux", "xyzzy-abc", release);
     assertThat(result.getName(), is(expectedName));
     assertThat(result.getArchitecture(), is(expectedArch));
-    if (releaseFileName.matches("debian.(testing|unstable).os-release")) {
-      /* Debian testing and Debian unstable do not include a version in /etc/os-release.
-       * Expected version string is the unknown string because the value truly is unknown.
-       */
-      expectedVersion = unknown;
-    }
     assertThat(result.getVersion(), is(expectedVersion));
     assertThat(result.getArchitectureName(), is(expectedArch + "-" + expectedName));
     assertThat(
@@ -133,6 +139,11 @@ public class PlatformDetailsTaskReleaseTest {
   private static String computeExpectedVersion(String filename) {
     File file = new File(filename);
     File parentDir = file.getParentFile();
+    if (parentDir.getName().equals("testing") || parentDir.getName().equals("unstable")) {
+      /* Debian unstable and Debian testing are indistinguishable by package definition */
+      /* See https://unix.stackexchange.com/questions/464812/ for more details */
+      return "bullseye";
+    }
     return parentDir.getName();
   }
 }
