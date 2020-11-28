@@ -53,20 +53,23 @@ public class PlatformDetailsTaskReleaseTest {
     File releaseFile = new File(resource.toURI());
     assertThat(releaseFile, is(anExistingFile()));
     if (releaseFile.getName().startsWith("redhat")) {
+      /* Replaces os-release with Red Hat additional file */
       details.setOsReleaseFile(null);
       details.setDebianVersion(null);
       details.setRedhatRelease(releaseFile);
       details.setSuseRelease(null);
     } else if (releaseFile.getName().startsWith("SuSE")) {
+      /* Replaces os-release with SuSE additional file */
       details.setOsReleaseFile(null);
       details.setDebianVersion(null);
       details.setSuseRelease(releaseFile);
       details.setRedhatRelease(null);
-    } else if (releaseFile.getName().startsWith("debian")) {
+    } else if (releaseFileName.startsWith("debian")) {
+      /* Adds another file to consider in addition to os-release */
       details.setOsReleaseFile(releaseFile);
       details.setSuseRelease(null);
       details.setRedhatRelease(null);
-      /* Needed for Debian testing and unstable since they do not provide a version in os-release */
+      /* Extra file needed for Debian testing and unstable. No version in os-release */
       File debianVersionFile = new File(releaseFile.getParentFile(), "debian_version");
       details.setDebianVersion(debianVersionFile.exists() ? debianVersionFile : null);
     } else {
