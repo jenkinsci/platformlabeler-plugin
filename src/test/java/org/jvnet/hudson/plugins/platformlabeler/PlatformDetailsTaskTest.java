@@ -65,6 +65,7 @@ public class PlatformDetailsTaskTest {
               is("CentOS"),
               is("Debian"),
               is("openSUSE"),
+              is("OracleServer"),
               is("Raspbian"),
               is("SUSE"),
               is("Ubuntu")));
