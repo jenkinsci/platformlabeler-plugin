@@ -10,75 +10,75 @@ import org.kohsuke.stapler.DataBoundSetter;
 /** Stores configuration about labels to generate. */
 public class LabelConfig extends AbstractDescribableImpl<LabelConfig> {
 
-  private boolean architecture = true;
-  private boolean name = true;
-  private boolean version = true;
-  private boolean architectureName = true;
-  private boolean nameVersion = true;
-  private boolean architectureNameVersion = true;
+    private boolean architecture = true;
+    private boolean name = true;
+    private boolean version = true;
+    private boolean architectureName = true;
+    private boolean nameVersion = true;
+    private boolean architectureNameVersion = true;
 
-  @DataBoundConstructor
-  public LabelConfig() {
-    /* Intentionally empty constructor */
-  }
+    @DataBoundConstructor
+    public LabelConfig() {
+        /* Intentionally empty constructor */
+    }
 
-  public boolean isArchitecture() {
-    return architecture;
-  }
+    public boolean isArchitecture() {
+        return architecture;
+    }
 
-  @DataBoundSetter
-  public void setArchitecture(boolean arch) {
-    this.architecture = arch;
-  }
+    @DataBoundSetter
+    public void setArchitecture(boolean arch) {
+        this.architecture = arch;
+    }
 
-  public boolean isName() {
-    return name;
-  }
+    public boolean isName() {
+        return name;
+    }
 
-  @DataBoundSetter
-  public void setName(boolean name) {
-    this.name = name;
-  }
+    @DataBoundSetter
+    public void setName(boolean name) {
+        this.name = name;
+    }
 
-  public boolean isVersion() {
-    return version;
-  }
+    public boolean isVersion() {
+        return version;
+    }
 
-  @DataBoundSetter
-  public void setVersion(boolean version) {
-    this.version = version;
-  }
+    @DataBoundSetter
+    public void setVersion(boolean version) {
+        this.version = version;
+    }
 
-  public boolean isArchitectureName() {
-    return architectureName;
-  }
+    public boolean isArchitectureName() {
+        return architectureName;
+    }
 
-  @DataBoundSetter
-  public void setArchitectureName(boolean archName) {
-    this.architectureName = archName;
-  }
+    @DataBoundSetter
+    public void setArchitectureName(boolean archName) {
+        this.architectureName = archName;
+    }
 
-  public boolean isNameVersion() {
-    return nameVersion;
-  }
+    public boolean isNameVersion() {
+        return nameVersion;
+    }
 
-  @DataBoundSetter
-  public void setNameVersion(boolean nameVersion) {
-    this.nameVersion = nameVersion;
-  }
+    @DataBoundSetter
+    public void setNameVersion(boolean nameVersion) {
+        this.nameVersion = nameVersion;
+    }
 
-  public boolean isArchitectureNameVersion() {
-    return architectureNameVersion;
-  }
+    public boolean isArchitectureNameVersion() {
+        return architectureNameVersion;
+    }
 
-  @DataBoundSetter
-  public void setArchitectureNameVersion(boolean archNameVersion) {
-    this.architectureNameVersion = archNameVersion;
-  }
+    @DataBoundSetter
+    public void setArchitectureNameVersion(boolean archNameVersion) {
+        this.architectureNameVersion = archNameVersion;
+    }
 
-  @Extension
-  @Symbol("platformlabelerconfig")
-  public static class DescriptorImpl extends Descriptor<LabelConfig> {
-    /* Intentionally empty constructor */
-  }
+    @Extension
+    @Symbol("platformlabelerconfig")
+    public static class DescriptorImpl extends Descriptor<LabelConfig> {
+        /* Intentionally empty constructor */
+    }
 }

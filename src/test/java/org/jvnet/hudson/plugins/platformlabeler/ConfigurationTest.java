@@ -17,154 +17,155 @@ import org.junit.Test;
 import org.jvnet.hudson.test.JenkinsRule;
 
 public class ConfigurationTest {
-  @Rule public final JenkinsRule r = new JenkinsRule();
+    @Rule public final JenkinsRule r = new JenkinsRule();
 
-  private Computer computer;
-  private NodeLabelCache nodeLabelCache;
-  private PlatformDetails platformDetails;
+    private Computer computer;
+    private NodeLabelCache nodeLabelCache;
+    private PlatformDetails platformDetails;
 
-  @Before
-  public void setUp() throws IOException, InterruptedException {
-    computer = r.jenkins.toComputer();
-    nodeLabelCache = ComputerListener.all().get(NodeLabelCache.class);
-    platformDetails = nodeLabelCache.requestComputerPlatformDetails(computer);
-  }
+    @Before
+    public void setUp() throws IOException, InterruptedException {
+        computer = r.jenkins.toComputer();
+        nodeLabelCache = ComputerListener.all().get(NodeLabelCache.class);
+        platformDetails = nodeLabelCache.requestComputerPlatformDetails(computer);
+    }
 
-  @Test
-  public void configuredNameOnlyLabel() {
-    PlatformLabelerNodeProperty nodeProperty = new PlatformLabelerNodeProperty();
-    LabelConfig labelConfig = new LabelConfig();
-    labelConfig.setArchitecture(false);
-    labelConfig.setArchitectureName(false);
-    labelConfig.setArchitectureNameVersion(false);
-    labelConfig.setVersion(false);
-    labelConfig.setNameVersion(false);
-    nodeProperty.setLabelConfig(labelConfig);
-    r.jenkins.getNodeProperties().add(nodeProperty);
+    @Test
+    public void configuredNameOnlyLabel() {
+        PlatformLabelerNodeProperty nodeProperty = new PlatformLabelerNodeProperty();
+        LabelConfig labelConfig = new LabelConfig();
+        labelConfig.setArchitecture(false);
+        labelConfig.setArchitectureName(false);
+        labelConfig.setArchitectureNameVersion(false);
+        labelConfig.setVersion(false);
+        labelConfig.setNameVersion(false);
+        nodeProperty.setLabelConfig(labelConfig);
+        r.jenkins.getNodeProperties().add(nodeProperty);
 
-    nodeLabelCache.onConfigurationChange();
+        nodeLabelCache.onConfigurationChange();
 
-    Collection<LabelAtom> expected = new HashSet<>();
-    expected.add(r.jenkins.getLabelAtom("master"));
-    expected.add(r.jenkins.getLabelAtom(platformDetails.getName()));
+        Collection<LabelAtom> expected = new HashSet<>();
+        expected.add(r.jenkins.getLabelAtom("master"));
+        expected.add(r.jenkins.getLabelAtom(platformDetails.getName()));
 
-    Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
-    assertThat(expected, is(labelsAfter));
-  }
+        Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
+        assertThat(expected, is(labelsAfter));
+    }
 
-  @Test
-  public void configuredTwoLabels() {
-    PlatformLabelerNodeProperty nodeProperty = new PlatformLabelerNodeProperty();
-    LabelConfig labelConfig = new LabelConfig();
-    labelConfig.setArchitectureName(false);
-    labelConfig.setArchitectureNameVersion(false);
-    labelConfig.setName(false);
-    labelConfig.setNameVersion(false);
-    nodeProperty.setLabelConfig(labelConfig);
-    r.jenkins.getNodeProperties().add(nodeProperty);
+    @Test
+    public void configuredTwoLabels() {
+        PlatformLabelerNodeProperty nodeProperty = new PlatformLabelerNodeProperty();
+        LabelConfig labelConfig = new LabelConfig();
+        labelConfig.setArchitectureName(false);
+        labelConfig.setArchitectureNameVersion(false);
+        labelConfig.setName(false);
+        labelConfig.setNameVersion(false);
+        nodeProperty.setLabelConfig(labelConfig);
+        r.jenkins.getNodeProperties().add(nodeProperty);
 
-    nodeLabelCache.onConfigurationChange();
+        nodeLabelCache.onConfigurationChange();
 
-    Collection<LabelAtom> expected = new HashSet<>();
-    expected.add(r.jenkins.getLabelAtom("master"));
-    expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitecture()));
-    expected.add(r.jenkins.getLabelAtom(platformDetails.getVersion()));
+        Collection<LabelAtom> expected = new HashSet<>();
+        expected.add(r.jenkins.getLabelAtom("master"));
+        expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitecture()));
+        expected.add(r.jenkins.getLabelAtom(platformDetails.getVersion()));
 
-    Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
-    assertThat(expected, is(labelsAfter));
-  }
+        Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
+        assertThat(expected, is(labelsAfter));
+    }
 
-  @Test
-  public void configuredAllLabelsOnNode() {
-    PlatformLabelerNodeProperty nodeProperty = new PlatformLabelerNodeProperty();
-    LabelConfig labelConfig = new LabelConfig();
-    nodeProperty.setLabelConfig(labelConfig);
-    r.jenkins.getNodeProperties().add(nodeProperty);
+    @Test
+    public void configuredAllLabelsOnNode() {
+        PlatformLabelerNodeProperty nodeProperty = new PlatformLabelerNodeProperty();
+        LabelConfig labelConfig = new LabelConfig();
+        nodeProperty.setLabelConfig(labelConfig);
+        r.jenkins.getNodeProperties().add(nodeProperty);
 
-    nodeLabelCache.onConfigurationChange();
+        nodeLabelCache.onConfigurationChange();
 
-    Collection<LabelAtom> expected = new HashSet<>();
-    expected.add(r.jenkins.getLabelAtom("master"));
-    expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitecture()));
-    expected.add(r.jenkins.getLabelAtom(platformDetails.getVersion()));
-    expected.add(r.jenkins.getLabelAtom(platformDetails.getName()));
-    expected.add(r.jenkins.getLabelAtom(platformDetails.getNameVersion()));
-    expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitectureName()));
-    expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitectureNameVersion()));
+        Collection<LabelAtom> expected = new HashSet<>();
+        expected.add(r.jenkins.getLabelAtom("master"));
+        expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitecture()));
+        expected.add(r.jenkins.getLabelAtom(platformDetails.getVersion()));
+        expected.add(r.jenkins.getLabelAtom(platformDetails.getName()));
+        expected.add(r.jenkins.getLabelAtom(platformDetails.getNameVersion()));
+        expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitectureName()));
+        expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitectureNameVersion()));
 
-    Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
-    assertThat(expected, is(labelsAfter));
-  }
+        Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
+        assertThat(expected, is(labelsAfter));
+    }
 
-  @Test
-  public void nodeConfigOverridesGlobalConfig() {
+    @Test
+    public void nodeConfigOverridesGlobalConfig() {
 
-    PlatformLabelerGlobalConfiguration globalConfig =
-        GlobalConfiguration.all().getInstance(PlatformLabelerGlobalConfiguration.class);
+        PlatformLabelerGlobalConfiguration globalConfig =
+                GlobalConfiguration.all().getInstance(PlatformLabelerGlobalConfiguration.class);
 
-    LabelConfig globalLabelConfig = new LabelConfig();
+        LabelConfig globalLabelConfig = new LabelConfig();
 
-    globalLabelConfig.setVersion(false);
-    globalLabelConfig.setArchitecture(false);
+        globalLabelConfig.setVersion(false);
+        globalLabelConfig.setArchitecture(false);
 
-    globalConfig.setLabelConfig(globalLabelConfig);
+        globalConfig.setLabelConfig(globalLabelConfig);
 
-    PlatformLabelerNodeProperty nodeProperty = new PlatformLabelerNodeProperty();
-    LabelConfig labelConfig = new LabelConfig();
-    labelConfig.setVersion(false);
-    nodeProperty.setLabelConfig(labelConfig);
-    r.jenkins.getNodeProperties().add(nodeProperty);
+        PlatformLabelerNodeProperty nodeProperty = new PlatformLabelerNodeProperty();
+        LabelConfig labelConfig = new LabelConfig();
+        labelConfig.setVersion(false);
+        nodeProperty.setLabelConfig(labelConfig);
+        r.jenkins.getNodeProperties().add(nodeProperty);
 
-    nodeLabelCache.onConfigurationChange();
+        nodeLabelCache.onConfigurationChange();
 
-    Collection<LabelAtom> expected = new HashSet<>();
-    expected.add(r.jenkins.getLabelAtom("master"));
-    expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitecture()));
-    expected.add(r.jenkins.getLabelAtom(platformDetails.getName()));
-    expected.add(r.jenkins.getLabelAtom(platformDetails.getNameVersion()));
-    expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitectureName()));
-    expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitectureNameVersion()));
+        Collection<LabelAtom> expected = new HashSet<>();
+        expected.add(r.jenkins.getLabelAtom("master"));
+        expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitecture()));
+        expected.add(r.jenkins.getLabelAtom(platformDetails.getName()));
+        expected.add(r.jenkins.getLabelAtom(platformDetails.getNameVersion()));
+        expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitectureName()));
+        expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitectureNameVersion()));
 
-    Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
-    assertThat(expected, is(labelsAfter));
-  }
+        Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
+        assertThat(expected, is(labelsAfter));
+    }
 
-  @Test
-  public void globalConfigOnlyArchitecture() {
+    @Test
+    public void globalConfigOnlyArchitecture() {
 
-    PlatformLabelerGlobalConfiguration globalConfig =
-        GlobalConfiguration.all().getInstance(PlatformLabelerGlobalConfiguration.class);
+        PlatformLabelerGlobalConfiguration globalConfig =
+                GlobalConfiguration.all().getInstance(PlatformLabelerGlobalConfiguration.class);
 
-    LabelConfig globalLabelConfig = new LabelConfig();
+        LabelConfig globalLabelConfig = new LabelConfig();
 
-    globalLabelConfig.setVersion(false);
-    globalLabelConfig.setName(false);
-    globalLabelConfig.setArchitectureName(false);
-    globalLabelConfig.setArchitectureNameVersion(false);
-    globalLabelConfig.setNameVersion(false);
+        globalLabelConfig.setVersion(false);
+        globalLabelConfig.setName(false);
+        globalLabelConfig.setArchitectureName(false);
+        globalLabelConfig.setArchitectureNameVersion(false);
+        globalLabelConfig.setNameVersion(false);
 
-    globalConfig.setLabelConfig(globalLabelConfig);
+        globalConfig.setLabelConfig(globalLabelConfig);
 
-    nodeLabelCache.onConfigurationChange();
+        nodeLabelCache.onConfigurationChange();
 
-    Collection<LabelAtom> expected = new HashSet<>();
-    expected.add(r.jenkins.getLabelAtom("master"));
-    expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitecture()));
+        Collection<LabelAtom> expected = new HashSet<>();
+        expected.add(r.jenkins.getLabelAtom("master"));
+        expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitecture()));
 
-    Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
-    assertThat(expected, is(labelsAfter));
-  }
+        Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
+        assertThat(expected, is(labelsAfter));
+    }
 
-  @Test
-  public void configRoundTripTest() throws Exception {
-    PlatformLabelerGlobalConfiguration globalConfig =
-        GlobalConfiguration.all().getInstance(PlatformLabelerGlobalConfiguration.class);
-    LabelConfig globalLabelConfigBefore = globalConfig.getLabelConfig();
-    r.configRoundtrip();
-    LabelConfig globalLabelConfigAfter = globalConfig.getLabelConfig();
-    assertThat(
-        globalLabelConfigBefore.isArchitecture(), is(globalLabelConfigAfter.isArchitecture()));
-    assertThat(globalLabelConfigBefore.isName(), is(globalLabelConfigAfter.isName()));
-    assertThat(globalLabelConfigBefore.isVersion(), is(globalLabelConfigAfter.isVersion()));
-  }
+    @Test
+    public void configRoundTripTest() throws Exception {
+        PlatformLabelerGlobalConfiguration globalConfig =
+                GlobalConfiguration.all().getInstance(PlatformLabelerGlobalConfiguration.class);
+        LabelConfig globalLabelConfigBefore = globalConfig.getLabelConfig();
+        r.configRoundtrip();
+        LabelConfig globalLabelConfigAfter = globalConfig.getLabelConfig();
+        assertThat(
+                globalLabelConfigBefore.isArchitecture(),
+                is(globalLabelConfigAfter.isArchitecture()));
+        assertThat(globalLabelConfigBefore.isName(), is(globalLabelConfigAfter.isName()));
+        assertThat(globalLabelConfigBefore.isVersion(), is(globalLabelConfigAfter.isVersion()));
+    }
 }
