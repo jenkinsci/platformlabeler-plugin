@@ -21,7 +21,7 @@ Please don't introduce new spotbugs output.
 
 ## Code Formatting
 
-Code formatting in the Platform Labeler plugin is maintained by fmt.
+Code formatting in the Platform Labeler plugin is maintained by the git code format maven plugin.
 The pom file format is maintained by the tidy plugin.
 Before submitting a pull request, confirm the formatting is correct with:
 
@@ -29,7 +29,7 @@ Before submitting a pull request, confirm the formatting is correct with:
 
 If the formatting is not correct, the build will fail.  Correct the formatting with:
 
-* `mvn tidy:pom fmt:format`
+* `mvn tidy:pom git-code-format:format-code -Dgcf.globPattern=**/*`
 
 ## Pre-commit Hooks
 
@@ -40,6 +40,13 @@ To install the pre-commit framework into this repository on your computer, use t
 
 ```
 $ pip install --user pre-commit
+$ pre-commit install
+```
+
+To upgrade the pre-commit framework into this repository on your computer, use the commands:
+
+```
+$ pip install --user --upgrade pre-commit
 $ pre-commit install
 ```
 

@@ -37,69 +37,68 @@ import java.util.Map;
 
 /** Linux standard base release class. Provides distributor ID and release. */
 public class LsbRelease {
-  @NonNull private final String distributorId;
-  @NonNull private final String release;
+    @NonNull private final String distributorId;
+    @NonNull private final String release;
 
-  /** Extract distributor ID and release for current platform. */
-  public LsbRelease() {
-    Map<String, String> newProps = new HashMap<>();
-    try {
-      Process process = new ProcessBuilder("lsb_release", "-a").start();
-      readLsbReleaseOutput(process.getInputStream(), newProps);
-    } catch (IOException e) {
-      // IGNORE
+    /** Extract distributor ID and release for current platform. */
+    public LsbRelease() {
+        Map<String, String> newProps = new HashMap<>();
+        try {
+            Process process = new ProcessBuilder("lsb_release", "-a").start();
+            readLsbReleaseOutput(process.getInputStream(), newProps);
+        } catch (IOException e) {
+            // IGNORE
+        }
+        this.distributorId =
+                newProps.getOrDefault("Distributor ID", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
+        this.release = newProps.getOrDefault("Release", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
     }
-    this.distributorId =
-        newProps.getOrDefault("Distributor ID", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
-    this.release = newProps.getOrDefault("Release", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
-  }
 
-  /** Assign distributor ID and release. Package protected for tests. */
-  LsbRelease(String distributorId, String release) {
-    this.distributorId = distributorId;
-    this.release = release;
-  }
-
-  /** Read file to assign distributor ID and release. Package protected for tests. */
-  LsbRelease(File lsbReleaseFile) throws IOException {
-    Map<String, String> newProps = new HashMap<>();
-    try (FileInputStream stream = new FileInputStream(lsbReleaseFile)) {
-      readLsbReleaseOutput(stream, newProps);
+    /** Assign distributor ID and release. Package protected for tests. */
+    LsbRelease(String distributorId, String release) {
+        this.distributorId = distributorId;
+        this.release = release;
     }
-    this.distributorId =
-        newProps.getOrDefault("Distributor ID", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
-    this.release = newProps.getOrDefault("Release", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
-  }
 
-  private void readLsbReleaseOutput(InputStream inputStream, Map<String, String> newProps)
-      throws IOException {
-    try (BufferedReader reader =
-        new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-      reader
-          .lines()
-          .filter(s -> s.contains(":"))
-          .map(line -> line.split(":", 2))
-          .forEach(parts -> newProps.put(parts[0], parts[1].trim()));
+    /** Read file to assign distributor ID and release. Package protected for tests. */
+    LsbRelease(File lsbReleaseFile) throws IOException {
+        Map<String, String> newProps = new HashMap<>();
+        try (FileInputStream stream = new FileInputStream(lsbReleaseFile)) {
+            readLsbReleaseOutput(stream, newProps);
+        }
+        this.distributorId =
+                newProps.getOrDefault("Distributor ID", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
+        this.release = newProps.getOrDefault("Release", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
     }
-  }
 
-  /**
-   * Return the Linux distributor ID for this agent.
-   *
-   * @return Linux distributor ID for this agent
-   */
-  @NonNull
-  public String distributorId() {
-    return distributorId;
-  }
+    private void readLsbReleaseOutput(InputStream inputStream, Map<String, String> newProps)
+            throws IOException {
+        try (BufferedReader reader =
+                new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+            reader.lines()
+                    .filter(s -> s.contains(":"))
+                    .map(line -> line.split(":", 2))
+                    .forEach(parts -> newProps.put(parts[0], parts[1].trim()));
+        }
+    }
 
-  /**
-   * Return the Linux release for this agent.
-   *
-   * @return Linux release for this agent
-   */
-  @NonNull
-  public String release() {
-    return release;
-  }
+    /**
+     * Return the Linux distributor ID for this agent.
+     *
+     * @return Linux distributor ID for this agent
+     */
+    @NonNull
+    public String distributorId() {
+        return distributorId;
+    }
+
+    /**
+     * Return the Linux release for this agent.
+     *
+     * @return Linux release for this agent
+     */
+    @NonNull
+    public String release() {
+        return release;
+    }
 }

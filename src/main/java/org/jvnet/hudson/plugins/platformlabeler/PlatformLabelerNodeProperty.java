@@ -10,28 +10,28 @@ import org.kohsuke.stapler.DataBoundSetter;
 /** Allows to configure which labels should be generate for the node. */
 public class PlatformLabelerNodeProperty extends NodeProperty<Node> {
 
-  private LabelConfig labelConfig;
+    private LabelConfig labelConfig;
 
-  @DataBoundConstructor
-  public PlatformLabelerNodeProperty() {
-    /* Intentionally empty constructor */
-  }
-
-  public LabelConfig getLabelConfig() {
-    return labelConfig;
-  }
-
-  @DataBoundSetter
-  public void setLabelConfig(LabelConfig labelConfig) {
-    this.labelConfig = labelConfig;
-  }
-
-  @Extension
-  public static class DescriptorImpl extends NodePropertyDescriptor {
-
-    @Override
-    public String getDisplayName() {
-      return "Automatic Platform Labels";
+    @DataBoundConstructor
+    public PlatformLabelerNodeProperty() {
+        /* Intentionally empty constructor */
     }
-  }
+
+    public LabelConfig getLabelConfig() {
+        return labelConfig;
+    }
+
+    @DataBoundSetter
+    public void setLabelConfig(LabelConfig labelConfig) {
+        this.labelConfig = labelConfig;
+    }
+
+    @Extension
+    public static class DescriptorImpl extends NodePropertyDescriptor {
+
+        @Override
+        public String getDisplayName() {
+            return "Automatic Platform Labels";
+        }
+    }
 }

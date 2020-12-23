@@ -36,25 +36,25 @@ import org.jvnet.hudson.test.JenkinsRule;
 /** @author robertc */
 public class PlatformLabelerTest {
 
-  @Rule public final JenkinsRule j = new JenkinsRule();
+    @Rule public final JenkinsRule j = new JenkinsRule();
 
-  @Test
-  public void testLookupCached() {
-    Collection<LabelAtom> expected = new HashSet<>();
-    expected.add(j.jenkins.getLabelAtom("foo"));
-    expected.add(j.jenkins.getLabelAtom("bar"));
-    NodeLabelCache.nodeLabels.put(j.jenkins, expected);
-    Collection<LabelAtom> labels = new PlatformLabeler().findLabels(j.jenkins);
-    assertThat(labels, is(expected));
-  }
-
-  @Test
-  public void testLookupUncached() throws Exception {
-    /* remove the Jenkins node from the cache */
-    if (NodeLabelCache.nodeLabels.containsKey(j.jenkins)) {
-      NodeLabelCache.nodeLabels.remove(j.jenkins);
+    @Test
+    public void testLookupCached() {
+        Collection<LabelAtom> expected = new HashSet<>();
+        expected.add(j.jenkins.getLabelAtom("foo"));
+        expected.add(j.jenkins.getLabelAtom("bar"));
+        NodeLabelCache.nodeLabels.put(j.jenkins, expected);
+        Collection<LabelAtom> labels = new PlatformLabeler().findLabels(j.jenkins);
+        assertThat(labels, is(expected));
     }
-    Collection<LabelAtom> labels = new PlatformLabeler().findLabels(j.jenkins);
-    assertThat(labels, is(empty()));
-  }
+
+    @Test
+    public void testLookupUncached() throws Exception {
+        /* remove the Jenkins node from the cache */
+        if (NodeLabelCache.nodeLabels.containsKey(j.jenkins)) {
+            NodeLabelCache.nodeLabels.remove(j.jenkins);
+        }
+        Collection<LabelAtom> labels = new PlatformLabeler().findLabels(j.jenkins);
+        assertThat(labels, is(empty()));
+    }
 }

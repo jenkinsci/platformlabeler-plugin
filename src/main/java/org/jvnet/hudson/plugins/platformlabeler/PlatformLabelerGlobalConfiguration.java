@@ -13,32 +13,32 @@ import org.kohsuke.stapler.StaplerRequest;
 @Extension
 public class PlatformLabelerGlobalConfiguration extends GlobalConfiguration {
 
-  private LabelConfig labelConfig;
+    private LabelConfig labelConfig;
 
-  /** Standard constructor. */
-  public PlatformLabelerGlobalConfiguration() {
-    load();
-    if (labelConfig == null) {
-      labelConfig = new LabelConfig();
+    /** Standard constructor. */
+    public PlatformLabelerGlobalConfiguration() {
+        load();
+        if (labelConfig == null) {
+            labelConfig = new LabelConfig();
+        }
     }
-  }
 
-  @Override
-  public boolean configure(StaplerRequest req, JSONObject json) throws FormException {
-    boolean result = super.configure(req, json);
-    NodeLabelCache nlc = ComputerListener.all().get(NodeLabelCache.class);
-    if (nlc != null) {
-      nlc.onConfigurationChange();
+    @Override
+    public boolean configure(StaplerRequest req, JSONObject json) throws FormException {
+        boolean result = super.configure(req, json);
+        NodeLabelCache nlc = ComputerListener.all().get(NodeLabelCache.class);
+        if (nlc != null) {
+            nlc.onConfigurationChange();
+        }
+        return result;
     }
-    return result;
-  }
 
-  public LabelConfig getLabelConfig() {
-    return labelConfig;
-  }
+    public LabelConfig getLabelConfig() {
+        return labelConfig;
+    }
 
-  public void setLabelConfig(LabelConfig labelConfig) {
-    this.labelConfig = labelConfig;
-    save();
-  }
+    public void setLabelConfig(LabelConfig labelConfig) {
+        this.labelConfig = labelConfig;
+        save();
+    }
 }
