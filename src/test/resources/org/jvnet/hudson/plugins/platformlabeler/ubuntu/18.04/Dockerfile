@@ -1,2 +1,2 @@
-FROM ubuntu:18.04
-RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y lsb-release
+FROM ubuntu:bionic-20210118
+RUN apt-get update && apt-get install -y lsb-release
