@@ -272,7 +272,7 @@ updates:
   - skip-changelog
   ignore:
     - dependency-name: "Dockerfile"
-      versions: ["20.x", "focal-x"]
+      versions: ["20.x"]
 
 - package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/ubuntu/20.04"
