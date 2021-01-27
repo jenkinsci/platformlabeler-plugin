@@ -225,17 +225,6 @@ updates:
       versions: ["8.x"]
 
 - package-ecosystem: docker
-  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/oraclelinux/8.0"
-  schedule:
-    interval: weekly
-  open-pull-requests-limit: 2
-  target-branch: master
-  reviewers:
-  - MarkEWaite
-  labels:
-  - skip-changelog
-
-- package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/oraclelinux/8.3"
   schedule:
     interval: weekly
@@ -247,7 +236,7 @@ updates:
   - skip-changelog
 
 - package-ecosystem: docker
-  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/registry.access.redhat.com/ubi8/ubi/8.0"
+  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/registry.access.redhat.com/ubi8/ubi/8.3"
   schedule:
     interval: weekly
   open-pull-requests-limit: 2
