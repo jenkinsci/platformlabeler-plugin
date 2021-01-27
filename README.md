@@ -13,47 +13,34 @@ Labels commonly include operating system name, version, and architecture.
 
 | Platform                   | Operating System   | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
-| Alpine                     | `Alpine`           | `3.9.4`        | `amd64`      |
 | Alpine                     | `Alpine`           | `3.12.0`       | `amd64`      |
-| Amazon Linux               | `AmazonAMI`        | `2018.03`      | `amd64`      |
+| Alpine                     | `Alpine`           | `3.13.0`       | `amd64`      |
 | Amazon Linux 2             | `Amazon`           | `2`            | `amd64`      |
-| CentOS 6                   | `CentOS`           | `6.10`         | `amd64`      |
 | CentOS 7                   | `CentOS`           | `7.8.2003`     | `amd64`      |
-| CentOS 8                   | `CentOS`           | `8.0.1905`     | `amd64`      |
-| CentOS 8.2                 | `CentOS`           | `8.2.2004`     | `amd64`      |
+| CentOS 8                   | `CentOS`           | `8.2.2004`     | `amd64`      |
 | Clear Linux                | `clear-linux-os`   | `31890`        | `amd64`      |
 | Debian 9                   | `Debian`           | `9.13`         | `amd64`      |
 | Debian 10                  | `Debian`           | `10`           | `aarch64`    |
 | Debian 10                  | `Debian`           | `10`           | `amd64`      |
 | Debian testing             | `Debian`           | `testing`      | `amd64`      |
 | Debian unstable            | `Debian`           | `unstable`     | `amd64`      |
-| Fedora 29                  | `Fedora`           | `29`           | `amd64`      |
-| Fedora 30                  | `Fedora`           | `30`           | `amd64`      |
-| Fedora 31                  | `Fedora`           | `31`           | `amd64`      |
 | Fedora 32                  | `Fedora`           | `32`           | `amd64`      |
 | Fedora 33                  | `Fedora`           | `33`           | `amd64`      |
-| FreeBSD 11                 | `freebsd`          | `11.2-STABLE`  | `amd64`      |
-| FreeBSD 12                 | `freebsd`          | `12.0-RELEASE` | `amd64`      |
-| IBM PowerPC Ubuntu 18.04   | `Ubuntu`           | `18.04`        | `ppc64le`    |
-| IBM s390x Ubuntu 18.04     | `Ubuntu`           | `18.04`        | `s390x`      |
+| FreeBSD 11                 | `freebsd`          | `11.4-STABLE`  | `amd64`      |
+| FreeBSD 12                 | `freebsd`          | `12.2-RELEASE` | `amd64`      |
 | Linux Mint 19.3            | `LinuxMint`        | `19.03`        | `amd64`      |
-| Oracle Linux 6             | `OracleServer`     | `6.10`         | `amd64`      |
 | Oracle Linux 7             | `OracleServer`     | `7.8`          | `amd64`      |
 | Oracle Linux 8             | `OracleServer`     | `8.2`          | `amd64`      |
 | Raspbian 9                 | `Raspbian`         | `9.11`         | `arm`        |
 | Raspbian 10                | `Raspbian`         | `10`           | `arm`        |
 | Red Hat Enterprise Linux 7 | `RedHatEnterprise` | `7.8`          | `amd64`      |
 | Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.2`          | `amd64`      |
-| Scientific 6.10            | `Scientific`       | `6.10`         | `amd64`      |
-| Scientific 7.7             | `Scientific`       | `7.8`          | `amd64`      |
-| SLES 11.3                  | `SUSE`             | `11.3`         | `amd64`      |
-| SLES 12.1                  | `SUSE`             | `12.1`         | `amd64`      |
-| SLES 12.2                  | `SUSE`             | `12.2`         | `amd64`      |
+| Scientific 7               | `Scientific`       | `7.8`          | `amd64`      |
+| SLES 12                    | `SUSE`             | `12.4`         | `amd64`      |
 | SLES 15                    | `SUSE`             | `15`           | `amd64`      |
-| Ubuntu 14                  | `Ubuntu`           | `14.04`        | `amd64`      |
-| Ubuntu 16                  | `Ubuntu`           | `16.04`        | `amd64`      |
 | Ubuntu 18                  | `Ubuntu`           | `18.04`        | `amd64`      |
-| Ubuntu 19                  | `Ubuntu`           | `19.10`        | `amd64`      |
+| Ubuntu 18                  | `Ubuntu`           | `18.04`        | `ppc64le`    |
+| Ubuntu 18                  | `Ubuntu`           | `18.04`        | `s390x`      |
 | Ubuntu 20                  | `Ubuntu`           | `20.04`        | `amd64`      |
 | Windows 10                 | `windows`          | `10.0`         | `amd64`      |
 
