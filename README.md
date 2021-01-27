@@ -29,13 +29,13 @@ Labels commonly include operating system name, version, and architecture.
 | FreeBSD 11                 | `freebsd`          | `11.4-STABLE`  | `amd64`      |
 | FreeBSD 12                 | `freebsd`          | `12.2-RELEASE` | `amd64`      |
 | Linux Mint 19.3            | `LinuxMint`        | `19.03`        | `amd64`      |
-| Oracle Linux 7             | `OracleServer`     | `7.8`          | `amd64`      |
-| Oracle Linux 8             | `OracleServer`     | `8.2`          | `amd64`      |
+| Oracle Linux 7             | `OracleServer`     | `7.9`          | `amd64`      |
+| Oracle Linux 8             | `OracleServer`     | `8.3`          | `amd64`      |
 | Raspbian 9                 | `Raspbian`         | `9.11`         | `arm`        |
 | Raspbian 10                | `Raspbian`         | `10`           | `arm`        |
-| Red Hat Enterprise Linux 7 | `RedHatEnterprise` | `7.8`          | `amd64`      |
-| Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.2`          | `amd64`      |
-| Scientific 7               | `Scientific`       | `7.8`          | `amd64`      |
+| Red Hat Enterprise Linux 7 | `RedHatEnterprise` | `7.9`          | `amd64`      |
+| Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.3`          | `amd64`      |
+| Scientific 7               | `Scientific`       | `7.9`          | `amd64`      |
 | SLES 12                    | `SUSE`             | `12.4`         | `amd64`      |
 | SLES 15                    | `SUSE`             | `15`           | `amd64`      |
 | Ubuntu 18                  | `Ubuntu`           | `18.04`        | `amd64`      |
