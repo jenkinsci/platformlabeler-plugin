@@ -16,7 +16,7 @@ updates:
     versions:
     - ">= 0"
 - package-ecosystem: docker
-  directory: "/src/test/resources/org/jvnet/hudson/plugins/platformlabeler"
+  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/debian/10"
   schedule:
     interval: weekly
   open-pull-requests-limit: 20
