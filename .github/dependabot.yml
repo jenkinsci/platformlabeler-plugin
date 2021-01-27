@@ -26,6 +26,9 @@ updates:
   - MarkEWaite
   labels:
   - skip-changelog
+  ignore:
+    - dependency-name: "Dockerfile"
+      versions: ["3.11.x", "3.12.x", "3.13.x"]
 
 - package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.12.3"
@@ -37,6 +40,9 @@ updates:
   - MarkEWaite
   labels:
   - skip-changelog
+  ignore:
+    - dependency-name: "Dockerfile"
+      versions: ["3.13.x"]
 
 - package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.13.0"
@@ -70,6 +76,9 @@ updates:
   - MarkEWaite
   labels:
   - skip-changelog
+  ignore:
+    - dependency-name: "Dockerfile"
+      versions: ["8.x"]
 
 - package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/centos/8.3.2011"
@@ -103,6 +112,9 @@ updates:
   - MarkEWaite
   labels:
   - skip-changelog
+  ignore:
+    - dependency-name: "Dockerfile"
+      versions: ["11.x"]
 
 - package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/debian/9.13"
@@ -114,6 +126,9 @@ updates:
   - MarkEWaite
   labels:
   - skip-changelog
+  ignore:
+    - dependency-name: "Dockerfile"
+      versions: ["10.x", "11.x"]
 
 - package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/debian/testing"
