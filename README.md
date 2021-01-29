@@ -11,14 +11,14 @@ Adds labels to Jenkins agents based on characteristics of the operating system r
 
 Labels commonly include operating system name, version, and architecture.
 
-| Platform                   | Operating System   | Version        | Architecture |
+| Platform                   | OS Name            | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
 | Alpine                     | `Alpine`           | `3.12.3`       | `amd64`      |
 | Alpine                     | `Alpine`           | `3.13.0`       | `amd64`      |
 | Amazon Linux 2             | `Amazon`           | `2`            | `amd64`      |
 | CentOS 7                   | `CentOS`           | `7.8.2003`     | `amd64`      |
 | CentOS 8                   | `CentOS`           | `8.2.2004`     | `amd64`      |
-| Clear Linux                | `clear-linux-os`   | `31890`        | `amd64`      |
+| Clear Linux                | `clear-linux-os`   | `34190`        | `amd64`      |
 | Debian 9                   | `Debian`           | `9.13`         | `amd64`      |
 | Debian 10                  | `Debian`           | `10`           | `aarch64`    |
 | Debian 10                  | `Debian`           | `10`           | `amd64`      |
