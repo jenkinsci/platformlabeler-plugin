@@ -3,7 +3,7 @@
 import java.util.Collections
 
 // Valid Jenkins versions for test
-def testJenkinsVersions = [ '2.249.1', '2.249.2', '2.249.3', '2.263.1', '2.263.2', '2.263.3', '2.266', '2.275', '2.276', '2.277' ]
+def testJenkinsVersions = [ '2.249.3', '2.263.1', '2.263.2', '2.263.3', '2.263.4', '2.277', '2.278', '2.279' ]
 Collections.shuffle(testJenkinsVersions)
 
 // build recommended configurations
@@ -14,11 +14,17 @@ subsetConfiguration = [ [ jdk: '8',  platform: 'windows', jenkins: testJenkinsVe
                         [ jdk: '11', platform: 'linux',   jenkins: testJenkinsVersions[2], javaLevel: '8' ],
 
                         // ARM label is Linux also
-                        // [ jdk: '11', platform: 'arm64',   jenkins: testJenkinsVersions[3], javaLevel: '8' ],
+                        [ jdk: '11', platform: 'arm64',   jenkins: testJenkinsVersions[3], javaLevel: '8' ],
 
                         // PowerPC 64 and s390x labels are also Linux
                         [ jdk: '8',  platform: 'ppc64le', jenkins: testJenkinsVersions[4], javaLevel: '8' ],
                         [ jdk: '11', platform: 's390x',   jenkins: testJenkinsVersions[5], javaLevel: '8' ],
                       ]
 
-buildPlugin(configurations: subsetConfiguration, failFast: false)
+if (env.JENKINS_URL.contains('markwaite.net')) {
+    // Use advanced buildPlugin on markwaite.net
+    buildPlugin(configurations: subsetConfiguration, failFast: false)
+} else {
+    // Use simple buildPlugin on ci.jenkins.io and elsewhere
+    buildPlugin()
+}
