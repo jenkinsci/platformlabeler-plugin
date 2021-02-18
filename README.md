@@ -1,7 +1,5 @@
 # Platform Labeler Plugin
 
-[![Build Status](https://ci.jenkins.io/job/Plugins/job/platformlabeler-plugin/job/master/badge/icon)](https://ci.jenkins.io/job/Plugins/job/platformlabeler-plugin/job/master/)
-[![GitHub release](https://img.shields.io/github/release/jenkinsci/platformlabeler-plugin.svg?label=changelog)](https://github.com/jenkinsci/platformlabeler-plugin/releases/latest)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=MarkEWaite_platformlabeler-plugin&metric=alert_status)](https://sonarcloud.io/dashboard?id=MarkEWaite_platformlabeler-plugin)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/3537/badge)](https://bestpractices.coreinfrastructure.org/projects/3537)
 
