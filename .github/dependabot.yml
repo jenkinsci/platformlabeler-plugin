@@ -17,7 +17,7 @@ updates:
     - ">= 0"
 
 - package-ecosystem: docker
-  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.10.8"
+  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.10.9"
   schedule:
     interval: weekly
   open-pull-requests-limit: 2
