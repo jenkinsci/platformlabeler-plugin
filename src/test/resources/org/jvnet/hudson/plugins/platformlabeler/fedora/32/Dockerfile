@@ -1,2 +1,2 @@
-FROM fedora:32
+FROM fedora:34
 RUN dnf install -y redhat-lsb-core
