@@ -40,6 +40,7 @@ Labels commonly include operating system name, version, and architecture.
 | Ubuntu 18                  | `Ubuntu`           | `18.04`        | `ppc64le`    |
 | Ubuntu 18                  | `Ubuntu`           | `18.04`        | `s390x`      |
 | Ubuntu 20                  | `Ubuntu`           | `20.04`        | `amd64`      |
+| Ubuntu 21                  | `Ubuntu`           | `21.04`        | `amd64`      |
 | Windows 10                 | `windows`          | `10.0`         | `amd64`      |
 
 On Linux computers, the plugin uses the output of the [`lsb_release`](https://linux.die.net/man/1/lsb_release) command.
