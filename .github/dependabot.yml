@@ -27,8 +27,7 @@ updates:
   labels:
   - skip-changelog
   ignore:
-    - dependency-name: "Dockerfile"
-      versions: ["3.11.x", "3.12.x", "3.13.x"]
+    - versions: ["3.11.x", "3.12.x", "3.13.x"]
 
 - package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.12.7"
@@ -41,8 +40,7 @@ updates:
   labels:
   - skip-changelog
   ignore:
-    - dependency-name: "Dockerfile"
-      versions: ["3.13.x"]
+    - versions: ["3.13.x"]
 
 - package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.13.5"
@@ -76,9 +74,6 @@ updates:
   - MarkEWaite
   labels:
   - skip-changelog
-  ignore:
-    - dependency-name: "Dockerfile"
-      versions: ["8.x"]
 
 - package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/centos/8.3.2011"
@@ -113,8 +108,7 @@ updates:
   labels:
   - skip-changelog
   ignore:
-    - dependency-name: "Dockerfile"
-      versions: ["11.x"]
+    - versions: ["11.x"]
 
 - package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/debian/9.13"
@@ -127,8 +121,7 @@ updates:
   labels:
   - skip-changelog
   ignore:
-    - dependency-name: "Dockerfile"
-      versions: ["10.x", "11.x"]
+    - versions: ["10.x", "11.x"]
 
 - package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/debian/testing"
@@ -163,8 +156,7 @@ updates:
   labels:
   - skip-changelog
   ignore:
-    - dependency-name: "Dockerfile"
-      versions: ["33.x"]
+    - versions: ["33.x"]
 
 - package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/fedora/33"
@@ -231,9 +223,6 @@ updates:
   - MarkEWaite
   labels:
   - skip-changelog
-  ignore:
-    - dependency-name: "Dockerfile"
-      versions: ["8.x"]
 
 - package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/oraclelinux/8.3"
@@ -267,9 +256,6 @@ updates:
   - MarkEWaite
   labels:
   - skip-changelog
-  ignore:
-    - dependency-name: "Dockerfile"
-      versions: ["8.x"]
 
 - package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/ubuntu/18.04"
@@ -282,8 +268,7 @@ updates:
   labels:
   - skip-changelog
   ignore:
-    - dependency-name: "Dockerfile"
-      versions: ["20.x", "21.x"]
+    - versions: ["20.x", "21.x"]
 
 - package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/ubuntu/20.04"
@@ -296,8 +281,7 @@ updates:
   labels:
   - skip-changelog
   ignore:
-    - dependency-name: "Dockerfile"
-      versions: ["21.x"]
+    - versions: ["21.x"]
 
 - package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/ubuntu/21.04"
