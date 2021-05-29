@@ -232,7 +232,7 @@ updates:
   - skip-changelog
   ignore:
     - dependency-name: "Dockerfile"
-      versions: [">= 8.0.0"]
+      versions: [">= 8.0"]
 
 - package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/oraclelinux/8.3"
