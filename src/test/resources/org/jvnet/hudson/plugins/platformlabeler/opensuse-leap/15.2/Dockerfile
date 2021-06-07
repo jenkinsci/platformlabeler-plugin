@@ -1,2 +1,2 @@
-FROM opensuse/leap:15.2
+FROM opensuse/leap:15.3
 RUN zypper --non-interactive install -y lsb-release
