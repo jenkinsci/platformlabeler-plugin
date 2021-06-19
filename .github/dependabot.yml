@@ -16,20 +16,6 @@ updates:
     versions: [">= 0"]
 
 - package-ecosystem: docker
-  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.10.9"
-  schedule:
-    interval: weekly
-  open-pull-requests-limit: 2
-  target-branch: master
-  reviewers:
-  - MarkEWaite
-  labels:
-  - skip-changelog
-  ignore:
-    - dependency-name: "Dockerfile"
-      versions: [">= 3.11.0"]
-
-- package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.12.7"
   schedule:
     interval: weekly
@@ -45,6 +31,20 @@ updates:
 
 - package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.13.5"
+  schedule:
+    interval: weekly
+  open-pull-requests-limit: 2
+  target-branch: master
+  reviewers:
+  - MarkEWaite
+  labels:
+  - skip-changelog
+  ignore:
+    - dependency-name: "Dockerfile"
+      versions: [">= 3.14.0"]
+
+- package-ecosystem: docker
+  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.14.0"
   schedule:
     interval: weekly
   open-pull-requests-limit: 2
