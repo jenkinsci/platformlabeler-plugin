@@ -1,2 +1,2 @@
-FROM debian:9.13-slim
+FROM debian:10.10-slim
 RUN apt-get update && apt-get install -y lsb-release
