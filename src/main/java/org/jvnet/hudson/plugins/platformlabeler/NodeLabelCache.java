@@ -204,6 +204,7 @@ public class NodeLabelCache extends ComputerListener {
         if (nodeProperty != null) {
             labelConfig = nodeProperty.getLabelConfig();
         }
-        return labelConfig;
+        /* Return a defensive copy so that the caller cannot modify state of this object */
+        return new LabelConfig(labelConfig);
     }
 }
