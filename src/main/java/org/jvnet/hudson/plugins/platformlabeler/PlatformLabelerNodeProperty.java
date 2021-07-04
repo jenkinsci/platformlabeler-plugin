@@ -18,12 +18,14 @@ public class PlatformLabelerNodeProperty extends NodeProperty<Node> {
     }
 
     public LabelConfig getLabelConfig() {
-        return labelConfig;
+        /* Return a defensive copy so that caller cannot modify state of this object */
+        return new LabelConfig(labelConfig);
     }
 
     @DataBoundSetter
     public void setLabelConfig(LabelConfig labelConfig) {
-        this.labelConfig = labelConfig;
+        /* Use a defensive copy so that labelConfig is not modifiable oustide this object */
+        this.labelConfig = new LabelConfig(labelConfig);
     }
 
     @Extension

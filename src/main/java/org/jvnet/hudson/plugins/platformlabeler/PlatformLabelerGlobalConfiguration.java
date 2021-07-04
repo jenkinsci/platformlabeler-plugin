@@ -7,7 +7,7 @@ import net.sf.json.JSONObject;
 import org.kohsuke.stapler.StaplerRequest;
 
 /**
- * Allows to configure which labels should be generate for the node when no node specific
+ * Allows to configure which labels should be generated for the node when no node specific
  * configuration is used.
  */
 @Extension
@@ -34,11 +34,13 @@ public class PlatformLabelerGlobalConfiguration extends GlobalConfiguration {
     }
 
     public LabelConfig getLabelConfig() {
-        return labelConfig;
+        /* Return a defensive copy to prevent caller changes to the returned object affecting this object */
+        return new LabelConfig(labelConfig);
     }
 
     public void setLabelConfig(LabelConfig labelConfig) {
-        this.labelConfig = labelConfig;
+        /* Save a defensive copy to prevent caller changes to the returned object affecting this object */
+        this.labelConfig = new LabelConfig(labelConfig);
         save();
     }
 }
