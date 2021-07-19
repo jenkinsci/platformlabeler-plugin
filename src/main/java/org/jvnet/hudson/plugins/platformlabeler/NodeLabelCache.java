@@ -159,6 +159,10 @@ public class NodeLabelCache extends ComputerListener {
 
         final Jenkins jenkins = Jenkins.getInstanceOrNull();
 
+        if (pp == null || jenkins == null) {
+            return result;
+        }
+
         if (labelConfig.isArchitecture()) {
             result.add(jenkins.getLabelAtom(pp.getArchitecture()));
         }
