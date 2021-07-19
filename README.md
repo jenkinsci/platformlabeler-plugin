@@ -14,7 +14,7 @@ Labels commonly include operating system name, version, and architecture.
 | Amazon Linux 2             | `Amazon`           | `2`            | `amd64`      |
 | CentOS 7                   | `CentOS`           | `7.9.2009`     | `amd64`      |
 | CentOS 8                   | `CentOS`           | `8.3.2011`     | `amd64`      |
-| Clear Linux                | `clear-linux-os`   | `34440`        | `amd64`      |
+| Clear Linux                | `clear-linux-os`   | `34820`        | `amd64`      |
 | Debian 9                   | `Debian`           | `9.13`         | `amd64`      |
 | Debian 10                  | `Debian`           | `10`           | `aarch64`    |
 | Debian 10                  | `Debian`           | `10`           | `amd64`      |
