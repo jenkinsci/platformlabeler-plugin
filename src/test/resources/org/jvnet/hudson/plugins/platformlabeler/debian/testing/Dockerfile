@@ -1,2 +1,2 @@
-FROM debian:testing
+FROM debian:testing-20210721-slim
 RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y lsb-release
