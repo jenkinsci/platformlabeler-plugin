@@ -19,6 +19,7 @@ Labels commonly include operating system name, version, and architecture.
 | Debian 9                   | `Debian`           | `9.13`         | `amd64`      |
 | Debian 10                  | `Debian`           | `10`           | `aarch64`    |
 | Debian 10                  | `Debian`           | `10`           | `amd64`      |
+| Debian 11                  | `Debian`           | `11`           | `amd64`      |
 | Debian testing             | `Debian`           | `testing`      | `amd64`      |
 | Debian unstable            | `Debian`           | `unstable`     | `amd64`      |
 | Fedora 33                  | `Fedora`           | `33`           | `amd64`      |
