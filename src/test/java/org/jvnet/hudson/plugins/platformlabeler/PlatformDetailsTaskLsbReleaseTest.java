@@ -91,8 +91,11 @@ public class PlatformDetailsTaskLsbReleaseTest {
         if (filename.contains("oraclelinux")) {
             return "OracleServer";
         }
-        if (filename.contains("linuxmint")) {
+        if (filename.contains("linuxmint-old")) {
             return "LinuxMint";
+        }
+        if (filename.contains("linuxmintd")) {
+            return "Linuxmint";
         }
         if (filename.contains("raspbian")) {
             return "Raspbian";

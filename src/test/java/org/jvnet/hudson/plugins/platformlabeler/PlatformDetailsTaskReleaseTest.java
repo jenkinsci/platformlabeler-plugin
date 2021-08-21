@@ -112,8 +112,11 @@ public class PlatformDetailsTaskReleaseTest {
         if (filename.contains("fedora")) {
             return "Fedora";
         }
-        if (filename.contains("linuxmint")) {
+        if (filename.contains("linuxmint-old")) {
             return "LinuxMint";
+        }
+        if (filename.contains("linuxmintd")) {
+            return "Linuxmint";
         }
         if (filename.contains("opensuse")) {
             return "openSUSE";

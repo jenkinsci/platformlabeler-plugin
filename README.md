@@ -26,7 +26,9 @@ Labels commonly include operating system name, version, and architecture.
 | Fedora 34                  | `Fedora`           | `34`           | `amd64`      |
 | FreeBSD 11                 | `freebsd`          | `11.4-STABLE`  | `amd64`      |
 | FreeBSD 12                 | `freebsd`          | `12.2-RELEASE` | `amd64`      |
-| Linux Mint 19.3            | `LinuxMint`        | `19.03`        | `amd64`      |
+| Linux Mint 19.3            | `LinuxMint`        | `19.3`         | `amd64`      |
+| Linux Mint 20              | `Linuxmint`        | `20`           | `amd64`      |
+| Linux Mint 20.1            | `Linuxmint`        | `20.1`         | `amd64`      |
 | openSUSE Leap              | `openSUSE`         | `15.3`         | `amd64`      |
 | Oracle Linux 7             | `OracleServer`     | `7.9`          | `amd64`      |
 | Oracle Linux 8             | `OracleServer`     | `8.4`          | `amd64`      |
@@ -47,9 +49,16 @@ Labels commonly include operating system name, version, and architecture.
 On Linux computers, the plugin uses the output of the [`lsb_release`](https://linux.die.net/man/1/lsb_release) command.
 
 If `lsb_release` is not installed, labels on Linux agents will be guessed based on values in /etc/os-release.
+
 Red Hat Linux and Scientific Linux agents have another fallback based on /etc/redhat-release.
+
 Agents with an older version of SuSE Linux will fallback to `/etc/SuSE-release`. Older versions of this plugin might return "sles" or "SUSE LINUX" as OS name.
 This has been unified to "SUSE" as this is the lsb_release ID since 'SLES 12 SP2'.
+
+Linux Mint changed its lsb_release distributor ID from "LinuxMint" to "Linuxmint" in Linux Mint 20.
+The Linux Mint label will be "LinuxMint" for Linux Mint 19.03.
+The Linux Mint label will be "Linuxmint" for Linux Mint 20, Linux Mint 20.1, and Linux Mint 20.2.
+Users running Linux Mint 19 agents may need to adjust their label references to use "Linuxmint" instead of "LinuxMint".
 
 When `/etc/os-release` is used, less detailed labels may be provided because more specific version information is not included in the file.
 For example:
