@@ -254,6 +254,11 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
             if (computedName.equals(UNKNOWN_VALUE_STRING)) {
                 computedName = getSuseReleaseIdentifier("ID");
             }
+            if (equalsIgnoreCase(computedName, "linuxmint")) {
+                /* Linux Mint 19 LSB distributor ID is LinuxMint */
+                /* Linux Mint 20 LSB disrtibutor ID is Linuxmint */
+                computedName = getLinuxMintVersionIdentifier(computedVersion);
+            }
             /* This is kind of a hack. lsb_release -a returns only the major
              * version on SLES 11 and older, so trying to fall back to
              * reading SuSE-release file to get a more detailed version
@@ -303,7 +308,13 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         PREFERRED_LINUX_OS_NAMES.put("centos", "CentOS");
         PREFERRED_LINUX_OS_NAMES.put("debian", "Debian");
         PREFERRED_LINUX_OS_NAMES.put("fedora", "Fedora");
-        PREFERRED_LINUX_OS_NAMES.put("linuxmint", "LinuxMint");
+        // Mint 19 LSB distributor ID was "LinuxMint"
+        // This mapping is only for test data
+        PREFERRED_LINUX_OS_NAMES.put("linuxmint-old", "LinuxMint");
+        // Mint 20 LSB distributor ID is "Linuxmint"
+        // Can't map linuxmintd to both "LinuxMint" and "Linuxmint"
+        // Map to Linux Mint 20 LSB distributor ID
+        PREFERRED_LINUX_OS_NAMES.put("linuxmintd", "Linuxmint");
         PREFERRED_LINUX_OS_NAMES.put("ol", "OracleServer");
         PREFERRED_LINUX_OS_NAMES.put("opensuse", "openSUSE");
         PREFERRED_LINUX_OS_NAMES.put("opensuse-leap", "openSUSE");
@@ -474,5 +485,12 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
             /* Return version instead of throwing an exception */
         }
         return version;
+    }
+
+    private String getLinuxMintVersionIdentifier(String version) {
+        if (version.startsWith("19")) {
+            return "LinuxMint";
+        }
+        return "Linuxmint"; // Linux Mint 20 LSB distributor ID is "Linuxmint"
     }
 }
