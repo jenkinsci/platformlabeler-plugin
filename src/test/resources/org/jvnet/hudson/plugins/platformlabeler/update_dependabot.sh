@@ -26,7 +26,7 @@ updates:
     - ">= 0"
 END-OF-DEPENDABOT-YML
 
-for file in $(git ls-files -- *Dockerfile | sort); do
+for file in $(git ls-files -- *Dockerfile | grep -E -v 'clearlinux|opensuse-tumbleweed|scientific' | sort -V); do
   dir=$(dirname $file)
   cat >> .github/dependabot.yml <<END-OF-DEPENDABOT-YML
 
