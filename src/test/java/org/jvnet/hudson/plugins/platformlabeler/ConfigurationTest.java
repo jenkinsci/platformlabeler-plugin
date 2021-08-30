@@ -45,7 +45,7 @@ public class ConfigurationTest {
         nodeLabelCache.onConfigurationChange();
 
         Collection<LabelAtom> expected = new HashSet<>();
-        expected.add(r.jenkins.getLabelAtom("master"));
+        expected.add(r.jenkins.getSelfLabel());
         expected.add(r.jenkins.getLabelAtom(platformDetails.getName()));
 
         Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
@@ -66,7 +66,7 @@ public class ConfigurationTest {
         nodeLabelCache.onConfigurationChange();
 
         Collection<LabelAtom> expected = new HashSet<>();
-        expected.add(r.jenkins.getLabelAtom("master"));
+        expected.add(r.jenkins.getSelfLabel());
         expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitecture()));
         expected.add(r.jenkins.getLabelAtom(platformDetails.getVersion()));
 
@@ -84,7 +84,7 @@ public class ConfigurationTest {
         nodeLabelCache.onConfigurationChange();
 
         Collection<LabelAtom> expected = new HashSet<>();
-        expected.add(r.jenkins.getLabelAtom("master"));
+        expected.add(r.jenkins.getSelfLabel());
         expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitecture()));
         expected.add(r.jenkins.getLabelAtom(platformDetails.getVersion()));
         expected.add(r.jenkins.getLabelAtom(platformDetails.getName()));
@@ -118,7 +118,7 @@ public class ConfigurationTest {
         nodeLabelCache.onConfigurationChange();
 
         Collection<LabelAtom> expected = new HashSet<>();
-        expected.add(r.jenkins.getLabelAtom("master"));
+        expected.add(r.jenkins.getSelfLabel());
         expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitecture()));
         expected.add(r.jenkins.getLabelAtom(platformDetails.getName()));
         expected.add(r.jenkins.getLabelAtom(platformDetails.getNameVersion()));
@@ -148,7 +148,7 @@ public class ConfigurationTest {
         nodeLabelCache.onConfigurationChange();
 
         Collection<LabelAtom> expected = new HashSet<>();
-        expected.add(r.jenkins.getLabelAtom("master"));
+        expected.add(r.jenkins.getSelfLabel());
         expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitecture()));
 
         Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
