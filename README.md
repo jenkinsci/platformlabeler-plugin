@@ -11,7 +11,7 @@ Labels commonly include operating system name, version, and architecture.
 | -------------------------- | ------------------ | -------------- | ------------ |
 | Alpine 3.12                | `Alpine`           | `3.12.7`       | `amd64`      |
 | Alpine 3.13                | `Alpine`           | `3.13.5`       | `amd64`      |
-| Alpine 3.14                | `Alpine`           | `3.14.1`       | `amd64`      |
+| Alpine 3.14                | `Alpine`           | `3.14.2`       | `amd64`      |
 | Amazon Linux 2             | `Amazon`           | `2`            | `amd64`      |
 | CentOS 7                   | `CentOS`           | `7.9.2009`     | `amd64`      |
 | CentOS 8                   | `CentOS`           | `8.3.2011`     | `amd64`      |
