@@ -66,8 +66,8 @@ For example:
 | Platform                   | Operating System   | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
 | CentOS 7                   | `CentOS`           | `7`            | `amd64`      |
-| Debian testing             | `Debian`           | `bullseye`     | `amd64`      |
-| Debian unstable            | `Debian`           | `bullseye`     | `amd64`      |
+| Debian testing             | `Debian`           | `bookworm`     | `amd64`      |
+| Debian unstable            | `Debian`           | `bookworm`     | `amd64`      |
 
 The types of labels can be configured globally and per agent with the 'Automatic Platform Labels' setting.
 
