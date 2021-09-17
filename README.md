@@ -9,13 +9,13 @@ Labels commonly include operating system name, version, and architecture.
 
 | Platform                   | OS Name            | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
-| Alpine 3.12                | `Alpine`           | `3.12.7`       | `amd64`      |
-| Alpine 3.13                | `Alpine`           | `3.13.5`       | `amd64`      |
+| Alpine 3.12                | `Alpine`           | `3.12.8`       | `amd64`      |
+| Alpine 3.13                | `Alpine`           | `3.13.6`       | `amd64`      |
 | Alpine 3.14                | `Alpine`           | `3.14.2`       | `amd64`      |
 | Amazon Linux 2             | `Amazon`           | `2`            | `amd64`      |
 | CentOS 7                   | `CentOS`           | `7.9.2009`     | `amd64`      |
-| CentOS 8                   | `CentOS`           | `8.3.2011`     | `amd64`      |
-| Clear Linux                | `clear-linux-os`   | `34990`        | `amd64`      |
+| CentOS 8                   | `CentOS`           | `8.4.2105`     | `amd64`      |
+| Clear Linux                | `clear-linux-os`   | `35030`        | `amd64`      |
 | Debian 9                   | `Debian`           | `9.13`         | `amd64`      |
 | Debian 10                  | `Debian`           | `10`           | `aarch64`    |
 | Debian 10                  | `Debian`           | `10`           | `amd64`      |
