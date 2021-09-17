@@ -271,7 +271,9 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
             if (computedName.equals("SUSE LINUX")) {
                 computedName = "SUSE";
                 try {
-                    int intVersion = Integer.parseInt(computedVersion);
+                    String integerPortion =
+                            computedVersion.replaceAll("([0-9]+)([.][0-9]+)*", "$1");
+                    int intVersion = Integer.parseInt(integerPortion);
                     if (intVersion <= 11) {
                         String newVersion = getSuseReleaseIdentifier("VERSION_ID");
                         if (!newVersion.equals(UNKNOWN_VALUE_STRING)) {
