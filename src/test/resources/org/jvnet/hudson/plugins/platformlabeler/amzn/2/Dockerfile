@@ -1,2 +1,2 @@
-FROM amazonlinux:2.0.20210813.1
+FROM amazonlinux:2.0.20211001.0
 RUN yum install -y redhat-lsb-core
