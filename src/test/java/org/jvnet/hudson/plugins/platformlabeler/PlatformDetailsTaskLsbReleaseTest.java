@@ -16,7 +16,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.reflections.Reflections;
-import org.reflections.scanners.ResourcesScanner;
+import org.reflections.scanners.Scanners;
 
 public class PlatformDetailsTaskLsbReleaseTest {
 
@@ -27,7 +27,7 @@ public class PlatformDetailsTaskLsbReleaseTest {
      */
     public static Stream<Object[]> generateReleaseFileNames() {
         String packageName = PlatformDetailsTaskLsbReleaseTest.class.getPackage().getName();
-        Reflections reflections = new Reflections(packageName, new ResourcesScanner());
+        Reflections reflections = new Reflections(packageName, Scanners.Resources);
         Set<String> fileNames = reflections.getResources(Pattern.compile(".*lsb_release-a"));
         Collection<Object[]> data = new ArrayList<>(fileNames.size());
         for (String fileName : fileNames) {
