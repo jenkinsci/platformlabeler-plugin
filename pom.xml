@@ -70,6 +70,13 @@
       <artifactId>reflections</artifactId>
       <version>0.10.1</version>
       <scope>test</scope>
+      <exclusions>
+        <!-- newer slf4j version required by reflections, ignore newer version in tests -->
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.github.spotbugs</groupId>
