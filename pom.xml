@@ -46,7 +46,6 @@
     <maven.javadoc.skip>true</maven.javadoc.skip>
     <hpi.compatibleSinceVersion>5.0</hpi.compatibleSinceVersion>
     <junit.jupiter.version>5.8.1</junit.jupiter.version>
-    <slf4jVersion>1.7.26</slf4jVersion>
     <spotbugs.effort>Max</spotbugs.effort>
     <spotbugs.failOnError>true</spotbugs.failOnError>
     <spotbugs.threshold>Low</spotbugs.threshold>
