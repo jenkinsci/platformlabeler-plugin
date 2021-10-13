@@ -25,6 +25,11 @@ if (env.JENKINS_URL.contains('markwaite.net')) {
     // Use advanced buildPlugin on markwaite.net
     buildPlugin(configurations: subsetConfiguration, failFast: false)
 } else {
-    // Use simple buildPlugin on ci.jenkins.io and elsewhere
-    buildPlugin()
+    // Use simple buildPlugin elsewhere
+    buildPlugin(
+        configurations: [
+            [platform: 'linux',   jdk: '11'],
+            [platform: 'windows', jdk:  '8']
+        ]
+    )
 }
