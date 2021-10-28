@@ -3,7 +3,7 @@
 import java.util.Collections
 
 // Valid Jenkins versions for test
-def testJenkinsVersions = [ '2.289.1', '2.303.1', '2.303.2', '2.315', '2.316', '2.317' ]
+def testJenkinsVersions = [ '2.289.1', '2.303.1', '2.303.2', '2.316', '2.317', '2.318' ]
 Collections.shuffle(testJenkinsVersions)
 
 // build recommended configurations
