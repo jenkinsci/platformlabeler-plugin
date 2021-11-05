@@ -24,12 +24,14 @@ public class LabelConfig extends AbstractDescribableImpl<LabelConfig> {
 
     /* Package protected for use within the plugin as a defensive copy constructor */
     LabelConfig(LabelConfig srcLabelConfig) {
-        this.architecture = srcLabelConfig.architecture;
-        this.name = srcLabelConfig.name;
-        this.version = srcLabelConfig.version;
-        this.architectureName = srcLabelConfig.architectureName;
-        this.nameVersion = srcLabelConfig.nameVersion;
-        this.architectureNameVersion = srcLabelConfig.architectureNameVersion;
+        if (srcLabelConfig != null) {
+            this.architecture = srcLabelConfig.architecture;
+            this.name = srcLabelConfig.name;
+            this.version = srcLabelConfig.version;
+            this.architectureName = srcLabelConfig.architectureName;
+            this.nameVersion = srcLabelConfig.nameVersion;
+            this.architectureNameVersion = srcLabelConfig.architectureNameVersion;
+        }
     }
 
     public boolean isArchitecture() {
