@@ -1,4 +1,5 @@
 tasks:
+  - init: mvn install -DskipTests=false
   - name: Update settings.xml
     before: |
       cp .mvn/gitpod-mvn-settings.xml ~/.m2/settings.xml
@@ -15,4 +16,3 @@ tasks:
   - name: install gh
     before: |
       brew install gh
-  - init: mvn install -DskipTests=false
