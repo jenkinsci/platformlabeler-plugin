@@ -24,6 +24,7 @@ Labels commonly include operating system name, version, and architecture.
 | Debian unstable            | `Debian`           | `unstable`     | `amd64`      |
 | Fedora 33                  | `Fedora`           | `33`           | `amd64`      |
 | Fedora 34                  | `Fedora`           | `34`           | `amd64`      |
+| Fedora 35                  | `Fedora`           | `35`           | `amd64`      |
 | FreeBSD 11                 | `freebsd`          | `11.4-STABLE`  | `amd64`      |
 | FreeBSD 12                 | `freebsd`          | `12.2-RELEASE` | `amd64`      |
 | Linux Mint 19.3            | `LinuxMint`        | `19.3`         | `amd64`      |
