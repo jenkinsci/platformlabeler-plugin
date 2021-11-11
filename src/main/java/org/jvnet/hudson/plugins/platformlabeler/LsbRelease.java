@@ -34,11 +34,15 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /** Linux standard base release class. Provides distributor ID and release. */
 public class LsbRelease {
     @NonNull private final String distributorId;
     @NonNull private final String release;
+
+    private static final Logger LOGGER = Logger.getLogger(LsbRelease.class.getName());
 
     /** Extract distributor ID and release for current platform. */
     public LsbRelease() {
@@ -47,7 +51,7 @@ public class LsbRelease {
             Process process = new ProcessBuilder("lsb_release", "-a").start();
             readLsbReleaseOutput(process.getInputStream(), newProps);
         } catch (IOException e) {
-            // IGNORE
+            LOGGER.log(Level.FINEST, "lsb_release execution failed", e);
         }
         this.distributorId =
                 newProps.getOrDefault("Distributor ID", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
