@@ -39,6 +39,8 @@ import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import jenkins.security.Roles;
@@ -46,6 +48,8 @@ import org.jenkinsci.remoting.RoleChecker;
 
 /** Compute labels based on details computed on the agent. */
 class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
+
+    private static final Logger LOGGER = Logger.getLogger(PlatformDetailsTask.class.getName());
 
     private static final String RELEASE = "release";
     private static final String VERSION = "VERSION =";
@@ -128,6 +132,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
             return getCanonicalLinuxArchStream(p.getInputStream(), arch);
         } catch (IOException | InterruptedException e) {
             /* Return arch instead of throwing an exception */
+            LOGGER.log(Level.FINEST, "uname -m failed", e);
         }
         return arch;
     }
@@ -282,6 +287,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
                     }
                 } catch (NumberFormatException nfe) {
                     // Ignore NumberFormatException
+                    LOGGER.log(Level.FINEST, "number format exception", nfe);
                 }
             }
             if (computedVersion.equals(UNKNOWN_VALUE_STRING)) {
@@ -373,6 +379,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
             }
         } catch (IOException notFound) {
             // Ignore IOException
+            LOGGER.log(Level.FINEST, "os-release not found", notFound);
         }
         return PREFERRED_LINUX_OS_NAMES.getOrDefault(value, value);
     }
@@ -404,6 +411,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
             }
         } catch (IOException notFound) {
             // Ignore IOException
+            LOGGER.log(Level.FINEST, "redhat-release not found", notFound);
         }
         return PREFERRED_LINUX_OS_NAMES.getOrDefault(value, value);
     }
@@ -460,10 +468,8 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
                     new BufferedReader(
                             Files.newBufferedReader(
                                     debianVersion.toPath(), StandardCharsets.UTF_8))) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    return line.trim();
-                }
+                String line = br.readLine();
+                return line != null ? line.trim() : UNKNOWN_VALUE_STRING;
             } catch (IOException notFound) {
                 return UNKNOWN_VALUE_STRING;
             }
@@ -485,6 +491,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
             }
         } catch (IOException | InterruptedException e) {
             /* Return version instead of throwing an exception */
+            LOGGER.log(Level.FINEST, "freebsd version exception", e);
         }
         return version;
     }
