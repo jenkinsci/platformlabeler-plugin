@@ -26,7 +26,7 @@ if (env.JENKINS_URL.contains('markwaite.net')) {
     buildPlugin(configurations: subsetConfiguration, failFast: false)
 } else {
     // Use simple buildPlugin elsewhere
-    buildPlugin(
+    buildPlugin(failfast: false,
         configurations: [
             [platform: 'linux',   jdk: '11'],
             [platform: 'windows', jdk:  '8']
