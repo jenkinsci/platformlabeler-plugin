@@ -468,10 +468,8 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
                     new BufferedReader(
                             Files.newBufferedReader(
                                     debianVersion.toPath(), StandardCharsets.UTF_8))) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    return line.trim();
-                }
+                String line = br.readLine();
+                return line != null ? line.trim() : UNKNOWN_VALUE_STRING;
             } catch (IOException notFound) {
                 return UNKNOWN_VALUE_STRING;
             }
