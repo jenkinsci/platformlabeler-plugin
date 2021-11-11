@@ -1,5 +1,6 @@
 package org.jvnet.hudson.plugins.platformlabeler;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import hudson.Extension;
 import hudson.slaves.ComputerListener;
 import jenkins.model.GlobalConfiguration;
@@ -16,6 +17,9 @@ public class PlatformLabelerGlobalConfiguration extends GlobalConfiguration {
     private LabelConfig labelConfig;
 
     /** Standard constructor. */
+    @SuppressFBWarnings(
+            value = "MC_OVERRIDABLE_METHOD_CALL_IN_CONSTRUCTOR",
+            justification = "GlobalConfiguration does not depend on initialization of this object")
     public PlatformLabelerGlobalConfiguration() {
         load();
         if (labelConfig == null) {
