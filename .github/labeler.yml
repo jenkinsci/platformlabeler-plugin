@@ -12,6 +12,7 @@ documentation:
 - CONTRIBUTING.md
 - README.md
 - LICENSE.txt
+- src/main/**/*.html
 
 test:
 - src/**/*.sh
