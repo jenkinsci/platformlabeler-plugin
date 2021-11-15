@@ -5,7 +5,7 @@
 
 Adds labels to Jenkins agents based on characteristics of the operating system running the agent.
 
-Labels commonly include operating system name, version, and architecture.
+Labels commonly include operating system name, version, architecture, and Windows feature update.
 
 | Platform                   | OS Name            | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
@@ -46,6 +46,10 @@ Labels commonly include operating system name, version, and architecture.
 | Ubuntu 20                  | `Ubuntu`           | `20.04`        | `amd64`      |
 | Ubuntu 21                  | `Ubuntu`           | `21.04`        | `amd64`      |
 | Windows 10                 | `windows`          | `10.0`         | `amd64`      |
+
+On Windows computers, the plugin assigns a label based on the Windows feature update.
+Feature update labels use a two digit year and a two digit month representation.
+Common values for Windows feature update are `1809`, `1903`, `2009`, and `2109`.
 
 On Linux computers, the plugin uses the output of the [`lsb_release`](https://linux.die.net/man/1/lsb_release) command.
 
