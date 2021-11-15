@@ -39,6 +39,7 @@ public class ConfigurationTest {
         labelConfig.setArchitectureNameVersion(false);
         labelConfig.setVersion(false);
         labelConfig.setNameVersion(false);
+        labelConfig.setWindowsFeatureUpdate(false);
         nodeProperty.setLabelConfig(labelConfig);
         r.jenkins.getNodeProperties().add(nodeProperty);
 
@@ -49,7 +50,7 @@ public class ConfigurationTest {
         expected.add(r.jenkins.getLabelAtom(platformDetails.getName()));
 
         Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
-        assertThat(expected, is(labelsAfter));
+        assertThat(labelsAfter, is(expected));
     }
 
     @Test
@@ -60,6 +61,7 @@ public class ConfigurationTest {
         labelConfig.setArchitectureNameVersion(false);
         labelConfig.setName(false);
         labelConfig.setNameVersion(false);
+        labelConfig.setWindowsFeatureUpdate(false);
         nodeProperty.setLabelConfig(labelConfig);
         r.jenkins.getNodeProperties().add(nodeProperty);
 
@@ -71,7 +73,7 @@ public class ConfigurationTest {
         expected.add(r.jenkins.getLabelAtom(platformDetails.getVersion()));
 
         Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
-        assertThat(expected, is(labelsAfter));
+        assertThat(labelsAfter, is(expected));
     }
 
     @Test
@@ -91,9 +93,16 @@ public class ConfigurationTest {
         expected.add(r.jenkins.getLabelAtom(platformDetails.getNameVersion()));
         expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitectureName()));
         expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitectureNameVersion()));
+        if (platformDetails.getWindowsFeatureUpdate() != null) {
+            /* Non-windows won't have a WindowsFeatureUpdate value.
+             * Windows that have not installed a feature update won't
+             * have a WindowsFeatureUpdate value.
+             */
+            expected.add(r.jenkins.getLabelAtom(platformDetails.getWindowsFeatureUpdate()));
+        }
 
         Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
-        assertThat(expected, is(labelsAfter));
+        assertThat(labelsAfter, is(expected));
     }
 
     @Test
@@ -112,6 +121,7 @@ public class ConfigurationTest {
         PlatformLabelerNodeProperty nodeProperty = new PlatformLabelerNodeProperty();
         LabelConfig labelConfig = new LabelConfig();
         labelConfig.setVersion(false);
+        labelConfig.setWindowsFeatureUpdate(false);
         nodeProperty.setLabelConfig(labelConfig);
         r.jenkins.getNodeProperties().add(nodeProperty);
 
@@ -126,7 +136,7 @@ public class ConfigurationTest {
         expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitectureNameVersion()));
 
         Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
-        assertThat(expected, is(labelsAfter));
+        assertThat(labelsAfter, is(expected));
     }
 
     @Test
@@ -139,6 +149,7 @@ public class ConfigurationTest {
 
         globalLabelConfig.setVersion(false);
         globalLabelConfig.setName(false);
+        globalLabelConfig.setWindowsFeatureUpdate(false);
         globalLabelConfig.setArchitectureName(false);
         globalLabelConfig.setArchitectureNameVersion(false);
         globalLabelConfig.setNameVersion(false);
@@ -152,7 +163,7 @@ public class ConfigurationTest {
         expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitecture()));
 
         Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
-        assertThat(expected, is(labelsAfter));
+        assertThat(labelsAfter, is(expected));
     }
 
     @Test
@@ -167,5 +178,8 @@ public class ConfigurationTest {
                 is(globalLabelConfigAfter.isArchitecture()));
         assertThat(globalLabelConfigBefore.isName(), is(globalLabelConfigAfter.isName()));
         assertThat(globalLabelConfigBefore.isVersion(), is(globalLabelConfigAfter.isVersion()));
+        assertThat(
+                globalLabelConfigBefore.isWindowsFeatureUpdate(),
+                is(globalLabelConfigAfter.isWindowsFeatureUpdate()));
     }
 }

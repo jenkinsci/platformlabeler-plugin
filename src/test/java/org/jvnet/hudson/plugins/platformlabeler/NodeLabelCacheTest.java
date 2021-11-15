@@ -51,13 +51,20 @@ public class NodeLabelCacheTest {
     private Computer computer;
     private Set<LabelAtom> labelsBefore;
     private NodeLabelCache nodeLabelCache;
+    private PlatformDetails localDetails;
 
     @Before
-    public void setUp() {
+    public void setUp() throws IOException {
         computer = r.jenkins.toComputer();
         labelsBefore = computer.getNode().getAssignedLabels();
         assertThat(labelsBefore, is(not(empty())));
         nodeLabelCache = new NodeLabelCache();
+        PlatformDetailsTask task = new PlatformDetailsTask();
+        localDetails =
+                task.computeLabels(
+                        System.getProperty("os.arch", PlatformDetailsTask.UNKNOWN_VALUE_STRING),
+                        System.getProperty("os.name", PlatformDetailsTask.UNKNOWN_VALUE_STRING),
+                        System.getProperty("os.version", PlatformDetailsTask.UNKNOWN_VALUE_STRING));
     }
 
     @After
@@ -96,6 +103,40 @@ public class NodeLabelCacheTest {
     public void testCacheLabelsNullingComputer() throws Exception {
         Computer nullingComputer = new NullingComputer(computer.getNode());
         nodeLabelCache.cacheLabels(nullingComputer);
+    }
+
+    @Test
+    public void testOnConfigurationChange() {
+        nodeLabelCache.onConfigurationChange();
+    }
+
+    @Test
+    public void testRequestComputerPlatformDetails() throws Exception {
+        PlatformDetails platformDetails = nodeLabelCache.requestComputerPlatformDetails(computer);
+        assertThat(platformDetails.getArchitecture(), is(localDetails.getArchitecture()));
+        assertThat(platformDetails.getName(), is(localDetails.getName()));
+        assertThat(platformDetails.getVersion(), is(localDetails.getVersion()));
+        assertThat(
+                platformDetails.getWindowsFeatureUpdate(),
+                is(localDetails.getWindowsFeatureUpdate()));
+    }
+
+    @Test
+    public void testGetLabelsForNode() throws IOException {
+        Collection<LabelAtom> labels = nodeLabelCache.getLabelsForNode(computer.getNode());
+        PlatformDetailsTask task = new PlatformDetailsTask();
+        for (LabelAtom labelAtom : labels) {
+            assertThat(
+                    labelAtom.getName(),
+                    anyOf(
+                            is(localDetails.getArchitecture()),
+                            is(localDetails.getArchitectureName()),
+                            is(localDetails.getArchitectureNameVersion()),
+                            is(localDetails.getName()),
+                            is(localDetails.getNameVersion()),
+                            is(localDetails.getVersion()),
+                            is(localDetails.getWindowsFeatureUpdate())));
+        }
     }
 
     @Test

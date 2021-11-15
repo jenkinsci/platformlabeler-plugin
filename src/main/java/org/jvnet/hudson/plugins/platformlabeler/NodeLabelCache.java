@@ -187,6 +187,10 @@ public class NodeLabelCache extends ComputerListener {
             result.add(jenkins.getLabelAtom(pp.getArchitectureNameVersion()));
         }
 
+        if (labelConfig.isWindowsFeatureUpdate() && pp.getWindowsFeatureUpdate() != null) {
+            result.add(jenkins.getLabelAtom(pp.getWindowsFeatureUpdate()));
+        }
+
         return result;
     }
 
