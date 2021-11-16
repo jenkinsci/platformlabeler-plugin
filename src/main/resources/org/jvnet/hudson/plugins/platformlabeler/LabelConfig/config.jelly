@@ -21,5 +21,4 @@
   <f:entry field="architectureNameVersion" title="Generate label with OS architecture, name and version">
     <f:checkbox default="true"/>
   </f:entry>
-
 </j:jelly>
