@@ -38,7 +38,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /** Linux standard base release class. Provides distributor ID and release. */
-public class LsbRelease {
+public class LsbRelease implements PlatformDetailsRelease {
     @NonNull private final String distributorId;
     @NonNull private final String release;
 
@@ -91,6 +91,7 @@ public class LsbRelease {
      *
      * @return Linux distributor ID for this agent
      */
+    @Override
     @NonNull
     public String distributorId() {
         return distributorId;
@@ -101,6 +102,7 @@ public class LsbRelease {
      *
      * @return Linux release for this agent
      */
+    @Override
     @NonNull
     public String release() {
         return release;
