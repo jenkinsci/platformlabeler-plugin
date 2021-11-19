@@ -105,3 +105,8 @@ updates:
   - MarkEWaite
   labels:
   - skip-changelog
+
+- package-ecosystem: github-actions
+  directory: /
+  schedule:
+    interval: weekly
