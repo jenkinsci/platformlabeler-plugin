@@ -55,13 +55,34 @@ public class PlatformDetailsTest {
     }
 
     @Test
+    @Deprecated
+    void testGetNameFewerDetails() {
+        PlatformDetails fewerDetails = new PlatformDetails(name, arch, version);
+        assertThat(fewerDetails.getName(), is(name));
+    }
+
+    @Test
     void testGetArchitecture() {
         assertThat(details.getArchitecture(), is(arch));
     }
 
     @Test
+    @Deprecated
+    void testGetArchitectureFewerDetails() {
+        PlatformDetails fewerDetails = new PlatformDetails(name, arch, version);
+        assertThat(fewerDetails.getArchitecture(), is(arch));
+    }
+
+    @Test
     void testGetVersion() {
         assertThat(details.getVersion(), is(version));
+    }
+
+    @Test
+    @Deprecated
+    void testGetVersionFewerDetails() {
+        PlatformDetails fewerDetails = new PlatformDetails(name, arch, version);
+        assertThat(fewerDetails.getVersion(), is(version));
     }
 
     @Test

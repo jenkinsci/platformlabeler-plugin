@@ -19,6 +19,12 @@ Please don't introduce new spotbugs output.
 * `mvn spotbugs:check` to analyze project using [Spotbugs](https://spotbugs.github.io)
 * `mvn spotbugs:gui` to review report using GUI
 
+## Mutation Testing
+
+PIT mutation testing is available as a maven target.
+
+* `mvn org.pitest:pitest-maven:mutationCoverage` to perform mutation testing and generate a report
+
 ## Code Formatting
 
 Code formatting in the Platform Labeler plugin is maintained by the git code format maven plugin.
