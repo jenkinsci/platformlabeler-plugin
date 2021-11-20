@@ -38,6 +38,8 @@ public class PlatformDetailsTest {
     private String windowsFeatureUpdate;
     private PlatformDetails details;
 
+    @Deprecated private PlatformDetails fewerDetails;
+
     public PlatformDetailsTest() {}
 
     @BeforeEach
@@ -47,6 +49,7 @@ public class PlatformDetailsTest {
         version = randomVersion();
         windowsFeatureUpdate = randomWindowsFeatureUpdate();
         details = new PlatformDetails(name, arch, version, windowsFeatureUpdate);
+        fewerDetails = new PlatformDetails(name, arch, version);
     }
 
     @Test
@@ -55,13 +58,31 @@ public class PlatformDetailsTest {
     }
 
     @Test
+    @Deprecated
+    void testGetNameFewerDetails() {
+        assertThat(fewerDetails.getName(), is(name));
+    }
+
+    @Test
     void testGetArchitecture() {
         assertThat(details.getArchitecture(), is(arch));
     }
 
     @Test
+    @Deprecated
+    void testGetArchitectureFewerDetails() {
+        assertThat(fewerDetails.getArchitecture(), is(arch));
+    }
+
+    @Test
     void testGetVersion() {
         assertThat(details.getVersion(), is(version));
+    }
+
+    @Test
+    @Deprecated
+    void testGetVersionFewerDetails() {
+        assertThat(fewerDetails.getVersion(), is(version));
     }
 
     @Test
