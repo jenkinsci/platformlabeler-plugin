@@ -192,8 +192,7 @@ public class PlatformDetailsTaskTest {
     @Test
     @DisplayName("test release identifier on missing file")
     void getReleaseIdentifierMissingFileReturnsUnknownValue() throws Exception {
-        PlatformDetails details =
-                platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
+        platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
         platformDetailsTask.setOsReleaseFile(new File("/this/file/does/not/exist"));
         String name = platformDetailsTask.getReleaseIdentifier("ID");
         assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
@@ -218,8 +217,7 @@ public class PlatformDetailsTaskTest {
     @Test
     @DisplayName("Read Red Hat release identifier")
     void getRedhatReleaseIdentifierMissingFileReturnsUnknownValue() throws Exception {
-        PlatformDetails details =
-                platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
+        platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
         platformDetailsTask.setRedhatRelease(new File("/this/file/does/not/exist"));
         String name = platformDetailsTask.getRedhatReleaseIdentifier("ID");
         assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
@@ -228,8 +226,7 @@ public class PlatformDetailsTaskTest {
     @Test
     @DisplayName("Read Red Hat release identifier null file")
     void getRedhatReleaseIdentifierNullFileReturnsUnknownValue() throws Exception {
-        PlatformDetails details =
-                platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
+        platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
         platformDetailsTask.setRedhatRelease(null);
         String name = platformDetailsTask.getRedhatReleaseIdentifier("ID");
         assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
@@ -238,8 +235,7 @@ public class PlatformDetailsTaskTest {
     @Test
     @DisplayName("Read Red Hat release identifier wrong file")
     void getRedhatReleaseIdentifierWrongFileReturnsUnknownValue() throws Exception {
-        PlatformDetails details =
-                platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
+        platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
         platformDetailsTask.setRedhatRelease(new File("/etc/hosts")); // Not redhat-release file
         String name = platformDetailsTask.getRedhatReleaseIdentifier("ID");
         assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
