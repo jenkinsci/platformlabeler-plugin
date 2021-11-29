@@ -12,6 +12,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Alpine 3.12                | `Alpine`           | `3.12.8`       | `amd64`      |
 | Alpine 3.13                | `Alpine`           | `3.13.6`       | `amd64`      |
 | Alpine 3.14                | `Alpine`           | `3.14.3`       | `amd64`      |
+| Alpine 3.15                | `Alpine`           | `3.15.0`       | `amd64`      |
 | Amazon Linux 2             | `Amazon`           | `2`            | `amd64`      |
 | CentOS 7                   | `CentOS`           | `7.9.2009`     | `amd64`      |
 | CentOS 8                   | `CentOS`           | `8.4.2105`     | `amd64`      |
@@ -32,7 +33,8 @@ Labels commonly include operating system name, version, architecture, and Window
 | Linux Mint 20.1            | `Linuxmint`        | `20.1`         | `amd64`      |
 | openSUSE Leap              | `openSUSE`         | `15.3`         | `amd64`      |
 | Oracle Linux 7             | `OracleServer`     | `7.9`          | `amd64`      |
-| Oracle Linux 8             | `OracleServer`     | `8.4`          | `amd64`      |
+| Oracle Linux 8             | `OracleServer`     | `8.5`          | `aarch64`    |
+| Oracle Linux 8             | `OracleServer`     | `8.5`          | `amd64`      |
 | Raspbian 9                 | `Raspbian`         | `9.13`         | `arm`        |
 | Raspbian 10                | `Raspbian`         | `10`           | `arm`        |
 | Red Hat Enterprise Linux 7 | `RedHatEnterprise` | `7.9`          | `amd64`      |
