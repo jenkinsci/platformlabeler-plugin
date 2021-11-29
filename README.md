@@ -58,6 +58,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | -------------------------- | ------------------ | -------------- | ------------ |
 | Raspbian 9                 | `Raspbian`         | `9.13`         | `arm`        |
 | Raspbian 10                | `Raspbian`         | `10`           | `arm`        |
+| Raspbian 11                | `Raspbian`         | `11`           | `arm`        |
 
 ## IBM System 390 (s390x)
 
