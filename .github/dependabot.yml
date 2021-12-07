@@ -82,6 +82,17 @@ updates:
   - skip-changelog
 
 - package-ecosystem: docker
+  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/registry.access.redhat.com/ubi8/ubi/8.5"
+  schedule:
+    interval: weekly
+  open-pull-requests-limit: 2
+  target-branch: master
+  reviewers:
+  - MarkEWaite
+  labels:
+  - skip-changelog
+
+- package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/ubuntu/20.04"
   schedule:
     interval: weekly
