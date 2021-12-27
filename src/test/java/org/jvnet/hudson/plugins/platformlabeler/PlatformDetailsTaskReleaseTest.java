@@ -94,6 +94,9 @@ public class PlatformDetailsTaskReleaseTest {
     }
 
     private static String computeExpectedName(String filename) {
+        if (filename.contains("alinux")) {
+            return "AlibabaCloud";
+        }
         if (filename.contains("amzn")) {
             return "Amazon";
         }

@@ -323,6 +323,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
     private static final Map<String, String> PREFERRED_LINUX_OS_NAMES = new HashMap<>();
 
     static {
+        PREFERRED_LINUX_OS_NAMES.put("alinux", "AlibabaCloud");
         PREFERRED_LINUX_OS_NAMES.put("alpine", "Alpine");
         PREFERRED_LINUX_OS_NAMES.put("amzn", "Amazon");
         PREFERRED_LINUX_OS_NAMES.put("centos", "CentOS");

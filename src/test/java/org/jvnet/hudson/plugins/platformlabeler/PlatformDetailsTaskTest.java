@@ -62,6 +62,7 @@ public class PlatformDetailsTaskTest {
             assertThat(
                     name,
                     anyOf(
+                            is("AlibabaCloud"),
                             is("Alpine"),
                             is("Amazon"),
                             is("AmazonAMI"),
