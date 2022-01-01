@@ -11,8 +11,8 @@ Labels commonly include operating system name, version, architecture, and Window
 
 | Platform                   | OS Name            | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
-| Alpine 3.12                | `Alpine`           | `3.12.8`       | `amd64`      |
-| Alpine 3.13                | `Alpine`           | `3.13.6`       | `amd64`      |
+| Alpine 3.12                | `Alpine`           | `3.12.9`       | `amd64`      |
+| Alpine 3.13                | `Alpine`           | `3.13.7`       | `amd64`      |
 | Alpine 3.14                | `Alpine`           | `3.14.3`       | `amd64`      |
 | Alpine 3.15                | `Alpine`           | `3.15.0`       | `amd64`      |
 | Alibaba Linux 3            | `AlibabaCloud`     | `3`            | `amd64`      |
