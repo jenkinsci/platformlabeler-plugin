@@ -37,7 +37,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Oracle Linux 7             | `OracleServer`     | `7.9`          | `amd64`      |
 | Oracle Linux 8             | `OracleServer`     | `8.5`          | `amd64`      |
 | Red Hat Enterprise Linux 7 | `RedHatEnterprise` | `7.9`          | `amd64`      |
-| Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.4`          | `amd64`      |
+| Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.5`          | `amd64`      |
 | Scientific 7               | `Scientific`       | `7.9`          | `amd64`      |
 | SLES 12                    | `SUSE`             | `12.4`         | `amd64`      |
 | SLES 15                    | `SUSE`             | `15`           | `amd64`      |
