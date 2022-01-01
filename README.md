@@ -11,15 +11,15 @@ Labels commonly include operating system name, version, architecture, and Window
 
 | Platform                   | OS Name            | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
-| Alpine 3.12                | `Alpine`           | `3.12.8`       | `amd64`      |
-| Alpine 3.13                | `Alpine`           | `3.13.6`       | `amd64`      |
+| Alibaba Linux 3            | `AlibabaCloud`     | `3`            | `amd64`      |
+| Alpine 3.12                | `Alpine`           | `3.12.9`       | `amd64`      |
+| Alpine 3.13                | `Alpine`           | `3.13.7`       | `amd64`      |
 | Alpine 3.14                | `Alpine`           | `3.14.3`       | `amd64`      |
 | Alpine 3.15                | `Alpine`           | `3.15.0`       | `amd64`      |
-| Alibaba Linux 3            | `AlibabaCloud`     | `3`            | `amd64`      |
 | Amazon Linux 2             | `Amazon`           | `2`            | `amd64`      |
 | CentOS 7                   | `CentOS`           | `7.9.2009`     | `amd64`      |
 | CentOS 8                   | `CentOS`           | `8.4.2105`     | `amd64`      |
-| Clear Linux                | `clear-linux-os`   | `35030`        | `amd64`      |
+| Clear Linux                | `clear-linux-os`   | `35470`        | `amd64`      |
 | Debian 9                   | `Debian`           | `9.13`         | `amd64`      |
 | Debian 10                  | `Debian`           | `10`           | `amd64`      |
 | Debian 11                  | `Debian`           | `11`           | `amd64`      |
@@ -37,7 +37,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Oracle Linux 7             | `OracleServer`     | `7.9`          | `amd64`      |
 | Oracle Linux 8             | `OracleServer`     | `8.5`          | `amd64`      |
 | Red Hat Enterprise Linux 7 | `RedHatEnterprise` | `7.9`          | `amd64`      |
-| Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.4`          | `amd64`      |
+| Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.5`          | `amd64`      |
 | Scientific 7               | `Scientific`       | `7.9`          | `amd64`      |
 | SLES 12                    | `SUSE`             | `12.4`         | `amd64`      |
 | SLES 15                    | `SUSE`             | `15`           | `amd64`      |
