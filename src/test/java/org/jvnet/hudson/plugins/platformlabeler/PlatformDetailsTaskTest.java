@@ -71,6 +71,7 @@ public class PlatformDetailsTaskTest {
                             is("openSUSE"),
                             is("OracleServer"),
                             is("Raspbian"),
+                            is("RedHatEnterprise"),
                             is("SUSE"),
                             is("Ubuntu")));
             // Yes, this is a dirty trick to detect the hardware architecture on some JVM's
