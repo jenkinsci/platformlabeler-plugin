@@ -11,9 +11,12 @@ which verify your change.
 
 ## Code Coverage
 
-Code coverage reporting is available as a maven target.
+[JaCoCo code coverage](https://www.jacoco.org/jacoco/) reporting is available as a maven target and can be displayed by the [Jenkins warnings next generation plugin](https://plugins.jenkins.io/warnings-ng/).
 Please try to improve code coverage with tests when you submit.
-* `mvn -P enable-jacoco clean install jacoco:report` to report code coverage
+* `mvn -P enable-jacoco clean install jacoco:report` to report code coverage with JaCoCo.
+
+[OpenClover code coverage](https://openclover.org/) reporting is available as a maven target and can be displayed by the [Jenkins clover plugin](https://plugins.jenkins.io/clover/).
+* `mvn clover:setup clover:instrument test clover:clover` to report code coverage with OpenClover.
 
 Please don't introduce new spotbugs output.
 * `mvn spotbugs:check` to analyze project using [Spotbugs](https://spotbugs.github.io)
