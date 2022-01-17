@@ -67,7 +67,15 @@ Run pre-commit checks on all files:
 $ pre-commit run --all-files
 ```
 
-## Maintaing automated tests
+## Maintaining automated tests
+
+Automated tests are run as part of the `verify` phase.
+Automated tests in the `continuous-integration` profile are run with multiple Java virtual machines, depending on the number of available processor cores.
+Run automated tests with multiple Java virtual machines in a development with the command:
+
+```
+$ mvn clean -DforkCount=1C verify
+```
 
 Test data for automated tests is extracted from Docker images defined in subdirectories of `src/test/resources/org/jvnet/hudson/plugins/platformlabeler`.
 The subdirectory name is used as an index into a map that defines the expected value of the operating system name.
