@@ -28,7 +28,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Fedora 33                  | `Fedora`           | `33`           | `amd64`      |
 | Fedora 34                  | `Fedora`           | `34`           | `amd64`      |
 | Fedora 35                  | `Fedora`           | `35`           | `amd64`      |
-| FreeBSD 12                 | `freebsd`          | `12.2-RELEASE` | `amd64`      |
+| FreeBSD 12                 | `freebsd`          | `12.3-RELEASE` | `amd64`      |
 | FreeBSD 13                 | `freebsd`          | `13.0-RELEASE` | `amd64`      |
 | Linux Mint 19.3            | `LinuxMint`        | `19.3`         | `amd64`      |
 | Linux Mint 20              | `Linuxmint`        | `20`           | `amd64`      |
