@@ -66,6 +66,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Platform                   | OS Name            | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
 | Ubuntu 18                  | `Ubuntu`           | `18.04`        | `s390x`      |
+| Ubuntu 20                  | `Ubuntu`           | `20.04`        | `s390x`      |
 
 ## IBM PowerPC 64 little endian (ppc64le)
 
