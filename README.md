@@ -14,7 +14,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Alibaba Linux 3            | `AlibabaCloud`     | `3`            | `amd64`      |
 | Alpine 3.12                | `Alpine`           | `3.12.10`      | `amd64`      |
 | Alpine 3.13                | `Alpine`           | `3.13.8`       | `amd64`      |
-| Alpine 3.14                | `Alpine`           | `3.14.3`       | `amd64`      |
+| Alpine 3.14                | `Alpine`           | `3.14.4`       | `amd64`      |
 | Alpine 3.15                | `Alpine`           | `3.15.0`       | `amd64`      |
 | Amazon Linux 2             | `Amazon`           | `2`            | `amd64`      |
 | CentOS 7                   | `CentOS`           | `7.9.2009`     | `amd64`      |
