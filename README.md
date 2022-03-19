@@ -12,10 +12,10 @@ Labels commonly include operating system name, version, architecture, and Window
 | Platform                   | OS Name            | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
 | Alibaba Linux 3            | `AlibabaCloud`     | `3`            | `amd64`      |
-| Alpine 3.12                | `Alpine`           | `3.12.9`       | `amd64`      |
-| Alpine 3.13                | `Alpine`           | `3.13.7`       | `amd64`      |
-| Alpine 3.14                | `Alpine`           | `3.14.3`       | `amd64`      |
-| Alpine 3.15                | `Alpine`           | `3.15.0`       | `amd64`      |
+| Alpine 3.12                | `Alpine`           | `3.12.10`      | `amd64`      |
+| Alpine 3.13                | `Alpine`           | `3.13.8`       | `amd64`      |
+| Alpine 3.14                | `Alpine`           | `3.14.4`       | `amd64`      |
+| Alpine 3.15                | `Alpine`           | `3.15.1`       | `amd64`      |
 | Amazon Linux 2             | `Amazon`           | `2`            | `amd64`      |
 | CentOS 7                   | `CentOS`           | `7.9.2009`     | `amd64`      |
 | CentOS 8                   | `CentOS`           | `8.4.2105`     | `amd64`      |
@@ -28,12 +28,12 @@ Labels commonly include operating system name, version, architecture, and Window
 | Fedora 33                  | `Fedora`           | `33`           | `amd64`      |
 | Fedora 34                  | `Fedora`           | `34`           | `amd64`      |
 | Fedora 35                  | `Fedora`           | `35`           | `amd64`      |
-| FreeBSD 12                 | `freebsd`          | `12.2-RELEASE` | `amd64`      |
+| FreeBSD 12                 | `freebsd`          | `12.3-RELEASE` | `amd64`      |
 | FreeBSD 13                 | `freebsd`          | `13.0-RELEASE` | `amd64`      |
 | Linux Mint 19.3            | `LinuxMint`        | `19.3`         | `amd64`      |
 | Linux Mint 20              | `Linuxmint`        | `20`           | `amd64`      |
 | Linux Mint 20.3            | `Linuxmint`        | `20.3`         | `amd64`      |
-| openSUSE Leap              | `openSUSE`         | `15.4`         | `amd64`      |
+| openSUSE Leap              | `openSUSE`         | `15.3`         | `amd64`      |
 | Oracle Linux 7             | `OracleServer`     | `7.9`          | `amd64`      |
 | Oracle Linux 8             | `OracleServer`     | `8.5`          | `amd64`      |
 | Red Hat Enterprise Linux 7 | `RedHatEnterprise` | `7.9`          | `amd64`      |
@@ -66,6 +66,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Platform                   | OS Name            | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
 | Ubuntu 18                  | `Ubuntu`           | `18.04`        | `s390x`      |
+| Ubuntu 20                  | `Ubuntu`           | `20.04`        | `s390x`      |
 
 ## IBM PowerPC 64 little endian (ppc64le)
 
