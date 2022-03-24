@@ -1,0 +1,3 @@
+files:
+  - source: src/main/resources/**/*.html
+    translation: src/main/resources/**/%original_file_name%_%two_letters_code%.%file_extension%
