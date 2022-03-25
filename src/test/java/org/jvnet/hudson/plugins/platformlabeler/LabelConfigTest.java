@@ -46,7 +46,7 @@ public class LabelConfigTest {
     }
 
     @Test
-    public void testContructorNullArg() {
+    public void testConstructorNullArg() {
         LabelConfig nullLabelConfig = new LabelConfig(null);
         assertThat(nullLabelConfig.isArchitecture(), is(defaultConfig.isArchitecture()));
         assertThat(nullLabelConfig.isName(), is(defaultConfig.isName()));
