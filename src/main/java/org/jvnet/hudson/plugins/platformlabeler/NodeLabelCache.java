@@ -114,7 +114,7 @@ public class NodeLabelCache extends ComputerListener {
      * Return PlatformDetails of the computer.
      *
      * @param computer agent whose platform details are returned
-     * @return PlatformDeatils for computer
+     * @return PlatformDetails for computer
      * @throws IOException on I/O error
      * @throws InterruptedException on thread interruption
      */
