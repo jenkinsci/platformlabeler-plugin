@@ -24,7 +24,7 @@ public class PlatformLabelerNodeProperty extends NodeProperty<Node> {
 
     @DataBoundSetter
     public void setLabelConfig(LabelConfig labelConfig) {
-        /* Use a defensive copy so that labelConfig is not modifiable oustide this object */
+        /* Use a defensive copy so that labelConfig is not modifiable outside this object */
         this.labelConfig = new LabelConfig(labelConfig);
     }
 
