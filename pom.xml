@@ -46,7 +46,7 @@
     <maven.javadoc.skip>true</maven.javadoc.skip>
     <hpi.compatibleSinceVersion>5.0</hpi.compatibleSinceVersion>
     <junit.jupiter.version>5.8.2</junit.jupiter.version>
-    <pmdVersion>6.43.0</pmdVersion>
+    <pmdVersion>6.44.0</pmdVersion>
     <spotbugs.effort>Max</spotbugs.effort>
     <spotbugs.failOnError>true</spotbugs.failOnError>
     <spotbugs.threshold>Low</spotbugs.threshold>
