@@ -12,7 +12,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Platform                   | OS Name            | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
 | Alibaba Linux 3            | `AlibabaCloud`     | `3`            | `amd64`      |
-| Alpine 3.12                | `Alpine`           | `3.12.10`      | `amd64`      |
+| Alpine 3.12                | `Alpine`           | `3.12.10`      | `amd64`      | // EOL: 01 May 2022
 | Alpine 3.13                | `Alpine`           | `3.13.8`       | `amd64`      |
 | Alpine 3.14                | `Alpine`           | `3.14.4`       | `amd64`      |
 | Alpine 3.15                | `Alpine`           | `3.15.2`       | `amd64`      |
@@ -20,13 +20,12 @@ Labels commonly include operating system name, version, architecture, and Window
 | CentOS 7                   | `CentOS`           | `7.9.2009`     | `amd64`      |
 | CentOS 8                   | `CentOS`           | `8.4.2105`     | `amd64`      |
 | Clear Linux                | `clear-linux-os`   | `35470`        | `amd64`      |
-| Debian 9                   | `Debian`           | `9.13`         | `amd64`      |
+| Debian 9                   | `Debian`           | `9.13`         | `amd64`      | // EOL: 30 Jun 2022
 | Debian 10                  | `Debian`           | `10`           | `amd64`      |
 | Debian 11                  | `Debian`           | `11`           | `amd64`      |
 | Debian testing             | `Debian`           | `testing`      | `amd64`      |
 | Debian unstable            | `Debian`           | `unstable`     | `amd64`      |
-| Fedora 33                  | `Fedora`           | `33`           | `amd64`      |
-| Fedora 34                  | `Fedora`           | `34`           | `amd64`      |
+| Fedora 34                  | `Fedora`           | `34`           | `amd64`      | // EOL: 17 May 2022
 | Fedora 35                  | `Fedora`           | `35`           | `amd64`      |
 | FreeBSD 12                 | `freebsd`          | `12.3-RELEASE` | `amd64`      |
 | FreeBSD 13                 | `freebsd`          | `13.0-RELEASE` | `amd64`      |
@@ -43,7 +42,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | SLES 15                    | `SUSE`             | `15`           | `amd64`      |
 | Ubuntu 18                  | `Ubuntu`           | `18.04`        | `amd64`      |
 | Ubuntu 20                  | `Ubuntu`           | `20.04`        | `amd64`      |
-| Ubuntu 21                  | `Ubuntu`           | `21.04`        | `amd64`      |
+| Ubuntu 21                  | `Ubuntu`           | `21.04`        | `amd64`      | // EOL: 31 Jul 2022
 | Windows 10                 | `windows`          | `10.0`         | `amd64`      |
 
 ## ARM 64 bit (aarch64)
@@ -57,7 +56,7 @@ Labels commonly include operating system name, version, architecture, and Window
 
 | Platform                   | OS Name            | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
-| Raspbian 9                 | `Raspbian`         | `9.13`         | `arm`        |
+| Raspbian 9                 | `Raspbian`         | `9.13`         | `arm`        | // EOL: 30 Jun 2022
 | Raspbian 10                | `Raspbian`         | `10`           | `arm`        |
 | Raspbian 11                | `Raspbian`         | `11`           | `arm`        |
 
