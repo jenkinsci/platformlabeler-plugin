@@ -1,3 +1,5 @@
 files:
   - source: /src/main/resources/**/*.html
+    ignore:
+      - /src/main/resources/**/%file_name%_%two_letters_code%.html
     translation: /src/main/resources/**/%file_name%_%two_letters_code%.html
