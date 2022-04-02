@@ -15,7 +15,6 @@
   <packaging>hpi</packaging>
 
   <name>Jenkins Platform Labeler Plugin</name>
-  <description>Labels agents based on their operating system (platform) version and architecture</description>
   <url>https://github.com/jenkinsci/platformlabeler-plugin/</url>
   <inceptionYear>2009</inceptionYear>
 
