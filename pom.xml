@@ -15,7 +15,6 @@
   <packaging>hpi</packaging>
 
   <name>Jenkins Platform Labeler Plugin</name>
-  <description>Labels agents based on their operating system (platform) version and architecture</description>
   <url>https://github.com/jenkinsci/platformlabeler-plugin/</url>
   <inceptionYear>2009</inceptionYear>
 
@@ -38,7 +37,7 @@
     <changelist>999999-SNAPSHOT</changelist>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <argLine>-Dfile.encoding=${project.build.sourceEncoding}</argLine>
-    <jenkins.version>2.303.3</jenkins.version>
+    <jenkins.version>2.319.3</jenkins.version>
     <java.level>8</java.level>
     <linkXRef>false</linkXRef>
     <!-- Plugin intentionally does not deliver javadoc. -->
@@ -56,7 +55,7 @@
     <dependencies>
       <dependency>
         <groupId>io.jenkins.tools.bom</groupId>
-        <artifactId>bom-2.303.x</artifactId>
+        <artifactId>bom-2.319.x</artifactId>
         <version>1210.vcd41f6657f03</version>
         <type>pom</type>
         <scope>import</scope>
