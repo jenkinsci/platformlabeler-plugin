@@ -3,7 +3,7 @@
 import java.util.Collections
 
 // Valid Jenkins versions for markwaite.net test
-def testJenkinsVersions = [ '2.303.3', '2.319.1', '2.319.2', '2.319.3', '2.332.1', '2.334', '2.335', '2.337', '2.338' ]
+def testJenkinsVersions = [ '2.319.3', '2.332.1', '2.335', '2.337', '2.338', '2.339', '2.340', '2.341' ]
 Collections.shuffle(testJenkinsVersions)
 
 // build recommended configurations
