@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (C) 2019-2021 Mark Waite
+ * Copyright (C) 2019-2022 Mark Waite
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -137,23 +137,31 @@ public class PlatformDetailsTest {
         "ubuntu"
     };
     private final String[] versions = {
-        "7.7.1908",
-        "8.2.2004",
-        "9.11",
+        "3.12.10",
+        "3.13.8",
+        "3.14.4",
+        "3.15.2",
+        "7.9.2009",
+        "8.5",
+        "9.13",
+        "10",
         "10.0",
+        "11",
         "11.3",
         "12.1",
         "12.2",
+        "12.3",
+        "13.0",
         "14.04",
         "16.04",
         "18.04",
         "20.04",
-        "33",
+        "21.04",
         "34",
         "35",
     };
     private final String[] windowsFeatureUpdates = {
-        "1703", "1709", "1803", "1809", "1903", "1909", "2003", "2009", "2103"
+        "1703", "1709", "1803", "1809", "1903", "1909", "2003", "2009", "2103", "2109", "2203"
     };
 
     private String randomName() {
