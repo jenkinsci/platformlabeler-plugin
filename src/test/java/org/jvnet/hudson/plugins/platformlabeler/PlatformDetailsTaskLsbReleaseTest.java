@@ -70,8 +70,11 @@ public class PlatformDetailsTaskLsbReleaseTest {
     }
 
     private static String computeExpectedName(String filename) {
-        if (filename.contains("alinux")) {
+        if (filename.contains("alinux") && !filename.contains("almalinux")) {
             return "AlibabaCloud";
+        }
+        if (filename.contains("almalinux")) {
+            return "AlmaLinux";
         }
         if (filename.contains("amzn")) {
             if (filename.contains("amzn/2018.03")) {
