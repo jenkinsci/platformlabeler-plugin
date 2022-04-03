@@ -1,2 +1,2 @@
-FROM registry.access.redhat.com/ubi8/ubi:8.5-236.1647448331
+FROM registry.access.redhat.com/ubi8/ubi:8.5-236.1648460182
 RUN yum install -y --disableplugin=subscription-manager redhat-lsb-core && yum --disableplugin=subscription-manager clean all
