@@ -63,6 +63,7 @@ public class PlatformDetailsTaskTest {
                     name,
                     anyOf(
                             is("AlibabaCloud"),
+                            is("Alma"),
                             is("Alpine"),
                             is("Amazon"),
                             is("AmazonAMI"),

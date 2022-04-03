@@ -324,6 +324,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
 
     static {
         PREFERRED_LINUX_OS_NAMES.put("alinux", "AlibabaCloud");
+        PREFERRED_LINUX_OS_NAMES.put("almalinux", "Alma");
         PREFERRED_LINUX_OS_NAMES.put("alpine", "Alpine");
         PREFERRED_LINUX_OS_NAMES.put("amzn", "Amazon");
         PREFERRED_LINUX_OS_NAMES.put("centos", "CentOS");
