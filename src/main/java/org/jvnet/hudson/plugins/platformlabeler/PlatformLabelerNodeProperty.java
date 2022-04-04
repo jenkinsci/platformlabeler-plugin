@@ -33,7 +33,7 @@ public class PlatformLabelerNodeProperty extends NodeProperty<Node> {
 
         @Override
         public String getDisplayName() {
-            return "Automatic Platform Labels";
+            return Messages.Automatic_PlatformLabels();
         }
     }
 }
