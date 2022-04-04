@@ -1,24 +1,24 @@
 <?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
-  <f:entry field="architecture" title="Generate label with OS architecture">
+  <f:entry field="architecture" title="${%Generate.LabelWithOSArchitecture}">
     <f:checkbox default="true"/>
   </f:entry>
-  <f:entry field="name" title="Generate label with OS name">
+  <f:entry field="name" title="${%Generate.LabelWithOSName}">
     <f:checkbox default="true"/>
   </f:entry>
-  <f:entry field="version" title="Generate label with OS version">
+  <f:entry field="version" title="${%Generate.LabelWithOSVersion}">
     <f:checkbox default="true"/>
   </f:entry>
-  <f:entry field="windowsFeatureUpdate" title="Generate label with Windows feature update (like 1809, 1903, 2009, or 2103)">
+  <f:entry field="windowsFeatureUpdate" title="${%Generate.LabelWithWindowsFeatureUpdate}">
     <f:checkbox default="true"/>
   </f:entry>
-  <f:entry field="architectureName" title="Generate label with OS architecture and name">
+  <f:entry field="architectureName" title="${%Generate.LabelWithOSArchitectureAndName}">
     <f:checkbox default="true"/>
   </f:entry>
-  <f:entry field="nameVersion" title="Generate label with OS name and version">
+  <f:entry field="nameVersion" title="${%Generate.LabelWithOSNameAndVersion}">
     <f:checkbox default="true"/>
   </f:entry>
-  <f:entry field="architectureNameVersion" title="Generate label with OS architecture, name and version">
+  <f:entry field="architectureNameVersion" title="${%Generate.LabelWithOSArchitectureNameAndVersion}">
     <f:checkbox default="true"/>
   </f:entry>
 </j:jelly>
