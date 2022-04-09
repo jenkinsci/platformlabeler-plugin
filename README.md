@@ -20,7 +20,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Amazon Linux 2             | `Amazon`           | `2`            | `amd64`      |
 | CentOS 7                   | `CentOS`           | `7.9.2009`     | `amd64`      |
 | CentOS 8                   | `CentOS`           | `8.4.2105`     | `amd64`      |
-| Clear Linux                | `clear-linux-os`   | `35470`        | `amd64`      |
+| Clear Linux                | `clear-linux-os`   | `36120`        | `amd64`      |
 | Debian 9                   | `Debian`           | `9.13`         | `amd64`      | // EOL: 30 Jun 2022
 | Debian 10                  | `Debian`           | `10`           | `amd64`      |
 | Debian 11                  | `Debian`           | `11`           | `amd64`      |
