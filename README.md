@@ -44,6 +44,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Ubuntu 18                  | `Ubuntu`           | `18.04`        | `amd64`      |
 | Ubuntu 20                  | `Ubuntu`           | `20.04`        | `amd64`      |
 | Ubuntu 21                  | `Ubuntu`           | `21.10`        | `amd64`      | // EOL: 31 Jul 2022
+| Ubuntu 22                  | `Ubuntu`           | `22.04`        | `amd64`      |
 | Windows 10                 | `windows`          | `10.0`         | `amd64`      |
 
 ## ARM 64 bit (aarch64)
