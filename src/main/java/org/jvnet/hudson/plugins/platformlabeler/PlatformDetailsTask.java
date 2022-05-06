@@ -47,6 +47,9 @@ import jenkins.security.Roles;
 import org.jenkinsci.remoting.RoleChecker;
 
 /** Compute labels based on details computed on the agent. */
+@SuppressFBWarnings(
+        value = "THROWS_METHOD_THROWS_CLAUSE_THROWABLE",
+        justification = "Do not have control of the throws clause of the implemented class")
 class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
 
     private static final Logger LOGGER = Logger.getLogger(PlatformDetailsTask.class.getName());
