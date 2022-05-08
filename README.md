@@ -11,40 +11,40 @@ Labels commonly include operating system name, version, architecture, and Window
 
 | Platform                   | OS Name            | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
-| Alibaba Linux 3            | `AlibabaCloud`     | `3`            | `amd64`      |
-| Alma Linux 8               | `AlmaLinux`        | `8.5`          | `amd64`      |
+| Alibaba Linux 3            | `AlibabaCloud`     | `3`            | `amd64`      | // EOL: 30 Apr 2031
+| Alma Linux 8               | `AlmaLinux`        | `8.5`          | `amd64`      | // EOL: 31 Mar 2029
 | Alpine 3.13                | `Alpine`           | `3.13.8`       | `amd64`      | // EOL: 01 Nov 2022
 | Alpine 3.14                | `Alpine`           | `3.14.4`       | `amd64`      | // EOL: 01 May 2023
-| Alpine 3.15                | `Alpine`           | `3.15.4`       | `amd64`      | // EOLL: 01 Nov 2023
-| Amazon Linux 2             | `Amazon`           | `2`            | `amd64`      |
-| CentOS 7                   | `CentOS`           | `7.9.2009`     | `amd64`      |
-| CentOS 8                   | `CentOS`           | `8.4.2105`     | `amd64`      |
+| Alpine 3.15                | `Alpine`           | `3.15.4`       | `amd64`      | // EOL: 01 Nov 2023
+| Amazon Linux 2             | `Amazon`           | `2`            | `amd64`      | // EOL: 30 Jun 2023
+| CentOS 7                   | `CentOS`           | `7.9.2009`     | `amd64`      | // EOL: 30 Jun 2024
+| CentOS 8                   | `CentOS`           | `8.4.2105`     | `amd64`      | // EOL: 31 Dec 2021
 | Clear Linux                | `clear-linux-os`   | `36120`        | `amd64`      |
 | Debian 9                   | `Debian`           | `9.13`         | `amd64`      | // EOL: 30 Jun 2022
-| Debian 10                  | `Debian`           | `10`           | `amd64`      |
-| Debian 11                  | `Debian`           | `11`           | `amd64`      |
+| Debian 10                  | `Debian`           | `10`           | `amd64`      | // EOL: 30 Jun 2024
+| Debian 11                  | `Debian`           | `11`           | `amd64`      | // EOL: 30 Jun 2026
 | Debian testing             | `Debian`           | `testing`      | `amd64`      |
 | Debian unstable            | `Debian`           | `unstable`     | `amd64`      |
 | Fedora 34                  | `Fedora`           | `34`           | `amd64`      | // EOL: 17 May 2022
-| Fedora 35                  | `Fedora`           | `35`           | `amd64`      |
-| FreeBSD 12                 | `freebsd`          | `12.3-RELEASE` | `amd64`      |
-| FreeBSD 13                 | `freebsd`          | `13.0-RELEASE` | `amd64`      |
-| Linux Mint 19.3            | `LinuxMint`        | `19.3`         | `amd64`      |
-| Linux Mint 20              | `Linuxmint`        | `20`           | `amd64`      |
-| Linux Mint 20.3            | `Linuxmint`        | `20.3`         | `amd64`      |
-| openSUSE Leap              | `openSUSE`         | `15.3`         | `amd64`      |
-| Oracle Linux 7             | `OracleServer`     | `7.9`          | `amd64`      |
-| Oracle Linux 8             | `OracleServer`     | `8.5`          | `amd64`      |
-| Red Hat Enterprise Linux 7 | `RedHatEnterprise` | `7.9`          | `amd64`      |
-| Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.5`          | `amd64`      |
-| Scientific 7               | `Scientific`       | `7.9`          | `amd64`      |
-| SLES 12                    | `SUSE`             | `12.4`         | `amd64`      |
-| SLES 15                    | `SUSE`             | `15`           | `amd64`      |
-| Ubuntu 18                  | `Ubuntu`           | `18.04`        | `amd64`      |
-| Ubuntu 20                  | `Ubuntu`           | `20.04`        | `amd64`      |
+| Fedora 35                  | `Fedora`           | `35`           | `amd64`      | // EOL: 15 Nov 2022
+| FreeBSD 12                 | `freebsd`          | `12.3-RELEASE` | `amd64`      | // EOL: 30 Jun 2024
+| FreeBSD 13                 | `freebsd`          | `13.0-RELEASE` | `amd64`      | // EOL: 31 Jan 2026
+| Linux Mint 19.3            | `LinuxMint`        | `19.3`         | `amd64`      | // EOL:        2023
+| Linux Mint 20              | `Linuxmint`        | `20`           | `amd64`      | // EOL:    Apr 2025
+| Linux Mint 20.3            | `Linuxmint`        | `20.3`         | `amd64`      | // EOL:    Apr 2025
+| openSUSE Leap              | `openSUSE`         | `15.3`         | `amd64`      | // EOL: 30 Nov 2022
+| Oracle Linux 7             | `OracleServer`     | `7.9`          | `amd64`      | // EOL: 30 Jun 2024
+| Oracle Linux 8             | `OracleServer`     | `8.5`          | `amd64`      | // EOL: 31 May 2029
+| Red Hat Enterprise Linux 7 | `RedHatEnterprise` | `7.9`          | `amd64`      | // EOL: 30 Jun 2024
+| Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.5`          | `amd64`      | // EOL: 31 May 2029
+| Scientific 7               | `Scientific`       | `7.9`          | `amd64`      | // EOL: 30 Jun 2024
+| SLES 12                    | `SUSE`             | `12.4`         | `amd64`      | // EOL: 31 Oct 2027
+| SLES 15                    | `SUSE`             | `15`           | `amd64`      | // EOL: 31 Jul 2031
+| Ubuntu 18                  | `Ubuntu`           | `18.04`        | `amd64`      | // EOL: 30 Apr 2023
+| Ubuntu 20                  | `Ubuntu`           | `20.04`        | `amd64`      | // EOL: 30 Apr 2025
 | Ubuntu 21                  | `Ubuntu`           | `21.10`        | `amd64`      | // EOL: 31 Jul 2022
-| Ubuntu 22                  | `Ubuntu`           | `22.04`        | `amd64`      |
-| Windows 10                 | `windows`          | `10.0`         | `amd64`      |
+| Ubuntu 22                  | `Ubuntu`           | `22.04`        | `amd64`      | // EOL: 30 Apr 2027
+| Windows 10                 | `windows`          | `10.0`         | `amd64`      | // EOL: 14 Oct 2025
 
 ## ARM 64 bit (aarch64)
 
@@ -65,14 +65,14 @@ Labels commonly include operating system name, version, architecture, and Window
 
 | Platform                   | OS Name            | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
-| Ubuntu 18                  | `Ubuntu`           | `18.04`        | `s390x`      |
-| Ubuntu 20                  | `Ubuntu`           | `20.04`        | `s390x`      |
+| Ubuntu 18                  | `Ubuntu`           | `18.04`        | `s390x`      | // EOL: 30 Apr 2023
+| Ubuntu 20                  | `Ubuntu`           | `20.04`        | `s390x`      | // EOL: 30 Apr 2025
 
 ## IBM PowerPC 64 little endian (ppc64le)
 
 | Platform                   | OS Name            | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
-| Ubuntu 18                  | `Ubuntu`           | `18.04`        | `ppc64le`    |
+| Ubuntu 18                  | `Ubuntu`           | `18.04`        | `ppc64le`    | // EOL: 30 Apr 2023
 
 On Windows computers, the plugin assigns a label based on the Windows feature update.
 Feature update labels use a two digit year and a two digit month representation.
