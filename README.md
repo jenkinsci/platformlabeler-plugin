@@ -18,19 +18,16 @@ Labels commonly include operating system name, version, architecture, and Window
 | Alpine 3.15                | `Alpine`           | `3.15.4`       | `amd64`      | // EOL: 01 Nov 2023
 | Amazon Linux 2             | `Amazon`           | `2`            | `amd64`      | // EOL: 30 Jun 2023
 | CentOS 7                   | `CentOS`           | `7.9.2009`     | `amd64`      | // EOL: 30 Jun 2024
-| CentOS 8                   | `CentOS`           | `8.4.2105`     | `amd64`      | // EOL: 31 Dec 2021
 | Clear Linux                | `clear-linux-os`   | `36120`        | `amd64`      |
 | Debian 9                   | `Debian`           | `9.13`         | `amd64`      | // EOL: 30 Jun 2022
 | Debian 10                  | `Debian`           | `10`           | `amd64`      | // EOL: 30 Jun 2024
 | Debian 11                  | `Debian`           | `11`           | `amd64`      | // EOL: 30 Jun 2026
 | Debian testing             | `Debian`           | `testing`      | `amd64`      |
 | Debian unstable            | `Debian`           | `unstable`     | `amd64`      |
-| Fedora 34                  | `Fedora`           | `34`           | `amd64`      | // EOL: 17 May 2022
 | Fedora 35                  | `Fedora`           | `35`           | `amd64`      | // EOL: 15 Nov 2022
 | FreeBSD 12                 | `freebsd`          | `12.3-RELEASE` | `amd64`      | // EOL: 30 Jun 2024
 | FreeBSD 13                 | `freebsd`          | `13.0-RELEASE` | `amd64`      | // EOL: 31 Jan 2026
 | Linux Mint 19.3            | `LinuxMint`        | `19.3`         | `amd64`      | // EOL:        2023
-| Linux Mint 20              | `Linuxmint`        | `20`           | `amd64`      | // EOL:    Apr 2025
 | Linux Mint 20.3            | `Linuxmint`        | `20.3`         | `amd64`      | // EOL:    Apr 2025
 | openSUSE Leap              | `openSUSE`         | `15.3`         | `amd64`      | // EOL: 30 Nov 2022
 | Oracle Linux 7             | `OracleServer`     | `7.9`          | `amd64`      | // EOL: 30 Jun 2024
@@ -89,7 +86,7 @@ This has been unified to "SUSE" as this is the lsb_release ID since 'SLES 12 SP2
 
 Linux Mint changed its lsb_release distributor ID from "LinuxMint" to "Linuxmint" in Linux Mint 20.
 The Linux Mint label will be "LinuxMint" for Linux Mint 19.03.
-The Linux Mint label will be "Linuxmint" for Linux Mint 20, Linux Mint 20.1, and Linux Mint 20.2.
+The Linux Mint label will be "Linuxmint" for Linux Mint 20 and later.
 Users running Linux Mint 19 agents may need to adjust their label references to use "Linuxmint" instead of "LinuxMint".
 
 When `/etc/os-release` is used, less detailed labels may be provided because more specific version information is not included in the file.
