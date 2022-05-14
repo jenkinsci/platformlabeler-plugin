@@ -13,8 +13,8 @@ Labels commonly include operating system name, version, architecture, and Window
 | -------------------------- | ------------------ | -------------- | ------------ |
 | Alibaba Linux 3            | `AlibabaCloud`     | `3`            | `amd64`      | // EOL: 30 Apr 2031
 | Alma Linux 8               | `AlmaLinux`        | `8.6`          | `amd64`      | // EOL: 31 Mar 2029
-| Alpine 3.13                | `Alpine`           | `3.13.8`       | `amd64`      | // EOL: 01 Nov 2022
-| Alpine 3.14                | `Alpine`           | `3.14.4`       | `amd64`      | // EOL: 01 May 2023
+| Alpine 3.13                | `Alpine`           | `3.13.10`      | `amd64`      | // EOL: 01 Nov 2022
+| Alpine 3.14                | `Alpine`           | `3.14.6`       | `amd64`      | // EOL: 01 May 2023
 | Alpine 3.15                | `Alpine`           | `3.15.4`       | `amd64`      | // EOL: 01 Nov 2023
 | Amazon Linux 2             | `Amazon`           | `2`            | `amd64`      | // EOL: 30 Jun 2023
 | CentOS 7                   | `CentOS`           | `7.9.2009`     | `amd64`      | // EOL: 30 Jun 2024
@@ -33,7 +33,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Oracle Linux 7             | `OracleServer`     | `7.9`          | `amd64`      | // EOL: 30 Jun 2024
 | Oracle Linux 8             | `OracleServer`     | `8.5`          | `amd64`      | // EOL: 31 May 2029
 | Red Hat Enterprise Linux 7 | `RedHatEnterprise` | `7.9`          | `amd64`      | // EOL: 30 Jun 2024
-| Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.5`          | `amd64`      | // EOL: 31 May 2029
+| Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.6`          | `amd64`      | // EOL: 31 May 2029
 | Scientific 7               | `Scientific`       | `7.9`          | `amd64`      | // EOL: 30 Jun 2024
 | SLES 12                    | `SUSE`             | `12.4`         | `amd64`      | // EOL: 31 Oct 2027
 | SLES 15                    | `SUSE`             | `15`           | `amd64`      | // EOL: 31 Jul 2031
