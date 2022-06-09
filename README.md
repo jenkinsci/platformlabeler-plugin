@@ -54,7 +54,6 @@ Labels commonly include operating system name, version, architecture, and Window
 
 | Platform                   | OS Name            | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
-| Raspbian 9                 | `Raspbian`         | `9.13`         | `arm`        | // EOL: 30 Jun 2022
 | Raspbian 10                | `Raspbian`         | `10`           | `arm`        |
 | Raspbian 11                | `Raspbian`         | `11`           | `arm`        |
 
