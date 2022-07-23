@@ -13,19 +13,20 @@ Labels commonly include operating system name, version, architecture, and Window
 | -------------------------- | ------------------ | -------------- | ------------ |
 | Alibaba Linux 3            | `AlibabaCloud`     | `3`            | `amd64`      | // EOL: 30 Apr 2031
 | Alma Linux 8               | `AlmaLinux`        | `8.6`          | `amd64`      | // EOL: 31 Mar 2029
-| Alpine 3.13                | `Alpine`           | `3.13.10`      | `amd64`      | // EOL: 01 Nov 2022
-| Alpine 3.14                | `Alpine`           | `3.14.6`       | `amd64`      | // EOL: 01 May 2023
-| Alpine 3.15                | `Alpine`           | `3.15.4`       | `amd64`      | // EOL: 01 Nov 2023
-| Alpine 3.16                | `Alpine`           | `3.16.0`       | `amd64`      | // EOL: 01 May 2024
+| Alpine 3.13                | `Alpine`           | `3.13.11`      | `amd64`      | // EOL: 01 Nov 2022
+| Alpine 3.14                | `Alpine`           | `3.14.7`       | `amd64`      | // EOL: 01 May 2023
+| Alpine 3.15                | `Alpine`           | `3.15.5`       | `amd64`      | // EOL: 01 Nov 2023
+| Alpine 3.16                | `Alpine`           | `3.16.1`       | `amd64`      | // EOL: 01 May 2024
 | Amazon Linux 2             | `Amazon`           | `2`            | `amd64`      | // EOL: 30 Jun 2023
 | Amazon Linux 2022          | `Amazon`           | `2022`         | `amd64`      | // EOL: 31 Dec 2028?
 | CentOS 7                   | `CentOS`           | `7.9.2009`     | `amd64`      | // EOL: 30 Jun 2024
-| Clear Linux                | `clear-linux-os`   | `36120`        | `amd64`      |
+| Clear Linux                | `clear-linux-os`   | `36620`        | `amd64`      |
 | Debian 10                  | `Debian`           | `10`           | `amd64`      | // EOL: 30 Jun 2024
 | Debian 11                  | `Debian`           | `11`           | `amd64`      | // EOL: 30 Jun 2026
 | Debian testing             | `Debian`           | `testing`      | `amd64`      |
 | Debian unstable            | `Debian`           | `unstable`     | `amd64`      |
 | Fedora 35                  | `Fedora`           | `35`           | `amd64`      | // EOL: 15 Nov 2022
+| Fedora 36                  | `Fedora`           | `36`           | `amd64`      | // EOL: 16 May 2023
 | FreeBSD 12                 | `freebsd`          | `12.3-RELEASE` | `amd64`      | // EOL: 30 Jun 2024
 | FreeBSD 13                 | `freebsd`          | `13.0-RELEASE` | `amd64`      | // EOL: 31 Jan 2026
 | Linux Mint 19.3            | `LinuxMint`        | `19.3`         | `amd64`      | // EOL:        2023
