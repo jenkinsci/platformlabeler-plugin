@@ -101,7 +101,7 @@ For example:
 
 The types of labels can be configured globally and per agent with the 'Automatic Platform Labels' setting.
 
-To define the labels for an agent, activate 'Automatic Platform Labels' in the Node Properties section and select the desired labels.
+To reduce the set of labels defined for an agent, activate 'Automatic Platform Labels' in the Node Properties section and select the desired label types.
 
 ## Report an Issue
 
