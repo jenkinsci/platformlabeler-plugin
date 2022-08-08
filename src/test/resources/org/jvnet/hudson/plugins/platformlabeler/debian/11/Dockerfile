@@ -1,2 +1,2 @@
-FROM debian:bullseye-20220711-slim
+FROM debian:bullseye-20220801-slim
 RUN apt-get update && apt-get install -y lsb-release
