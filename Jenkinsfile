@@ -10,7 +10,7 @@ Collections.shuffle(testJenkinsVersions)
 subsetConfiguration = [ [ jdk: '11',  platform: 'windows', jenkins: testJenkinsVersions[0] ],
 
                         // Intel Linux is labeled as 'linux' for legacy reasons
-                        [ jdk: '8',  platform: 'linux',   jenkins: testJenkinsVersions[1] ],
+                        [ jdk: '8',  platform: 'linux',   jenkins: '2.332.4' ],
                         [ jdk: '11', platform: 'linux',   jenkins: testJenkinsVersions[2] ],
                         [ jdk: '17', platform: 'linux',   jenkins: '2.361' ],
 
