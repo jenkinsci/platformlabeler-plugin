@@ -13,6 +13,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | -------------------------- | ------------------ | -------------- | ------------ |
 | Alibaba Linux 3            | `AlibabaCloud`     | `3`            | `amd64`      | // EOL: 30 Apr 2031
 | Alma Linux 8               | `AlmaLinux`        | `8.6`          | `amd64`      | // EOL: 31 Mar 2029
+| Alma Linux 9               | `AlmaLinux`        | `9.0`          | `amd64`      | // EOL: 31 May 2032
 | Alpine 3.13                | `Alpine`           | `3.13.11`      | `amd64`      | // EOL: 01 Nov 2022
 | Alpine 3.14                | `Alpine`           | `3.14.8`       | `amd64`      | // EOL: 01 May 2023
 | Alpine 3.15                | `Alpine`           | `3.15.6`       | `amd64`      | // EOL: 01 Nov 2023

@@ -33,6 +33,17 @@ updates:
   - skip-changelog
 
 - package-ecosystem: docker
+  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/almalinux/9.0"
+  schedule:
+    interval: weekly
+  open-pull-requests-limit: 2
+  target-branch: master
+  reviewers:
+  - MarkEWaite
+  labels:
+  - skip-changelog
+
+- package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.16.2"
   schedule:
     interval: weekly
