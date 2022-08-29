@@ -1,2 +1,2 @@
-FROM amazonlinux:2022.0.20220817.0
+FROM amazonlinux:2022.0.20220824.0
 # The lsb_release command is not available for Amazon Linux 2022
