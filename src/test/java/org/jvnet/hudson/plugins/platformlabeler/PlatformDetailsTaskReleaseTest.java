@@ -136,6 +136,9 @@ public class PlatformDetailsTaskReleaseTest {
         if (filename.contains("rhel") || filename.contains("ubi")) {
             return "RedHatEnterprise";
         }
+        if (filename.contains("rocky")) {
+            return "Rocky";
+        }
         if (filename.contains("ubuntu")) {
             return "Ubuntu";
         }

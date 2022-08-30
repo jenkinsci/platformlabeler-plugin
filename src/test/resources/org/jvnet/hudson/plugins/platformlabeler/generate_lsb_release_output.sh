@@ -15,7 +15,7 @@ fi
 
 args=$@
 # No lsb_release on clearlinux, Alma Linux, Oracle Linux, lsb_release empty on tumbleweed
-all_files=$(find * -type f -name Dockerfile ! -path '*amzn/2022*' ! -path '*clearlinux*' ! -path '*tumbleweed*' ! -path '*almalinux/9*' ! -path '*oraclelinux/9*' ! -path '*ubi/9*' )
+all_files=$(find * -type f -name Dockerfile ! -path '*amzn/2022*' ! -path '*clearlinux*' ! -path '*tumbleweed*' ! -path '*almalinux/9*' ! -path '*oraclelinux/9*' ! -path '*ubi/9*' ! -path '*rocky/*' )
 dockerfiles=${args:-$all_files}
 
 for dockerfile in $dockerfiles; do
