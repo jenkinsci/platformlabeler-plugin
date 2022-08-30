@@ -342,6 +342,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         PREFERRED_LINUX_OS_NAMES.put("opensuse-leap", "openSUSE");
         PREFERRED_LINUX_OS_NAMES.put("opensuse-tumbleweed", "openSUSE");
         PREFERRED_LINUX_OS_NAMES.put("raspbian", "Raspbian");
+        PREFERRED_LINUX_OS_NAMES.put("rocky", "Rocky");
         PREFERRED_LINUX_OS_NAMES.put("Red Hat Enterprise Linux", "RedHatEnterprise");
         PREFERRED_LINUX_OS_NAMES.put("Red Hat Enterprise Linux Server", "RedHatEnterprise");
         PREFERRED_LINUX_OS_NAMES.put("rhel", "RedHatEnterprise");
