@@ -1,2 +1,2 @@
-FROM debian:buster-20220711-slim
+FROM debian:buster-20220912-slim
 RUN apt-get update && apt-get install -y lsb-release
