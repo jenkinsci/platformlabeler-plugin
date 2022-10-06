@@ -70,12 +70,6 @@ Labels commonly include operating system name, version, architecture, and Window
 | Ubuntu 18                  | `Ubuntu`           | `18.04`        | `s390x`      | // EOL: 30 Apr 2023
 | Ubuntu 20                  | `Ubuntu`           | `20.04`        | `s390x`      | // EOL: 30 Apr 2025
 
-## IBM PowerPC 64 little endian (ppc64le)
-
-| Platform                   | OS Name            | Version        | Architecture |
-| -------------------------- | ------------------ | -------------- | ------------ |
-| Ubuntu 18                  | `Ubuntu`           | `18.04`        | `ppc64le`    | // EOL: 30 Apr 2023
-
 On Windows computers, the plugin assigns a label based on the Windows feature update.
 Feature update labels use a two digit year and a two digit month representation.
 Common values for Windows feature update are `1809`, `1903`, `2009`, and `2109`.
