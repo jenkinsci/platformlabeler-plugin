@@ -37,7 +37,7 @@
     <changelist>999999-SNAPSHOT</changelist>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <argLine>-Dfile.encoding=${project.build.sourceEncoding}</argLine>
-    <jenkins.version>2.332.4</jenkins.version>
+    <jenkins.version>2.361.1</jenkins.version>
     <linkXRef>false</linkXRef>
     <!-- Plugin intentionally does not deliver javadoc. -->
     <!-- No API's intended to be used, none should be called from outside. -->
@@ -53,7 +53,7 @@
     <dependencies>
       <dependency>
         <groupId>io.jenkins.tools.bom</groupId>
-        <artifactId>bom-2.332.x</artifactId>
+        <artifactId>bom-2.361.x</artifactId>
         <version>1607.va_c1576527071</version>
         <type>pom</type>
         <scope>import</scope>
@@ -67,13 +67,6 @@
       <artifactId>reflections</artifactId>
       <version>0.10.2</version>
       <scope>test</scope>
-      <exclusions>
-        <!-- newer slf4j version required by reflections, ignore newer version in tests -->
-        <exclusion>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-api</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
   </dependencies>
 
