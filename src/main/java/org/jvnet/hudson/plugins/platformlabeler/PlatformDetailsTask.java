@@ -260,6 +260,15 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
                 /* Try reading it from a different location */
                 computedVersion = getDebianVersionIdentifier();
             }
+            /* Debian unstable changed the lsb_release Release: value to "n/a"
+             * in Oct 2022.  Retain the name "unstable" instead of calling the
+             * release "n/a".  Embedding a "/" in the label will cause problems
+             * like those described in JENKINS-64324.
+             */
+            if (equalsIgnoreCase(computedName, "debian")
+                    && equalsIgnoreCase(computedVersion, "n/a")) {
+                computedVersion = "unstable";
+            }
             /* JENKINS-64324 notes that labels with '/' break various Jenkins components */
             /* For example, Debian testing reports its version as "testing/unstable" */
             /* Take the portion of the version string that precedes the '/' character */
