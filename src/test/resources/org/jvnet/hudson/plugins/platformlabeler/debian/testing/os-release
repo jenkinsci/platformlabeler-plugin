@@ -1,5 +1,6 @@
 PRETTY_NAME="Debian GNU/Linux bookworm/sid"
 NAME="Debian GNU/Linux"
+VERSION_CODENAME=bookworm
 ID=debian
 HOME_URL="https://www.debian.org/"
 SUPPORT_URL="https://www.debian.org/support"
