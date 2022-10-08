@@ -62,11 +62,12 @@ public class PlatformDetailsTaskLsbReleaseTest {
         PlatformDetails result = details.computeLabels("amd64", "linux", "xyzzy-abc", release);
         assertThat(result.getArchitecture(), is(expectedArch));
         assertThat(result.getName(), is(expectedName));
+        assertThat(result.getVersion(), is(expectedVersion));
         assertThat(result.getArchitectureName(), is(expectedArch + "-" + expectedName));
+        assertThat(result.getNameVersion(), is(expectedName + "-" + expectedVersion));
         assertThat(
                 result.getArchitectureNameVersion(),
                 is(expectedArch + "-" + expectedName + "-" + expectedVersion));
-        assertThat(result.getNameVersion(), is(expectedName + "-" + expectedVersion));
     }
 
     private static String computeExpectedName(String filename) {
