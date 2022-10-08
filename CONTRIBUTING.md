@@ -34,10 +34,6 @@ Code formatting in the Platform Labeler plugin is maintained by the git code for
 The pom file format is maintained by the tidy plugin.
 Before submitting a pull request, confirm the formatting is correct with:
 
-* `mvn compile`
-
-If the formatting is not correct, the build will fail.  Correct the formatting with:
-
 * `mvn tidy:pom git-code-format:format-code -Dgcf.globPattern=**/*`
 
 ## Pre-commit Hooks
