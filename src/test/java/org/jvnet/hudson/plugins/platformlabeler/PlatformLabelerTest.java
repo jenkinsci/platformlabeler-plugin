@@ -33,7 +33,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.jvnet.hudson.test.JenkinsRule;
 
-/** @author robertc */
+/**
+ * @author robertc
+ */
 public class PlatformLabelerTest {
 
     @Rule public final JenkinsRule j = new JenkinsRule();
