@@ -131,7 +131,9 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         try {
             Process p = Runtime.getRuntime().exec("/bin/uname -m");
             p.waitFor();
-            return getCanonicalLinuxArchStream(p.getInputStream(), arch);
+            try (InputStream stream = p.getInputStream()) {
+                return getCanonicalLinuxArchStream(stream, arch);
+            }
         } catch (IOException | InterruptedException e) {
             /* Return arch instead of throwing an exception */
             LOGGER.log(Level.FINEST, "uname -m failed", e);
@@ -506,8 +508,8 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         try {
             Process p = Runtime.getRuntime().exec("/bin/freebsd-version -u");
             p.waitFor();
-            try (BufferedReader b =
-                    new BufferedReader(new InputStreamReader(p.getInputStream(), "UTF-8"))) {
+            try (InputStream stream = p.getInputStream();
+                    BufferedReader b = new BufferedReader(new InputStreamReader(stream, "UTF-8"))) {
                 String line = b.readLine();
                 if (line != null) {
                     version = line;

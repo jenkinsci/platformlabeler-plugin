@@ -52,7 +52,9 @@ public class LsbRelease implements PlatformDetailsRelease {
         Map<String, String> newProps = new HashMap<>();
         try {
             Process process = new ProcessBuilder("lsb_release", "-a").start();
-            readLsbReleaseOutput(process.getInputStream(), newProps);
+            try (InputStream stream = process.getInputStream()) {
+                readLsbReleaseOutput(stream, newProps);
+            }
         } catch (IOException e) {
             LOGGER.log(Level.FINEST, "lsb_release execution failed", e);
         }
@@ -132,7 +134,9 @@ public class LsbRelease implements PlatformDetailsRelease {
         String value = defaultValue;
         try {
             Process process = new ProcessBuilder("apt-cache", "policy", "base-files").start();
-            value = readReleaseFromAptCachePolicyOutput(process.getInputStream());
+            try (InputStream stream = process.getInputStream()) {
+                value = readReleaseFromAptCachePolicyOutput(stream);
+            }
         } catch (IOException e) {
             LOGGER.log(Level.FINEST, "apt-cache execution failed", e);
         }

@@ -53,7 +53,9 @@ public class WindowsRelease implements PlatformDetailsRelease {
                                     "/v",
                                     "ReleaseId")
                             .start();
-            readWindowsReleaseOutput(process.getInputStream(), newProps);
+            try (InputStream stream = process.getInputStream()) {
+                readWindowsReleaseOutput(stream, newProps);
+            }
         } catch (IOException ignored) {
             // IGNORE
         }
