@@ -59,13 +59,13 @@ public class LsbRelease implements PlatformDetailsRelease {
     }
 
     /** Assign distributor ID and release. Package protected for tests. */
-    LsbRelease(String distributorId, String release) {
+    LsbRelease(@NonNull String distributorId, @NonNull String release) {
         this.distributorId = distributorId;
         this.release = release;
     }
 
     /** Read file to assign distributor ID and release. Package protected for tests. */
-    LsbRelease(File lsbReleaseFile) throws IOException {
+    LsbRelease(@NonNull File lsbReleaseFile) throws IOException {
         Map<String, String> newProps = new HashMap<>();
         try (FileInputStream stream = new FileInputStream(lsbReleaseFile)) {
             readLsbReleaseOutput(stream, newProps);
