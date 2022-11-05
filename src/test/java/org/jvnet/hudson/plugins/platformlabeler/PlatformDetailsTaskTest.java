@@ -291,15 +291,16 @@ public class PlatformDetailsTaskTest {
         if (details.getVersion().startsWith(version)) {
             foundValue = details.getVersion();
         }
-        /* If VERSION_ID has the unknown value then handle it as a special
-         * case.  Debian testing does not include a VERSION_ID value in
-         * the /etc/os-release file.  If there is no value for VERSION_ID,
-         * then confirm that the details are for Debian testing and skip
-         * the VERSION_ID assertion.
+        /* If VERSION_ID has the unknown value then handle it as a
+         * special case.  Debian testing and Debian unstable have no
+         * VERSION_ID in the /etc/os-release file.  If there is no
+         * value for VERSION_ID, then confirm that the details are for
+         * Debian testing or unstable and skip the VERSION_ID
+         * assertion.
          */
         if (version.startsWith("unknown")) {
             assertThat(details.getName(), is("Debian"));
-            assertThat(details.getVersion(), is("testing"));
+            assertThat(details.getVersion(), anyOf(is("testing"), is("unstable")));
         } else {
             assertThat(details.getVersion(), anyOf(is(version), is(foundValue)));
         }
