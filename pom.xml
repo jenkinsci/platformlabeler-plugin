@@ -45,7 +45,6 @@
     <hpi.compatibleSinceVersion>5.0</hpi.compatibleSinceVersion>
     <pmdVersion>6.51.0</pmdVersion>
     <spotbugs.effort>Max</spotbugs.effort>
-    <spotbugs.failOnError>true</spotbugs.failOnError>
     <spotbugs.threshold>Low</spotbugs.threshold>
   </properties>
 
@@ -187,7 +186,6 @@
       <plugin>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
-        <version>4.7.2.2</version>
         <configuration>
           <plugins>
             <plugin>
