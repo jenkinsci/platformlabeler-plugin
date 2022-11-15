@@ -28,6 +28,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Debian unstable            | `Debian`           | `unstable`     | `amd64`      |
 | Fedora 35                  | `Fedora`           | `35`           | `amd64`      | // EOL: 15 Nov 2022
 | Fedora 36                  | `Fedora`           | `36`           | `amd64`      | // EOL: 16 May 2023
+| Fedora 37                  | `Fedora`           | `37`           | `amd64`      | // EOL: 16 May 2024
 | FreeBSD 12                 | `freebsd`          | `12.3-RELEASE` | `amd64`      | // EOL: 30 Jun 2024
 | FreeBSD 13                 | `freebsd`          | `13.1-RELEASE` | `amd64`      | // EOL: 31 Jan 2026
 | Linux Mint 19.3            | `LinuxMint`        | `19.3`         | `amd64`      | // EOL:        2023
