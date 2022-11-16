@@ -33,7 +33,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Linux Mint 20.3            | `Linuxmint`        | `20.3`         | `amd64`      | // EOL:    Apr 2025
 | openSUSE Leap              | `openSUSE`         | `15.4`         | `amd64`      | // EOL: 30 Nov 2022
 | Oracle Linux 7             | `OracleServer`     | `7.9`          | `amd64`      | // EOL: 30 Jun 2024
-| Oracle Linux 8             | `OracleServer`     | `8.6`          | `amd64`      | // EOL: 31 May 2029
+| Oracle Linux 8             | `OracleServer`     | `8.7`          | `amd64`      | // EOL: 31 May 2029
 | Oracle Linux 9             | `OracleServer`     | `9.0`          | `amd64`      | // EOL: 31 May 2032
 | Red Hat Enterprise Linux 7 | `RedHatEnterprise` | `7.9`          | `amd64`      | // EOL: 30 Jun 2024
 | Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.6`          | `amd64`      | // EOL: 31 May 2029
