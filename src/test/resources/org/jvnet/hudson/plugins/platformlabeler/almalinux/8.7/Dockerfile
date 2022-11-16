@@ -1,2 +1,2 @@
-FROM almalinux:8.6-20221101
+FROM almalinux:8.7-20221110
 RUN yum install -y redhat-lsb-core
