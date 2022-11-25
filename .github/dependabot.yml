@@ -31,6 +31,9 @@ updates:
   - MarkEWaite
   labels:
   - skip-changelog
+  ignore:
+    - dependency-name: "Dockerfile"
+      versions: [">= 8.8"]
 
 - package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/almalinux/9.0"
@@ -53,6 +56,9 @@ updates:
   - MarkEWaite
   labels:
   - skip-changelog
+  ignore:
+    - dependency-name: "Dockerfile"
+      versions: [">= 3.17.0"]
 
 - package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/amzn/2"
@@ -119,6 +125,9 @@ updates:
   - MarkEWaite
   labels:
   - skip-changelog
+  ignore:
+    - dependency-name: "Dockerfile"
+      versions: [">= 8.7"]
 
 - package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/registry.access.redhat.com/ubi8/ubi/8.7"
@@ -130,6 +139,9 @@ updates:
   - MarkEWaite
   labels:
   - skip-changelog
+  ignore:
+    - dependency-name: "Dockerfile"
+      versions: [">= 8.8"]
 
 - package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/registry.access.redhat.com/ubi9/ubi/9.0"
@@ -152,6 +164,9 @@ updates:
   - MarkEWaite
   labels:
   - skip-changelog
+  ignore:
+    - dependency-name: "Dockerfile"
+      versions: [">= 8.7"]
 
 - package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/rocky/9.0"
