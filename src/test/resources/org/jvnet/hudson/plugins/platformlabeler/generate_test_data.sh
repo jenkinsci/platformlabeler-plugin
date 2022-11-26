@@ -20,16 +20,41 @@ for Dockerfile in $(find * -type f -name Dockerfile ! -path '*7.9.2009*' -print)
         name_version=$(dirname $Dockerfile)
         name=$(dirname $name_version)
         version=$(basename $name_version)
+        container=platformlabeler/$name:$version
         echo "Processing Dockerfile $Dockerfile for name $name and version $version"
         (cd $name_version && docker build --pull -t platformlabeler/$name:$version .)
-        docker run --rm -t platformlabeler/$name:$version cat /etc/os-release | tr -d '\015' > $name_version/os-release
-        docker run --rm -t platformlabeler/$name:$version cat /etc/redhat-release | tr -d '\015' > $name_version/redhat-release
+
+        #
+        # Extract os-release file
+        #
+        echo "=== Generating os-release file"
+        docker run --rm -t $container cat /etc/os-release | tr -d '\015' > $name_version/os-release
+
+        #
+        # Extract redhat-release file
+        #
+        docker run --rm -t $container cat /etc/redhat-release | tr -d '\015' > $name_version/redhat-release
         # Remove redhat-release file if it does not exist in the container image
         grep -q -i cat:.*no.such.file $name_version/redhat-release && rm -rf $name_version/redhat-release
         # Remove redhat-release file for Oracle Linux, it contains the wrong vendor name
         if [ "$name" = "oraclelinux" ]; then
                 rm -rf $name_version/redhat-release
         fi
+
+        #
+        # Collect lsb_release -a output
+        #
+        if [ "$(grep -c '.*' $Dockerfile)" != "1" ]; then
+                docker run -t $container lsb_release -a | tr -d '\015' > $name_version/lsb_release-a
+        else
+                # Create empty lsb_release-a data file
+                : > $name_version/lsb_release-a
+        fi
+        if [ ! -s $name_version/lsb_release-a ]; then
+                # Remove empty lsb_release-a data file
+                rm -rf $name_version/lsb_release-a
+        fi
+
 done
 
 exit 0
