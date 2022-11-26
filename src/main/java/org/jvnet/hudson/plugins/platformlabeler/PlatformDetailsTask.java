@@ -336,6 +336,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
     static {
         PREFERRED_LINUX_OS_NAMES.put("alinux", "AlibabaCloud");
         PREFERRED_LINUX_OS_NAMES.put("almalinux", "Alma");
+        PREFERRED_LINUX_OS_NAMES.put("AlmaLinux", "Alma");
         PREFERRED_LINUX_OS_NAMES.put("alpine", "Alpine");
         PREFERRED_LINUX_OS_NAMES.put("amzn", "Amazon");
         PREFERRED_LINUX_OS_NAMES.put("centos", "CentOS");
@@ -354,6 +355,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         PREFERRED_LINUX_OS_NAMES.put("opensuse-tumbleweed", "openSUSE");
         PREFERRED_LINUX_OS_NAMES.put("raspbian", "Raspbian");
         PREFERRED_LINUX_OS_NAMES.put("rocky", "Rocky");
+        PREFERRED_LINUX_OS_NAMES.put("Rocky Linux", "Rocky");
         PREFERRED_LINUX_OS_NAMES.put("Red Hat Enterprise Linux", "RedHatEnterprise");
         PREFERRED_LINUX_OS_NAMES.put("Red Hat Enterprise Linux Server", "RedHatEnterprise");
         PREFERRED_LINUX_OS_NAMES.put("rhel", "RedHatEnterprise");
