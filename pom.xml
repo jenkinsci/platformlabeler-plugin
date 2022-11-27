@@ -41,7 +41,7 @@
     <!-- No API's intended to be used, none should be called from outside. -->
     <maven.javadoc.skip>true</maven.javadoc.skip>
     <hpi.compatibleSinceVersion>5.0</hpi.compatibleSinceVersion>
-    <pmdVersion>6.51.0</pmdVersion>
+    <pmdVersion>6.52.0</pmdVersion>
     <spotbugs.effort>Max</spotbugs.effort>
     <spotbugs.threshold>Low</spotbugs.threshold>
   </properties>
