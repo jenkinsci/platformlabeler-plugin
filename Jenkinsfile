@@ -3,7 +3,7 @@
 import java.util.Collections
 
 // Valid Jenkins versions for markwaite.net test
-def testJenkinsVersions = [ '2.361.1', '2.361.2', '2.371', '2.372' ]
+def testJenkinsVersions = [ '2.361.1', '2.361.2', '2.361.3', '2.361.4', '2.375.1', '2.379', '2.380', '2.381' ]
 Collections.shuffle(testJenkinsVersions)
 
 // build with randomized Jenkins versions
@@ -11,15 +11,15 @@ subsetConfiguration = [ [ jdk: '11',  platform: 'windows', jenkins: testJenkinsV
 
                         // Intel Linux is labeled as 'linux' for legacy reasons
                         [ jdk: '11', platform: 'linux',   ],
-                        [ jdk: '17', platform: 'linux',   jenkins: '2.361.2' ],
+                        [ jdk: '17', platform: 'linux',   jenkins: testJenkinsVersions[1] ],
 
                         // ARM label is Linux also
-                        [ jdk: '11', platform: 'arm64',   jenkins: testJenkinsVersions[1] ],
-                        [ jdk: '17', platform: 'arm64',   jenkins: '2.361.2' ],
+                        [ jdk: '11', platform: 'arm64',   jenkins: testJenkinsVersions[2] ],
+                        [ jdk: '17', platform: 'arm64',   jenkins: testJenkinsVersions[3] ],
 
                         // s390x label is also Linux
-                        [ jdk: '11', platform: 's390x',   jenkins: testJenkinsVersions[2] ],
-                        [ jdk: '17', platform: 's390x',   jenkins: testJenkinsVersions[3] ],
+                        [ jdk: '11', platform: 's390x',   jenkins: testJenkinsVersions[4] ],
+                        [ jdk: '17', platform: 's390x',   jenkins: testJenkinsVersions[5] ],
                       ]
 
 if (env.JENKINS_URL.contains('markwaite.net')) {
@@ -38,9 +38,8 @@ if (env.JENKINS_URL.contains('markwaite.net')) {
       artifactCachingProxyEnabled: true,
       // Test Java 11 with a recent LTS, Java 17 even more recent
       configurations: [
-        [platform: 'linux',   jdk: '17', jenkins: '2.380'],
-        [platform: 'linux',   jdk: '11', jenkins: '2.375.1'],
-        [platform: 'windows', jdk: '11']
+        [platform: 'windows', jdk: '17', jenkins: '2.381'],
+        [platform: 'linux', jdk: '11']
       ]
     )
 }
