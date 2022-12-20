@@ -40,7 +40,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.7`          | `amd64`      | // EOL: 31 May 2029
 | Red Hat Enterprise Linux 9 | `RedHatEnterprise` | `9.0`          | `amd64`      | // EOL: 31 May 2032
 | Rocky Linux 8              | `Rocky`            | `8.7`          | `amd64`      | // EOL: 31 May 2029
-| Rocky Linux 9              | `Rocky`            | `9.0`          | `amd64`      | // EOL: 31 May 2032
+| Rocky Linux 9              | `Rocky`            | `9.1`          | `amd64`      | // EOL: 31 May 2032
 | Scientific 7               | `Scientific`       | `7.9`          | `amd64`      | // EOL: 30 Jun 2024
 | SLES 12                    | `SUSE`             | `12.4`         | `amd64`      | // EOL: 31 Oct 2027
 | SLES 15                    | `SUSE`             | `15`           | `amd64`      | // EOL: 31 Jul 2031
