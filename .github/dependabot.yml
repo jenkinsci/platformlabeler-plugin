@@ -19,7 +19,8 @@ updates:
   - skip-changelog
   ignore:
   - dependency-name: org.slf4j*
-    versions: [">= 0"]
+    versions:
+    - ">= 0"
 
 - package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/almalinux/8.7"
