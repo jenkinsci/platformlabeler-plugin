@@ -26,7 +26,7 @@ Please don't introduce new spotbugs output.
 
 PIT mutation testing is available as a maven target.
 
-* `mvn org.pitest:pitest-maven:mutationCoverage` to perform mutation testing and generate a report
+* `mvn clean -DskipTests verify && mvn org.pitest:pitest-maven:mutationCoverage -DargLine="-Xms1G -Xmx2G -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1"` to perform mutation testing and generate a report
 
 ## Code Formatting
 
