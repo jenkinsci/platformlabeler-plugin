@@ -143,23 +143,23 @@
       </plugin>
       <!-- git code format maven plugin -->
       <plugin>
-	<groupId>com.cosium.code</groupId>
-	<artifactId>git-code-format-maven-plugin</artifactId>
-	<version>4.2</version>
-	<executions>
-	  <!-- On commit, format the modified java files -->
-	  <execution>
-	    <id>install-formatter-hook</id>
-	    <goals>
-	      <goal>install-hooks</goal>
-	    </goals>
-	  </execution>
-	</executions>
-	<configuration>
-	  <googleJavaFormatOptions>
-	    <aosp>true</aosp>
-	  </googleJavaFormatOptions>
-	</configuration>
+        <groupId>com.cosium.code</groupId>
+        <artifactId>git-code-format-maven-plugin</artifactId>
+        <version>4.2</version>
+        <executions>
+          <!-- On commit, format the modified java files -->
+          <execution>
+            <id>install-formatter-hook</id>
+            <goals>
+              <goal>install-hooks</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <googleJavaFormatOptions>
+            <aosp>true</aosp>
+          </googleJavaFormatOptions>
+        </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
