@@ -30,38 +30,10 @@ PIT mutation testing is available as a maven target.
 
 ## Code Formatting
 
-Code formatting in the Platform Labeler plugin is maintained by the git code format maven plugin.
-The pom file format is maintained by the tidy plugin.
+Code formatting in the Platform Labeler plugin is maintained by the `spotless` maven plugin.
 Before submitting a pull request, confirm the formatting is correct with:
 
-* `mvn tidy:pom git-code-format:format-code -Dgcf.globPattern=**/*`
-
-## Pre-commit Hooks
-
-File content is consistency checked at commit time by the [pre-commit framework](https://pre-commit.com/).
-Refer to [.pre-commit-config.yaml](.pre-commit-config.yaml) for the current checks.
-
-To install the pre-commit framework into this repository on your computer, use the commands:
-
-```
-$ pip install --user pre-commit
-$ pre-commit install
-```
-
-To upgrade the pre-commit framework into this repository on your computer, use the commands:
-
-```
-$ pip install --user --upgrade pre-commit
-$ pre-commit install
-```
-
-Pre-commit checks are run on modified files during `git commit`.
-Files which fail pre-commit checks will abort the `git commit`.
-
-Run pre-commit checks on all files:
-```
-$ pre-commit run --all-files
-```
+* `mvn spotless:apply`
 
 ## Maintaining automated tests
 
@@ -69,9 +41,7 @@ Automated tests are run as part of the `verify` phase.
 Automated tests in the `continuous-integration` profile are run with multiple Java virtual machines, depending on the number of available processor cores.
 Run automated tests with multiple Java virtual machines in a development with the command:
 
-```
-$ mvn clean -DforkCount=1C verify
-```
+* `mvn clean -DforkCount=1C verify`
 
 Test data for automated tests is extracted from Docker images defined in subdirectories of `src/test/resources/org/jvnet/hudson/plugins/platformlabeler`.
 The subdirectory name is used as an index into a map that defines the expected value of the operating system name.
