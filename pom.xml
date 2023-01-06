@@ -29,18 +29,18 @@
   <scm>
     <connection>scm:git:https://github.com/jenkinsci/platformlabeler-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/platformlabeler-plugin.git</developerConnection>
-    <url>https://github.com/jenkinsci/platformlabeler-plugin</url>
     <tag>${scmTag}</tag>
+    <url>https://github.com/jenkinsci/platformlabeler-plugin</url>
   </scm>
 
   <properties>
     <changelist>999999-SNAPSHOT</changelist>
+    <hpi.compatibleSinceVersion>5.0</hpi.compatibleSinceVersion>
     <jenkins.version>2.361.4</jenkins.version>
     <linkXRef>false</linkXRef>
     <!-- Plugin intentionally does not deliver javadoc. -->
     <!-- No API's intended to be used, none should be called from outside. -->
     <maven.javadoc.skip>true</maven.javadoc.skip>
-    <hpi.compatibleSinceVersion>5.0</hpi.compatibleSinceVersion>
     <pmdVersion>6.53.0</pmdVersion>
     <spotbugs.effort>Max</spotbugs.effort>
     <spotbugs.threshold>Low</spotbugs.threshold>
@@ -91,9 +91,32 @@
             <!-- define a language-specific format -->
             <java>
               <!-- no need to specify files, inferred automatically -->
-              <endWithNewline></endWithNewline>
-              <removeUnusedImports></removeUnusedImports>
+              <!-- apply a specific flavor of google-java-format -->
+              <googleJavaFormat>
+                <version>1.15.0</version>
+                <style>AOSP</style>
+              </googleJavaFormat>
+              <endWithNewline />
+              <removeUnusedImports />
             </java>
+            <pom>
+              <indent>
+                <spaces>true</spaces>
+              </indent>
+              <includes>
+                <include>pom.xml</include>
+              </includes>
+              <sortPom>
+                <expandEmptyElements>false</expandEmptyElements>
+                <sortDependencies>groupId,artifactId</sortDependencies>
+                <sortDependencyExclusions>groupId,artifactId</sortDependencyExclusions>
+                <sortExecutions>true</sortExecutions>
+                <sortModules>true</sortModules>
+                <sortPlugins>groupId,artifactId</sortPlugins>
+                <sortProperties>true</sortProperties>
+                <spaceBeforeCloseEmptyElement>true</spaceBeforeCloseEmptyElement>
+              </sortPom>
+            </pom>
           </configuration>
           <executions>
             <execution>
@@ -125,62 +148,6 @@
       </plugins>
     </pluginManagement>
     <plugins>
-      <!-- Fail build on pom formatting errors -->
-      <!-- Fix with mvn tidy:pom -->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>tidy-maven-plugin</artifactId>
-        <version>1.2.0</version>
-        <executions>
-          <execution>
-            <id>validate</id>
-            <phase>validate</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <!-- git code format maven plugin -->
-      <plugin>
-        <groupId>com.cosium.code</groupId>
-        <artifactId>git-code-format-maven-plugin</artifactId>
-        <version>4.2</version>
-        <executions>
-          <!-- On commit, format the modified java files -->
-          <execution>
-            <id>install-formatter-hook</id>
-            <goals>
-              <goal>install-hooks</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <googleJavaFormatOptions>
-            <aosp>true</aosp>
-          </googleJavaFormatOptions>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <compilerArgs>
-            <arg>-Xlint:all</arg>
-          </compilerArgs>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.openclover</groupId>
-        <artifactId>clover-maven-plugin</artifactId>
-        <version>4.4.1</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>instrument</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
@@ -195,6 +162,14 @@
         </configuration>
       </plugin>
       <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <compilerArgs>
+            <arg>-Xlint:all</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-pmd-plugin</artifactId>
         <version>3.19.0</version>
@@ -203,6 +178,18 @@
             <goals>
               <goal>check</goal>
               <goal>cpd-check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.openclover</groupId>
+        <artifactId>clover-maven-plugin</artifactId>
+        <version>4.4.1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>instrument</goal>
             </goals>
           </execution>
         </executions>
