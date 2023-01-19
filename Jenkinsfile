@@ -7,11 +7,15 @@ def testJenkinsVersions = [ '2.361.1', '2.361.2', '2.361.3', '2.361.4', '2.375.1
 Collections.shuffle(testJenkinsVersions)
 
 // build with randomized Jenkins versions
-subsetConfiguration = [ [ jdk: '11',  platform: 'windows', jenkins: testJenkinsVersions[0] ],
+subsetConfiguration = [
 
                         // Intel Linux is labeled as 'linux' for legacy reasons
+                        // Linux first for coverage report on ci.jenkins.io
                         [ jdk: '11', platform: 'linux',   ],
                         [ jdk: '17', platform: 'linux',   jenkins: testJenkinsVersions[1] ],
+
+                        // Windows
+                        [ jdk: '11',  platform: 'windows', jenkins: testJenkinsVersions[0] ],
 
                         // ARM label is Linux also
                         [ jdk: '11', platform: 'arm64',   jenkins: testJenkinsVersions[2] ],
@@ -38,8 +42,8 @@ if (env.JENKINS_URL.contains('markwaite.net')) {
       artifactCachingProxyEnabled: true,
       // Test Java 11 with a recent LTS, Java 17 even more recent
       configurations: [
+        [platform: 'linux',   jdk: '11'], // Linux first for coverage report on ci.jenkins.io
         [platform: 'windows', jdk: '17', jenkins: '2.384'],
-        [platform: 'linux', jdk: '11']
       ]
     )
 }
