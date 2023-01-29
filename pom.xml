@@ -41,7 +41,7 @@
     <!-- Plugin intentionally does not deliver javadoc. -->
     <!-- No API's intended to be used, none should be called from outside. -->
     <maven.javadoc.skip>true</maven.javadoc.skip>
-    <pmdVersion>6.53.0</pmdVersion>
+    <pmdVersion>6.54.0</pmdVersion>
     <spotbugs.effort>Max</spotbugs.effort>
     <spotbugs.threshold>Low</spotbugs.threshold>
   </properties>
