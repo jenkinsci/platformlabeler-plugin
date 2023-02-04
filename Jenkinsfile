@@ -3,7 +3,7 @@
 import java.util.Collections
 
 // Valid Jenkins versions for markwaite.net test
-def testJenkinsVersions = [ '2.361.1', '2.361.2', '2.361.3', '2.361.4', '2.375.1', '2.381', '2.382', '2.383', '2.384' ]
+def testJenkinsVersions = [ '2.361.4', '2.375.1', '2.375.2', '2.386', '2.387', '2.388', '2.389' ]
 Collections.shuffle(testJenkinsVersions)
 
 // build with randomized Jenkins versions
@@ -11,19 +11,19 @@ subsetConfiguration = [
 
                         // Intel Linux is labeled as 'linux' for legacy reasons
                         // Linux first for coverage report on ci.jenkins.io
-                        [ jdk: '11', platform: 'linux',   ],
-                        [ jdk: '17', platform: 'linux',   jenkins: testJenkinsVersions[1] ],
+                        [ jdk: '11', platform: 'linux',                                    ],
+                        [ jdk: '17', platform: 'linux',    jenkins: testJenkinsVersions[0] ],
 
                         // Windows
-                        [ jdk: '11',  platform: 'windows', jenkins: testJenkinsVersions[0] ],
+                        [ jdk: '11',  platform: 'windows', jenkins: testJenkinsVersions[1] ],
 
                         // ARM label is Linux also
-                        [ jdk: '11', platform: 'arm64',   jenkins: testJenkinsVersions[2] ],
-                        [ jdk: '17', platform: 'arm64',   jenkins: testJenkinsVersions[3] ],
+                        [ jdk: '11', platform: 'arm64',    jenkins: testJenkinsVersions[2] ],
+                        [ jdk: '17', platform: 'arm64',    jenkins: testJenkinsVersions[3] ],
 
                         // s390x label is also Linux
-                        [ jdk: '11', platform: 's390x',   jenkins: testJenkinsVersions[4] ],
-                        [ jdk: '17', platform: 's390x',   jenkins: testJenkinsVersions[5] ],
+                        [ jdk: '11', platform: 's390x',    jenkins: testJenkinsVersions[4] ],
+                        [ jdk: '17', platform: 's390x',    jenkins: testJenkinsVersions[5] ],
                       ]
 
 if (env.JENKINS_URL.contains('markwaite.net')) {
@@ -37,13 +37,10 @@ if (env.JENKINS_URL.contains('markwaite.net')) {
       useContainerAgent: true,
       // Show failures on all configurations
       failFast: false,
-      // Opt-in to the Artifact Caching Proxy, to be removed when it will be opt-out.
-      // See https://github.com/jenkins-infra/helpdesk/issues/2752 for more details and updates.
-      artifactCachingProxyEnabled: true,
       // Test Java 11 with a recent LTS, Java 17 even more recent
       configurations: [
         [platform: 'linux',   jdk: '11'], // Linux first for coverage report on ci.jenkins.io
-        [platform: 'windows', jdk: '17', jenkins: '2.384'],
+        [platform: 'windows', jdk: '17', jenkins: '2.389'],
       ]
     )
 }
