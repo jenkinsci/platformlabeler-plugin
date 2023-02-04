@@ -1,6 +1,5 @@
 # Platform Labeler Plugin
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=MarkEWaite_platformlabeler-plugin&metric=alert_status)](https://sonarcloud.io/dashboard?id=MarkEWaite_platformlabeler-plugin)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/3537/badge)](https://bestpractices.coreinfrastructure.org/projects/3537)
 
 Adds labels to Jenkins agents based on characteristics of the operating system running the agent.
