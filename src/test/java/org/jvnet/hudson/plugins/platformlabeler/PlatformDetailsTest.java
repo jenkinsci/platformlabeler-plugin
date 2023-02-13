@@ -137,7 +137,6 @@ public class PlatformDetailsTest {
         "ubuntu"
     };
     private final String[] versions = {
-        "3.13.11",
         "3.14.9",
         "3.15.2",
         "3.16.1",
