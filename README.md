@@ -75,9 +75,10 @@ Common values for Windows feature update are `1809`, `1903`, `2009`, and `2109`.
 
 On Linux computers, the plugin uses the output of the [`lsb_release`](https://linux.die.net/man/1/lsb_release) command.
 
-If `lsb_release` is not installed, labels on Linux agents will be guessed based on values in /etc/os-release.
+If `lsb_release` is not installed, labels on Linux agents will be guessed based on values in `/etc/os-release`.
+Red Hat Linux 9 and its derivatives intentionally do not delivery `lsb_release`.
 
-Red Hat Linux and Scientific Linux agents have another fallback based on /etc/redhat-release.
+Red Hat Linux and Scientific Linux agents have another fallback based on `/etc/redhat-release`.
 
 Agents with an older version of SuSE Linux will fallback to `/etc/SuSE-release`. Older versions of this plugin might return "sles" or "SUSE LINUX" as OS name.
 This has been unified to "SUSE" as this is the lsb_release ID since 'SLES 12 SP2'.
