@@ -1,1 +1,1 @@
-FROM rockylinux:9.1.20221221-minimal
+FROM rockylinux:9.1.20230215-minimal
