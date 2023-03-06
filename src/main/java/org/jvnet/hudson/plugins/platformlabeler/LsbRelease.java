@@ -62,7 +62,11 @@ public class LsbRelease implements PlatformDetailsRelease {
                 newProps.getOrDefault("Distributor ID", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
         String guessedRelease =
                 newProps.getOrDefault("Release", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
-        if (guessedRelease.equals("n/a")) {
+        // Debian testing & unstable have periods where lsb_release
+        // and os-release contents look like full releases.
+        //
+        // Always call the Debian release guesser.
+        if (this.distributorId.equals("Debian")) {
             guessedRelease = guessDebianRelease(guessedRelease);
         }
         this.release = guessedRelease;
@@ -84,7 +88,11 @@ public class LsbRelease implements PlatformDetailsRelease {
                 newProps.getOrDefault("Distributor ID", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
         String guessedRelease =
                 newProps.getOrDefault("Release", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
-        if (guessedRelease.equals("n/a")) {
+        // Debian testing & unstable have periods where lsb_release
+        // and os-release contents look like full releases.
+        //
+        // Always call the Debian release guesser.
+        if (this.distributorId.equals("Debian")) {
             guessedRelease = guessDebianReleaseFromFile(lsbReleaseFile);
         }
         this.release = guessedRelease;
@@ -108,8 +116,14 @@ public class LsbRelease implements PlatformDetailsRelease {
      * the ambiguous Debian version is testing or unstable.
      */
     private String guessDebianReleaseFromFile(@NonNull File testData) {
-        String unstableDir = File.separator + "unstable" + File.separator;
-        return testData.getPath().contains(unstableDir) ? "unstable" : "testing";
+        String[] validReleases = {"unstable", "testing", "10", "11", "12", "13", "14"};
+        for (String release : validReleases) {
+            String releaseDir = File.separator + release + File.separator;
+            if (testData.getPath().contains(releaseDir)) {
+                return release;
+            }
+        }
+        return PlatformDetailsTask.UNKNOWN_VALUE_STRING;
     }
 
     /*
