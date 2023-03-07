@@ -83,6 +83,9 @@ public class PlatformDetailsTaskReleaseTest {
         String unknown = PlatformDetailsTask.UNKNOWN_VALUE_STRING;
         LsbRelease release = new LsbRelease(unknown, unknown);
         PlatformDetails result = details.computeLabels("amd64", "linux", "xyzzy-abc", release);
+        if (expectedVersion.equals("bullseye")) {
+            System.out.println("**** Expecting bullseye for " + releaseFileName);
+        }
         assertThat(result.getName(), is(expectedName));
         assertThat(result.getArchitecture(), is(expectedArch));
         assertThat(result.getVersion(), is(expectedVersion));
@@ -154,10 +157,15 @@ public class PlatformDetailsTaskReleaseTest {
     private static String computeExpectedVersion(String filename) {
         File file = new File(filename);
         File parentDir = file.getParentFile();
-        if (parentDir.getName().equals("testing") || parentDir.getName().equals("unstable")) {
+        if (parentDir.getName().equals("testing")) {
             /* Debian unstable and Debian testing are indistinguishable by package definition */
             /* See https://unix.stackexchange.com/questions/464812/ for more details */
             return "bullseye";
+        }
+        if (parentDir.getName().equals("unstable")) {
+            /* Debian unstable and Debian testing are indistinguishable by package definition */
+            /* See https://unix.stackexchange.com/questions/464812/ for more details */
+            return "12";
         }
         return parentDir.getName();
     }
