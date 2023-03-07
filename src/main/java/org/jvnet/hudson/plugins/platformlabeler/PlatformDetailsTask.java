@@ -283,7 +283,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
             }
             if (equalsIgnoreCase(computedName, "linuxmint")) {
                 /* Linux Mint 19 LSB distributor ID is LinuxMint */
-                /* Linux Mint 20 LSB disrtibutor ID is Linuxmint */
+                /* Linux Mint 20 LSB distributor ID is Linuxmint */
                 computedName = getLinuxMintVersionIdentifier(computedVersion);
             }
             /* This is kind of a hack. lsb_release -a returns only the major
