@@ -14,16 +14,8 @@ updates:
   directory: "/"
   schedule:
     interval: weekly
-  open-pull-requests-limit: 10
-  target-branch: master
-  reviewers:
-  - MarkEWaite
   labels:
   - skip-changelog
-  ignore:
-  - dependency-name: org.slf4j*
-    versions:
-    - ">= 0"
 END-OF-DEPENDABOT-YML
 
 for file in $(git ls-files -- *Dockerfile | grep -E -v 'alpine/3.14|alpine/3.15|alpine/3.16|centos|clearlinux|debian/10|fedora|linuxmint|opensuse|oraclelinux|scientific|ubuntu/18' | sort -V); do
@@ -34,10 +26,6 @@ for file in $(git ls-files -- *Dockerfile | grep -E -v 'alpine/3.14|alpine/3.15|
   directory: "${dir}"
   schedule:
     interval: weekly
-  open-pull-requests-limit: 2
-  target-branch: master
-  reviewers:
-  - MarkEWaite
   labels:
   - skip-changelog
 END-OF-DEPENDABOT-YML
