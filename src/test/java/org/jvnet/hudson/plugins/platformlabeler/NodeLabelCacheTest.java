@@ -215,7 +215,7 @@ public class NodeLabelCacheTest {
         }
 
         @Override
-        public RetentionStrategy getRetentionStrategy() {
+        public RetentionStrategy<?> getRetentionStrategy() {
             throw new UnsupportedOperationException("Unsupported");
         }
     }
