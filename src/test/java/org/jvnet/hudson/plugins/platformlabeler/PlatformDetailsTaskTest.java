@@ -285,10 +285,15 @@ public class PlatformDetailsTaskTest {
          * is at least at the beginning of one of the detail values. Allow
          * Debian 10 and CentOS 7 to report their base version
          * in the /etc/os-release file without reporting their incremental
-         * version
+         * version.
+         *
+         * If Debian unstable is in a freeze, then /etc/os-release
+         * will report its version as the upcoming release number.
+         * Debian unstable during the bookworm freeze period reported
+         * `12`.
          */
         String foundValue = version;
-        if (details.getVersion().startsWith(version)) {
+        if (details.getVersion().startsWith(version) || details.getName().equals("Debian")) {
             foundValue = details.getVersion();
         }
         /* If VERSION_ID has the unknown value then handle it as a
