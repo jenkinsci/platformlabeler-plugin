@@ -37,31 +37,29 @@ import java.util.Map;
 
 /** Windows release class. Provides Windows feature update, 1803, 1903, 2009, 2103, 2109, etc. */
 public class WindowsRelease implements PlatformDetailsRelease {
-    @NonNull private final String release;
+    @NonNull
+    private final String release;
 
     /** Extract distributor ID and release for current platform. */
     public WindowsRelease() {
         Map<String, String> newProps = new HashMap<>();
         try {
-            Process process =
-                    new ProcessBuilder(
-                                    "REG",
-                                    "QUERY",
-                                    "HKLM\\Software\\Microsoft\\Windows NT\\CurrentVersion",
-                                    "/t",
-                                    "REG_SZ",
-                                    "/v",
-                                    "ReleaseId")
-                            .start();
+            Process process = new ProcessBuilder(
+                            "REG",
+                            "QUERY",
+                            "HKLM\\Software\\Microsoft\\Windows NT\\CurrentVersion",
+                            "/t",
+                            "REG_SZ",
+                            "/v",
+                            "ReleaseId")
+                    .start();
             try (InputStream stream = process.getInputStream()) {
                 readWindowsReleaseOutput(stream, newProps);
             }
         } catch (IOException ignored) {
             // IGNORE
         }
-        this.release =
-                newProps.getOrDefault(
-                        "ReleaseId", PlatformDetailsTask.UNKNOWN_WINDOWS_VALUE_STRING);
+        this.release = newProps.getOrDefault("ReleaseId", PlatformDetailsTask.UNKNOWN_WINDOWS_VALUE_STRING);
     }
 
     /** Read file to assign distributor ID and release. Package protected for tests. */
@@ -70,15 +68,11 @@ public class WindowsRelease implements PlatformDetailsRelease {
         try (FileInputStream stream = new FileInputStream(windowsReleaseFile)) {
             readWindowsReleaseOutput(stream, newProps);
         }
-        this.release =
-                newProps.getOrDefault(
-                        "ReleaseId", PlatformDetailsTask.UNKNOWN_WINDOWS_VALUE_STRING);
+        this.release = newProps.getOrDefault("ReleaseId", PlatformDetailsTask.UNKNOWN_WINDOWS_VALUE_STRING);
     }
 
-    private void readWindowsReleaseOutput(InputStream inputStream, Map<String, String> newProps)
-            throws IOException {
-        try (BufferedReader reader =
-                new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+    private void readWindowsReleaseOutput(InputStream inputStream, Map<String, String> newProps) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             reader.lines()
                     .filter(s -> s.contains("REG_SZ"))
                     .map(line -> line.split("REG_SZ", 2))

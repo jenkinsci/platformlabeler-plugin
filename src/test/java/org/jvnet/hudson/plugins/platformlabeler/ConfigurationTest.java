@@ -17,7 +17,8 @@ import org.junit.Test;
 import org.jvnet.hudson.test.JenkinsRule;
 
 public class ConfigurationTest {
-    @Rule public final JenkinsRule r = new JenkinsRule();
+    @Rule
+    public final JenkinsRule r = new JenkinsRule();
 
     private Computer computer;
     private NodeLabelCache nodeLabelCache;
@@ -173,13 +174,10 @@ public class ConfigurationTest {
         LabelConfig globalLabelConfigBefore = globalConfig.getLabelConfig();
         r.configRoundtrip();
         LabelConfig globalLabelConfigAfter = globalConfig.getLabelConfig();
-        assertThat(
-                globalLabelConfigBefore.isArchitecture(),
-                is(globalLabelConfigAfter.isArchitecture()));
+        assertThat(globalLabelConfigBefore.isArchitecture(), is(globalLabelConfigAfter.isArchitecture()));
         assertThat(globalLabelConfigBefore.isName(), is(globalLabelConfigAfter.isName()));
         assertThat(globalLabelConfigBefore.isVersion(), is(globalLabelConfigAfter.isVersion()));
         assertThat(
-                globalLabelConfigBefore.isWindowsFeatureUpdate(),
-                is(globalLabelConfigAfter.isWindowsFeatureUpdate()));
+                globalLabelConfigBefore.isWindowsFeatureUpdate(), is(globalLabelConfigAfter.isWindowsFeatureUpdate()));
     }
 }

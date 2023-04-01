@@ -25,7 +25,8 @@ public class PlatformDetailsTaskWindowsReleaseTest {
      * @return parameter values to be tested
      */
     public static Stream<Object[]> generateWindowsReleaseFileNames() {
-        String packageName = PlatformDetailsTaskWindowsReleaseTest.class.getPackage().getName();
+        String packageName =
+                PlatformDetailsTaskWindowsReleaseTest.class.getPackage().getName();
         Reflections reflections = new Reflections(packageName, Scanners.Resources);
         Set<String> fileNames = reflections.getResources(Pattern.compile(".*reg-query"));
         Collection<Object[]> data = new ArrayList<>(fileNames.size());
@@ -44,10 +45,7 @@ public class PlatformDetailsTaskWindowsReleaseTest {
     @MethodSource("generateWindowsReleaseFileNames")
     @DisplayName("Compute reg-query labels")
     void testComputeLabelsForOsRelease(
-            String windowsReleaseFileName,
-            String expectedName,
-            String expectedVersion,
-            String expectedArch)
+            String windowsReleaseFileName, String expectedName, String expectedVersion, String expectedArch)
             throws Exception {
         PlatformDetailsTask details = new PlatformDetailsTask();
         URL resource = getClass().getResource(windowsReleaseFileName);
@@ -57,9 +55,7 @@ public class PlatformDetailsTaskWindowsReleaseTest {
         PlatformDetails result = details.computeLabels("amd64", "windows", "10.0", release);
         assertThat(result.getArchitecture(), is(expectedArch));
         assertThat(result.getArchitectureName(), is(expectedArch + "-" + expectedName));
-        assertThat(
-                result.getArchitectureNameVersion(),
-                is(expectedArch + "-" + expectedName + "-" + expectedVersion));
+        assertThat(result.getArchitectureNameVersion(), is(expectedArch + "-" + expectedName + "-" + expectedVersion));
         assertThat(result.getName(), is(expectedName));
         assertThat(result.getNameVersion(), is(expectedName + "-" + expectedVersion));
         assertThat(result.getVersion(), is(expectedVersion));

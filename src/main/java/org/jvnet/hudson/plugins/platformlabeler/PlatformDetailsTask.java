@@ -87,9 +87,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         return computeLabels(arch, name, version);
     }
 
-    @SuppressFBWarnings(
-            value = "IMPROPER_UNICODE",
-            justification = "Strings are ASCII, safe to ignore case")
+    @SuppressFBWarnings(value = "IMPROPER_UNICODE", justification = "Strings are ASCII, safe to ignore case")
     private boolean equalsIgnoreCase(@NonNull String s1, @NonNull String s2) {
         return s1.equalsIgnoreCase(s2);
     }
@@ -142,8 +140,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
     }
 
     /* Package protected for testing */
-    String getCanonicalLinuxArchStream(@NonNull InputStream stream, @NonNull String arch)
-            throws IOException {
+    String getCanonicalLinuxArchStream(@NonNull InputStream stream, @NonNull String arch) throws IOException {
         try (BufferedReader b = new BufferedReader(new InputStreamReader(stream, "UTF-8"))) {
             String line = b.readLine();
             if (line != null) {
@@ -169,8 +166,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
      */
     @NonNull
     protected PlatformDetails computeLabels(
-            @NonNull final String arch, @NonNull final String name, @NonNull final String version)
-            throws IOException {
+            @NonNull final String arch, @NonNull final String name, @NonNull final String version) throws IOException {
         if (name.toLowerCase(Locale.ENGLISH).startsWith("linux")) {
             return computeLabels(arch, name, version, new LsbRelease());
         }
@@ -180,9 +176,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         return computeLabels(arch, name, version, null);
     }
 
-    @SuppressFBWarnings(
-            value = "IMPROPER_UNICODE",
-            justification = "Strings are ASCII, safe to lower case")
+    @SuppressFBWarnings(value = "IMPROPER_UNICODE", justification = "Strings are ASCII, safe to lower case")
     private String toLowerCase(@NonNull String s1) {
         return s1.toLowerCase(Locale.ENGLISH);
     }
@@ -211,11 +205,8 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         String windowsFeatureUpdate = null;
         if (computedName.startsWith("windows")) {
             computedName = "windows";
-            computedArch =
-                    checkWindows32Bit(
-                            computedArch,
-                            System.getenv("PROCESSOR_ARCHITECTURE"),
-                            System.getenv("PROCESSOR_ARCHITEW6432"));
+            computedArch = checkWindows32Bit(
+                    computedArch, System.getenv("PROCESSOR_ARCHITECTURE"), System.getenv("PROCESSOR_ARCHITEW6432"));
             if (computedVersion.startsWith("4.0")) {
                 computedVersion = "nt4";
             } else if (computedVersion.startsWith("5.0")) {
@@ -226,8 +217,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
                 computedVersion = "2003";
             }
             final boolean recentWindows = computedVersion.startsWith("10");
-            if (release != null
-                    && recentWindows) { // Feature updates only in recent Windows versions
+            if (release != null && recentWindows) { // Feature updates only in recent Windows versions
                 windowsFeatureUpdate = release.release();
                 if (windowsFeatureUpdate.isEmpty()) {
                     windowsFeatureUpdate = null;
@@ -256,8 +246,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
             if (computedVersion.equals(UNKNOWN_VALUE_STRING)) {
                 computedVersion = getRedhatReleaseIdentifier("VERSION_ID");
             }
-            if (equalsIgnoreCase(computedName, "debian")
-                    && computedVersion.equals(UNKNOWN_VALUE_STRING)) {
+            if (equalsIgnoreCase(computedName, "debian") && computedVersion.equals(UNKNOWN_VALUE_STRING)) {
                 /* Debian unstable and Debian testing don't include version in os-release */
                 /* Try reading it from a different location */
                 computedVersion = getDebianVersionIdentifier();
@@ -267,8 +256,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
              * release "n/a".  Embedding a "/" in the label will cause problems
              * like those described in JENKINS-64324.
              */
-            if (equalsIgnoreCase(computedName, "debian")
-                    && equalsIgnoreCase(computedVersion, "n/a")) {
+            if (equalsIgnoreCase(computedName, "debian") && equalsIgnoreCase(computedVersion, "n/a")) {
                 computedVersion = "unstable";
             }
             /* JENKINS-64324 notes that labels with '/' break various Jenkins components */
@@ -298,8 +286,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
             if (computedName.equals("SUSE LINUX")) {
                 computedName = "SUSE";
                 try {
-                    String integerPortion =
-                            computedVersion.replaceAll("([0-9]+)([.][0-9]+)*", "$1");
+                    String integerPortion = computedVersion.replaceAll("([0-9]+)([.][0-9]+)*", "$1");
                     int intVersion = Integer.parseInt(integerPortion);
                     if (intVersion <= 11) {
                         String newVersion = getSuseReleaseIdentifier("VERSION_ID");
@@ -321,8 +308,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
             computedName = "mac";
         }
         PlatformDetails properties =
-                new PlatformDetails(
-                        computedName, computedArch, computedVersion, windowsFeatureUpdate);
+                new PlatformDetails(computedName, computedArch, computedVersion, windowsFeatureUpdate);
         return properties;
     }
 
@@ -396,8 +382,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
             return value;
         }
         try (BufferedReader br =
-                new BufferedReader(
-                        Files.newBufferedReader(osRelease.toPath(), StandardCharsets.UTF_8))) {
+                new BufferedReader(Files.newBufferedReader(osRelease.toPath(), StandardCharsets.UTF_8))) {
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.startsWith(field + "=")) {
@@ -420,8 +405,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
             return value;
         }
         try (BufferedReader br =
-                new BufferedReader(
-                        Files.newBufferedReader(redhatRelease.toPath(), StandardCharsets.UTF_8))) {
+                new BufferedReader(Files.newBufferedReader(redhatRelease.toPath(), StandardCharsets.UTF_8))) {
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.contains(RELEASE)) {
@@ -429,11 +413,8 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
                         value = line.substring(0, line.indexOf(RELEASE)).trim();
                     }
                     if (field.equals("VERSION_ID")) {
-                        value =
-                                line.substring(
-                                                line.indexOf(RELEASE) + RELEASE.length(),
-                                                line.indexOf("("))
-                                        .trim();
+                        value = line.substring(line.indexOf(RELEASE) + RELEASE.length(), line.indexOf("("))
+                                .trim();
                     }
                 }
             }
@@ -455,8 +436,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
             return value;
         }
         try (BufferedReader br =
-                new BufferedReader(
-                        Files.newBufferedReader(suseRelease.toPath(), StandardCharsets.UTF_8))) {
+                new BufferedReader(Files.newBufferedReader(suseRelease.toPath(), StandardCharsets.UTF_8))) {
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.startsWith(VERSION)) {
@@ -493,9 +473,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
     String getDebianVersionIdentifier() {
         if (debianVersion != null) {
             try (BufferedReader br =
-                    new BufferedReader(
-                            Files.newBufferedReader(
-                                    debianVersion.toPath(), StandardCharsets.UTF_8))) {
+                    new BufferedReader(Files.newBufferedReader(debianVersion.toPath(), StandardCharsets.UTF_8))) {
                 String line = br.readLine();
                 return line != null ? line.trim() : UNKNOWN_VALUE_STRING;
             } catch (IOException notFound) {

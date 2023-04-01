@@ -42,8 +42,11 @@ import java.util.stream.Collectors;
 
 /** Linux standard base release class. Provides distributor ID and release. */
 public class LsbRelease implements PlatformDetailsRelease {
-    @NonNull private final String distributorId;
-    @NonNull private final String release;
+    @NonNull
+    private final String distributorId;
+
+    @NonNull
+    private final String release;
 
     private static final Logger LOGGER = Logger.getLogger(LsbRelease.class.getName());
 
@@ -58,15 +61,12 @@ public class LsbRelease implements PlatformDetailsRelease {
         } catch (IOException e) {
             LOGGER.log(Level.FINEST, "lsb_release execution failed", e);
         }
-        this.distributorId =
-                newProps.getOrDefault("Distributor ID", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
-        String guessedRelease =
-                newProps.getOrDefault("Release", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
+        this.distributorId = newProps.getOrDefault("Distributor ID", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
+        String guessedRelease = newProps.getOrDefault("Release", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
         if (this.distributorId.equals("Debian")) {
             /* Check apt-cache policy in case the Debian distribution is testing or unstable. */
             String aptCacheRelease = readAptCachePolicy(guessedRelease);
-            if (guessedRelease.equals("n/a")
-                    || !aptCacheRelease.equals(PlatformDetailsTask.UNKNOWN_VALUE_STRING)) {
+            if (guessedRelease.equals("n/a") || !aptCacheRelease.equals(PlatformDetailsTask.UNKNOWN_VALUE_STRING)) {
                 guessedRelease = aptCacheRelease;
             }
         }
@@ -85,25 +85,20 @@ public class LsbRelease implements PlatformDetailsRelease {
         try (FileInputStream stream = new FileInputStream(lsbReleaseFile)) {
             readLsbReleaseOutput(stream, newProps);
         }
-        this.distributorId =
-                newProps.getOrDefault("Distributor ID", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
-        String guessedRelease =
-                newProps.getOrDefault("Release", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
+        this.distributorId = newProps.getOrDefault("Distributor ID", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
+        String guessedRelease = newProps.getOrDefault("Release", PlatformDetailsTask.UNKNOWN_VALUE_STRING);
         if (this.distributorId.equals("Debian")) {
             /* Check apt-cache policy in case the Debian distribution is testing or unstable. */
             String aptCacheRelease = readAptCachePolicy(lsbReleaseFile);
-            if (guessedRelease.equals("n/a")
-                    || !aptCacheRelease.equals(PlatformDetailsTask.UNKNOWN_VALUE_STRING)) {
+            if (guessedRelease.equals("n/a") || !aptCacheRelease.equals(PlatformDetailsTask.UNKNOWN_VALUE_STRING)) {
                 guessedRelease = aptCacheRelease;
             }
         }
         this.release = guessedRelease;
     }
 
-    private void readLsbReleaseOutput(InputStream inputStream, Map<String, String> newProps)
-            throws IOException {
-        try (BufferedReader reader =
-                new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+    private void readLsbReleaseOutput(InputStream inputStream, Map<String, String> newProps) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             reader.lines()
                     .filter(s -> s.contains(":"))
                     .map(line -> line.split(":", 2))
@@ -171,8 +166,7 @@ public class LsbRelease implements PlatformDetailsRelease {
     private static final String APT_CACHE_POLICY_TESTING = " testing/";
     private static final String APT_CACHE_POLICY_UNSTABLE = " unstable/";
     private List<String> aptCacheIdentifiers =
-            Arrays.asList(
-                    APT_CACHE_POLICY_SID, APT_CACHE_POLICY_TESTING, APT_CACHE_POLICY_UNSTABLE);
+            Arrays.asList(APT_CACHE_POLICY_SID, APT_CACHE_POLICY_TESTING, APT_CACHE_POLICY_UNSTABLE);
 
     /*
      * If apt-cache output contains an aptCacheIdentifier codename,
@@ -181,12 +175,10 @@ public class LsbRelease implements PlatformDetailsRelease {
      */
     private String readReleaseFromAptCachePolicyOutput(InputStream inputStream) throws IOException {
         List<String> results;
-        try (BufferedReader reader =
-                new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-            results =
-                    reader.lines()
-                            .filter(line -> aptCacheIdentifiers.stream().anyMatch(line::contains))
-                            .collect(Collectors.toList());
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+            results = reader.lines()
+                    .filter(line -> aptCacheIdentifiers.stream().anyMatch(line::contains))
+                    .collect(Collectors.toList());
         }
         if (results.isEmpty()) {
             LOGGER.log(Level.FINEST, "empty apt-cache policy, not testing, sid, or unstable");
@@ -201,9 +193,7 @@ public class LsbRelease implements PlatformDetailsRelease {
             LOGGER.log(Level.FINEST, "apt-cache policy is sid");
             return "unstable";
         }
-        LOGGER.log(
-                Level.FINEST,
-                "unexpected non-empty apt-cache policy, not testing, sid, or unstable");
+        LOGGER.log(Level.FINEST, "unexpected non-empty apt-cache policy, not testing, sid, or unstable");
         return PlatformDetailsTask.UNKNOWN_VALUE_STRING;
     }
 

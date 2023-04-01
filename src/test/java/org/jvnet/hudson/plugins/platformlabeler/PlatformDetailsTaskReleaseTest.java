@@ -46,11 +46,7 @@ public class PlatformDetailsTaskReleaseTest {
     @MethodSource("generateReleaseFileNames")
     @DisplayName("Compute platform details from release file")
     void testComputeLabelsForRelease(
-            String releaseFileName,
-            String expectedName,
-            String expectedVersion,
-            String expectedArch)
-            throws Exception {
+            String releaseFileName, String expectedName, String expectedVersion, String expectedArch) throws Exception {
         PlatformDetailsTask details = new PlatformDetailsTask();
         URL resource = getClass().getResource(releaseFileName);
         File releaseFile = new File(resource.toURI());
@@ -87,9 +83,7 @@ public class PlatformDetailsTaskReleaseTest {
         assertThat(result.getArchitecture(), is(expectedArch));
         assertThat(result.getVersion(), is(expectedVersion));
         assertThat(result.getArchitectureName(), is(expectedArch + "-" + expectedName));
-        assertThat(
-                result.getArchitectureNameVersion(),
-                is(expectedArch + "-" + expectedName + "-" + expectedVersion));
+        assertThat(result.getArchitectureNameVersion(), is(expectedArch + "-" + expectedName + "-" + expectedVersion));
         assertThat(result.getNameVersion(), is(expectedName + "-" + expectedVersion));
     }
 

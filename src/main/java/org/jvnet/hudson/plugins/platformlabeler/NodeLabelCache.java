@@ -54,8 +54,7 @@ public class NodeLabelCache extends ComputerListener {
     /** The labels computed for nodes - accessible package wide. */
     static transient Map<Node, Collection<LabelAtom>> nodeLabels = new WeakHashMap<>();
     /** Logging of issues. */
-    private static final transient Logger LOGGER =
-            Logger.getLogger("org.jvnet.hudson.plugins.platformlabeler");
+    private static final transient Logger LOGGER = Logger.getLogger("org.jvnet.hudson.plugins.platformlabeler");
 
     /**
      * When a computer comes online, probe it for its platform labels.
@@ -76,10 +75,9 @@ public class NodeLabelCache extends ComputerListener {
     @Override
     public final void onConfigurationChange() {
         synchronized (nodePlatformProperties) {
-            nodePlatformProperties.forEach(
-                    (node, labels) -> {
-                        refreshModel(node);
-                    });
+            nodePlatformProperties.forEach((node, labels) -> {
+                refreshModel(node);
+            });
         }
     }
 
@@ -119,8 +117,7 @@ public class NodeLabelCache extends ComputerListener {
      * @throws InterruptedException on thread interruption
      */
     @NonNull
-    PlatformDetails requestComputerPlatformDetails(final Computer computer)
-            throws IOException, InterruptedException {
+    PlatformDetails requestComputerPlatformDetails(final Computer computer) throws IOException, InterruptedException {
         final VirtualChannel channel = computer.getChannel();
         if (null == channel) {
             // Cannot obtain details from an unconnected node. While we should
@@ -201,13 +198,11 @@ public class NodeLabelCache extends ComputerListener {
      * @return The labelConfig to be used for the node
      */
     private LabelConfig getLabelConfig(final Node node) {
-        LabelConfig labelConfig =
-                GlobalConfiguration.all()
-                        .getInstance(PlatformLabelerGlobalConfiguration.class)
-                        .getLabelConfig();
+        LabelConfig labelConfig = GlobalConfiguration.all()
+                .getInstance(PlatformLabelerGlobalConfiguration.class)
+                .getLabelConfig();
 
-        PlatformLabelerNodeProperty nodeProperty =
-                node.getNodeProperty(PlatformLabelerNodeProperty.class);
+        PlatformLabelerNodeProperty nodeProperty = node.getNodeProperty(PlatformLabelerNodeProperty.class);
 
         if (nodeProperty != null) {
             labelConfig = nodeProperty.getLabelConfig();

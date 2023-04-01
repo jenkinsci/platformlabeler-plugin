@@ -26,7 +26,8 @@ public class PlatformDetailsTaskLsbReleaseTest {
      * @return parameter values to be tested
      */
     public static Stream<Object[]> generateReleaseFileNames() {
-        String packageName = PlatformDetailsTaskLsbReleaseTest.class.getPackage().getName();
+        String packageName =
+                PlatformDetailsTaskLsbReleaseTest.class.getPackage().getName();
         Reflections reflections = new Reflections(packageName, Scanners.Resources);
         Set<String> fileNames = reflections.getResources(Pattern.compile(".*lsb_release-a"));
         Collection<Object[]> data = new ArrayList<>(fileNames.size());
@@ -45,10 +46,7 @@ public class PlatformDetailsTaskLsbReleaseTest {
     @MethodSource("generateReleaseFileNames")
     @DisplayName("Compute os-release labels")
     void testComputeLabelsForOsRelease(
-            String lsbReleaseFileName,
-            String expectedName,
-            String expectedVersion,
-            String expectedArch)
+            String lsbReleaseFileName, String expectedName, String expectedVersion, String expectedArch)
             throws Exception {
         PlatformDetailsTask details = new PlatformDetailsTask();
         URL resource = getClass().getResource(lsbReleaseFileName);
@@ -65,9 +63,7 @@ public class PlatformDetailsTaskLsbReleaseTest {
         assertThat(result.getVersion(), is(expectedVersion));
         assertThat(result.getArchitectureName(), is(expectedArch + "-" + expectedName));
         assertThat(result.getNameVersion(), is(expectedName + "-" + expectedVersion));
-        assertThat(
-                result.getArchitectureNameVersion(),
-                is(expectedArch + "-" + expectedName + "-" + expectedVersion));
+        assertThat(result.getArchitectureNameVersion(), is(expectedArch + "-" + expectedName + "-" + expectedVersion));
     }
 
     private static String computeExpectedName(String filename) {

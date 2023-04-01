@@ -17,7 +17,8 @@ import org.jvnet.hudson.test.JenkinsRule;
  */
 public class PlatformDetailsCheckRolesTest {
 
-    @Rule public JenkinsRule r = new JenkinsRule();
+    @Rule
+    public JenkinsRule r = new JenkinsRule();
 
     private PlatformDetailsTask platformDetailsTask;
 
@@ -28,32 +29,27 @@ public class PlatformDetailsCheckRolesTest {
 
     @Test
     public void testCheckRoles() {
-        RoleChecker checker =
-                new RoleChecker() {
-                    @Override
-                    public void check(RoleSensitive rs, Collection<Role> roleCollection)
-                            throws SecurityException {
-                        if (!roleCollection.contains(Roles.SLAVE)) {
-                            throw new SecurityException(Roles.SLAVE + " missing");
-                        }
-                    }
-                };
+        RoleChecker checker = new RoleChecker() {
+            @Override
+            public void check(RoleSensitive rs, Collection<Role> roleCollection) throws SecurityException {
+                if (!roleCollection.contains(Roles.SLAVE)) {
+                    throw new SecurityException(Roles.SLAVE + " missing");
+                }
+            }
+        };
         platformDetailsTask.checkRoles(checker);
     }
 
     @Test(expected = SecurityException.class)
     public void testCheckRolesThrowsSecurityException() {
-        RoleChecker exceptionThrowingChecker =
-                new RoleChecker() {
-                    @Override
-                    public void check(RoleSensitive rs, Collection<Role> roleCollection)
-                            throws SecurityException {
-                        if (roleCollection.contains(Roles.SLAVE)) {
-                            throw new SecurityException(
-                                    Roles.SLAVE + " found, throwing intentional exception");
-                        }
-                    }
-                };
+        RoleChecker exceptionThrowingChecker = new RoleChecker() {
+            @Override
+            public void check(RoleSensitive rs, Collection<Role> roleCollection) throws SecurityException {
+                if (roleCollection.contains(Roles.SLAVE)) {
+                    throw new SecurityException(Roles.SLAVE + " found, throwing intentional exception");
+                }
+            }
+        };
         platformDetailsTask.checkRoles(exceptionThrowingChecker);
     }
 }
