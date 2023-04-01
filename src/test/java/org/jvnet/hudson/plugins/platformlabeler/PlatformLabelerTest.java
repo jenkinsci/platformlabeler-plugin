@@ -38,7 +38,8 @@ import org.jvnet.hudson.test.JenkinsRule;
  */
 public class PlatformLabelerTest {
 
-    @Rule public final JenkinsRule j = new JenkinsRule();
+    @Rule
+    public final JenkinsRule j = new JenkinsRule();
 
     @Test
     public void testLookupCached() {

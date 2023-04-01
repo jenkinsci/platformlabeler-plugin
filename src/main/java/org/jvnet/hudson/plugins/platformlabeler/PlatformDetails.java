@@ -36,8 +36,7 @@ public class PlatformDetails implements Serializable {
      * @param windowsFeatureUpdate windows feature update version string, as in 1809, 1903, 2009,
      *     2103, etc.
      */
-    public PlatformDetails(
-            String name, String architecture, String version, String windowsFeatureUpdate) {
+    public PlatformDetails(String name, String architecture, String version, String windowsFeatureUpdate) {
         this.name = name;
         this.architecture = architecture;
         this.version = version;

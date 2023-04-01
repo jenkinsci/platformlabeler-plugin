@@ -56,9 +56,7 @@ public class LabelConfigTest {
         assertThat(nullLabelConfig.isVersion(), is(defaultConfig.isVersion()));
         assertThat(nullLabelConfig.isArchitectureName(), is(defaultConfig.isArchitectureName()));
         assertThat(nullLabelConfig.isNameVersion(), is(defaultConfig.isNameVersion()));
-        assertThat(
-                nullLabelConfig.isArchitectureNameVersion(),
-                is(defaultConfig.isArchitectureNameVersion()));
+        assertThat(nullLabelConfig.isArchitectureNameVersion(), is(defaultConfig.isArchitectureNameVersion()));
     }
 
     @Test

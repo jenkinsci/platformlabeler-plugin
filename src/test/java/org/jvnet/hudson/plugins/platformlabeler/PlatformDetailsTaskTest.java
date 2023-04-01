@@ -30,8 +30,7 @@ public class PlatformDetailsTaskTest {
      * SPECIAL_CASE_ARCH is used to test x86 detection when running on 64 bit Intel processors. When
      * running on non-Intel processors, use the system architecture reported by Java.
      */
-    private static final String SPECIAL_CASE_ARCH =
-            SYSTEM_OS_ARCH.contains("amd") ? "x86" : SYSTEM_OS_ARCH;
+    private static final String SPECIAL_CASE_ARCH = SYSTEM_OS_ARCH.contains("amd") ? "x86" : SYSTEM_OS_ARCH;
 
     @BeforeEach
     void createPlatformDetailsTask() {
@@ -79,10 +78,7 @@ public class PlatformDetailsTaskTest {
             // Yes, this is a dirty trick to detect the hardware architecture on some JVM's
             String expectedArch = SYSTEM_OS_ARCH;
             if (expectedArch.equals("amd64")) {
-                expectedArch =
-                        System.getProperty("sun.arch.data.model", "23").equals("32")
-                                ? "x86"
-                                : "amd64";
+                expectedArch = System.getProperty("sun.arch.data.model", "23").equals("32") ? "x86" : "amd64";
             }
             // Assumes tests run in JVM that matches operating system
             assertThat(details.getArchitecture(), is(expectedArch));
@@ -92,8 +88,7 @@ public class PlatformDetailsTaskTest {
     @Test
     @DisplayName("test 32 bit Linux label computation")
     void testComputeLabelsCanonicalLinuxArch() throws Exception {
-        PlatformDetails details =
-                platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
+        PlatformDetails details = platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
         assertPlatformDetails(details);
     }
 
@@ -102,9 +97,7 @@ public class PlatformDetailsTaskTest {
     void testCanonicalLinuxArchStream() throws IOException {
         String unameOutput = "x86_64";
         InputStream stream = new ByteArrayInputStream(unameOutput.getBytes(StandardCharsets.UTF_8));
-        assertThat(
-                platformDetailsTask.getCanonicalLinuxArchStream(stream, SPECIAL_CASE_ARCH),
-                is("amd64"));
+        assertThat(platformDetailsTask.getCanonicalLinuxArchStream(stream, SPECIAL_CASE_ARCH), is("amd64"));
     }
 
     @Test
@@ -112,9 +105,7 @@ public class PlatformDetailsTaskTest {
     void testCanonicalLinuxArchStreamARM() throws IOException {
         String unameOutput = "aarch64";
         InputStream stream = new ByteArrayInputStream(unameOutput.getBytes(StandardCharsets.UTF_8));
-        assertThat(
-                platformDetailsTask.getCanonicalLinuxArchStream(stream, SPECIAL_CASE_ARCH),
-                is(unameOutput));
+        assertThat(platformDetailsTask.getCanonicalLinuxArchStream(stream, SPECIAL_CASE_ARCH), is(unameOutput));
     }
 
     @Test
@@ -123,9 +114,7 @@ public class PlatformDetailsTaskTest {
         String unameOutput = "";
         String expectedArch = "Expected-Arch";
         InputStream stream = new ByteArrayInputStream(unameOutput.getBytes(StandardCharsets.UTF_8));
-        assertThat(
-                platformDetailsTask.getCanonicalLinuxArchStream(stream, expectedArch),
-                is(expectedArch));
+        assertThat(platformDetailsTask.getCanonicalLinuxArchStream(stream, expectedArch), is(expectedArch));
     }
 
     @Test
@@ -136,8 +125,7 @@ public class PlatformDetailsTaskTest {
         }
         String unknown = PlatformDetailsTask.UNKNOWN_VALUE_STRING;
         LsbRelease release = new LsbRelease(unknown, unknown);
-        PlatformDetails details =
-                platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy", release);
+        PlatformDetails details = platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy", release);
         assertPlatformDetails(details);
     }
 
@@ -148,8 +136,7 @@ public class PlatformDetailsTaskTest {
             return;
         }
         LsbRelease release = null;
-        PlatformDetails details =
-                platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy", release);
+        PlatformDetails details = platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy", release);
         assertPlatformDetails(details);
     }
 
@@ -187,8 +174,9 @@ public class PlatformDetailsTaskTest {
         if (isWindows() || !Files.exists(Paths.get("/etc/os-release"))) {
             return;
         }
-        String computedName =
-                platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy").getName();
+        String computedName = platformDetailsTask
+                .computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy")
+                .getName();
         String readName = platformDetailsTask.getReleaseIdentifier("ID");
         assertThat(computedName, is(readName));
     }
@@ -278,8 +266,7 @@ public class PlatformDetailsTaskTest {
         if (isWindows() || !Files.exists(Paths.get("/etc/os-release"))) {
             return;
         }
-        PlatformDetails details =
-                platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
+        PlatformDetails details = platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
         String version = platformDetailsTask.getReleaseIdentifier("VERSION_ID");
         /* Check that the version string returned by getReleaseIdentifier
          * is at least at the beginning of one of the detail values. Allow

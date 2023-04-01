@@ -27,42 +27,40 @@ public class PlatformDetailsTaskStaticStringTest {
      * @return parameter values to be tested
      */
     public static Stream<Object[]> generateTestParameters() {
-        Collection<Object[]> data =
-                Arrays.asList(
-                        new Object[][] {
-                            /** General cases for operating system names in platformlabeler-1.1 */
-                            {"mac", "amd64", "11.0"}, // macOS
-                            {"Solaris", "amd64", "11.3"}, // Solaris
-                            {"Solaris", "sparc", "11.3"}, // Solaris
-                            {"SunOS", "sparc", "4.1.4"}, // SunOS
-                            /**
-                             * Special Windows version cases using version names in
-                             * platformlabeler-1.1
-                             */
-                            {"Windows 2000", "amd64", "5.0"}, // Win2000
-                            {"Windows 2000", "x86", "5.0"}, // Win2000
-                            {"Windows 2003", "amd64", "5.2"}, // Win2003
-                            {"Windows 2003", "x86", "5.2"}, // Win2003
-                            {"Windows NT", "amd64", "4.0"}, // WinNT
-                            {"Windows NT", "x86", "4.0"}, // WinNT
-                            {"Windows XP", "amd64", "5.1"}, // WinXP
-                            {"Windows XP", "x86", "5.1"}, // WinXP
-                            /**
-                             * General Windows version cases using version numbers in
-                             * platformlabeler-1.1
-                             */
-                            {"Windows 10", "amd64", "10.0"}, // Win10
-                            {"Windows 10", "x86", "10.0"}, // Win10
-                            {"Windows 2008R2", "amd64", "6.1"}, // Win2008R2
-                            {"Windows 7", "amd64", "6.1"}, // Win7
-                            {"Windows 7", "x86", "6.1"}, // Win7
-                            {"Windows Server 2012 R2", "amd64", "6.3"}, // Win2012R2
-                            {"Windows Vista64", "amd64", "6.0.6001"}, // WinVista
-                            {"Windows Vista", "amd64", "6.0.6000"}, // WinVista
-                            {"Windows Vista", "x86", "6.0.6000"}, // WinVista
-                            /** General case for operating systems unknown to platformlabeler-1.1 */
-                            {"FreeBSD", "amd64", "10.3-STABLE"}, // FreeBSD
-                        });
+        Collection<Object[]> data = Arrays.asList(new Object[][] {
+            /** General cases for operating system names in platformlabeler-1.1 */
+            {"mac", "amd64", "11.0"}, // macOS
+            {"Solaris", "amd64", "11.3"}, // Solaris
+            {"Solaris", "sparc", "11.3"}, // Solaris
+            {"SunOS", "sparc", "4.1.4"}, // SunOS
+            /**
+             * Special Windows version cases using version names in
+             * platformlabeler-1.1
+             */
+            {"Windows 2000", "amd64", "5.0"}, // Win2000
+            {"Windows 2000", "x86", "5.0"}, // Win2000
+            {"Windows 2003", "amd64", "5.2"}, // Win2003
+            {"Windows 2003", "x86", "5.2"}, // Win2003
+            {"Windows NT", "amd64", "4.0"}, // WinNT
+            {"Windows NT", "x86", "4.0"}, // WinNT
+            {"Windows XP", "amd64", "5.1"}, // WinXP
+            {"Windows XP", "x86", "5.1"}, // WinXP
+            /**
+             * General Windows version cases using version numbers in
+             * platformlabeler-1.1
+             */
+            {"Windows 10", "amd64", "10.0"}, // Win10
+            {"Windows 10", "x86", "10.0"}, // Win10
+            {"Windows 2008R2", "amd64", "6.1"}, // Win2008R2
+            {"Windows 7", "amd64", "6.1"}, // Win7
+            {"Windows 7", "x86", "6.1"}, // Win7
+            {"Windows Server 2012 R2", "amd64", "6.3"}, // Win2012R2
+            {"Windows Vista64", "amd64", "6.0.6001"}, // WinVista
+            {"Windows Vista", "amd64", "6.0.6000"}, // WinVista
+            {"Windows Vista", "x86", "6.0.6000"}, // WinVista
+            /** General case for operating systems unknown to platformlabeler-1.1 */
+            {"FreeBSD", "amd64", "10.3-STABLE"}, // FreeBSD
+        });
 
         /* Don't add data for this platform if linux - linux decodes the distribution as a label */
         String myName = System.getProperty("os.name");
@@ -74,9 +72,7 @@ public class PlatformDetailsTaskStaticStringTest {
         String myArch = System.getProperty("os.arch");
         String myVersion = System.getProperty("os.version");
         for (Object[] testData : data) {
-            if (testData[0].equals(myName)
-                    && testData[1].equals(myArch)
-                    && testData[2].equals(myVersion)) {
+            if (testData[0].equals(myName) && testData[1].equals(myArch) && testData[2].equals(myVersion)) {
                 return data.stream();
             }
         }
@@ -160,8 +156,7 @@ public class PlatformDetailsTaskStaticStringTest {
         try {
             Process p = Runtime.getRuntime().exec("/bin/freebsd-version -u");
             p.waitFor();
-            try (BufferedReader b =
-                    new BufferedReader(new InputStreamReader(p.getInputStream(), "UTF-8"))) {
+            try (BufferedReader b = new BufferedReader(new InputStreamReader(p.getInputStream(), "UTF-8"))) {
                 String line = b.readLine();
                 if (line != null) {
                     version = line;

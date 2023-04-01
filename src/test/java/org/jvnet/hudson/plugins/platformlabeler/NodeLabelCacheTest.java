@@ -42,7 +42,8 @@ import org.kohsuke.stapler.interceptor.RequirePOST;
  */
 public class NodeLabelCacheTest {
 
-    @Rule public JenkinsRule r = new JenkinsRule();
+    @Rule
+    public JenkinsRule r = new JenkinsRule();
 
     public NodeLabelCacheTest() {
         /* Intentionally empty constructor */
@@ -60,11 +61,10 @@ public class NodeLabelCacheTest {
         assertThat(labelsBefore, is(not(empty())));
         nodeLabelCache = new NodeLabelCache();
         PlatformDetailsTask task = new PlatformDetailsTask();
-        localDetails =
-                task.computeLabels(
-                        System.getProperty("os.arch", PlatformDetailsTask.UNKNOWN_VALUE_STRING),
-                        System.getProperty("os.name", PlatformDetailsTask.UNKNOWN_VALUE_STRING),
-                        System.getProperty("os.version", PlatformDetailsTask.UNKNOWN_VALUE_STRING));
+        localDetails = task.computeLabels(
+                System.getProperty("os.arch", PlatformDetailsTask.UNKNOWN_VALUE_STRING),
+                System.getProperty("os.name", PlatformDetailsTask.UNKNOWN_VALUE_STRING),
+                System.getProperty("os.version", PlatformDetailsTask.UNKNOWN_VALUE_STRING));
     }
 
     @After
@@ -116,9 +116,7 @@ public class NodeLabelCacheTest {
         assertThat(platformDetails.getArchitecture(), is(localDetails.getArchitecture()));
         assertThat(platformDetails.getName(), is(localDetails.getName()));
         assertThat(platformDetails.getVersion(), is(localDetails.getVersion()));
-        assertThat(
-                platformDetails.getWindowsFeatureUpdate(),
-                is(localDetails.getWindowsFeatureUpdate()));
+        assertThat(platformDetails.getWindowsFeatureUpdate(), is(localDetails.getWindowsFeatureUpdate()));
     }
 
     @Test
@@ -194,8 +192,7 @@ public class NodeLabelCacheTest {
 
         @Override
         @RequirePOST
-        public void doLaunchSlaveAgent(StaplerRequest sr, StaplerResponse sr1)
-                throws IOException, ServletException {
+        public void doLaunchSlaveAgent(StaplerRequest sr, StaplerResponse sr1) throws IOException, ServletException {
             throw new UnsupportedOperationException("Unsupported");
         }
 
@@ -227,6 +224,7 @@ public class NodeLabelCacheTest {
             this.exceptionToThrow = exceptionToThrow;
         }
 
+        @Override
         public <V, T extends Throwable> V call(Callable<V, T> callable) throws IOException {
             if (exceptionToThrow != null) {
                 throw exceptionToThrow;
@@ -234,82 +232,100 @@ public class NodeLabelCacheTest {
             return null;
         }
 
-        public <V, T extends Throwable> hudson.remoting.Future<V> callAsync(
-                Callable<V, T> callable) {
+        @Override
+        public <V, T extends Throwable> hudson.remoting.Future<V> callAsync(Callable<V, T> callable) {
             return null;
         }
 
+        @Override
         public <T> T export(java.lang.Class<T> type, T instance) {
             return null;
         }
 
+        @Override
         public void join() {
             throw new UnsupportedOperationException("Unsupported");
         }
 
+        @Override
         public void join(long timeout) {
             throw new UnsupportedOperationException("Unsupported");
         }
 
+        @Override
         public void syncLocalIO() {
             throw new UnsupportedOperationException("Unsupported");
         }
 
+        @Override
         public void close() {
             throw new UnsupportedOperationException("Unsupported");
         }
     }
 
     private class NullingNode extends Node {
+        @Override
         public Callable<ClockDifference, IOException> getClockDifferenceCallable() {
             throw new UnsupportedOperationException("Unsupported");
         }
 
+        @Override
         public NodeDescriptor getDescriptor() {
             throw new UnsupportedOperationException("Unsupported");
         }
 
+        @Override
         public DescribableList<NodeProperty<?>, NodePropertyDescriptor> getNodeProperties() {
             throw new UnsupportedOperationException("Unsupported");
         }
 
+        @Override
         public FilePath getRootPath() {
             throw new UnsupportedOperationException("Unsupported");
         }
 
+        @Override
         public FilePath getWorkspaceFor(TopLevelItem item) {
             throw new UnsupportedOperationException("Unsupported");
         }
 
+        @Override
         public String getLabelString() {
             throw new UnsupportedOperationException("Unsupported");
         }
 
+        @Override
         public Computer createComputer() {
             throw new UnsupportedOperationException("Unsupported");
         }
 
+        @Override
         public Node.Mode getMode() {
             throw new UnsupportedOperationException("Unsupported");
         }
 
+        @Override
         public int getNumExecutors() {
             throw new UnsupportedOperationException("Unsupported");
         }
 
+        @Override
         public Launcher createLauncher(TaskListener listener) {
             throw new UnsupportedOperationException("Unsupported");
         }
 
+        @Override
         public String getNodeDescription() {
             throw new UnsupportedOperationException("Unsupported");
         }
 
+        @Override
         @Deprecated
         public void setNodeName(String name) {
             throw new UnsupportedOperationException("Unsupported");
         }
 
+        @Override
         public String getNodeName() {
             throw new UnsupportedOperationException("Unsupported");
         }

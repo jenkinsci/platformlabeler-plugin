@@ -126,15 +126,7 @@ public class PlatformDetailsTest {
 
     private final Random random = new Random();
     private final String[] names = {
-        "Windows 10",
-        "alpine",
-        "centos",
-        "debian",
-        "fedora",
-        "freebsd",
-        "macos",
-        "raspbian",
-        "ubuntu"
+        "Windows 10", "alpine", "centos", "debian", "fedora", "freebsd", "macos", "raspbian", "ubuntu"
     };
     private final String[] versions = {
         "3.14.9",
