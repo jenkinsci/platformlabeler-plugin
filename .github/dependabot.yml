@@ -34,7 +34,7 @@ updates:
   - skip-changelog
 
 - package-ecosystem: docker
-  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.17.2"
+  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.17.3"
   schedule:
     interval: weekly
   labels:
