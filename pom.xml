@@ -18,6 +18,13 @@
   <url>https://github.com/jenkinsci/platformlabeler-plugin/</url>
   <inceptionYear>2009</inceptionYear>
 
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>https://opensource.org/licenses/MIT</url>
+    </license>
+  </licenses>
+
   <developers>
     <developer>
       <id>MarkEWaite</id>
