@@ -43,7 +43,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Scientific 7               | `Scientific`       | `7.9`          | `amd64`      | // EOL: 30 Jun 2024
 | SLES 12                    | `SUSE`             | `12.4`         | `amd64`      | // EOL: 31 Oct 2027
 | SLES 15                    | `SUSE`             | `15`           | `amd64`      | // EOL: 31 Jul 2031
-| Ubuntu 18                  | `Ubuntu`           | `18.04`        | `amd64`      | // EOL: 30 Apr 2023
+| Ubuntu 18                  | `Ubuntu`           | `18.04`        | `amd64`      | // EOL: 31 May 2023
 | Ubuntu 20                  | `Ubuntu`           | `20.04`        | `amd64`      | // EOL: 30 Apr 2025
 | Ubuntu 22                  | `Ubuntu`           | `22.04`        | `amd64`      | // EOL: 30 Apr 2027
 | Windows 10                 | `windows`          | `10.0`         | `amd64`      | // EOL: 14 Oct 2025
