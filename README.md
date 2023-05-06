@@ -44,8 +44,8 @@ Labels commonly include operating system name, version, architecture, and Window
 | SLES 12                    | `SUSE`             | `12.4`         | `amd64`      | // EOL: 31 Oct 2027
 | SLES 15                    | `SUSE`             | `15`           | `amd64`      | // EOL: 31 Jul 2031
 | Ubuntu 18                  | `Ubuntu`           | `18.04`        | `amd64`      | // EOL: 31 May 2023
-| Ubuntu 20                  | `Ubuntu`           | `20.04`        | `amd64`      | // EOL: 30 Apr 2025
-| Ubuntu 22                  | `Ubuntu`           | `22.04`        | `amd64`      | // EOL: 30 Apr 2027
+| Ubuntu 20                  | `Ubuntu`           | `20.04`        | `amd64`      | // EOL:  2 Apr 2025
+| Ubuntu 22                  | `Ubuntu`           | `22.04`        | `amd64`      | // EOL:  1 Apr 2027
 | Windows 10                 | `windows`          | `10.0`         | `amd64`      | // EOL: 14 Oct 2025
 
 ## ARM 64 bit (aarch64)
@@ -66,8 +66,8 @@ Labels commonly include operating system name, version, architecture, and Window
 
 | Platform                   | OS Name            | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
-| Ubuntu 18                  | `Ubuntu`           | `18.04`        | `s390x`      | // EOL: 30 Apr 2023
-| Ubuntu 20                  | `Ubuntu`           | `20.04`        | `s390x`      | // EOL: 30 Apr 2025
+| Ubuntu 18                  | `Ubuntu`           | `18.04`        | `s390x`      | // EOL: 31 May 2023
+| Ubuntu 20                  | `Ubuntu`           | `20.04`        | `s390x`      | // EOL:  2 Apr 2025
 
 On Windows computers, the plugin assigns a label based on the Windows feature update.
 Feature update labels use a two digit year and a two digit month representation.
