@@ -154,9 +154,9 @@ public class NodeLabelCache extends ComputerListener {
 
         LabelConfig labelConfig = getLabelConfig(node);
 
-        final Jenkins jenkins = Jenkins.getInstanceOrNull();
+        final Jenkins jenkins = Jenkins.get();
 
-        if (pp == null || jenkins == null) {
+        if (pp == null) {
             return result;
         }
 
