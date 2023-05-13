@@ -18,7 +18,7 @@ updates:
   - skip-changelog
 END-OF-DEPENDABOT-YML
 
-for file in $(git ls-files -- *Dockerfile | grep -E -v 'alpine/3.14|alpine/3.15|alpine/3.16|centos|clearlinux|debian/10|fedora|linuxmint|opensuse|oraclelinux|scientific|ubuntu/18' | sort -V); do
+for file in $(git ls-files -- *Dockerfile | grep -E -v 'alpine/3.15|alpine/3.16|centos|clearlinux|debian/10|fedora|linuxmint|opensuse|oraclelinux|scientific|ubuntu/18' | sort -V); do
   dir=$(dirname $file)
   cat >> .github/dependabot.yml <<END-OF-DEPENDABOT-YML
 

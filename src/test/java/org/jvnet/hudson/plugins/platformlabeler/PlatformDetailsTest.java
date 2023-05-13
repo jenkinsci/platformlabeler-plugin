@@ -129,7 +129,6 @@ public class PlatformDetailsTest {
         "Windows 10", "alpine", "centos", "debian", "fedora", "freebsd", "macos", "raspbian", "ubuntu"
     };
     private final String[] versions = {
-        "3.14.9",
         "3.15.7",
         "3.16.4",
         "3.17.2",
