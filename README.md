@@ -12,7 +12,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | -------------------------- | ------------------ | -------------- | ------------ |
 | Alibaba Linux 3            | `AlibabaCloud`     | `3`            | `amd64`      | // EOL: 30 Apr 2031
 | Alma Linux 8               | `AlmaLinux`        | `8.7`          | `amd64`      | // EOL: 31 Mar 2029
-| Alma Linux 9               | `AlmaLinux`        | `9.1`          | `amd64`      | // EOL: 31 May 2032
+| Alma Linux 9               | `AlmaLinux`        | `9.2`          | `amd64`      | // EOL: 31 May 2032
 | Alpine 3.15                | `Alpine`           | `3.15.8`       | `amd64`      | // EOL: 01 Nov 2023
 | Alpine 3.16                | `Alpine`           | `3.16.5`       | `amd64`      | // EOL: 01 May 2024
 | Alpine 3.17                | `Alpine`           | `3.17.3`       | `amd64`      | // EOL: 01 Nov 2024
@@ -36,7 +36,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Oracle Linux 9             | `OracleServer`     | `9.1`          | `amd64`      | // EOL: 31 May 2032
 | Red Hat Enterprise Linux 7 | `RedHatEnterprise` | `7.9`          | `amd64`      | // EOL: 30 Jun 2024
 | Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.7`          | `amd64`      | // EOL: 31 May 2029
-| Red Hat Enterprise Linux 9 | `RedHatEnterprise` | `9.1`          | `amd64`      | // EOL: 31 May 2032
+| Red Hat Enterprise Linux 9 | `RedHatEnterprise` | `9.2`          | `amd64`      | // EOL: 31 May 2032
 | Rocky Linux 8              | `Rocky`            | `8.7`          | `amd64`      | // EOL: 31 May 2029
 | Rocky Linux 9              | `Rocky`            | `9.1`          | `amd64`      | // EOL: 31 May 2032
 | Scientific 7               | `Scientific`       | `7.9`          | `amd64`      | // EOL: 30 Jun 2024
