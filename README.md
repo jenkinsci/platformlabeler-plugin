@@ -51,7 +51,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Platform                   | OS Name            | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
 | Debian 10                  | `Debian`           | `10`           | `aarch64`    |
-| Oracle Linux 8             | `OracleServer`     | `8.7`          | `aarch64`    |
+| Oracle Linux 8             | `OracleServer`     | `8.8`          | `aarch64`    |
 
 ## ARM 32 bit (arm)
 

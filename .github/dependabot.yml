@@ -119,7 +119,7 @@ updates:
   - skip-changelog
 
 - package-ecosystem: docker
-  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/rocky/8.7"
+  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/rocky/8.8"
   schedule:
     interval: monthly
   labels:
