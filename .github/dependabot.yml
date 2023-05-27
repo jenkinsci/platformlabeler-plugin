@@ -97,6 +97,7 @@ updates:
     interval: weekly
   labels:
   - skip-changelog
+  ignore:
   - dependency-name: "Dockerfile"
     update-types: ["version-update:semver-major"]
 
