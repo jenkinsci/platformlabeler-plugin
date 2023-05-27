@@ -1,2 +1,2 @@
-FROM almalinux:8.7-20230407
+FROM rockylinux:8.8.20230518
 RUN yum install -y redhat-lsb-core
