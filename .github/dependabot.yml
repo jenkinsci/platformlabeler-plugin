@@ -129,13 +129,6 @@ updates:
     update-types: ["version-update:semver-major"]
 
 - package-ecosystem: docker
-  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/rocky/8.8"
-  schedule:
-    interval: weekly
-  labels:
-  - skip-changelog
-
-- package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/rocky/9.2"
   schedule:
     interval: weekly
