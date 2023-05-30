@@ -23,7 +23,7 @@ updates:
   labels:
   - skip-changelog
   ignore:
-  - dependency-name: "Dockerfile"
+  - dependency-name: "almalinux"
     update-types: ["version-update:semver-major"]
 
 - package-ecosystem: docker
@@ -33,7 +33,7 @@ updates:
   labels:
   - skip-changelog
   ignore:
-  - dependency-name: "Dockerfile"
+  - dependency-name: "almalinux"
     update-types: ["version-update:semver-major"]
 
 - package-ecosystem: docker
@@ -43,7 +43,7 @@ updates:
   labels:
   - skip-changelog
   ignore:
-  - dependency-name: "Dockerfile"
+  - dependency-name: "alpine"
     update-types: ["version-update:semver-minor"]
 
 - package-ecosystem: docker
@@ -125,7 +125,7 @@ updates:
   labels:
   - skip-changelog
   ignore:
-  - dependency-name: "Dockerfile"
+  - dependency-name: "rockylinux"
     update-types: ["version-update:semver-major"]
 
 - package-ecosystem: docker
@@ -135,7 +135,7 @@ updates:
   labels:
   - skip-changelog
   ignore:
-  - dependency-name: "Dockerfile"
+  - dependency-name: "rockylinux"
     update-types: ["version-update:semver-major"]
 
 - package-ecosystem: docker
