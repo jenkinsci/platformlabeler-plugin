@@ -3,7 +3,7 @@
 import java.util.Collections
 
 // Valid Jenkins versions for markwaite.net test
-def testJenkinsVersions = [ '2.375.4', '2.387.1', '2.387.2', '2.395', '2.396', '2.397', '2.398', '2.399', '2.400' ]
+def testJenkinsVersions = [ '2.387.3', '2.401', '2.402', '2.403', '2.404', '2.405', '2.406', '2.407' ]
 Collections.shuffle(testJenkinsVersions)
 
 // build with randomized Jenkins versions
@@ -40,7 +40,7 @@ if (env.JENKINS_URL.contains('markwaite.net')) {
       // Test Java 11 with a recent LTS, Java 17 even more recent
       configurations: [
         [platform: 'linux',   jdk: '11'], // Linux first for coverage report on ci.jenkins.io
-        [platform: 'windows', jdk: '17', jenkins: '2.400'],
+        [platform: 'windows', jdk: '17', jenkins: '2.407'],
       ]
     )
 }
