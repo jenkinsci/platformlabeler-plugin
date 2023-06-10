@@ -76,6 +76,17 @@ updates:
     interval: weekly
   labels:
   - skip-changelog
+  - dependency-name: "debian"
+    update-types: ["version-update:semver-major"]
+
+- package-ecosystem: docker
+  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/debian/12"
+  schedule:
+    interval: weekly
+  labels:
+  - skip-changelog
+  - dependency-name: "debian"
+    update-types: ["version-update:semver-major"]
 
 - package-ecosystem: docker
   directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/debian/testing"

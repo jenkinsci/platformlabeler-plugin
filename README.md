@@ -22,6 +22,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Clear Linux                | `clear-linux-os`   | `38990`        | `amd64`      |
 | Debian 10                  | `Debian`           | `10`           | `amd64`      | // EOL: 30 Jun 2024
 | Debian 11                  | `Debian`           | `11`           | `amd64`      | // EOL: 30 Jun 2026
+| Debian 12                  | `Debian`           | `12`           | `amd64`      | // EOL: 30 Jun 2028
 | Debian testing             | `Debian`           | `testing`      | `amd64`      |
 | Debian unstable            | `Debian`           | `unstable`     | `amd64`      |
 | Fedora 37                  | `Fedora`           | `37`           | `amd64`      | // EOL: 15 Dec 2023
