@@ -76,6 +76,7 @@ updates:
     interval: weekly
   labels:
   - skip-changelog
+  ignore:
   - dependency-name: "debian"
     update-types: ["version-update:semver-major"]
 
@@ -85,6 +86,7 @@ updates:
     interval: weekly
   labels:
   - skip-changelog
+  ignore:
   - dependency-name: "debian"
     update-types: ["version-update:semver-major"]
 
