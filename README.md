@@ -19,7 +19,6 @@ Labels commonly include operating system name, version, architecture, and Window
 | Alpine 3.18                | `Alpine`           | `3.18.0`       | `amd64`      | // EOL: 01 May 2025
 | Amazon Linux 2             | `Amazon`           | `2`            | `amd64`      | // EOL: 30 Jun 2025
 | Amazon Linux 2023          | `Amazon`           | `2023`         | `amd64`      | // EOL: 31 Dec 2028?
-| CentOS 7                   | `CentOS`           | `7.9.2009`     | `amd64`      | // EOL: 30 Jun 2024
 | Clear Linux                | `clear-linux-os`   | `38990`        | `amd64`      |
 | Debian 10                  | `Debian`           | `10`           | `amd64`      | // EOL: 30 Jun 2024
 | Debian 11                  | `Debian`           | `11`           | `amd64`      | // EOL: 30 Jun 2026
@@ -31,15 +30,12 @@ Labels commonly include operating system name, version, architecture, and Window
 | FreeBSD 13                 | `freebsd`          | `13.1-RELEASE` | `amd64`      | // EOL: 31 Jan 2026
 | Linux Mint 20.3            | `Linuxmint`        | `20.3`         | `amd64`      | // EOL:    Apr 2025
 | openSUSE Leap              | `openSUSE`         | `15.4`         | `amd64`      | // EOL: 30 Nov 2023
-| Oracle Linux 7             | `OracleServer`     | `7.9`          | `amd64`      | // EOL: 30 Jun 2024
 | Oracle Linux 8             | `OracleServer`     | `8.8`          | `amd64`      | // EOL: 31 May 2029
 | Oracle Linux 9             | `OracleServer`     | `9.1`          | `amd64`      | // EOL: 31 May 2032
-| Red Hat Enterprise Linux 7 | `RedHatEnterprise` | `7.9`          | `amd64`      | // EOL: 30 Jun 2024
 | Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.8`          | `amd64`      | // EOL: 31 May 2029
 | Red Hat Enterprise Linux 9 | `RedHatEnterprise` | `9.2`          | `amd64`      | // EOL: 31 May 2032
 | Rocky Linux 8              | `Rocky`            | `8.8`          | `amd64`      | // EOL: 31 May 2029
 | Rocky Linux 9              | `Rocky`            | `9.2`          | `amd64`      | // EOL: 31 May 2032
-| Scientific 7               | `Scientific`       | `7.9`          | `amd64`      | // EOL: 30 Jun 2024
 | SLES 12                    | `SUSE`             | `12.4`         | `amd64`      | // EOL: 31 Oct 2027
 | SLES 15                    | `SUSE`             | `15`           | `amd64`      | // EOL: 31 Jul 2031
 | Ubuntu 20                  | `Ubuntu`           | `20.04`        | `amd64`      | // EOL:  2 Apr 2025
