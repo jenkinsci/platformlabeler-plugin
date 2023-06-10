@@ -29,7 +29,6 @@ Labels commonly include operating system name, version, architecture, and Window
 | Fedora 38                  | `Fedora`           | `38`           | `amd64`      | // EOL: 18 May 2024
 | FreeBSD 12                 | `freebsd`          | `12.3-RELEASE` | `amd64`      | // EOL: 30 Jun 2024
 | FreeBSD 13                 | `freebsd`          | `13.1-RELEASE` | `amd64`      | // EOL: 31 Jan 2026
-| Linux Mint 20.3            | `Linuxmint`        | `20.3`         | `amd64`      | // EOL:    Apr 2025
 | openSUSE Leap              | `openSUSE`         | `15.4`         | `amd64`      | // EOL: 30 Nov 2023
 | Oracle Linux 7             | `OracleServer`     | `7.9`          | `amd64`      | // EOL: 30 Jun 2024
 | Oracle Linux 8             | `OracleServer`     | `8.8`          | `amd64`      | // EOL: 31 May 2029
@@ -79,11 +78,6 @@ Red Hat Linux and Scientific Linux agents have another fallback based on `/etc/r
 
 Agents with an older version of SuSE Linux will fallback to `/etc/SuSE-release`. Older versions of this plugin might return "sles" or "SUSE LINUX" as OS name.
 This has been unified to "SUSE" as this is the lsb_release ID since 'SLES 12 SP2'.
-
-Linux Mint changed its lsb_release distributor ID from "LinuxMint" to "Linuxmint" in Linux Mint 20.
-The Linux Mint label will be "LinuxMint" for Linux Mint 19.03.
-The Linux Mint label will be "Linuxmint" for Linux Mint 20 and later.
-Users running Linux Mint 19 agents may need to adjust their label references to use "Linuxmint" instead of "LinuxMint".
 
 When `/etc/os-release` is used, less detailed labels may be provided because more specific version information is not included in the file.
 For example:
