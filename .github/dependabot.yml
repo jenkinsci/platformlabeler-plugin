@@ -160,4 +160,3 @@ updates:
   ignore:
   - dependency-name: "Dockerfile"
     update-types: ["version-update:semver-major"]
-
