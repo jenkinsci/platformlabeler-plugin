@@ -2,181 +2,187 @@
 version: 2
 updates:
 
-- package-ecosystem: "github-actions"
-  directory: "/"
-  schedule:
-    interval: monthly
-  labels:
-  - skip-changelog
+  # Maintain dependencies for maven
+  - package-ecosystem: "maven"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    target-branch: "master"
+    reviewers:
+      - "MarkEWaite"
+    labels:
+      - "dependencies"
 
-- package-ecosystem: maven
-  directory: "/"
-  schedule:
-    interval: weekly
-  labels:
-  - skip-changelog
+  # Maintain dependencies for GitHub actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    labels:
+    - "skip-changelog"
 
-- package-ecosystem: docker
-  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/almalinux/8.8"
-  schedule:
-    interval: monthly
-  labels:
-  - skip-changelog
-  ignore:
-  - dependency-name: "almalinux"
-    update-types: ["version-update:semver-major"]
+  - package-ecosystem: "docker"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/almalinux/8.8"
+    schedule:
+      interval: "monthly"
+    labels:
+    - "skip-changelog"
+    ignore:
+    - dependency-name: "almalinux"
+      update-types: ["version-update:semver-major"]
 
-- package-ecosystem: docker
-  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/almalinux/9.2"
-  schedule:
-    interval: weekly
-  labels:
-  - skip-changelog
-  ignore:
-  - dependency-name: "almalinux"
-    update-types: ["version-update:semver-major"]
+  - package-ecosystem: "docker"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/almalinux/9.2"
+    schedule:
+      interval: "weekly"
+    labels:
+    - "skip-changelog"
+    ignore:
+    - dependency-name: "almalinux"
+      update-types: ["version-update:semver-major"]
 
-- package-ecosystem: docker
-  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.15.9"
-  schedule:
-    interval: weekly
-  labels:
-  - skip-changelog
-  ignore:
-  - dependency-name: "alpine"
-    update-types: ["version-update:semver-minor"]
+  - package-ecosystem: "docker"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.15.9"
+    schedule:
+      interval: "weekly"
+    labels:
+    - "skip-changelog"
+    ignore:
+    - dependency-name: "alpine"
+      update-types: ["version-update:semver-minor"]
 
-- package-ecosystem: docker
-  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.16.6"
-  schedule:
-    interval: weekly
-  labels:
-  - skip-changelog
-  ignore:
-  - dependency-name: "alpine"
-    update-types: ["version-update:semver-minor"]
+  - package-ecosystem: "docker"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.16.6"
+    schedule:
+      interval: "weekly"
+    labels:
+    - "skip-changelog"
+    ignore:
+    - dependency-name: "alpine"
+      update-types: ["version-update:semver-minor"]
 
-- package-ecosystem: docker
-  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.17.4"
-  schedule:
-    interval: weekly
-  labels:
-  - skip-changelog
-  ignore:
-  - dependency-name: "alpine"
-    update-types: ["version-update:semver-minor"]
+  - package-ecosystem: "docker"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.17.4"
+    schedule:
+      interval: "weekly"
+    labels:
+    - "skip-changelog"
+    ignore:
+    - dependency-name: "alpine"
+      update-types: ["version-update:semver-minor"]
 
-- package-ecosystem: docker
-  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.18.2"
-  schedule:
-    interval: weekly
-  labels:
-  - skip-changelog
-  ignore:
-  - dependency-name: "Dockerfile"
-    update-types: ["version-update:semver-minor"]
+  - package-ecosystem: "docker"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.18.2"
+    schedule:
+      interval: "weekly"
+    labels:
+    - "skip-changelog"
+    ignore:
+    - dependency-name: "Dockerfile"
+      update-types: ["version-update:semver-minor"]
 
-- package-ecosystem: docker
-  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/amzn/2"
-  schedule:
-    interval: monthly
-  labels:
-  - skip-changelog
+  - package-ecosystem: "docker"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/amzn/2"
+    schedule:
+      interval: "monthly"
+    labels:
+    - "skip-changelog"
 
-- package-ecosystem: docker
-  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/amzn/2023"
-  schedule:
-    interval: weekly
-  labels:
-  - skip-changelog
+  - package-ecosystem: "docker"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/amzn/2023"
+    schedule:
+      interval: "weekly"
+    labels:
+    - "skip-changelog"
 
-- package-ecosystem: docker
-  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/debian/11"
-  schedule:
-    interval: weekly
-  labels:
-  - skip-changelog
-  ignore:
-  - dependency-name: "debian"
-    update-types: ["version-update:semver-major"]
+  - package-ecosystem: "docker"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/debian/11"
+    schedule:
+      interval: "weekly"
+    labels:
+    - "skip-changelog"
+    ignore:
+    - dependency-name: "debian"
+      update-types: ["version-update:semver-major"]
 
-- package-ecosystem: docker
-  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/debian/12"
-  schedule:
-    interval: weekly
-  labels:
-  - skip-changelog
-  ignore:
-  - dependency-name: "debian"
-    update-types: ["version-update:semver-major"]
+  - package-ecosystem: "docker"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/debian/12"
+    schedule:
+      interval: "weekly"
+    labels:
+    - "skip-changelog"
+    ignore:
+    - dependency-name: "debian"
+      update-types: ["version-update:semver-major"]
 
-- package-ecosystem: docker
-  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/debian/testing"
-  schedule:
-    interval: weekly
-  labels:
-  - skip-changelog
+  - package-ecosystem: "docker"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/debian/testing"
+    schedule:
+      interval: "weekly"
+    labels:
+    - "skip-changelog"
 
-- package-ecosystem: docker
-  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/debian/unstable"
-  schedule:
-    interval: weekly
-  labels:
-  - skip-changelog
+  - package-ecosystem: "docker"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/debian/unstable"
+    schedule:
+      interval: "weekly"
+    labels:
+    - "skip-changelog"
 
-- package-ecosystem: docker
-  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/registry.access.redhat.com/ubi8/ubi/8.8"
-  schedule:
-    interval: monthly
-  labels:
-  - skip-changelog
-  ignore:
-  - dependency-name: "Dockerfile"
-    update-types: ["version-update:semver-major"]
+  - package-ecosystem: "docker"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/registry.access.redhat.com/ubi8/ubi/8.8"
+    schedule:
+      interval: "monthly"
+    labels:
+    - "skip-changelog"
+    ignore:
+    - dependency-name: "Dockerfile"
+      update-types: ["version-update:semver-major"]
 
-- package-ecosystem: docker
-  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/registry.access.redhat.com/ubi9/ubi/9.2"
-  schedule:
-    interval: weekly
-  labels:
-  - skip-changelog
+  - package-ecosystem: "docker"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/registry.access.redhat.com/ubi9/ubi/9.2"
+    schedule:
+      interval: "weekly"
+    labels:
+    - "skip-changelog"
 
-- package-ecosystem: docker
-  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/rocky/8.8"
-  schedule:
-    interval: monthly
-  labels:
-  - skip-changelog
-  ignore:
-  - dependency-name: "rockylinux"
-    update-types: ["version-update:semver-major"]
+  - package-ecosystem: "docker"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/rocky/8.8"
+    schedule:
+      interval: "monthly"
+    labels:
+    - "skip-changelog"
+    ignore:
+    - dependency-name: "rockylinux"
+      update-types: ["version-update:semver-major"]
 
-- package-ecosystem: docker
-  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/rocky/9.2"
-  schedule:
-    interval: weekly
-  labels:
-  - skip-changelog
-  ignore:
-  - dependency-name: "rockylinux"
-    update-types: ["version-update:semver-major"]
+  - package-ecosystem: "docker"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/rocky/9.2"
+    schedule:
+      interval: "weekly"
+    labels:
+    - "skip-changelog"
+    ignore:
+    - dependency-name: "rockylinux"
+      update-types: ["version-update:semver-major"]
 
-- package-ecosystem: docker
-  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/ubuntu/20.04"
-  schedule:
-    interval: weekly
-  labels:
-  - skip-changelog
-  ignore:
-  - dependency-name: "Dockerfile"
-    update-types: ["version-update:semver-major"]
+  - package-ecosystem: "docker"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/ubuntu/20.04"
+    schedule:
+      interval: "weekly"
+    labels:
+    - "skip-changelog"
+    ignore:
+    - dependency-name: "Dockerfile"
+      update-types: ["version-update:semver-major"]
 
-- package-ecosystem: docker
-  directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/ubuntu/22.04"
-  schedule:
-    interval: weekly
-  labels:
-  - skip-changelog
-  ignore:
-  - dependency-name: "Dockerfile"
-    update-types: ["version-update:semver-major"]
+  - package-ecosystem: "docker"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/ubuntu/22.04"
+    schedule:
+      interval: "weekly"
+    labels:
+    - "skip-changelog"
+    ignore:
+    - dependency-name: "Dockerfile"
+      update-types: ["version-update:semver-major"]
