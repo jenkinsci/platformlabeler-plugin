@@ -28,19 +28,21 @@ subsetConfiguration = [
 
 if (env.JENKINS_URL.contains('markwaite.net')) {
     // Use advanced buildPlugin on markwaite.net
-    buildPlugin(configurations: subsetConfiguration, failFast: false)
+    buildPlugin(configurations: subsetConfiguration, failFast: false, forkCount: '1C')
 } else {
     // Use simple buildPlugin elsewhere
     /* `buildPlugin` step provided by: https://github.com/jenkins-infra/pipeline-library */
     buildPlugin(
+      // Run a JVM per core in tests
+      forkCount: '1C',
       // Container agents start faster and are easier to administer
       useContainerAgent: true,
       // Show failures on all configurations
       failFast: false,
-      // Test Java 11 with a recent LTS, Java 17 even more recent
+      // Test Java 11 and Java 17
       configurations: [
-        [platform: 'linux',   jdk: '11'], // Linux first for coverage report on ci.jenkins.io
-        [platform: 'windows', jdk: '17', jenkins: '2.407'],
+        [platform: 'linux',   jdk: '17'], // Linux first for coverage report on ci.jenkins.io
+        [platform: 'windows', jdk: '11'],
       ]
     )
 }
