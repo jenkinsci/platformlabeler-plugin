@@ -7,8 +7,6 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-    reviewers:
-      - "MarkEWaite"
     labels:
       - "dependencies"
 
