@@ -5,28 +5,28 @@ updates:
   # Maintain dependencies for maven
   - package-ecosystem: "maven"
     directory: "/"
-    schedule:
-      interval: "weekly"
     labels:
       - "dependencies"
+    schedule:
+      interval: "weekly"
 
   # Maintain dependencies for GitHub actions
   - package-ecosystem: "github-actions"
     directory: "/"
+    labels:
+      - "skip-changelog"
     schedule:
       interval: "monthly"
-    labels:
-    - "skip-changelog"
 
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/almalinux/8.8"
-    schedule:
-      interval: "monthly"
-    labels:
-    - "skip-changelog"
     ignore:
     - dependency-name: "almalinux"
       update-types: ["version-update:semver-major"]
+    labels:
+    - "skip-changelog"
+    schedule:
+      interval: "monthly"
 
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/almalinux/9.2"
