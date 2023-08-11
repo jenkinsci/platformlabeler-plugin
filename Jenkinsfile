@@ -3,7 +3,7 @@
 import java.util.Collections
 
 // Valid Jenkins versions for markwaite.net test
-def testJenkinsVersions = [ '2.387.3', '2.401', '2.402', '2.403', '2.404', '2.405', '2.406', '2.407' ]
+def testJenkinsVersions = [ '2.387.3', '2.401.3', '2.414', '2.415', '2.416', '2.417', '2.418' ]
 Collections.shuffle(testJenkinsVersions)
 
 // build with randomized Jenkins versions
@@ -13,6 +13,7 @@ subsetConfiguration = [
                         // Linux first for coverage report on ci.jenkins.io
                         [ jdk: '11', platform: 'linux',                                    ],
                         [ jdk: '17', platform: 'linux',    jenkins: testJenkinsVersions[0] ],
+                        [ jdk: '21', platform: 'linux',    jenkins: testJenkinsVersions[0] ],
 
                         // Windows
                         [ jdk: '11',  platform: 'windows', jenkins: testJenkinsVersions[1] ],
@@ -39,9 +40,10 @@ if (env.JENKINS_URL.contains('markwaite.net')) {
       useContainerAgent: true,
       // Show failures on all configurations
       failFast: false,
-      // Test Java 11 and Java 17
+      // Test Java 11, 17, and 21
       configurations: [
         [platform: 'linux',   jdk: '17'], // Linux first for coverage report on ci.jenkins.io
+        [platform: 'linux',   jdk: '21', jenkins: '2.414'],
         [platform: 'windows', jdk: '11'],
       ]
     )
