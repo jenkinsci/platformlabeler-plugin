@@ -39,7 +39,7 @@ updates:
       interval: "weekly"
 
   - package-ecosystem: "docker"
-    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.15.9"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.15.10"
     schedule:
       interval: "weekly"
     labels:
@@ -49,7 +49,7 @@ updates:
       update-types: ["version-update:semver-minor"]
 
   - package-ecosystem: "docker"
-    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.16.6"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.16.7"
     schedule:
       interval: "weekly"
     labels:
@@ -59,7 +59,7 @@ updates:
       update-types: ["version-update:semver-minor"]
 
   - package-ecosystem: "docker"
-    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.17.4"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.17.5"
     schedule:
       interval: "weekly"
     labels:
@@ -69,7 +69,7 @@ updates:
       update-types: ["version-update:semver-minor"]
 
   - package-ecosystem: "docker"
-    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.18.2"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.18.3"
     schedule:
       interval: "weekly"
     labels:
