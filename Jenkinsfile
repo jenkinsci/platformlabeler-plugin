@@ -12,19 +12,19 @@ subsetConfiguration = [
                         // Intel Linux is labeled as 'linux' for legacy reasons
                         // Linux first for coverage report on ci.jenkins.io
                         [ jdk: '11', platform: 'linux',                                    ],
-                        [ jdk: '17', platform: 'linux',    jenkins: testJenkinsVersions[0] ],
-                        [ jdk: '21', platform: 'linux',    jenkins: testJenkinsVersions[0] ],
+                        [ jdk: 17, platform: 'linux',    jenkins: testJenkinsVersions[0] ],
+                        [ jdk: 21, platform: 'linux',    jenkins: testJenkinsVersions[0] ],
 
                         // Windows
                         [ jdk: '11',  platform: 'windows', jenkins: testJenkinsVersions[1] ],
 
                         // ARM label is Linux also
                         [ jdk: '11', platform: 'arm64',    jenkins: testJenkinsVersions[2] ],
-                        [ jdk: '17', platform: 'arm64',    jenkins: testJenkinsVersions[3] ],
+                        [ jdk: 17, platform: 'arm64',    jenkins: testJenkinsVersions[3] ],
 
                         // s390x label is also Linux
                         [ jdk: '11', platform: 's390x',    jenkins: testJenkinsVersions[4] ],
-                        [ jdk: '17', platform: 's390x',    jenkins: testJenkinsVersions[5] ],
+                        [ jdk: 17, platform: 's390x',    jenkins: testJenkinsVersions[5] ],
                       ]
 
 if (env.JENKINS_URL.contains('markwaite.net')) {
@@ -42,8 +42,8 @@ if (env.JENKINS_URL.contains('markwaite.net')) {
       failFast: false,
       // Test Java 17 and 21
       configurations: [
-        [platform: 'linux',   jdk: '21'], // Linux first for coverage report on ci.jenkins.io
-        [platform: 'windows', jdk: '17'],
+        [platform: 'linux',   jdk: 21], // Linux first for coverage report on ci.jenkins.io
+        [platform: 'windows', jdk: 17],
       ]
     )
 }
