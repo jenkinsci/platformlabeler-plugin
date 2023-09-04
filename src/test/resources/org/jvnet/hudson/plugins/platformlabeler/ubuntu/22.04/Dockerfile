@@ -1,2 +1,2 @@
-FROM ubuntu:jammy-20230804
+FROM ubuntu:jammy-20230816
 RUN apt-get update && apt-get install -y lsb-release
