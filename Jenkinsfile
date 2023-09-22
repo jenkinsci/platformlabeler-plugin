@@ -2,12 +2,13 @@
 
 import java.util.Collections
 
-// Valid Jenkins versions for markwaite.net test
-def testJenkinsVersions = [ '2.387.3', '2.401.3', '2.414', '2.415', '2.416', '2.417', '2.418' ]
-Collections.shuffle(testJenkinsVersions)
+if (env.JENKINS_URL.contains('markwaite.net')) {
+    // Valid Jenkins versions for markwaite.net test
+    def testJenkinsVersions = [ '2.387.3', '2.401.3', '2.414.2', '2.416', '2.417', '2.418', '2.419', '2.420', '2.421', '2.423', '2.424' ]
+    Collections.shuffle(testJenkinsVersions)
 
-// build with randomized Jenkins versions
-subsetConfiguration = [
+    // build with randomized Jenkins versions
+    subsetConfiguration = [
 
                         // Intel Linux is labeled as 'linux' for legacy reasons
                         // Linux first for coverage report on ci.jenkins.io
@@ -27,23 +28,20 @@ subsetConfiguration = [
                         [ jdk: 17, platform: 's390x',    jenkins: testJenkinsVersions[5] ],
                       ]
 
-if (env.JENKINS_URL.contains('markwaite.net')) {
     // Use advanced buildPlugin on markwaite.net
     buildPlugin(configurations: subsetConfiguration, failFast: false, forkCount: '1C')
-} else {
-    // Use simple buildPlugin elsewhere
-    /* `buildPlugin` step provided by: https://github.com/jenkins-infra/pipeline-library */
-    buildPlugin(
-      // Run a JVM per core in tests
-      forkCount: '1C',
-      // Container agents start faster and are easier to administer
-      useContainerAgent: true,
-      // Show failures on all configurations
-      failFast: false,
-      // Test Java 17 and 21
-      configurations: [
-        [platform: 'linux',   jdk: 21], // Linux first for coverage report on ci.jenkins.io
-        [platform: 'windows', jdk: 17],
-      ]
-    )
+    return
 }
+
+// Use simple buildPlugin elsewhere
+
+/*
+ See the documentation for more options:
+ https://github.com/jenkins-infra/pipeline-library/
+*/
+buildPlugin(
+  useContainerAgent: true, // Set to `false` if you need to use Docker for containerized tests
+  configurations: [
+    [platform: 'linux', jdk: 21],
+    [platform: 'windows', jdk: 17],
+])
