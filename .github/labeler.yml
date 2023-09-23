@@ -14,7 +14,7 @@ documentation:
 - LICENSE.txt
 - src/main/**/*.html
 
-test:
+tests:
 - src/**/*.sh
 - src/**/Dockerfile
 - src/**/lsb_release-a
