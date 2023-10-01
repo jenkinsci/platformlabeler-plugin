@@ -20,6 +20,7 @@ public class PlatformLabelerGlobalConfiguration extends GlobalConfiguration {
     @SuppressFBWarnings(
             value = "MC_OVERRIDABLE_METHOD_CALL_IN_CONSTRUCTOR",
             justification = "GlobalConfiguration does not depend on initialization of this object")
+    @SuppressWarnings("this-escape") // Java 21 version of spotbugs warning
     public PlatformLabelerGlobalConfiguration() {
         load();
         if (labelConfig == null) {
