@@ -18,6 +18,7 @@ updates:
     schedule:
       interval: "monthly"
 
+  # Maintain dependencies for AlmaLinux 8
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/almalinux/8.8"
     ignore:
@@ -28,6 +29,7 @@ updates:
     schedule:
       interval: "monthly"
 
+  # Maintain dependencies for AlmaLinux 9
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/almalinux/9.2"
     ignore:
@@ -38,6 +40,7 @@ updates:
     schedule:
       interval: "weekly"
 
+  # Maintain dependencies for Alpine 3.15
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.15.10"
     ignore:
@@ -48,6 +51,7 @@ updates:
     schedule:
       interval: "weekly"
 
+  # Maintain dependencies for Alpine 3.16
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.16.7"
     schedule:
@@ -58,6 +62,7 @@ updates:
     - dependency-name: "alpine"
       update-types: ["version-update:semver-minor"]
 
+  # Maintain dependencies for Alpine 3.17
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.17.5"
     schedule:
@@ -68,6 +73,7 @@ updates:
     - dependency-name: "alpine"
       update-types: ["version-update:semver-minor"]
 
+  # Maintain dependencies for Alpine 3.18
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.18.4"
     schedule:
@@ -78,6 +84,7 @@ updates:
     - dependency-name: "Dockerfile"
       update-types: ["version-update:semver-minor"]
 
+  # Maintain dependencies for Amazon Linux 2
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/amzn/2"
     schedule:
@@ -85,6 +92,7 @@ updates:
     labels:
     - "skip-changelog"
 
+  # Maintain dependencies for Amazon Linux 2023
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/amzn/2023"
     schedule:
@@ -92,6 +100,7 @@ updates:
     labels:
     - "skip-changelog"
 
+  # Maintain dependencies for Debian 11
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/debian/11"
     schedule:
@@ -102,6 +111,7 @@ updates:
     - dependency-name: "debian"
       update-types: ["version-update:semver-major"]
 
+  # Maintain dependencies for Debian 12
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/debian/12"
     schedule:
@@ -112,6 +122,7 @@ updates:
     - dependency-name: "debian"
       update-types: ["version-update:semver-major"]
 
+  # Maintain dependencies for Debian "testing"
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/debian/testing"
     schedule:
@@ -119,6 +130,7 @@ updates:
     labels:
     - "skip-changelog"
 
+  # Maintain dependencies for Debian unstable ("sid")
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/debian/unstable"
     schedule:
@@ -126,6 +138,7 @@ updates:
     labels:
     - "skip-changelog"
 
+  # Maintain dependencies for Red Hat Universal Base Image 8
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/registry.access.redhat.com/ubi8/ubi/8.8"
     schedule:
@@ -136,6 +149,7 @@ updates:
     - dependency-name: "Dockerfile"
       update-types: ["version-update:semver-major"]
 
+  # Maintain dependencies for Red Hat Universal Base Image 9
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/registry.access.redhat.com/ubi9/ubi/9.2"
     schedule:
@@ -143,6 +157,7 @@ updates:
     labels:
     - "skip-changelog"
 
+  # Maintain dependencies for Rocky 8
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/rocky/8.8"
     schedule:
@@ -153,6 +168,7 @@ updates:
     - dependency-name: "rockylinux"
       update-types: ["version-update:semver-major"]
 
+  # Maintain dependencies for Rocky 9
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/rocky/9.2"
     schedule:
@@ -163,6 +179,7 @@ updates:
     - dependency-name: "rockylinux"
       update-types: ["version-update:semver-major"]
 
+  # Maintain dependencies for Ubuntu 20.04
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/ubuntu/20.04"
     schedule:
@@ -173,6 +190,7 @@ updates:
     - dependency-name: "Dockerfile"
       update-types: ["version-update:semver-major"]
 
+  # Maintain dependencies for Ubuntu 22.04
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/ubuntu/22.04"
     schedule:
