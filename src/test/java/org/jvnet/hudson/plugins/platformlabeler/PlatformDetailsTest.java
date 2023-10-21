@@ -23,8 +23,9 @@
  */
 package org.jvnet.hudson.plugins.platformlabeler;
 
-import static org.hamcrest.MatcherAssert.*;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 
 import java.util.Random;
 import org.junit.jupiter.api.BeforeEach;
