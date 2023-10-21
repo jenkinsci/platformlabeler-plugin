@@ -1,7 +1,7 @@
 package org.jvnet.hudson.plugins.platformlabeler;
 
-import static org.hamcrest.MatcherAssert.*;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 import java.io.BufferedReader;
 import java.io.File;
