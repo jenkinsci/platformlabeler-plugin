@@ -26,10 +26,12 @@ package org.jvnet.hudson.plugins.platformlabeler;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
+import hudson.FilePath;
 import hudson.model.Computer;
 import hudson.model.Node;
 import hudson.model.TaskListener;
 import hudson.model.labels.LabelAtom;
+import hudson.remoting.Channel;
 import hudson.remoting.VirtualChannel;
 import hudson.slaves.ComputerListener;
 import java.io.IOException;
@@ -57,7 +59,32 @@ public class NodeLabelCache extends ComputerListener {
     private static final transient Logger LOGGER = Logger.getLogger("org.jvnet.hudson.plugins.platformlabeler");
 
     /**
-     * When a computer comes online, probe it for its platform labels.
+     * When a computer is about to come online, probe it for its platform labels.
+     * Typically for ephemeral agent that connect and disconnect frequently
+     *
+     * @param computer agent whose labels will be cached
+     * @param channel This is the channel object to talk to the agent
+     * @param root The directory where this agent stores files. The same as Node.getRootPath(), except that method returns null until the agent is connected. So this parameter is passed explicitly instead.
+     * @param ignored TaskListener that is ignored
+     * @throws java.io.IOException on IO error
+     * @throws java.lang.InterruptedException on thread interrupt
+     */
+    @Override
+    public final void preOnline(final Computer computer, Channel channel, FilePath root, final TaskListener ignored)
+            throws IOException, InterruptedException {
+        try {
+            cacheAndRefreshModel(computer, channel);
+        } catch (Exception e) {
+            LOGGER.log(
+                    Level.WARNING,
+                    "Unable to collect platform detail during preOnline phase. Letting the agent connect anyway",
+                    e);
+        }
+    }
+
+    /**
+     * When a computer is online, probe it for its platform labels.
+     * Typically for built-in agents that are online all the time (like built-in node) ensuring they also get their labels updated.
      *
      * @param computer agent whose labels will be cached
      * @param ignored TaskListener that is ignored
@@ -67,7 +94,15 @@ public class NodeLabelCache extends ComputerListener {
     @Override
     public final void onOnline(final Computer computer, final TaskListener ignored)
             throws IOException, InterruptedException {
-        cacheLabels(computer);
+        // Avoid to query again if label were populated during preOnline phase
+        if (nodePlatformProperties.get(computer) == null) {
+            cacheAndRefreshModel(computer, computer.getChannel());
+        }
+    }
+
+    public final void cacheAndRefreshModel(final Computer computer, VirtualChannel channel)
+            throws IOException, InterruptedException {
+        cacheLabels(computer, channel);
         refreshModel(computer);
     }
 
@@ -88,9 +123,10 @@ public class NodeLabelCache extends ComputerListener {
      * @throws IOException on I/O error
      * @throws InterruptedException on thread interruption
      */
-    final void cacheLabels(final Computer computer) throws IOException, InterruptedException {
+    final void cacheLabels(final Computer computer, final VirtualChannel channel)
+            throws IOException, InterruptedException {
         /* Cache the labels for the node */
-        nodePlatformProperties.put(computer, requestComputerPlatformDetails(computer));
+        nodePlatformProperties.put(computer, requestComputerPlatformDetails(computer, channel));
     }
 
     /**
@@ -117,9 +153,9 @@ public class NodeLabelCache extends ComputerListener {
      * @throws InterruptedException on thread interruption
      */
     @NonNull
-    PlatformDetails requestComputerPlatformDetails(final Computer computer) throws IOException, InterruptedException {
-        final VirtualChannel channel = computer.getChannel();
-        if (null == channel) {
+    PlatformDetails requestComputerPlatformDetails(final Computer computer, final VirtualChannel channel)
+            throws IOException, InterruptedException {
+        if (computer == null || null == channel) {
             // Cannot obtain details from an unconnected node. While we should
             // never ask for such details, its possible that we may attempt to
             // ask while the computer was asynchronously disconnecting.

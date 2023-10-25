@@ -79,13 +79,13 @@ public class NodeLabelCacheTest {
     }
 
     @Test
-    public void testOnOnline() throws Exception {
-        nodeLabelCache.onOnline(computer, TaskListener.NULL);
+    public void testCacheAndRefreshModel() throws Exception {
+        nodeLabelCache.cacheAndRefreshModel(computer, computer.getChannel());
     }
 
     @Test
     public void testCacheLabels() throws Exception {
-        nodeLabelCache.cacheLabels(computer);
+        nodeLabelCache.cacheLabels(computer, computer.getChannel());
     }
 
     @Test
@@ -107,7 +107,7 @@ public class NodeLabelCacheTest {
     @Test(expected = IOException.class)
     public void testCacheLabelsNullingComputer() throws Exception {
         Computer nullingComputer = new NullingComputer(computer.getNode());
-        nodeLabelCache.cacheLabels(nullingComputer);
+        nodeLabelCache.cacheLabels(nullingComputer, nullingComputer.getChannel());
     }
 
     @Test
@@ -117,7 +117,8 @@ public class NodeLabelCacheTest {
 
     @Test
     public void testRequestComputerPlatformDetails() throws Exception {
-        PlatformDetails platformDetails = nodeLabelCache.requestComputerPlatformDetails(computer);
+        PlatformDetails platformDetails =
+                nodeLabelCache.requestComputerPlatformDetails(computer, computer.getChannel());
         assertThat(platformDetails.getArchitecture(), is(localDetails.getArchitecture()));
         assertThat(platformDetails.getName(), is(localDetails.getName()));
         assertThat(platformDetails.getVersion(), is(localDetails.getVersion()));
@@ -152,7 +153,7 @@ public class NodeLabelCacheTest {
     @Test(expected = IOException.class)
     public void testRequestComputerPlatformDetails_ChannelThrows() throws Exception {
         Computer throwingComputer = new NullingComputer(computer.getNode(), new IOException());
-        nodeLabelCache.requestComputerPlatformDetails(throwingComputer);
+        nodeLabelCache.requestComputerPlatformDetails(throwingComputer, throwingComputer.getChannel());
     }
 
     /** Class that intentionally returns nulls for test purposes. */
