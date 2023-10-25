@@ -1,11 +1,14 @@
 package org.jvnet.hudson.plugins.platformlabeler;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.is;
 
 import hudson.model.Computer;
+import hudson.model.Label;
 import hudson.model.labels.LabelAtom;
 import hudson.slaves.ComputerListener;
+import hudson.slaves.DumbSlave;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
@@ -28,7 +31,7 @@ public class ConfigurationTest {
     public void setUp() throws IOException, InterruptedException {
         computer = r.jenkins.toComputer();
         nodeLabelCache = ComputerListener.all().get(NodeLabelCache.class);
-        platformDetails = nodeLabelCache.requestComputerPlatformDetails(computer);
+        platformDetails = nodeLabelCache.requestComputerPlatformDetails(computer, computer.getChannel());
     }
 
     @Test
@@ -75,6 +78,47 @@ public class ConfigurationTest {
 
         Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
         assertThat(labelsAfter, is(expected));
+    }
+
+    @Test
+    public void configuredAllLabelsOnEphemeralNode() throws Exception {
+
+        // Create and connect the agent
+        DumbSlave agent = r.createSlave(Label.get("agent"));
+        agent.toComputer().connect(false).get();
+
+        PlatformLabelerNodeProperty nodeProperty = new PlatformLabelerNodeProperty();
+        LabelConfig labelConfig = new LabelConfig();
+        nodeProperty.setLabelConfig(labelConfig);
+        agent.getNodeProperties().add(nodeProperty);
+
+        nodeLabelCache.onConfigurationChange();
+
+        Collection<LabelAtom> expected = new HashSet<>();
+        expected.add(r.jenkins.getSelfLabel());
+        expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitecture()));
+        expected.add(r.jenkins.getLabelAtom(platformDetails.getVersion()));
+        expected.add(r.jenkins.getLabelAtom(platformDetails.getName()));
+        expected.add(r.jenkins.getLabelAtom(platformDetails.getNameVersion()));
+        expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitectureName()));
+        expected.add(r.jenkins.getLabelAtom(platformDetails.getArchitectureNameVersion()));
+        if (platformDetails.getWindowsFeatureUpdate() != null) {
+            /* Non-windows won't have a WindowsFeatureUpdate value.
+             * Windows that have not installed a feature update won't
+             * have a WindowsFeatureUpdate value.
+             */
+            expected.add(r.jenkins.getLabelAtom(platformDetails.getWindowsFeatureUpdate()));
+        }
+
+        // Static labels of the agent
+        expected.add(r.jenkins.getLabelAtom("agent"));
+        expected.add(r.jenkins.getLabelAtom("slave0"));
+
+        // We don't expect to find 'built-in' on the agent
+        expected.removeIf(label -> label.getName().equals("built-in"));
+
+        Set<LabelAtom> labelsAfter = agent.getAssignedLabels();
+        assertThat(labelsAfter, containsInAnyOrder(expected.toArray()));
     }
 
     @Test

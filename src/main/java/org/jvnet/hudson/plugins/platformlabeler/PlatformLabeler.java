@@ -33,7 +33,7 @@ import java.util.Collections;
 
 /**
  * Obtain labels for Nodes at runtime by querying the operating system running on it. Querying is
- * done via the {@link NodeLabelCache} onOnline extension. PlatformLabeler simply answers from the
+ * done via the {@link NodeLabelCache} preOnline extension. PlatformLabeler simply answers from the
  * cache that that extension maintains.
  */
 @Extension
