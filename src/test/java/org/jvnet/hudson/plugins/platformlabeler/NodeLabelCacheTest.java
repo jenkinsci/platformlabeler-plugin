@@ -7,6 +7,7 @@ import static org.hamcrest.Matchers.everyItem;
 import static org.hamcrest.Matchers.in;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.startsWith;
 
 import hudson.FilePath;
 import hudson.Launcher;
@@ -23,13 +24,18 @@ import hudson.slaves.NodePropertyDescriptor;
 import hudson.slaves.RetentionStrategy;
 import hudson.util.ClockDifference;
 import hudson.util.DescribableList;
+import hudson.util.LogTaskListener;
+import hudson.util.RingBufferLogHandler;
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Future;
+import java.util.logging.Level;
 import java.util.logging.LogRecord;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import org.junit.After;
 import org.junit.Before;
@@ -152,7 +158,7 @@ public class NodeLabelCacheTest {
 
     @Test(expected = IOException.class)
     public void testRequestComputerPlatformDetails_ChannelThrows() throws Exception {
-        Computer throwingComputer = new NullingComputer(computer.getNode(), new IOException());
+        Computer throwingComputer = new NullingComputer(computer.getNode(), new IOException("Oops"));
         nodeLabelCache.requestComputerPlatformDetails(throwingComputer, throwingComputer.getChannel());
     }
 
@@ -164,6 +170,111 @@ public class NodeLabelCacheTest {
     @Test(expected = IOException.class)
     public void testRequestComputerPlatformDetails_ChannelThrowsOnNullChannel() throws Exception {
         nodeLabelCache.requestComputerPlatformDetails(computer, null);
+    }
+
+    @Test
+    public void testPreOnline_ChannelLogsDetailCollectionIgnoredOnInternalException() throws Exception {
+        // Setup a recorder for agent log
+        RingBufferLogHandler agentLogHandler = new RingBufferLogHandler(10);
+        Logger agentLogger = Logger.getLogger(NodeLabelCacheTest.class.getName());
+        agentLogger.addHandler(agentLogHandler);
+        TaskListener agentListener = new LogTaskListener(agentLogger, Level.INFO);
+
+        nodeLabelCache.preOnline(computer, null, new FilePath(new File(".")), agentListener);
+
+        assertThat(
+                agentLogHandler.getView().get(0).getMessage(),
+                startsWith("Ignored platform detail collection failure for 'unnamed agent' during preOnline phase."));
+    }
+
+    @Test
+    public void testPreOnline_ChannelLogsDetailCollectionIgnoredOnInternalExceptionForNullComputer() throws Exception {
+        // Setup a recorder for agent log
+        RingBufferLogHandler agentLogHandler = new RingBufferLogHandler(10);
+        Logger agentLogger = Logger.getLogger(NodeLabelCacheTest.class.getName());
+        agentLogger.addHandler(agentLogHandler);
+        TaskListener agentListener = new LogTaskListener(agentLogger, Level.INFO);
+
+        nodeLabelCache.preOnline(null, null, new FilePath(new File(".")), agentListener);
+
+        assertThat(
+                agentLogHandler.getView().get(0).getMessage(),
+                startsWith("Ignored platform detail collection failure for 'unnamed agent' during preOnline phase."));
+    }
+
+    @Test
+    public void testPreOnline_ChannelLogsDetailCollectionIgnoredOnInternalExceptionForComputer() throws Exception {
+        // Setup a recorder for agent log
+        RingBufferLogHandler agentLogHandler = new RingBufferLogHandler(10);
+        Logger agentLogger = Logger.getLogger(NodeLabelCacheTest.class.getName());
+        agentLogger.addHandler(agentLogHandler);
+        TaskListener agentListener = new LogTaskListener(agentLogger, Level.INFO);
+
+        Computer minimal = new MinimalComputer(computer.getNode());
+        String name = minimal.getName();
+        nodeLabelCache.preOnline(minimal, null, new FilePath(new File(".")), agentListener);
+
+        assertThat(
+                agentLogHandler.getView().get(0).getMessage(),
+                startsWith("Ignored platform detail collection failure for '" + name + "' during preOnline phase."));
+    }
+
+    /** A minimal Computer class for preOnline test. */
+    private class MinimalComputer extends Computer {
+        public MinimalComputer(Node node) {
+            super(node);
+        }
+
+        @Override
+        public Node getNode() {
+            return super.getNode();
+        }
+
+        @Override
+        public String getName() {
+            return "computer-test";
+        }
+
+        @Override
+        public VirtualChannel getChannel() {
+            return null;
+        }
+
+        @Override
+        public Charset getDefaultCharset() {
+            throw new UnsupportedOperationException("Unsupported");
+        }
+
+        @Override
+        public List<LogRecord> getLogRecords() throws IOException, InterruptedException {
+            throw new UnsupportedOperationException("Unsupported");
+        }
+
+        @Override
+        @RequirePOST
+        public void doLaunchSlaveAgent(StaplerRequest sr, StaplerResponse sr1) throws IOException, ServletException {
+            throw new UnsupportedOperationException("Unsupported");
+        }
+
+        @Override
+        protected Future<?> _connect(boolean bln) {
+            throw new UnsupportedOperationException("Unsupported");
+        }
+
+        @Override
+        public Boolean isUnix() {
+            throw new UnsupportedOperationException("Unsupported");
+        }
+
+        @Override
+        public boolean isConnecting() {
+            throw new UnsupportedOperationException("Unsupported");
+        }
+
+        @Override
+        public RetentionStrategy<?> getRetentionStrategy() {
+            throw new UnsupportedOperationException("Unsupported");
+        }
     }
 
     /** Class that intentionally returns nulls for test purposes. */

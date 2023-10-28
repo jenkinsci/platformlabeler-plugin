@@ -65,20 +65,24 @@ public class NodeLabelCache extends ComputerListener {
      * @param computer agent whose labels will be cached
      * @param channel This is the channel object to talk to the agent
      * @param root The directory where this agent stores files. The same as Node.getRootPath(), except that method returns null until the agent is connected. So this parameter is passed explicitly instead.
-     * @param ignored TaskListener that is ignored
+     * @param listener logging destination for agent that is connecting
      * @throws java.io.IOException on IO error
      * @throws java.lang.InterruptedException on thread interrupt
      */
     @Override
-    public final void preOnline(final Computer computer, Channel channel, FilePath root, final TaskListener ignored)
+    public final void preOnline(final Computer computer, Channel channel, FilePath root, final TaskListener listener)
             throws IOException, InterruptedException {
         try {
             cacheAndRefreshModel(computer, channel);
         } catch (Exception e) {
-            LOGGER.log(
-                    Level.WARNING,
-                    "Unable to collect platform details during preOnline phase. Connecting the agent anyway.",
-                    e);
+            String name = "unnamed agent"; // built-in (and others) may not have a name during preOnline
+            if (computer != null && !computer.getName().isEmpty()) {
+                name = computer.getName();
+            }
+
+            listener.getLogger()
+                    .println("Ignored platform detail collection failure for '" + name + "' during preOnline phase. "
+                            + e);
         }
     }
 
