@@ -87,10 +87,10 @@ updates:
   # Maintain dependencies for Amazon Linux 2
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/amzn/2"
-    schedule:
-      interval: "monthly"
     labels:
     - "skip-changelog"
+    schedule:
+      interval: "monthly"
 
   # Maintain dependencies for Amazon Linux 2023
   - package-ecosystem: "docker"
