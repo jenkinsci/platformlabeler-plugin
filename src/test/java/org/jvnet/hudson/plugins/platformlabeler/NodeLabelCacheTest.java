@@ -156,6 +156,16 @@ public class NodeLabelCacheTest {
         nodeLabelCache.requestComputerPlatformDetails(throwingComputer, throwingComputer.getChannel());
     }
 
+    @Test(expected = IOException.class)
+    public void testRequestComputerPlatformDetails_ChannelThrowsOnNullComputer() throws Exception {
+        nodeLabelCache.requestComputerPlatformDetails(null, computer.getChannel());
+    }
+
+    @Test(expected = IOException.class)
+    public void testRequestComputerPlatformDetails_ChannelThrowsOnNullChannel() throws Exception {
+        nodeLabelCache.requestComputerPlatformDetails(computer, null);
+    }
+
     /** Class that intentionally returns nulls for test purposes. */
     private class NullingComputer extends Computer {
 
