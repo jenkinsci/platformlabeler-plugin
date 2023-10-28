@@ -60,7 +60,7 @@ public class NodeLabelCache extends ComputerListener {
 
     /**
      * When a computer is about to come online, probe it for its platform labels.
-     * Typically for ephemeral agent that connect and disconnect frequently
+     * Typically for ephemeral agent that connect and disconnect frequently.
      *
      * @param computer agent whose labels will be cached
      * @param channel This is the channel object to talk to the agent
@@ -77,7 +77,7 @@ public class NodeLabelCache extends ComputerListener {
         } catch (Exception e) {
             LOGGER.log(
                     Level.WARNING,
-                    "Unable to collect platform detail during preOnline phase. Letting the agent connect anyway",
+                    "Unable to collect platform details during preOnline phase. Connecting the agent anyway.",
                     e);
         }
     }
@@ -94,7 +94,7 @@ public class NodeLabelCache extends ComputerListener {
     @Override
     public final void onOnline(final Computer computer, final TaskListener ignored)
             throws IOException, InterruptedException {
-        // Avoid to query again if label were populated during preOnline phase
+        // Do not query again if labels were populated during the preOnline phase
         if (nodePlatformProperties.get(computer) == null) {
             cacheAndRefreshModel(computer, computer.getChannel());
         }
@@ -155,7 +155,7 @@ public class NodeLabelCache extends ComputerListener {
     @NonNull
     PlatformDetails requestComputerPlatformDetails(final Computer computer, final VirtualChannel channel)
             throws IOException, InterruptedException {
-        if (computer == null || null == channel) {
+        if (computer == null || channel == null) {
             // Cannot obtain details from an unconnected node. While we should
             // never ask for such details, its possible that we may attempt to
             // ask while the computer was asynchronously disconnecting.
