@@ -59,7 +59,7 @@ Labels commonly include operating system name, version, architecture, and Window
 
 | Platform                   | OS Name            | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
-| Ubuntu 20                  | `Ubuntu`           | `20.04`        | `s390x`      | // EOL:  2 Apr 2025
+| Ubuntu 22                  | `Ubuntu`           | `22.04`        | `s390x`      | // EOL:  2 Apr 2027
 
 On Windows computers, the plugin assigns a label based on the Windows feature update.
 Feature update labels use a two digit year and a two digit month representation.
