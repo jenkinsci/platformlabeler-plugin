@@ -80,7 +80,6 @@ For example:
 
 | Platform                   | Operating System   | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
-| CentOS 7                   | `CentOS`           | `7`            | `amd64`      |
 | Debian testing             | `Debian`           | `bookworm`     | `amd64`      |
 | Debian unstable            | `Debian`           | `bookworm`     | `amd64`      |
 
