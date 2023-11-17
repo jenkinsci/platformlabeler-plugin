@@ -52,8 +52,9 @@ Labels commonly include operating system name, version, architecture, and Window
 
 | Platform                   | OS Name            | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
-| Raspbian 10                | `Raspbian`         | `10`           | `arm`        |
-| Raspbian 11                | `Raspbian`         | `11`           | `arm`        |
+| Raspberry Pi OS 10         | `Raspbian`         | `10`           | `arm`        |
+| Raspberry Pi OS 11         | `Raspbian`         | `11`           | `arm`        |
+| Raspberry Pi OS 12         | `Raspbian`         | `12`           | `arm`        |
 
 ## IBM System 390 (s390x)
 
