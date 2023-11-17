@@ -30,9 +30,9 @@ Labels commonly include operating system name, version, architecture, and Window
 | FreeBSD 13                 | `freebsd`          | `13.2-RELEASE` | `amd64`      | // EOL: 31 Jan 2026
 | openSUSE Leap              | `openSUSE`         | `15.4`         | `amd64`      | // EOL: 30 Nov 2023
 | Oracle Linux 8             | `OracleServer`     | `8.8`          | `amd64`      | // EOL: 31 May 2029
-| Oracle Linux 9             | `OracleServer`     | `9.1`          | `amd64`      | // EOL: 31 May 2032
-| Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.8`          | `amd64`      | // EOL: 31 May 2029
-| Red Hat Enterprise Linux 9 | `RedHatEnterprise` | `9.2`          | `amd64`      | // EOL: 31 May 2032
+| Oracle Linux 9             | `OracleServer`     | `9.3`          | `amd64`      | // EOL: 31 May 2032
+| Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.9`          | `amd64`      | // EOL: 31 May 2029
+| Red Hat Enterprise Linux 9 | `RedHatEnterprise` | `9.3`          | `amd64`      | // EOL: 31 May 2032
 | Rocky Linux 8              | `Rocky`            | `8.8`          | `amd64`      | // EOL: 31 May 2029
 | Rocky Linux 9              | `Rocky`            | `9.2`          | `amd64`      | // EOL: 31 May 2032
 | SLES 12                    | `SUSE`             | `12.4`         | `amd64`      | // EOL: 31 Oct 2027
