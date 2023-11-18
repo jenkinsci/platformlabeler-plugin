@@ -28,6 +28,22 @@ public class PlatformDetailsTaskStaticStringTest {
      */
     public static Stream<Object[]> generateTestParameters() {
         Collection<Object[]> data = Arrays.asList(new Object[][] {
+            /** Windows 11 */
+            {"Windows 11", "aarch64", "10.0"},
+            {"Windows 11", "amd64", "10.0"},
+
+            /** Windows Server checks that should include version number */
+            {"Windows Server 2016", "amd64", "10.0"},
+            {"Windows Server 2019", "amd64", "10.0"},
+            {"Windows Server 2022", "amd64", "10.0"},
+
+            /** Windows Server checks that should not include version number */
+            {"Windows Server 2012", "amd64", "8.0"},
+
+            /** Mac OS X */
+            {"Mac OS X", "aarch64", "10.16"},
+            {"Mac OS X", "amd64", "10.16"},
+
             /** General cases for operating system names in platformlabeler-1.1 */
             {"mac", "amd64", "11.0"}, // macOS
             {"Solaris", "amd64", "11.3"}, // Solaris
