@@ -1,5 +1,21 @@
 #!/bin/bash
 
+# Report operating systems in README that have reached end of life.
+
+declare -i eol_count=0
+now=$(date +%s)
+for eol_date in $(grep EOL: README.md | sed 's,^.*EOL:,,g' | xargs -r -i date -d {} +%s); do
+        if [ "$now" -gt "$eol_date" ]; then
+                date -d @$eol_date '+%e %b %Y'
+                eol_count=eol_count+1
+        fi
+done
+
+if [ $eol_count != 0 ] ; then
+        echo Deteccted $eol_count end of life in README
+        exit $eol_count
+fi
+
 # Generate os-release test data files from operating system images
 
 # Copy /etc/os-release from the operating system into a directory
