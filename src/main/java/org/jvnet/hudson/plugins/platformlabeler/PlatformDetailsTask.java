@@ -347,8 +347,6 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         PREFERRED_LINUX_OS_NAMES.put("rhel", "RedHatEnterprise");
         PREFERRED_LINUX_OS_NAMES.put("sles", "SUSE");
         PREFERRED_LINUX_OS_NAMES.put("SUSE Linux Enterprise Server", "SUSE");
-        PREFERRED_LINUX_OS_NAMES.put("Scientific Linux", "Scientific");
-        PREFERRED_LINUX_OS_NAMES.put("scientific", "Scientific");
         PREFERRED_LINUX_OS_NAMES.put("ubuntu", "Ubuntu");
     }
 
