@@ -129,6 +129,7 @@ public class NodeLabelCacheTest {
         assertThat(platformDetails.getName(), is(localDetails.getName()));
         assertThat(platformDetails.getVersion(), is(localDetails.getVersion()));
         assertThat(platformDetails.getWindowsFeatureUpdate(), is(localDetails.getWindowsFeatureUpdate()));
+        assertThat(platformDetails.getOsName(), is(localDetails.getOsName()));
     }
 
     @Test
@@ -145,6 +146,7 @@ public class NodeLabelCacheTest {
                             is(localDetails.getName()),
                             is(localDetails.getNameVersion()),
                             is(localDetails.getVersion()),
+                            is(localDetails.getOsName()),
                             is(localDetails.getWindowsFeatureUpdate())));
         }
     }

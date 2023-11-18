@@ -14,6 +14,7 @@ public class LabelConfig extends AbstractDescribableImpl<LabelConfig> {
     private boolean name = true;
     private boolean version = true;
     private boolean windowsFeatureUpdate = true;
+    private boolean osName = true;
     private boolean architectureName = true;
     private boolean nameVersion = true;
     private boolean architectureNameVersion = true;
@@ -30,6 +31,7 @@ public class LabelConfig extends AbstractDescribableImpl<LabelConfig> {
             this.name = srcLabelConfig.name;
             this.version = srcLabelConfig.version;
             this.windowsFeatureUpdate = srcLabelConfig.windowsFeatureUpdate;
+            this.osName = srcLabelConfig.osName;
             this.architectureName = srcLabelConfig.architectureName;
             this.nameVersion = srcLabelConfig.nameVersion;
             this.architectureNameVersion = srcLabelConfig.architectureNameVersion;
@@ -97,6 +99,15 @@ public class LabelConfig extends AbstractDescribableImpl<LabelConfig> {
     @DataBoundSetter
     public void setWindowsFeatureUpdate(boolean includeWindowsFeatureUpdate) {
         this.windowsFeatureUpdate = includeWindowsFeatureUpdate;
+    }
+
+    public boolean isOsName() {
+        return osName;
+    }
+
+    @DataBoundSetter
+    public void setOsName(boolean osName) {
+        this.osName = osName;
     }
 
     @Extension

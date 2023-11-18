@@ -44,6 +44,7 @@ public class ConfigurationTest {
         labelConfig.setVersion(false);
         labelConfig.setNameVersion(false);
         labelConfig.setWindowsFeatureUpdate(false);
+        labelConfig.setOsName(false);
         nodeProperty.setLabelConfig(labelConfig);
         r.jenkins.getNodeProperties().add(nodeProperty);
 
@@ -66,6 +67,7 @@ public class ConfigurationTest {
         labelConfig.setName(false);
         labelConfig.setNameVersion(false);
         labelConfig.setWindowsFeatureUpdate(false);
+        labelConfig.setOsName(false);
         nodeProperty.setLabelConfig(labelConfig);
         r.jenkins.getNodeProperties().add(nodeProperty);
 
@@ -109,6 +111,7 @@ public class ConfigurationTest {
              */
             expected.add(r.jenkins.getLabelAtom(platformDetails.getWindowsFeatureUpdate()));
         }
+        expected.add(r.jenkins.getLabelAtom(platformDetails.getOsName()));
 
         // Static labels of the agent
         expected.add(r.jenkins.getLabelAtom("agent"));
@@ -145,6 +148,7 @@ public class ConfigurationTest {
              */
             expected.add(r.jenkins.getLabelAtom(platformDetails.getWindowsFeatureUpdate()));
         }
+        expected.add(r.jenkins.getLabelAtom(platformDetails.getOsName()));
 
         Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
         assertThat(labelsAfter, is(expected));
@@ -167,6 +171,7 @@ public class ConfigurationTest {
         LabelConfig labelConfig = new LabelConfig();
         labelConfig.setVersion(false);
         labelConfig.setWindowsFeatureUpdate(false);
+        labelConfig.setOsName(false);
         nodeProperty.setLabelConfig(labelConfig);
         r.jenkins.getNodeProperties().add(nodeProperty);
 
@@ -195,6 +200,7 @@ public class ConfigurationTest {
         globalLabelConfig.setVersion(false);
         globalLabelConfig.setName(false);
         globalLabelConfig.setWindowsFeatureUpdate(false);
+        globalLabelConfig.setOsName(false);
         globalLabelConfig.setArchitectureName(false);
         globalLabelConfig.setArchitectureNameVersion(false);
         globalLabelConfig.setNameVersion(false);
@@ -223,5 +229,6 @@ public class ConfigurationTest {
         assertThat(globalLabelConfigBefore.isVersion(), is(globalLabelConfigAfter.isVersion()));
         assertThat(
                 globalLabelConfigBefore.isWindowsFeatureUpdate(), is(globalLabelConfigAfter.isWindowsFeatureUpdate()));
+        assertThat(globalLabelConfigBefore.isOsName(), is(globalLabelConfigAfter.isOsName()));
     }
 }

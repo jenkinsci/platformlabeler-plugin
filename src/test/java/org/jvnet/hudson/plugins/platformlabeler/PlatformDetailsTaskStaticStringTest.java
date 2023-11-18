@@ -108,11 +108,13 @@ public class PlatformDetailsTaskStaticStringTest {
         String expectedName = computeExpectedName(name);
         String expectedArch = computeExpectedArch(name, arch);
         String expectedVersion = computeVersion(name, version);
+        String expectedOsName = computeExpectedOsName(name);
         PlatformDetailsTask details = new PlatformDetailsTask();
         PlatformDetails result = details.computeLabels(arch, name, version);
         assertThat(result.getArchitecture(), is(expectedArch));
         assertThat(result.getName(), is(expectedName));
         assertThat(result.getVersion(), is(expectedVersion));
+        assertThat(result.getOsName(), is(expectedOsName));
     }
 
     private static String computeExpectedArch(String name, String arch) {
@@ -141,6 +143,23 @@ public class PlatformDetailsTaskStaticStringTest {
             return "mac";
         }
         return name.toLowerCase(Locale.ENGLISH);
+    }
+
+    private String computeExpectedOsName(String name) {
+        if (name.startsWith("Windows Server")) {
+            if (name.contains("2022")) {
+                return "WindowsServer2022";
+            } else if (name.contains("2019")) {
+                return "WindowsServer2019";
+            } else if (name.contains("2016")) {
+                return "WindowsServer2016";
+            }
+            return "WindowsServer";
+        }
+        if (name.startsWith("Windows 1")) {
+            return name.replace(" ", "");
+        }
+        return name;
     }
 
     private String computeVersion(String name, String version) {
