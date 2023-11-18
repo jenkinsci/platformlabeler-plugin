@@ -72,7 +72,7 @@ public class PlatformDetailsTest {
     @Test
     @Deprecated
     void testGetArchitectureFewerDetails() {
-        PlatformDetails fewerDetails = new PlatformDetails(name, arch, version);
+        PlatformDetails fewerDetails = new PlatformDetails(name, arch, version, "ignored-windows-feature-update");
         assertThat(fewerDetails.getArchitecture(), is(arch));
     }
 
@@ -147,7 +147,7 @@ public class PlatformDetailsTest {
     @Test
     @Deprecated
     void testDetailsWithoutOsName() {
-        PlatformDetails detailsWithoutOsName = new PlatformDetails(name, arch, version);
+        PlatformDetails detailsWithoutOsName = new PlatformDetails(name, arch, version, null);
         assertThat(detailsWithoutOsName.getOsName(), is(nullValue()));
     }
 
