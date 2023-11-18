@@ -149,9 +149,9 @@ public class PlatformDetailsTest {
         "20.04",
         "21.04",
         "22.04",
-        "35",
-        "36",
         "37",
+        "38",
+        "39",
     };
     private final String[] windowsFeatureUpdates = {
         "1703", "1709", "1803", "1809", "1903", "1909", "2003", "2009", "2103", "2109", "2203"
