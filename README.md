@@ -89,6 +89,48 @@ The types of labels can be configured globally and per agent with the 'Automatic
 
 To reduce the set of labels defined for an agent, activate 'Automatic Platform Labels' in the Node Properties section and select the desired label types.
 
+## Configuration as code
+
+The platform labeler plugin supports configuration as code for global configuration and for agent configuration.
+Here is a global configuration example:
+
+```yaml
+unclassified:
+  platformLabelerGlobalConfiguration:
+    labelConfig:
+      architecture: true
+      architectureName: false
+      architectureNameVersion: false
+      name: true
+      nameVersion: false
+      version: true
+      windowsFeatureUpdate: false
+```
+
+Agent configuration uses a platform labeler node property like this:
+
+```yaml
+jenkins:
+  nodes:
+  - permanent:
+      launcher:
+        inbound:
+          webSocket: true
+      name: "my-windows-agent"
+      nodeProperties:
+      - platformLabeler:
+          labelConfig:
+            architecture: true
+            architectureName: false
+            architectureNameVersion: false
+            name: true
+            nameVersion: false
+            version: true
+            windowsFeatureUpdate: false
+      remoteFS: "C:\\Users\\Jenkins\\agent"
+      retentionStrategy: "always"
+```
+
 ## Report an Issue
 
 Please report issues and enhancements through the [Jenkins issue tracker](https://www.jenkins.io/participate/report-issue/redirect/#15650).
