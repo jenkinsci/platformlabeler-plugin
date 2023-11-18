@@ -117,6 +117,11 @@ public class PlatformDetailsTaskStaticStringTest {
 
     private static String computeExpectedArch(String name, String arch) {
         if (!isWindows() || !name.startsWith("Windows")) {
+            // Trust the passed value for non-Windows systems
+            return arch;
+        }
+        if (arch != "amd64" && arch != "x86") {
+            // Trust the passed value for non-Intel architectures
             return arch;
         }
         final String env1 = System.getenv("PROCESSOR_ARCHITECTURE");
