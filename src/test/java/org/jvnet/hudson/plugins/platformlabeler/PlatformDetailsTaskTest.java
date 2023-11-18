@@ -272,8 +272,8 @@ public class PlatformDetailsTaskTest {
         String version = platformDetailsTask.getReleaseIdentifier("VERSION_ID");
         /* Check that the version string returned by getReleaseIdentifier
          * is at least at the beginning of one of the detail values. Allow
-         * Debian 10 and CentOS 7 to report their base version
-         * in the /etc/os-release file without reporting their incremental
+         * Debian 10 to report its base version
+         * in the /etc/os-release file without reporting the incremental
          * version.
          *
          * If Debian unstable is in a freeze, then /etc/os-release

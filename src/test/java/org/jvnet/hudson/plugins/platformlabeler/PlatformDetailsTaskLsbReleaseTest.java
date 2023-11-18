@@ -112,9 +112,6 @@ public class PlatformDetailsTaskLsbReleaseTest {
         if (filename.contains("ubuntu")) {
             return "Ubuntu";
         }
-        if (filename.contains("scientific")) {
-            return "Scientific";
-        }
         if (filename.contains("sles")) {
             return "SUSE";
         }
