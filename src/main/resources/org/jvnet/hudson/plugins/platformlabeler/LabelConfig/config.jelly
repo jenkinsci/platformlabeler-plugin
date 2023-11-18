@@ -12,6 +12,9 @@
   <f:entry field="windowsFeatureUpdate" title="${%Generate.LabelWithWindowsFeatureUpdate}">
     <f:checkbox default="true"/>
   </f:entry>
+  <f:entry field="osName" title="${%Generate.LabelWithOsName}">
+    <f:checkbox default="true"/>
+  </f:entry>
   <f:entry field="architectureName" title="${%Generate.LabelWithOSArchitectureAndName}">
     <f:checkbox default="true"/>
   </f:entry>

@@ -203,6 +203,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         String computedArch = arch;
         String computedVersion = version;
         String windowsFeatureUpdate = null;
+        String osName = name; // os.name Java property of agent JVM
         if (computedName.startsWith("windows")) {
             computedName = "windows";
             computedArch = checkWindows32Bit(
@@ -222,6 +223,21 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
                 if (windowsFeatureUpdate.isEmpty()) {
                     windowsFeatureUpdate = null;
                 }
+            }
+            if (osName.startsWith("Windows Server")) {
+                if (osName.contains("2022")) {
+                    osName = "WindowsServer2022";
+                } else if (osName.contains("2019")) {
+                    osName = "WindowsServer2019";
+                } else if (osName.contains("2016")) {
+                    osName = "WindowsServer2016";
+                } else {
+                    osName = "WindowsServer";
+                }
+            }
+            if (osName.startsWith("Windows 1")) {
+                // Remove spaces from osName for modern Windows desktop versions
+                osName = osName.replace(" ", "");
             }
         } else if (computedName.startsWith("linux")) {
             if (release == null) {
@@ -308,7 +324,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
             computedName = "mac";
         }
         PlatformDetails properties =
-                new PlatformDetails(computedName, computedArch, computedVersion, windowsFeatureUpdate);
+                new PlatformDetails(computedName, computedArch, computedVersion, windowsFeatureUpdate, osName);
         return properties;
     }
 

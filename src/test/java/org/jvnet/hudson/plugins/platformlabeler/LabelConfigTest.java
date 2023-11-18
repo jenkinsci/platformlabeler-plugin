@@ -21,6 +21,7 @@ public class LabelConfigTest {
     private boolean randomIsNameVersion;
     private boolean randomIsArchitectureNameVersion;
     private boolean randomIsWindowsFeatureUpdate;
+    private boolean randomIsOsName;
 
     public LabelConfigTest() {}
 
@@ -35,6 +36,7 @@ public class LabelConfigTest {
         randomIsNameVersion = random.nextBoolean();
         randomIsArchitectureNameVersion = random.nextBoolean();
         randomIsWindowsFeatureUpdate = random.nextBoolean();
+        randomIsOsName = random.nextBoolean();
 
         randomSrcLabelConfig.setArchitecture(randomIsArchitecture);
         randomSrcLabelConfig.setName(randomIsName);
@@ -43,6 +45,7 @@ public class LabelConfigTest {
         randomSrcLabelConfig.setNameVersion(randomIsNameVersion);
         randomSrcLabelConfig.setArchitectureNameVersion(randomIsArchitectureNameVersion);
         randomSrcLabelConfig.setWindowsFeatureUpdate(randomIsWindowsFeatureUpdate);
+        randomSrcLabelConfig.setOsName(randomIsOsName);
 
         defaultConfig = new LabelConfig();
         randomConfig = new LabelConfig(randomSrcLabelConfig);
@@ -141,5 +144,17 @@ public class LabelConfigTest {
     public void testSetWindowsFeatureUpdate() {
         defaultConfig.setWindowsFeatureUpdate(!randomIsWindowsFeatureUpdate);
         assertThat(defaultConfig.isWindowsFeatureUpdate(), is(!randomIsWindowsFeatureUpdate));
+    }
+
+    @Test
+    public void testIsOsName() {
+        assertThat(defaultConfig.isOsName(), is(true));
+        assertThat(randomConfig.isOsName(), is(randomIsOsName));
+    }
+
+    @Test
+    public void testSetOsName() {
+        defaultConfig.setOsName(!randomIsOsName);
+        assertThat(defaultConfig.isOsName(), is(!randomIsOsName));
     }
 }

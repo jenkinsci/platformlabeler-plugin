@@ -37,6 +37,7 @@ public class PlatformDetailsTest {
     private String arch;
     private String version;
     private String windowsFeatureUpdate;
+    private String osName;
     private PlatformDetails details;
 
     public PlatformDetailsTest() {}
@@ -47,7 +48,8 @@ public class PlatformDetailsTest {
         arch = randomArch();
         version = randomVersion();
         windowsFeatureUpdate = randomWindowsFeatureUpdate();
-        details = new PlatformDetails(name, arch, version, windowsFeatureUpdate);
+        osName = name;
+        details = new PlatformDetails(name, arch, version, windowsFeatureUpdate, osName);
     }
 
     @Test
@@ -108,13 +110,13 @@ public class PlatformDetailsTest {
 
     @Test
     void testGetWindowsFeatureUpdateNull() {
-        PlatformDetails nullInDetails = new PlatformDetails(name, arch, version, null);
+        PlatformDetails nullInDetails = new PlatformDetails(name, arch, version, null, osName);
         assertThat(nullInDetails.getWindowsFeatureUpdate(), is(nullValue()));
     }
 
     @Test
     void testGetWindowsFeatureUpdateEmptyString() {
-        PlatformDetails nullInDetails = new PlatformDetails(name, arch, version, "");
+        PlatformDetails nullInDetails = new PlatformDetails(name, arch, version, "", osName);
         assertThat(nullInDetails.getWindowsFeatureUpdate(), is(nullValue()));
     }
 
@@ -125,10 +127,36 @@ public class PlatformDetailsTest {
         assertThat(detailsWithoutFeatureUpdate.getWindowsFeatureUpdate(), is(nullValue()));
     }
 
+    @Test
+    void testGetOsName() {
+        assertThat(details.getOsName(), is(osName));
+    }
+
+    @Test
+    void testGetOsNameNull() {
+        PlatformDetails nullInDetails = new PlatformDetails(name, arch, version, "non-empty", null);
+        assertThat(nullInDetails.getOsName(), is(nullValue()));
+    }
+
+    @Test
+    void testGetOsNameEmptyString() {
+        PlatformDetails nullInDetails = new PlatformDetails(name, arch, version, null, "");
+        assertThat(nullInDetails.getOsName(), is(nullValue()));
+    }
+
+    @Test
+    @Deprecated
+    void testDetailsWithoutOsName() {
+        PlatformDetails detailsWithoutOsName = new PlatformDetails(name, arch, version);
+        assertThat(detailsWithoutOsName.getOsName(), is(nullValue()));
+    }
+
     private final Random random = new Random();
+
     private final String[] names = {
         "Windows 10", "alpine", "centos", "debian", "fedora", "freebsd", "macos", "raspbian", "ubuntu"
     };
+
     private final String[] versions = {
         "3.16.4",
         "3.17.2",
@@ -153,6 +181,7 @@ public class PlatformDetailsTest {
         "38",
         "39",
     };
+
     private final String[] windowsFeatureUpdates = {
         "1703", "1709", "1803", "1809", "1903", "1909", "2003", "2009", "2103", "2109", "2203"
     };

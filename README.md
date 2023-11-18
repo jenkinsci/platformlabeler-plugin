@@ -41,6 +41,9 @@ Labels commonly include operating system name, version, architecture, and Window
 | Ubuntu 20                  | `Ubuntu`           | `20.04`        | `amd64`      | // EOL:  2 Apr 2025
 | Ubuntu 22                  | `Ubuntu`           | `22.04`        | `amd64`      | // EOL:  1 Apr 2027
 | Windows 10                 | `windows`          | `10.0`         | `amd64`      | // EOL: 14 Oct 2025
+| Windows Server 2016        | `WindowsServer2016`| `10.0`         | `amd64`      | // EOL: 12 Jan 2027
+| Windows Server 2019        | `WindowsServer2019`| `10.0`         | `amd64`      | // EOL:  9 Jan 2029
+| Windows Server 2022        | `WindowsServer2022`| `10.0`         | `amd64`      | // EOL: 14 Oct 2031
 
 ## ARM 64 bit (aarch64)
 
@@ -103,6 +106,7 @@ unclassified:
       architectureNameVersion: false
       name: true
       nameVersion: false
+      osName: true
       version: true
       windowsFeatureUpdate: false
 ```
@@ -125,6 +129,7 @@ jenkins:
             architectureNameVersion: false
             name: true
             nameVersion: false
+            osName: true
             version: true
             windowsFeatureUpdate: false
       remoteFS: "C:\\Users\\Jenkins\\agent"
