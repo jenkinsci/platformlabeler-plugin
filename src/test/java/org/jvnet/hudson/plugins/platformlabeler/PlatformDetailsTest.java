@@ -163,6 +163,7 @@ public class PlatformDetailsTest {
         "3.18.4",
         "7.9.2009",
         "8.8",
+        "8.9",
         "9.2",
         "9.13",
         "10",
