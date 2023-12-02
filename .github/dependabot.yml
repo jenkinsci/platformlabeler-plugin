@@ -148,7 +148,7 @@ updates:
 
   # Maintain dependencies for Rocky 8
   - package-ecosystem: "docker"
-    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/rocky/8.8"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/rocky/8.9"
     schedule:
       interval: "monthly"
     labels:
