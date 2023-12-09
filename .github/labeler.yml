@@ -1,21 +1,27 @@
 chore:
-- .gitattributes
-- .github/**/*
-- .gitignore
-- .mvn/**/*
-- .pre-commit-config.yaml
-- .sonarcloud.properties
-- .vscode/**/*
-- Jenkinsfile
+  - changed-files:
+    - any-glob-to-any-file:
+      - .gitattributes
+      - .github/**/*
+      - .gitignore
+      - .mvn/**/*
+      - .pre-commit-config.yaml
+      - .sonarcloud.properties
+      - .vscode/**/*
+      - Jenkinsfile
 
 documentation:
-- CONTRIBUTING.md
-- README.md
-- LICENSE.txt
-- src/main/**/*.html
+  - changed-files:
+    - any-glob-to-any-file:
+      - CONTRIBUTING.md
+      - README.md
+      - LICENSE.txt
+      - src/main/**/*.html
 
 tests:
-- src/**/*.sh
-- src/**/Dockerfile
-- src/**/lsb_release-a
-- src/**/os-release
+  - changed-files:
+    - any-glob-to-any-file:
+      - src/**/*.sh
+      - src/**/Dockerfile
+      - src/**/lsb_release-a
+      - src/**/os-release
