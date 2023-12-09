@@ -114,10 +114,10 @@ updates:
   # Maintain dependencies for Debian "testing"
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/debian/testing"
-    schedule:
-      interval: "weekly"
     labels:
     - "skip-changelog"
+    schedule:
+      interval: "weekly"
 
   # Maintain dependencies for Debian unstable ("sid")
   - package-ecosystem: "docker"
