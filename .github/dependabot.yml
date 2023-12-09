@@ -68,7 +68,7 @@ updates:
     ignore:
     - dependency-name: "Dockerfile"
       update-types: ["version-update:semver-minor"]
-      versions: ["3.19"]
+      versions: [">= 3.19.0"]
     labels:
     - "skip-changelog"
     schedule:
