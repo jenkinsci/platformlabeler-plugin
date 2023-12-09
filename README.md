@@ -30,7 +30,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | FreeBSD 12                 | `freebsd`          | `12.4-RELEASE` | `amd64`      | // EOL: 31 Dec 2023
 | FreeBSD 13                 | `freebsd`          | `13.2-RELEASE` | `amd64`      | // EOL: 31 Jan 2026
 | openSUSE Leap              | `openSUSE`         | `15.5`         | `amd64`      | // EOL: 31 Dec 2024
-| Oracle Linux 8             | `OracleServer`     | `8.8`          | `amd64`      | // EOL: 31 May 2029
+| Oracle Linux 8             | `OracleServer`     | `8.9`          | `amd64`      | // EOL: 31 May 2029
 | Oracle Linux 9             | `OracleServer`     | `9.3`          | `amd64`      | // EOL: 31 May 2032
 | Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.9`          | `amd64`      | // EOL: 31 May 2029
 | Red Hat Enterprise Linux 9 | `RedHatEnterprise` | `9.3`          | `amd64`      | // EOL: 31 May 2032
@@ -50,7 +50,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Platform                   | OS Name            | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
 | Debian 10                  | `Debian`           | `10`           | `aarch64`    |
-| Oracle Linux 8             | `OracleServer`     | `8.8`          | `aarch64`    |
+| Oracle Linux 8             | `OracleServer`     | `8.9`          | `aarch64`    |
 
 ## ARM 32 bit (arm)
 
