@@ -73,6 +73,17 @@ updates:
     schedule:
       interval: "weekly"
 
+  # Maintain dependencies for Alpine 3.19
+  - package-ecosystem: "docker"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.19.0"
+    ignore:
+    - dependency-name: "Dockerfile"
+      update-types: ["version-update:semver-minor"]
+    labels:
+    - "skip-changelog"
+    schedule:
+      interval: "weekly"
+
   # Maintain dependencies for Amazon Linux 2
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/amzn/2"
