@@ -1,27 +1,15 @@
-chore:
-  - changed-files:
-    - any-glob-to-any-file:
-      - .gitattributes
-      - .github/**/*
-      - .gitignore
-      - .mvn/**/*
-      - .pre-commit-config.yaml
-      - .sonarcloud.properties
-      - .vscode/**/*
-      - Jenkinsfile
+skip-changelog:
+- changed-files:
+  - any-glob-to-any-file: [ '.gitattributes', '.github/**/*', '.gitignore', 'crowdin.yml', '.mvn/**/*' ]
+
+dependencies:
+- changed-files:
+  - any-glob-to-any-file: [ 'pom.xml' ]
 
 documentation:
-  - changed-files:
-    - any-glob-to-any-file:
-      - CONTRIBUTING.md
-      - README.md
-      - LICENSE.txt
-      - src/main/**/*.html
+- changed-files:
+  - any-glob-to-any-file: [ '*.adoc', '*.md', '*.txt', '**/*.html', '**/*.png', 'LICENSE*' ]
 
 tests:
-  - changed-files:
-    - any-glob-to-any-file:
-      - src/**/*.sh
-      - src/**/Dockerfile
-      - src/**/lsb_release-a
-      - src/**/os-release
+- changed-files:
+  - any-glob-to-any-file: [ 'src/test/**/*' ]
