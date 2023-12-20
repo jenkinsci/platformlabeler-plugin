@@ -193,6 +193,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
      * @throws IOException on I/O error
      */
     @NonNull
+    @SuppressFBWarnings(value = "ENV_USE_PROPERTY_INSTEAD_OF_ENV", justification = "Use env for compatibility")
     protected PlatformDetails computeLabels(
             @NonNull final String arch,
             @NonNull final String name,
