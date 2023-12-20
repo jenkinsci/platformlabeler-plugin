@@ -207,7 +207,9 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         if (computedName.startsWith("windows")) {
             computedName = "windows";
             computedArch = checkWindows32Bit(
-                    computedArch, System.getenv("PROCESSOR_ARCHITECTURE"), System.getenv("PROCESSOR_ARCHITEW6432"));
+                    computedArch,
+                    System.getProperty("os.arch", PlatformDetailsTask.UNKNOWN_VALUE_STRING),
+                    System.getenv("PROCESSOR_ARCHITEW6432"));
             if (computedVersion.startsWith("4.0")) {
                 computedVersion = "nt4";
             } else if (computedVersion.startsWith("5.0")) {
