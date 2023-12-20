@@ -193,6 +193,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
      * @throws IOException on I/O error
      */
     @NonNull
+    @SuppressFBWarnings(value = "ENV_USE_PROPERTY_INSTEAD_OF_ENV", justification = "Use env for compatibility")
     protected PlatformDetails computeLabels(
             @NonNull final String arch,
             @NonNull final String name,
@@ -207,9 +208,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         if (computedName.startsWith("windows")) {
             computedName = "windows";
             computedArch = checkWindows32Bit(
-                    computedArch,
-                    System.getProperty("os.arch", PlatformDetailsTask.UNKNOWN_VALUE_STRING),
-                    System.getenv("PROCESSOR_ARCHITEW6432"));
+                    computedArch, System.getenv("PROCESSOR_ARCHITECTURE"), System.getenv("PROCESSOR_ARCHITEW6432"));
             if (computedVersion.startsWith("4.0")) {
                 computedVersion = "nt4";
             } else if (computedVersion.startsWith("5.0")) {
