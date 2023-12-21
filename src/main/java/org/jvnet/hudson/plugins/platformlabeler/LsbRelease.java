@@ -25,7 +25,6 @@
 package org.jvnet.hudson.plugins.platformlabeler;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -81,7 +80,6 @@ public class LsbRelease implements PlatformDetailsRelease {
     }
 
     /** Read file to assign distributor ID and release. Package protected for tests. */
-    @SuppressFBWarnings(value = "CT_CONSTRUCTOR_THROW", justification = "Finalizer attack not viable")
     LsbRelease(@NonNull File lsbReleaseFile) throws IOException {
         Map<String, String> newProps = new HashMap<>();
         try (FileInputStream stream = new FileInputStream(lsbReleaseFile)) {
