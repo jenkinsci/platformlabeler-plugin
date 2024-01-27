@@ -64,11 +64,10 @@ updates:
 
   # Maintain dependencies for Alpine 3.18
   - package-ecosystem: "docker"
-    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.18.5"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.18.6"
     ignore:
     - dependency-name: "Dockerfile"
       update-types: ["version-update:semver-minor"]
-      versions: [">= 3.19.0"]
     labels:
     - "skip-changelog"
     schedule:
