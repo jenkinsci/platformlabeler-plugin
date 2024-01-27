@@ -67,7 +67,7 @@ updates:
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.18.6"
     ignore:
     - dependency-name: "Dockerfile"
-      update-types: ["version-update:semver-minor"]
+      update-types: ["version-update:semver-major", "version-update:semver-minor"]
     labels:
     - "skip-changelog"
     schedule:
@@ -78,7 +78,7 @@ updates:
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.19.0"
     ignore:
     - dependency-name: "Dockerfile"
-      update-types: ["version-update:semver-minor"]
+      update-types: ["version-update:semver-major", "version-update:semver-minor"]
     labels:
     - "skip-changelog"
     schedule:
