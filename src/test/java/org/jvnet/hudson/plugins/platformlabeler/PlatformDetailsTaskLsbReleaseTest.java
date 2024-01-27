@@ -74,9 +74,6 @@ public class PlatformDetailsTaskLsbReleaseTest {
             return "AlmaLinux";
         }
         if (filename.contains("amzn")) {
-            if (filename.contains("amzn/2018.03")) {
-                return "AmazonAMI";
-            }
             return "Amazon";
         }
         if (filename.contains("alpine")) {
