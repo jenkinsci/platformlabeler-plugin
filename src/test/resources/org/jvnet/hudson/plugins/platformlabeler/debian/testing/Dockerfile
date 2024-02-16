@@ -1,2 +1,2 @@
-FROM debian:testing-20240130-slim
+FROM debian:testing-20240211-slim
 RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y lsb-release
