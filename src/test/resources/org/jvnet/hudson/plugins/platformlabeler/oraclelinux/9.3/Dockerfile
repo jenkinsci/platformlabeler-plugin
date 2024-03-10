@@ -1,1 +1,1 @@
-FROM ghcr.io/oracle/oraclelinux:9-slim
+FROM container-registry.oracle.com/os/oraclelinux:9-slim
