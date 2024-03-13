@@ -1,2 +1,2 @@
-FROM debian:unstable-20240211-slim
+FROM debian:unstable-20240311-slim
 RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y lsb-release
