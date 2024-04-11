@@ -101,7 +101,7 @@ updates:
     labels:
     - "skip-changelog"
     schedule:
-      interval: "monthly"
+      interval: "weekly"
 
   # Maintain dependencies for Debian 12
   - package-ecosystem: "docker"
