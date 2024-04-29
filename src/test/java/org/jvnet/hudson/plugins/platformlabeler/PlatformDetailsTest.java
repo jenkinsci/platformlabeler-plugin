@@ -178,6 +178,7 @@ public class PlatformDetailsTest {
         "20.04",
         "21.04",
         "22.04",
+        "24.04",
         "39",
         "40",
     };
