@@ -103,9 +103,6 @@ public class PlatformDetailsTaskReleaseTest {
         if (filename.contains("centos")) {
             return "CentOS";
         }
-        if (filename.contains("clearlinux")) {
-            return "clear-linux-os";
-        }
         if (filename.contains("debian")) {
             return "Debian";
         }
