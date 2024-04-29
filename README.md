@@ -18,7 +18,6 @@ Labels commonly include operating system name, version, architecture, and Window
 | Alpine 3.19                | `Alpine`           | `3.19.1`       | `amd64`      | // EOL: 01 Nov 2025
 | Amazon Linux 2023          | `Amazon`           | `2023`         | `amd64`      | // EOL: 15 Mar 2028
 | Clear Linux                | `clear-linux-os`   | `40690`        | `amd64`      |
-| Debian 10                  | `Debian`           | `10`           | `amd64`      | // EOL: 30 Jun 2024
 | Debian 11                  | `Debian`           | `11`           | `amd64`      | // EOL: 30 Jun 2026
 | Debian 12                  | `Debian`           | `12`           | `amd64`      | // EOL: 30 Jun 2028
 | Debian testing             | `Debian`           | `testing`      | `amd64`      |
@@ -48,14 +47,12 @@ Labels commonly include operating system name, version, architecture, and Window
 
 | Platform                   | OS Name            | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
-| Debian 10                  | `Debian`           | `10`           | `aarch64`    |
 | Oracle Linux 8             | `OracleServer`     | `8.9`          | `aarch64`    |
 
 ## ARM 32 bit (arm)
 
 | Platform                   | OS Name            | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
-| Raspberry Pi OS 10         | `Raspbian`         | `10`           | `arm`        |
 | Raspberry Pi OS 11         | `Raspbian`         | `11`           | `arm`        |
 | Raspberry Pi OS 12         | `Raspbian`         | `12`           | `arm`        |
 
