@@ -12,7 +12,7 @@ for eol_date in $(grep EOL: README.md | sed 's,^.*EOL:,,g' | xargs -r -i date -d
 done
 
 if [ $eol_count != 0 ] ; then
-        echo Deteccted $eol_count end of life in README
+        echo Detected $eol_count end of life in README
         exit $eol_count
 fi
 
