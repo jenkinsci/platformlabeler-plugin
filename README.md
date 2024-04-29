@@ -37,6 +37,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | SLES 15                    | `SUSE`             | `15`           | `amd64`      | // EOL: 31 Jul 2031
 | Ubuntu 20                  | `Ubuntu`           | `20.04`        | `amd64`      | // EOL:  2 Apr 2025
 | Ubuntu 22                  | `Ubuntu`           | `22.04`        | `amd64`      | // EOL:  1 Apr 2027
+| Ubuntu 24                  | `Ubuntu`           | `24.04`        | `amd64`      | // EOL: 25 Apr 2036
 | Windows 10                 | `windows`          | `10.0`         | `amd64`      | // EOL: 14 Oct 2025
 | Windows Server 2016        | `WindowsServer2016`| `10.0`         | `amd64`      | // EOL: 12 Jan 2027
 | Windows Server 2019        | `WindowsServer2019`| `10.0`         | `amd64`      | // EOL:  9 Jan 2029
