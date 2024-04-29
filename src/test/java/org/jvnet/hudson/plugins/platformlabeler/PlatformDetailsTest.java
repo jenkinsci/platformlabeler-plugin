@@ -178,8 +178,8 @@ public class PlatformDetailsTest {
         "20.04",
         "21.04",
         "22.04",
-        "38",
         "39",
+        "40",
     };
 
     private final String[] windowsFeatureUpdates = {
