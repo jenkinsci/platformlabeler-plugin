@@ -158,7 +158,7 @@ updates:
     labels:
     - "skip-changelog"
     schedule:
-      interval: "monthly"
+      interval: "weekly"
 
   # Maintain dependencies for Ubuntu 20.04
   - package-ecosystem: "docker"
