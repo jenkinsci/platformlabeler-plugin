@@ -47,7 +47,7 @@ Labels commonly include operating system name, version, architecture, and Window
 
 | Platform                   | OS Name            | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
-| CentOS 8                   | `CentOS`           | `8`            | `aarch64`    | // EOL 31 May 2024
+| Ubuntu 24                  | `Ubuntu`           | `24.04`        | `aarch64`    | // EOL: 25 Ap
 
 ## ARM 32 bit (arm)
 
