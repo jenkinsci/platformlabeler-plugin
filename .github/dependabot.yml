@@ -20,7 +20,7 @@ updates:
 
   # Maintain dependencies for AlmaLinux 8
   - package-ecosystem: "docker"
-    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/almalinux/8.9"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/almalinux/8.10"
     ignore:
     - dependency-name: "almalinux"
       update-types: ["version-update:semver-major"]
