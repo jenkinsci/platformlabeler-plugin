@@ -151,7 +151,7 @@ updates:
 
   # Maintain dependencies for Rocky 8
   - package-ecosystem: "docker"
-    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/rocky/8.9"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/rocky/8.10"
     ignore:
     - dependency-name: "rockylinux"
       update-types: ["version-update:semver-major"]
@@ -162,7 +162,7 @@ updates:
 
   # Maintain dependencies for Rocky 9
   - package-ecosystem: "docker"
-    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/rocky/9.3"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/rocky/9.4"
     ignore:
     - dependency-name: "rockylinux"
       update-types: ["version-update:semver-major"]
