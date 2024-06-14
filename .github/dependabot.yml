@@ -153,7 +153,7 @@ updates:
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/rocky/8.10"
     ignore:
-    - dependency-name: "rockylinux"
+    - dependency-name: "rockylinux/rockylinux"
       update-types: ["version-update:semver-major"]
     labels:
     - "skip-changelog"
@@ -164,7 +164,7 @@ updates:
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/rocky/9.4"
     ignore:
-    - dependency-name: "rockylinux"
+    - dependency-name: "rockylinux/rockylinux"
       update-types: ["version-update:semver-major"]
     labels:
     - "skip-changelog"
