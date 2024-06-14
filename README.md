@@ -31,8 +31,8 @@ Labels commonly include operating system name, version, architecture, and Window
 | Oracle Linux 9             | `OracleServer`     | `9.4`          | `amd64`      | // EOL: 31 May 2032
 | Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.9`          | `amd64`      | // EOL: 31 May 2029
 | Red Hat Enterprise Linux 9 | `RedHatEnterprise` | `9.4`          | `amd64`      | // EOL: 31 May 2032
-| Rocky Linux 8              | `Rocky`            | `8.9`          | `amd64`      | // EOL: 31 May 2029
-| Rocky Linux 9              | `Rocky`            | `9.3`          | `amd64`      | // EOL: 31 May 2032
+| Rocky Linux 8              | `Rocky`            | `8.10`         | `amd64`      | // EOL: 31 May 2029
+| Rocky Linux 9              | `Rocky`            | `9.4`          | `amd64`      | // EOL: 31 May 2032
 | SLES 12                    | `SUSE`             | `12.5`         | `amd64`      | // EOL: 31 Oct 2027
 | SLES 15                    | `SUSE`             | `15`           | `amd64`      | // EOL: 31 Jul 2031
 | Ubuntu 20                  | `Ubuntu`           | `20.04`        | `amd64`      | // EOL:  2 Apr 2025
