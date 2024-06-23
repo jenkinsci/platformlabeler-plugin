@@ -25,7 +25,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Fedora 40                  | `Fedora`           | `40`           | `amd64`      | // EOL: 13 May 2025
 | FreeBSD 13                 | `freebsd`          | `13.2-RELEASE` | `amd64`      | // EOL: 31 Jan 2026
 | FreeBSD 14                 | `freebsd`          | `14-RELEASE`   | `amd64`      | // EOL: 30 Nov 2028
-| openSUSE Leap              | `openSUSE`         | `15.5`         | `amd64`      | // EOL: 31 Dec 2024
+| openSUSE Leap              | `openSUSE`         | `15.6`         | `amd64`      | // EOL: 31 Dec 2025
 | Oracle Linux 8             | `OracleServer`     | `8.10`         | `amd64`      | // EOL: 31 May 2029
 | Oracle Linux 9             | `OracleServer`     | `9.4`          | `amd64`      | // EOL: 31 May 2032
 | Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.10`         | `amd64`      | // EOL: 31 May 2029
