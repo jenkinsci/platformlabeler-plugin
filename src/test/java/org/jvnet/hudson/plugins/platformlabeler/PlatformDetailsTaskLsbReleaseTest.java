@@ -85,6 +85,9 @@ public class PlatformDetailsTaskLsbReleaseTest {
         if (filename.contains("debian")) {
             return "Debian";
         }
+        if (filename.contains("eurolinux")) {
+            return "EuroLinux";
+        }
         if (filename.contains("fedora")) {
             return "Fedora";
         }
