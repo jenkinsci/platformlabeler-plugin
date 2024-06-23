@@ -70,6 +70,7 @@ public class PlatformDetailsTaskTest {
                             is("AmazonAMI"),
                             is("CentOS"),
                             is("Debian"),
+                            is("EuroLinux"),
                             is("openSUSE"),
                             is("OracleServer"),
                             is("Raspbian"),

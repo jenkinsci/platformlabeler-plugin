@@ -344,6 +344,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         PREFERRED_LINUX_OS_NAMES.put("amzn", "Amazon");
         PREFERRED_LINUX_OS_NAMES.put("centos", "CentOS");
         PREFERRED_LINUX_OS_NAMES.put("debian", "Debian");
+        PREFERRED_LINUX_OS_NAMES.put("eurolinux", "EuroLinux");
         PREFERRED_LINUX_OS_NAMES.put("fedora", "Fedora");
         // Mint 19 LSB distributor ID was "LinuxMint"
         // This mapping is only for test data
