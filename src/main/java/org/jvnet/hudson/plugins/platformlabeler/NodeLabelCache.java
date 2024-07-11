@@ -144,6 +144,14 @@ public class NodeLabelCache extends ComputerListener {
             if (node != null) {
                 nodeLabels.put(node, getLabelsForNode(node));
                 node.getAssignedLabels();
+                try {
+                    // Ensure label will see the node updated when platform details are added (or updated)
+                    // This will ensure a node have the same state if we were adding labels via the UI
+                    // See JENKINS-72224
+                    Jenkins.get().updateNode(node);
+                } catch (IOException e) {
+                    LOGGER.log(Level.WARNING, "Failed to update node during refresh of model", e);
+                }
             }
         }
     }
