@@ -25,6 +25,7 @@
 package org.jvnet.hudson.plugins.platformlabeler;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import hudson.Extension;
 import hudson.FilePath;
 import hudson.model.Computer;
@@ -35,6 +36,7 @@ import hudson.remoting.Channel;
 import hudson.remoting.VirtualChannel;
 import hudson.slaves.ComputerListener;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -133,6 +135,26 @@ public class NodeLabelCache extends ComputerListener {
         nodePlatformProperties.put(computer, requestComputerPlatformDetails(computer, channel));
     }
 
+    @SuppressFBWarnings(value = "CRLF_INJECTION_LOGS", justification = "CRLF not allowed in label display names")
+    private void logUpdateNodeException(Node node, IOException e) {
+        LOGGER.log(
+                Level.FINE,
+                String.format("Exception updating node '%s' during label refresh", node.getDisplayName()),
+                e);
+    }
+
+    @SuppressFBWarnings(value = "CRLF_INJECTION_LOGS", justification = "CRLF not allowed in label display names")
+    private void logUpdateNodeResult(
+            boolean result, Node node, Collection<LabelAtom> labels, Set<LabelAtom> assignedLabels) {
+        LOGGER.log(
+                Level.FINEST,
+                String.format(
+                        "Update of node '%s' %s with labels %s and assigned labels %s",
+                        node.getDisplayName(),
+                        result ? "succeeded" : "failed",
+                        Arrays.toString(labels.toArray()),
+                        Arrays.toString(assignedLabels.toArray())));
+    }
     /**
      * Update Jenkins' model so that labels for this computer are up to date.
      *
@@ -142,8 +164,19 @@ public class NodeLabelCache extends ComputerListener {
         if (computer != null) {
             Node node = computer.getNode();
             if (node != null) {
-                nodeLabels.put(node, getLabelsForNode(node));
-                node.getAssignedLabels();
+                Collection<LabelAtom> labels = getLabelsForNode(node);
+                nodeLabels.put(node, labels);
+                Set<LabelAtom> assignedLabels = node.getAssignedLabels();
+                try {
+                    // Save the node to ensure label will see the node updated when platform details are added (or
+                    // updated).
+                    // This will ensure a node has the same state if we were adding labels via the UI.
+                    // See JENKINS-72224
+                    boolean result = Jenkins.get().updateNode(node);
+                    logUpdateNodeResult(result, node, labels, assignedLabels);
+                } catch (IOException e) {
+                    logUpdateNodeException(node, e);
+                }
             }
         }
     }
