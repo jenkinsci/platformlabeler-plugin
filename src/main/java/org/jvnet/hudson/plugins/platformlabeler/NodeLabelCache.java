@@ -76,6 +76,7 @@ public class NodeLabelCache extends ComputerListener {
             throws IOException, InterruptedException {
         try {
             cacheAndRefreshModel(computer, channel);
+            saveNodeLabel(computer.getNode());
         } catch (Exception e) {
             String name = "unnamed agent"; // built-in (and others) may not have a name during preOnline
             if (computer != null && !computer.getName().isEmpty()) {
@@ -115,6 +116,7 @@ public class NodeLabelCache extends ComputerListener {
     /** When any computer has changed, update the platform labels according to the configuration. */
     @Override
     public final void onConfigurationChange() {
+        LOGGER.log(Level.FINEST, "onConfigurationChange() called to refresh platform labels");
         synchronized (nodePlatformProperties) {
             nodePlatformProperties.forEach((node, labels) -> {
                 refreshModel(node);
@@ -144,15 +146,13 @@ public class NodeLabelCache extends ComputerListener {
     }
 
     @SuppressFBWarnings(value = "CRLF_INJECTION_LOGS", justification = "CRLF not allowed in label display names")
-    private void logUpdateNodeResult(
-            boolean result, Node node, Collection<LabelAtom> labels, Set<LabelAtom> assignedLabels) {
+    private void logUpdateNodeResult(boolean result, Node node, Set<LabelAtom> assignedLabels) {
         LOGGER.log(
                 Level.FINEST,
                 String.format(
-                        "Update of node '%s' %s with labels %s and assigned labels %s",
+                        "Update of node '%s' %s with assigned labels %s",
                         node.getDisplayName(),
                         result ? "succeeded" : "failed",
-                        Arrays.toString(labels.toArray()),
                         Arrays.toString(assignedLabels.toArray())));
     }
     /**
@@ -166,18 +166,34 @@ public class NodeLabelCache extends ComputerListener {
             if (node != null) {
                 Collection<LabelAtom> labels = getLabelsForNode(node);
                 nodeLabels.put(node, labels);
-                Set<LabelAtom> assignedLabels = node.getAssignedLabels();
-                try {
-                    // Save the node to ensure label will see the node updated when platform details are added (or
-                    // updated).
-                    // This will ensure a node has the same state if we were adding labels via the UI.
-                    // See JENKINS-72224
-                    boolean result = Jenkins.get().updateNode(node);
-                    logUpdateNodeResult(result, node, labels, assignedLabels);
-                } catch (IOException e) {
-                    logUpdateNodeException(node, e);
-                }
+                node.getAssignedLabels();
             }
+        }
+    }
+
+    /**
+     * Save the node to ensure label will see the node updated when platform details are added (or
+     * updated).
+     * This will ensure a node has the same state if we were adding labels via the UI.
+     * See JENKINS-72224
+     *
+     * @param node Node whose labels should be saved
+     */
+    final void saveNodeLabel(Node node) {
+        if (node == null) {
+            LOGGER.log(Level.FINEST, "Node is null. Unable to save labels and update node.");
+            return;
+        }
+        Set<LabelAtom> assignedLabels = node.getAssignedLabels();
+        try {
+            // Save the node to ensure label will see the node updated when platform details are added (or
+            // updated).
+            // This will ensure a node has the same state if we were adding labels via the UI.
+            // See JENKINS-72224
+            boolean result = Jenkins.get().updateNode(node);
+            logUpdateNodeResult(result, node, assignedLabels);
+        } catch (IOException e) {
+            logUpdateNodeException(node, e);
         }
     }
 
