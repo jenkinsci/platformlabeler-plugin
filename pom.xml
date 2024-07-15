@@ -52,7 +52,6 @@
     <!-- Plugin intentionally does not deliver javadoc. -->
     <!-- No API's intended to be used, none should be called from outside. -->
     <maven.javadoc.skip>true</maven.javadoc.skip>
-    <pmdVersion>7.0.0</pmdVersion>
     <spotbugs.effort>Max</spotbugs.effort>
     <spotbugs.threshold>Low</spotbugs.threshold>
     <spotless.check.skip>false</spotless.check.skip>
@@ -94,15 +93,6 @@
   </pluginRepositories>
 
   <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-pmd-plugin</artifactId>
-          <version>3.23.0</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
     <plugins>
       <plugin>
         <groupId>com.github.spotbugs</groupId>
