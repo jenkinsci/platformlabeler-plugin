@@ -159,7 +159,7 @@ public class PlatformDetailsTest {
 
     private final String[] versions = {
         "3.17.2",
-        "3.18.4",
+        "3.18.8",
         "3.19.1",
         "3.20.0",
         "7.9.2009",
