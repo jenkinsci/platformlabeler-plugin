@@ -290,12 +290,12 @@ public class PlatformDetailsTaskTest {
          * special case.  Debian testing and Debian unstable have no
          * VERSION_ID in the /etc/os-release file.  If there is no
          * value for VERSION_ID, then confirm that the details are for
-         * Debian testing or unstable and skip the VERSION_ID
+         * Debian testing, unstable, or trixie and skip the VERSION_ID
          * assertion.
          */
         if (version.startsWith("unknown")) {
             assertThat(details.getName(), is("Debian"));
-            assertThat(details.getVersion(), anyOf(is("testing"), is("unstable")));
+            assertThat(details.getVersion(), anyOf(is("testing"), is("unstable"), is("trixie")));
         } else {
             assertThat(details.getVersion(), anyOf(is(version), is(foundValue)));
         }
