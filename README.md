@@ -48,14 +48,14 @@ Labels commonly include operating system name, version, architecture, and Window
 
 | Platform                   | OS Name            | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
-| Ubuntu 24                  | `Ubuntu`           | `24.04`        | `aarch64`    | // EOL: 25 Ap
+| Ubuntu 24                  | `Ubuntu`           | `24.04`        | `aarch64`    | // EOL: 25 Apr 2036
 
 ## ARM 32 bit (arm)
 
 | Platform                   | OS Name            | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
-| Raspberry Pi OS 11         | `Raspbian`         | `11`           | `arm`        |
-| Raspberry Pi OS 12         | `Raspbian`         | `12`           | `arm`        |
+| Raspberry Pi OS 11         | `Raspbian`         | `11`           | `arm`        | // EOL: 30 Jun 2026
+| Raspberry Pi OS 12         | `Raspbian`         | `12`           | `arm`        | // EOL: 30 Jun 2028
 
 ## IBM System 390 (s390x)
 
