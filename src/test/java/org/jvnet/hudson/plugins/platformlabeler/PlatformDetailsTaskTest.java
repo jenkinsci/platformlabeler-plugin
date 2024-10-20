@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.util.Locale;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -123,7 +123,7 @@ public class PlatformDetailsTaskTest {
     @Test
     @DisplayName("test Linux label computation without lsb_release")
     void testComputeLabelsLinuxWithoutLsbRelease() throws Exception {
-        if (isWindows() || !Files.exists(Paths.get("/etc/os-release"))) {
+        if (isWindows() || !Files.exists(Path.of("/etc/os-release"))) {
             return;
         }
         String unknown = PlatformDetailsTask.UNKNOWN_VALUE_STRING;
@@ -135,7 +135,7 @@ public class PlatformDetailsTaskTest {
     @Test
     @DisplayName("test Linux label computation with null lsb_release")
     void testComputeLabelsLinuxWithNullLsbRelease() throws Exception {
-        if (isWindows() || !Files.exists(Paths.get("/etc/os-release"))) {
+        if (isWindows() || !Files.exists(Path.of("/etc/os-release"))) {
             return;
         }
         LsbRelease release = null;
@@ -174,7 +174,7 @@ public class PlatformDetailsTaskTest {
     @Test
     @DisplayName("test operating system name")
     void compareOSName() throws Exception {
-        if (isWindows() || !Files.exists(Paths.get("/etc/os-release"))) {
+        if (isWindows() || !Files.exists(Path.of("/etc/os-release"))) {
             return;
         }
         String computedName = platformDetailsTask
@@ -255,7 +255,7 @@ public class PlatformDetailsTaskTest {
     @Test
     @DisplayName("Read SUSE release identifier wrong file")
     void getSuseReleaseIdentifierWrongFileReturnsUnknownValue() throws Exception {
-        if (isWindows() || !Files.exists(Paths.get("/etc/os-release"))) {
+        if (isWindows() || !Files.exists(Path.of("/etc/os-release"))) {
             return;
         }
         platformDetailsTask.setSuseRelease(new File("/etc/hosts")); // Not SuSE-release file
@@ -266,7 +266,7 @@ public class PlatformDetailsTaskTest {
     @Test
     @DisplayName("Compare operating system version")
     void compareOSVersion() throws Exception {
-        if (isWindows() || !Files.exists(Paths.get("/etc/os-release"))) {
+        if (isWindows() || !Files.exists(Path.of("/etc/os-release"))) {
             return;
         }
         PlatformDetails details = platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");

@@ -2,11 +2,13 @@ package org.jvnet.hudson.plugins.platformlabeler;
 
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 import edu.umd.cs.findbugs.annotations.NonNull;
+import java.io.Serial;
 import java.io.Serializable;
 
 /** Stores the platform details of a node. */
 public class PlatformDetails implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private final String name;
