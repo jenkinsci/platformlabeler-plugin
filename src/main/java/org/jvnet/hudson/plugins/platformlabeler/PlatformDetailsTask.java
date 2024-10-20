@@ -34,6 +34,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serial;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.HashMap;
@@ -60,6 +61,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
     static final String UNKNOWN_WINDOWS_VALUE_STRING = "unknown+check_reg_query_installed";
 
     // Added Apr 16, 2020 to resolve spotbugs warning
+    @Serial
     private static final long serialVersionUID = 2020 - 04 - 16;
 
     /**
