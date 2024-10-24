@@ -139,21 +139,18 @@ public class NodeLabelCache extends ComputerListener {
 
     @SuppressFBWarnings(value = "CRLF_INJECTION_LOGS", justification = "CRLF not allowed in label display names")
     private void logUpdateNodeException(Node node, IOException e) {
-        LOGGER.log(
-                Level.FINE,
-                String.format("Exception updating node '%s' during label refresh", node.getDisplayName()),
-                e);
+        LOGGER.log(Level.FINE, "Exception updating node '%s' during label refresh".formatted(node.getDisplayName()), e);
     }
 
     @SuppressFBWarnings(value = "CRLF_INJECTION_LOGS", justification = "CRLF not allowed in label display names")
     private void logUpdateNodeResult(boolean result, Node node, Set<LabelAtom> assignedLabels) {
         LOGGER.log(
                 Level.FINEST,
-                String.format(
-                        "Update of node '%s' %s with assigned labels %s",
-                        node.getDisplayName(),
-                        result ? "succeeded" : "failed",
-                        Arrays.toString(assignedLabels.toArray())));
+                "Update of node '%s' %s with assigned labels %s"
+                        .formatted(
+                                node.getDisplayName(),
+                                result ? "succeeded" : "failed",
+                                Arrays.toString(assignedLabels.toArray())));
     }
     /**
      * Update Jenkins' model so that labels for this computer are up to date.

@@ -5,7 +5,7 @@ import hudson.Extension;
 import hudson.slaves.ComputerListener;
 import jenkins.model.GlobalConfiguration;
 import net.sf.json.JSONObject;
-import org.kohsuke.stapler.StaplerRequest;
+import org.kohsuke.stapler.StaplerRequest2;
 
 /**
  * Allows to configure which labels should be generated for the node when no node specific
@@ -29,7 +29,7 @@ public class PlatformLabelerGlobalConfiguration extends GlobalConfiguration {
     }
 
     @Override
-    public boolean configure(StaplerRequest req, JSONObject json) throws FormException {
+    public boolean configure(StaplerRequest2 req, JSONObject json) throws FormException {
         boolean result = super.configure(req, json);
         NodeLabelCache nlc = ComputerListener.all().get(NodeLabelCache.class);
         if (nlc != null) {

@@ -26,6 +26,7 @@ import hudson.util.ClockDifference;
 import hudson.util.DescribableList;
 import hudson.util.LogTaskListener;
 import hudson.util.RingBufferLogHandler;
+import jakarta.servlet.ServletException;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -36,14 +37,13 @@ import java.util.concurrent.Future;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
-import javax.servlet.ServletException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.jvnet.hudson.test.JenkinsRule;
-import org.kohsuke.stapler.StaplerRequest;
-import org.kohsuke.stapler.StaplerResponse;
+import org.kohsuke.stapler.StaplerRequest2;
+import org.kohsuke.stapler.StaplerResponse2;
 import org.kohsuke.stapler.interceptor.RequirePOST;
 
 /**
@@ -254,7 +254,7 @@ public class NodeLabelCacheTest {
 
         @Override
         @RequirePOST
-        public void doLaunchSlaveAgent(StaplerRequest sr, StaplerResponse sr1) throws IOException, ServletException {
+        public void doLaunchSlaveAgent(StaplerRequest2 sr, StaplerResponse2 sr1) throws IOException, ServletException {
             throw new UnsupportedOperationException("Unsupported");
         }
 
@@ -321,7 +321,7 @@ public class NodeLabelCacheTest {
 
         @Override
         @RequirePOST
-        public void doLaunchSlaveAgent(StaplerRequest sr, StaplerResponse sr1) throws IOException, ServletException {
+        public void doLaunchSlaveAgent(StaplerRequest2 sr, StaplerResponse2 sr1) throws IOException, ServletException {
             throw new UnsupportedOperationException("Unsupported");
         }
 
