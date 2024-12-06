@@ -71,6 +71,7 @@ public class PlatformDetailsTaskTest {
                             is("CentOS"),
                             is("Debian"),
                             is("EuroLinux"),
+                            is("Fedora"),
                             is("openSUSE"),
                             is("OracleServer"),
                             is("Raspbian"),
