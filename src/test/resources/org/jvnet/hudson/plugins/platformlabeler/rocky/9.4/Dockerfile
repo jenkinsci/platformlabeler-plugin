@@ -1,1 +1,1 @@
-FROM rockylinux/rockylinux:9.5.20241118-ubi
+FROM rockylinux/rockylinux:9.4.20240523-ubi
