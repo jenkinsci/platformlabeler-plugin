@@ -4,7 +4,7 @@ import java.util.Collections
 
 if (env.JENKINS_URL.contains('markwaite.net')) {
     // Valid Jenkins versions for markwaite.net test
-    def testJenkinsVersions = [ '2.479.1', '2.479', '2.480', '2.481', '2.482', '2.483', ]
+    def testJenkinsVersions = [ '2.479.1', '2.479.2', '2.481', '2.482', '2.483', '2.484', '2.485', '2.486', '2.487', '2.488' ]
     Collections.shuffle(testJenkinsVersions)
 
     // build with randomized Jenkins versions
