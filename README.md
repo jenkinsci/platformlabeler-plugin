@@ -11,7 +11,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Platform                   | OS Name            | Version        | Architecture |
 | -------------------------- | ------------------ | -------------- | ------------ |
 | Alma Linux 8               | `AlmaLinux`        | `8.10`         | `amd64`      | // EOL: 31 Mar 2029
-| Alma Linux 9               | `AlmaLinux`        | `9.4`          | `amd64`      | // EOL: 31 May 2032
+| Alma Linux 9               | `AlmaLinux`        | `9.5`          | `amd64`      | // EOL: 31 May 2032
 | Alpine 3.18                | `Alpine`           | `3.18.9`       | `amd64`      | // EOL: 01 May 2025
 | Alpine 3.19                | `Alpine`           | `3.19.4`       | `amd64`      | // EOL: 01 Nov 2025
 | Alpine 3.20                | `Alpine`           | `3.20.3`       | `amd64`      | // EOL: 01 May 2026
@@ -29,11 +29,11 @@ Labels commonly include operating system name, version, architecture, and Window
 | FreeBSD 14                 | `freebsd`          | `14-RELEASE`   | `amd64`      | // EOL: 30 Nov 2028
 | openSUSE Leap              | `openSUSE`         | `15.6`         | `amd64`      | // EOL: 31 Dec 2025
 | Oracle Linux 8             | `OracleServer`     | `8.10`         | `amd64`      | // EOL: 31 May 2029
-| Oracle Linux 9             | `OracleServer`     | `9.4`          | `amd64`      | // EOL: 31 May 2032
+| Oracle Linux 9             | `OracleServer`     | `9.5`          | `amd64`      | // EOL: 31 May 2032
 | Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.10`         | `amd64`      | // EOL: 31 May 2029
-| Red Hat Enterprise Linux 9 | `RedHatEnterprise` | `9.4`          | `amd64`      | // EOL: 31 May 2032
+| Red Hat Enterprise Linux 9 | `RedHatEnterprise` | `9.5`          | `amd64`      | // EOL: 31 May 2032
 | Rocky Linux 8              | `Rocky`            | `8.10`         | `amd64`      | // EOL: 31 May 2029
-| Rocky Linux 9              | `Rocky`            | `9.4`          | `amd64`      | // EOL: 31 May 2032
+| Rocky Linux 9              | `Rocky`            | `9.5`          | `amd64`      | // EOL: 31 May 2032
 | SLES 12                    | `SUSE`             | `12.5`         | `amd64`      | // EOL: 31 Oct 2027
 | SLES 15                    | `SUSE`             | `15`           | `amd64`      | // EOL: 31 Jul 2031
 | Ubuntu 20                  | `Ubuntu`           | `20.04`        | `amd64`      | // EOL:  2 Apr 2025
