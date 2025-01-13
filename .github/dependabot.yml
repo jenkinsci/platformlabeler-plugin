@@ -71,7 +71,7 @@ updates:
     labels:
     - "skip-changelog"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
 
   # Maintain dependencies for Alpine 3.21
   - package-ecosystem: "docker"
