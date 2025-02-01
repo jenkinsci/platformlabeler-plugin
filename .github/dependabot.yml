@@ -82,7 +82,7 @@ updates:
     labels:
     - "skip-changelog"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
 
   # Maintain dependencies for Amazon Linux 2023
   - package-ecosystem: "docker"
