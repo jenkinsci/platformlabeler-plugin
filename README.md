@@ -1,6 +1,8 @@
 # Platform Labeler Plugin
 
+<!--
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/3537/badge)](https://bestpractices.coreinfrastructure.org/projects/3537)
+-->
 
 Adds labels to Jenkins agents based on characteristics of the operating system running the agent.
 
