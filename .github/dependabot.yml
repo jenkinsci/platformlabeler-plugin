@@ -75,7 +75,7 @@ updates:
 
   # Maintain dependencies for Alpine 3.21
   - package-ecosystem: "docker"
-    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.21.0"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.21.2"
     ignore:
     - dependency-name: "Dockerfile"
       update-types: ["version-update:semver-minor"]
