@@ -53,7 +53,7 @@ updates:
 
   # Maintain dependencies for Alpine 3.19
   - package-ecosystem: "docker"
-    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.19.4"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.19.6"
     ignore:
     - dependency-name: "Dockerfile"
       update-types: ["version-update:semver-patch"]
