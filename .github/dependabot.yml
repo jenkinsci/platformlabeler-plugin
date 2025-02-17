@@ -42,7 +42,7 @@ updates:
 
   # Maintain dependencies for Alpine 3.18
   - package-ecosystem: "docker"
-    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.18.11"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.18.12"
     ignore:
     - dependency-name: "Dockerfile"
       update-types: ["version-update:semver-patch"]
@@ -53,7 +53,7 @@ updates:
 
   # Maintain dependencies for Alpine 3.19
   - package-ecosystem: "docker"
-    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.19.6"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.19.7"
     ignore:
     - dependency-name: "Dockerfile"
       update-types: ["version-update:semver-patch"]
@@ -64,7 +64,7 @@ updates:
 
   # Maintain dependencies for Alpine 3.20
   - package-ecosystem: "docker"
-    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.20.5"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.20.6"
     ignore:
     - dependency-name: "Dockerfile"
       update-types: ["version-update:semver-minor"]
@@ -75,7 +75,7 @@ updates:
 
   # Maintain dependencies for Alpine 3.21
   - package-ecosystem: "docker"
-    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.21.2"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.21.3"
     ignore:
     - dependency-name: "Dockerfile"
       update-types: ["version-update:semver-minor"]
