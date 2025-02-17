@@ -14,28 +14,30 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import jenkins.model.GlobalConfiguration;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.jvnet.hudson.test.JenkinsRule;
+import org.jvnet.hudson.test.junit.jupiter.WithJenkins;
 
-public class ConfigurationTest {
-    @Rule
-    public final JenkinsRule r = new JenkinsRule();
+@WithJenkins
+class ConfigurationTest {
+
+    private JenkinsRule r;
 
     private Computer computer;
     private NodeLabelCache nodeLabelCache;
     private PlatformDetails platformDetails;
 
-    @Before
-    public void setUp() throws IOException, InterruptedException {
+    @BeforeEach
+    void setUp(JenkinsRule r) throws IOException, InterruptedException {
+        this.r = r;
         computer = r.jenkins.toComputer();
         nodeLabelCache = ComputerListener.all().get(NodeLabelCache.class);
         platformDetails = nodeLabelCache.requestComputerPlatformDetails(computer, computer.getChannel());
     }
 
     @Test
-    public void configuredNameOnlyLabel() {
+    void configuredNameOnlyLabel() {
         PlatformLabelerNodeProperty nodeProperty = new PlatformLabelerNodeProperty();
         LabelConfig labelConfig = new LabelConfig();
         labelConfig.setArchitecture(false);
@@ -59,7 +61,7 @@ public class ConfigurationTest {
     }
 
     @Test
-    public void configuredTwoLabels() {
+    void configuredTwoLabels() {
         PlatformLabelerNodeProperty nodeProperty = new PlatformLabelerNodeProperty();
         LabelConfig labelConfig = new LabelConfig();
         labelConfig.setArchitectureName(false);
@@ -83,7 +85,7 @@ public class ConfigurationTest {
     }
 
     @Test
-    public void configuredAllLabelsOnEphemeralNode() throws Exception {
+    void configuredAllLabelsOnEphemeralNode() throws Exception {
 
         // Create and connect the agent
         DumbSlave agent = r.createSlave(Label.get("agent"));
@@ -125,7 +127,7 @@ public class ConfigurationTest {
     }
 
     @Test
-    public void configuredAllLabelsOnNode() {
+    void configuredAllLabelsOnNode() {
         PlatformLabelerNodeProperty nodeProperty = new PlatformLabelerNodeProperty();
         LabelConfig labelConfig = new LabelConfig();
         nodeProperty.setLabelConfig(labelConfig);
@@ -155,7 +157,7 @@ public class ConfigurationTest {
     }
 
     @Test
-    public void nodeConfigOverridesGlobalConfig() {
+    void nodeConfigOverridesGlobalConfig() {
 
         PlatformLabelerGlobalConfiguration globalConfig =
                 GlobalConfiguration.all().getInstance(PlatformLabelerGlobalConfiguration.class);
@@ -190,7 +192,7 @@ public class ConfigurationTest {
     }
 
     @Test
-    public void globalConfigOnlyArchitecture() {
+    void globalConfigOnlyArchitecture() {
 
         PlatformLabelerGlobalConfiguration globalConfig =
                 GlobalConfiguration.all().getInstance(PlatformLabelerGlobalConfiguration.class);
@@ -218,7 +220,7 @@ public class ConfigurationTest {
     }
 
     @Test
-    public void configRoundTripTest() throws Exception {
+    void configRoundTripTest() throws Exception {
         PlatformLabelerGlobalConfiguration globalConfig =
                 GlobalConfiguration.all().getInstance(PlatformLabelerGlobalConfiguration.class);
         LabelConfig globalLabelConfigBefore = globalConfig.getLabelConfig();

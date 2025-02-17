@@ -8,7 +8,7 @@ import static org.hamcrest.Matchers.not;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class LsbReleaseRealTest {
+class LsbReleaseRealTest {
     private LsbRelease lsbRelease;
 
     @BeforeEach

@@ -5,10 +5,10 @@ import static org.hamcrest.Matchers.is;
 
 import org.junit.jupiter.api.Test;
 
-public class LsbReleaseFakeTest {
-    private String fakeDistributorId = "megasupercorp";
-    private String fakeRelease = "1.2.3";
-    private LsbRelease fakeLsbRelease = new LsbRelease(fakeDistributorId, fakeRelease);
+class LsbReleaseFakeTest {
+    private final String fakeDistributorId = "megasupercorp";
+    private final String fakeRelease = "1.2.3";
+    private final LsbRelease fakeLsbRelease = new LsbRelease(fakeDistributorId, fakeRelease);
 
     @Test
     void matchingFakeDistributorId() {

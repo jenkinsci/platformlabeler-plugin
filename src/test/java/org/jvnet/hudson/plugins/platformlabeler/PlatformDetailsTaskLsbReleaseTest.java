@@ -18,14 +18,14 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
 
-public class PlatformDetailsTaskLsbReleaseTest {
+class PlatformDetailsTaskLsbReleaseTest {
 
     /**
      * Generate test parameters for Linux lsb_release-a sample files stored as resources.
      *
      * @return parameter values to be tested
      */
-    public static Stream<Object[]> generateReleaseFileNames() {
+    static Stream<Object[]> generateReleaseFileNames() {
         String packageName =
                 PlatformDetailsTaskLsbReleaseTest.class.getPackage().getName();
         Reflections reflections = new Reflections(packageName, Scanners.Resources);

@@ -18,7 +18,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
 
-public class PlatformDetailsTaskReleaseTest {
+class PlatformDetailsTaskReleaseTest {
 
     /**
      * Generate test parameters for Linux os-release, redhat-release and SuSE-release sample files
@@ -26,7 +26,7 @@ public class PlatformDetailsTaskReleaseTest {
      *
      * @return parameter values to be tested
      */
-    public static Stream<Object[]> generateReleaseFileNames() {
+    static Stream<Object[]> generateReleaseFileNames() {
         String packageName = PlatformDetailsTaskReleaseTest.class.getPackage().getName();
         Reflections reflections = new Reflections(packageName, Scanners.Resources);
         Set<String> fileNames = reflections.getResources(Pattern.compile(".*-release"));

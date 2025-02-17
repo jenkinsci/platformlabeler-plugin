@@ -31,7 +31,7 @@ import java.util.Random;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class PlatformDetailsTest {
+class PlatformDetailsTest {
 
     private String name;
     private String arch;
@@ -39,8 +39,6 @@ public class PlatformDetailsTest {
     private String windowsFeatureUpdate;
     private String osName;
     private PlatformDetails details;
-
-    public PlatformDetailsTest() {}
 
     @BeforeEach
     void randomizeData() {
@@ -151,13 +149,13 @@ public class PlatformDetailsTest {
         assertThat(detailsWithoutOsName.getOsName(), is(nullValue()));
     }
 
-    private final Random random = new Random();
+    private static final Random random = new Random();
 
-    private final String[] names = {
+    private static final String[] names = {
         "Windows 10", "alpine", "centos", "debian", "fedora", "freebsd", "macos", "raspbian", "ubuntu"
     };
 
-    private final String[] versions = {
+    private static final String[] versions = {
         "3.17.9",
         "3.18.12",
         "3.19.7",
@@ -186,23 +184,23 @@ public class PlatformDetailsTest {
         "40",
     };
 
-    private final String[] windowsFeatureUpdates = {
+    private static final String[] windowsFeatureUpdates = {
         "1703", "1709", "1803", "1809", "1903", "1909", "2003", "2009", "2103", "2109", "2203"
     };
 
-    private String randomName() {
+    private static String randomName() {
         return names[random.nextInt(names.length)];
     }
 
-    private String randomArch() {
+    private static String randomArch() {
         return "amd64";
     }
 
-    private String randomVersion() {
+    private static String randomVersion() {
         return versions[random.nextInt(versions.length)];
     }
 
-    private String randomWindowsFeatureUpdate() {
+    private static String randomWindowsFeatureUpdate() {
         return windowsFeatureUpdates[random.nextInt(windowsFeatureUpdates.length)];
     }
 }

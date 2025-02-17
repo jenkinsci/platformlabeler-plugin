@@ -3,21 +3,24 @@ package org.jvnet.hudson.plugins.platformlabeler;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
+import hudson.Functions;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class PlatformDetailsTaskStaticStringTest {
+class PlatformDetailsTaskStaticStringTest {
 
     /**
      * Generate test parameters for cases which can be tested with static string conversions. Linux
@@ -26,7 +29,7 @@ public class PlatformDetailsTaskStaticStringTest {
      *
      * @return parameter values to be tested
      */
-    public static Stream<Object[]> generateTestParameters() {
+    static Stream<Object[]> generateTestParameters() {
         Collection<Object[]> data = Arrays.asList(new Object[][] {
             /** Windows 11 */
             {"Windows 11", "aarch64", "10.0"},
@@ -118,11 +121,11 @@ public class PlatformDetailsTaskStaticStringTest {
     }
 
     private static String computeExpectedArch(String name, String arch) {
-        if (!isWindows() || !name.startsWith("Windows")) {
+        if (!Functions.isWindows() || !name.startsWith("Windows")) {
             // Trust the passed value for non-Windows systems
             return arch;
         }
-        if (arch != "amd64" && arch != "x86") {
+        if (!Objects.equals(arch, "amd64") && !Objects.equals(arch, "x86")) {
             // Trust the passed value for non-Intel architectures
             return arch;
         }
@@ -134,7 +137,7 @@ public class PlatformDetailsTaskStaticStringTest {
         return arch;
     }
 
-    private String computeExpectedName(String name) {
+    private static String computeExpectedName(String name) {
         if (name.startsWith("Windows")) {
             return "windows";
         }
@@ -145,7 +148,7 @@ public class PlatformDetailsTaskStaticStringTest {
         return name.toLowerCase(Locale.ENGLISH);
     }
 
-    private String computeExpectedOsName(String name) {
+    private static String computeExpectedOsName(String name) {
         if (name.startsWith("Windows Server")) {
             if (name.contains("2022")) {
                 return "WindowsServer2022";
@@ -162,7 +165,7 @@ public class PlatformDetailsTaskStaticStringTest {
         return name;
     }
 
-    private String computeVersion(String name, String version) {
+    private static String computeVersion(String name, String version) {
         if (name.startsWith("Windows")) {
             switch (version) {
                 case "4.0":
@@ -186,7 +189,7 @@ public class PlatformDetailsTaskStaticStringTest {
         return version;
     }
 
-    private String getFreeBsdVersion(String version) {
+    private static String getFreeBsdVersion(String version) {
         /* If no freebsd-version command, return the provided default value */
         File freebsdVersionCommand = new File("/bin/freebsd-version");
         if (!freebsdVersionCommand.exists()) {
@@ -196,7 +199,8 @@ public class PlatformDetailsTaskStaticStringTest {
         try {
             Process p = Runtime.getRuntime().exec("/bin/freebsd-version -u");
             p.waitFor();
-            try (BufferedReader b = new BufferedReader(new InputStreamReader(p.getInputStream(), "UTF-8"))) {
+            try (BufferedReader b =
+                    new BufferedReader(new InputStreamReader(p.getInputStream(), StandardCharsets.UTF_8))) {
                 String line = b.readLine();
                 if (line != null) {
                     version = line;
@@ -206,9 +210,5 @@ public class PlatformDetailsTaskStaticStringTest {
             /* Return version instead of throwing an exception */
         }
         return version;
-    }
-
-    private static boolean isWindows() {
-        return File.pathSeparatorChar == ';';
     }
 }

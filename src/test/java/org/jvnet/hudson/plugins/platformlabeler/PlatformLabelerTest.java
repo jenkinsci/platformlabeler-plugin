@@ -30,20 +30,18 @@ import static org.hamcrest.Matchers.is;
 import hudson.model.labels.LabelAtom;
 import java.util.Collection;
 import java.util.HashSet;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.jvnet.hudson.test.JenkinsRule;
+import org.jvnet.hudson.test.junit.jupiter.WithJenkins;
 
 /**
  * @author robertc
  */
-public class PlatformLabelerTest {
-
-    @Rule
-    public final JenkinsRule j = new JenkinsRule();
+@WithJenkins
+class PlatformLabelerTest {
 
     @Test
-    public void testLookupCached() {
+    void testLookupCached(JenkinsRule j) {
         Collection<LabelAtom> expected = new HashSet<>();
         expected.add(j.jenkins.getLabelAtom("foo"));
         expected.add(j.jenkins.getLabelAtom("bar"));
@@ -53,11 +51,9 @@ public class PlatformLabelerTest {
     }
 
     @Test
-    public void testLookupUncached() throws Exception {
+    void testLookupUncached(JenkinsRule j) {
         /* remove the Jenkins node from the cache */
-        if (NodeLabelCache.nodeLabels.containsKey(j.jenkins)) {
-            NodeLabelCache.nodeLabels.remove(j.jenkins);
-        }
+        NodeLabelCache.nodeLabels.remove(j.jenkins);
         Collection<LabelAtom> labels = new PlatformLabeler().findLabels(j.jenkins);
         assertThat(labels, is(empty()));
     }
