@@ -120,7 +120,7 @@ updates:
     labels:
     - "skip-changelog"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
 
   # Maintain dependencies for Debian unstable ("sid")
   - package-ecosystem: "docker"
