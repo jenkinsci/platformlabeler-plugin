@@ -12,12 +12,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-public class LsbReleaseFakeFileTest {
+class LsbReleaseFakeFileTest {
     @TempDir
-    File dataDir;
+    private File dataDir;
 
-    private String fakeDistributorId = "megasupercorp";
-    private String fakeRelease = "1.2.3";
+    private final String fakeDistributorId = "megasupercorp";
+    private final String fakeRelease = "1.2.3";
     private LsbRelease fakeLsbRelease;
 
     @BeforeEach

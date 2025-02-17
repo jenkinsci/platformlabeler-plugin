@@ -8,6 +8,7 @@ import static org.hamcrest.Matchers.in;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.startsWith;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import hudson.FilePath;
 import hudson.Launcher;
@@ -26,7 +27,6 @@ import hudson.util.ClockDifference;
 import hudson.util.DescribableList;
 import hudson.util.LogTaskListener;
 import hudson.util.RingBufferLogHandler;
-import jakarta.servlet.ServletException;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -37,11 +37,11 @@ import java.util.concurrent.Future;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.jvnet.hudson.test.JenkinsRule;
+import org.jvnet.hudson.test.junit.jupiter.WithJenkins;
 import org.kohsuke.stapler.StaplerRequest2;
 import org.kohsuke.stapler.StaplerResponse2;
 import org.kohsuke.stapler.interceptor.RequirePOST;
@@ -51,22 +51,19 @@ import org.kohsuke.stapler.interceptor.RequirePOST;
  *
  * @author Mark Waite
  */
-public class NodeLabelCacheTest {
+@WithJenkins
+class NodeLabelCacheTest {
 
-    @Rule
-    public JenkinsRule r = new JenkinsRule();
-
-    public NodeLabelCacheTest() {
-        /* Intentionally empty constructor */
-    }
+    private JenkinsRule r;
 
     private Computer computer;
     private Set<LabelAtom> labelsBefore;
     private NodeLabelCache nodeLabelCache;
     private PlatformDetails localDetails;
 
-    @Before
-    public void setUp() throws IOException {
+    @BeforeEach
+    void setUp(JenkinsRule r) throws IOException {
+        this.r = r;
         computer = r.jenkins.toComputer();
         labelsBefore = computer.getNode().getAssignedLabels();
         assertThat(labelsBefore, is(not(empty())));
@@ -78,51 +75,52 @@ public class NodeLabelCacheTest {
                 System.getProperty("os.version", PlatformDetailsTask.UNKNOWN_VALUE_STRING));
     }
 
-    @After
-    public void tearDown() {
+    @AfterEach
+    void tearDown() {
         Set<LabelAtom> labelsAfter = computer.getNode().getAssignedLabels();
         assertThat(labelsBefore, everyItem(in(labelsAfter)));
     }
 
     @Test
-    public void testCacheAndRefreshModel() throws Exception {
+    void testCacheAndRefreshModel() throws Exception {
         nodeLabelCache.cacheAndRefreshModel(computer, computer.getChannel());
     }
 
     @Test
-    public void testCacheLabels() throws Exception {
+    void testCacheLabels() throws Exception {
         nodeLabelCache.cacheLabels(computer, computer.getChannel());
     }
 
     @Test
-    public void testRefreshModel() {
+    void testRefreshModel() {
         nodeLabelCache.refreshModel(computer);
     }
 
     @Test
-    public void testRefreshModelNullComputer() {
+    void testRefreshModelNullComputer() {
         nodeLabelCache.refreshModel(null);
     }
 
     @Test
-    public void testRefreshModelNullingComputer() {
+    void testRefreshModelNullingComputer() {
         Computer nullingComputer = new NullingComputer(computer.getNode());
         nodeLabelCache.refreshModel(nullingComputer);
     }
 
-    @Test(expected = IOException.class)
-    public void testCacheLabelsNullingComputer() throws Exception {
+    @Test
+    void testCacheLabelsNullingComputer() {
         Computer nullingComputer = new NullingComputer(computer.getNode());
-        nodeLabelCache.cacheLabels(nullingComputer, nullingComputer.getChannel());
+        assertThrows(
+                IOException.class, () -> nodeLabelCache.cacheLabels(nullingComputer, nullingComputer.getChannel()));
     }
 
     @Test
-    public void testOnConfigurationChange() {
+    void testOnConfigurationChange() {
         nodeLabelCache.onConfigurationChange();
     }
 
     @Test
-    public void testRequestComputerPlatformDetails() throws Exception {
+    void testRequestComputerPlatformDetails() throws Exception {
         PlatformDetails platformDetails =
                 nodeLabelCache.requestComputerPlatformDetails(computer, computer.getChannel());
         assertThat(platformDetails.getArchitecture(), is(localDetails.getArchitecture()));
@@ -133,7 +131,7 @@ public class NodeLabelCacheTest {
     }
 
     @Test
-    public void testGetLabelsForNode() throws IOException {
+    void testGetLabelsForNode() {
         Collection<LabelAtom> labels = nodeLabelCache.getLabelsForNode(computer.getNode());
         PlatformDetailsTask task = new PlatformDetailsTask();
         for (LabelAtom labelAtom : labels) {
@@ -152,30 +150,33 @@ public class NodeLabelCacheTest {
     }
 
     @Test
-    public void testGetLabelsForNode_IsNull() throws Exception {
+    void testGetLabelsForNode_IsNull() {
         Node nullingNode = new NullingNode();
         Collection<LabelAtom> labels = nodeLabelCache.getLabelsForNode(nullingNode);
         assertThat(labels, is(empty()));
     }
 
-    @Test(expected = IOException.class)
-    public void testRequestComputerPlatformDetails_ChannelThrows() throws Exception {
+    @Test
+    void testRequestComputerPlatformDetails_ChannelThrows() {
         Computer throwingComputer = new NullingComputer(computer.getNode(), new IOException("Oops"));
-        nodeLabelCache.requestComputerPlatformDetails(throwingComputer, throwingComputer.getChannel());
-    }
-
-    @Test(expected = IOException.class)
-    public void testRequestComputerPlatformDetails_ChannelThrowsOnNullComputer() throws Exception {
-        nodeLabelCache.requestComputerPlatformDetails(null, computer.getChannel());
-    }
-
-    @Test(expected = IOException.class)
-    public void testRequestComputerPlatformDetails_ChannelThrowsOnNullChannel() throws Exception {
-        nodeLabelCache.requestComputerPlatformDetails(computer, null);
+        assertThrows(
+                IOException.class,
+                () -> nodeLabelCache.requestComputerPlatformDetails(throwingComputer, throwingComputer.getChannel()));
     }
 
     @Test
-    public void testPreOnline_ChannelLogsDetailCollectionIgnoredOnInternalException() throws Exception {
+    void testRequestComputerPlatformDetails_ChannelThrowsOnNullComputer() {
+        assertThrows(
+                IOException.class, () -> nodeLabelCache.requestComputerPlatformDetails(null, computer.getChannel()));
+    }
+
+    @Test
+    void testRequestComputerPlatformDetails_ChannelThrowsOnNullChannel() {
+        assertThrows(IOException.class, () -> nodeLabelCache.requestComputerPlatformDetails(computer, null));
+    }
+
+    @Test
+    void testPreOnline_ChannelLogsDetailCollectionIgnoredOnInternalException() throws Exception {
         // Setup a recorder for agent log
         RingBufferLogHandler agentLogHandler = new RingBufferLogHandler(10);
         Logger agentLogger = Logger.getLogger(NodeLabelCacheTest.class.getName());
@@ -190,7 +191,7 @@ public class NodeLabelCacheTest {
     }
 
     @Test
-    public void testPreOnline_ChannelLogsDetailCollectionIgnoredOnInternalExceptionForNullComputer() throws Exception {
+    void testPreOnline_ChannelLogsDetailCollectionIgnoredOnInternalExceptionForNullComputer() throws Exception {
         // Setup a recorder for agent log
         RingBufferLogHandler agentLogHandler = new RingBufferLogHandler(10);
         Logger agentLogger = Logger.getLogger(NodeLabelCacheTest.class.getName());
@@ -205,7 +206,7 @@ public class NodeLabelCacheTest {
     }
 
     @Test
-    public void testPreOnline_ChannelLogsDetailCollectionIgnoredOnInternalExceptionForComputer() throws Exception {
+    void testPreOnline_ChannelLogsDetailCollectionIgnoredOnInternalExceptionForComputer() throws Exception {
         // Setup a recorder for agent log
         RingBufferLogHandler agentLogHandler = new RingBufferLogHandler(10);
         Logger agentLogger = Logger.getLogger(NodeLabelCacheTest.class.getName());
@@ -248,13 +249,13 @@ public class NodeLabelCacheTest {
         }
 
         @Override
-        public List<LogRecord> getLogRecords() throws IOException, InterruptedException {
+        public List<LogRecord> getLogRecords() {
             throw new UnsupportedOperationException("Unsupported");
         }
 
         @Override
         @RequirePOST
-        public void doLaunchSlaveAgent(StaplerRequest2 sr, StaplerResponse2 sr1) throws IOException, ServletException {
+        public void doLaunchSlaveAgent(StaplerRequest2 sr, StaplerResponse2 sr1) {
             throw new UnsupportedOperationException("Unsupported");
         }
 
@@ -315,13 +316,13 @@ public class NodeLabelCacheTest {
         }
 
         @Override
-        public List<LogRecord> getLogRecords() throws IOException, InterruptedException {
+        public List<LogRecord> getLogRecords() {
             throw new UnsupportedOperationException("Unsupported");
         }
 
         @Override
         @RequirePOST
-        public void doLaunchSlaveAgent(StaplerRequest2 sr, StaplerResponse2 sr1) throws IOException, ServletException {
+        public void doLaunchSlaveAgent(StaplerRequest2 sr, StaplerResponse2 sr1) {
             throw new UnsupportedOperationException("Unsupported");
         }
 

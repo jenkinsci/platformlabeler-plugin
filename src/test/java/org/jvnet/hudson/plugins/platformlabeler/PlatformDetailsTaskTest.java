@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 
+import hudson.Functions;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -20,7 +21,7 @@ import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
 
 @Execution(ExecutionMode.CONCURRENT)
-public class PlatformDetailsTaskTest {
+class PlatformDetailsTaskTest {
 
     private PlatformDetailsTask platformDetailsTask;
 
@@ -43,7 +44,7 @@ public class PlatformDetailsTaskTest {
     @DisplayName("test remote call for platform details")
     void testCall() throws Exception {
         PlatformDetails details = platformDetailsTask.call();
-        if (isWindows()) {
+        if (Functions.isWindows()) {
             assertThat(details.getName(), is("windows"));
         } else {
             assertThat(details.getName(), is(not("windows")));
@@ -124,7 +125,7 @@ public class PlatformDetailsTaskTest {
     @Test
     @DisplayName("test Linux label computation without lsb_release")
     void testComputeLabelsLinuxWithoutLsbRelease() throws Exception {
-        if (isWindows() || !Files.exists(Path.of("/etc/os-release"))) {
+        if (Functions.isWindows() || !Files.exists(Path.of("/etc/os-release"))) {
             return;
         }
         String unknown = PlatformDetailsTask.UNKNOWN_VALUE_STRING;
@@ -136,7 +137,7 @@ public class PlatformDetailsTaskTest {
     @Test
     @DisplayName("test Linux label computation with null lsb_release")
     void testComputeLabelsLinuxWithNullLsbRelease() throws Exception {
-        if (isWindows() || !Files.exists(Path.of("/etc/os-release"))) {
+        if (Functions.isWindows() || !Files.exists(Path.of("/etc/os-release"))) {
             return;
         }
         LsbRelease release = null;
@@ -175,7 +176,7 @@ public class PlatformDetailsTaskTest {
     @Test
     @DisplayName("test operating system name")
     void compareOSName() throws Exception {
-        if (isWindows() || !Files.exists(Path.of("/etc/os-release"))) {
+        if (Functions.isWindows() || !Files.exists(Path.of("/etc/os-release"))) {
             return;
         }
         String computedName = platformDetailsTask
@@ -196,7 +197,7 @@ public class PlatformDetailsTaskTest {
 
     @Test
     @DisplayName("Read Debian version identifier missing file")
-    void getDebianVersionIdentifierMissingFileReturnsUnknownValue() throws Exception {
+    void getDebianVersionIdentifierMissingFileReturnsUnknownValue() {
         platformDetailsTask.setDebianVersion(new File("/this/file/does/not/exist"));
         String version = platformDetailsTask.getDebianVersionIdentifier();
         assertThat(version, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
@@ -204,7 +205,7 @@ public class PlatformDetailsTaskTest {
 
     @Test
     @DisplayName("Read Debian version identifier null file")
-    void getDebianVersionNullFileReturnsUnknownValue() throws Exception {
+    void getDebianVersionNullFileReturnsUnknownValue() {
         platformDetailsTask.setDebianVersion(null);
         String version = platformDetailsTask.getDebianVersionIdentifier();
         assertThat(version, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
@@ -239,7 +240,7 @@ public class PlatformDetailsTaskTest {
 
     @Test
     @DisplayName("Read SUSE release identifier missing file")
-    void getSuseReleaseIdentifierMissingFileReturnsUnknownValue() throws Exception {
+    void getSuseReleaseIdentifierMissingFileReturnsUnknownValue() {
         platformDetailsTask.setSuseRelease(new File("/this/file/does/not/exist"));
         String name = platformDetailsTask.getSuseReleaseIdentifier("ID");
         assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
@@ -247,7 +248,7 @@ public class PlatformDetailsTaskTest {
 
     @Test
     @DisplayName("Read SUSE release identifier null file")
-    void getSuseReleaseIdentifierNullFileReturnsUnknownValue() throws Exception {
+    void getSuseReleaseIdentifierNullFileReturnsUnknownValue() {
         platformDetailsTask.setSuseRelease(null);
         String name = platformDetailsTask.getSuseReleaseIdentifier("ID");
         assertThat(name, is(PlatformDetailsTask.UNKNOWN_VALUE_STRING));
@@ -255,8 +256,8 @@ public class PlatformDetailsTaskTest {
 
     @Test
     @DisplayName("Read SUSE release identifier wrong file")
-    void getSuseReleaseIdentifierWrongFileReturnsUnknownValue() throws Exception {
-        if (isWindows() || !Files.exists(Path.of("/etc/os-release"))) {
+    void getSuseReleaseIdentifierWrongFileReturnsUnknownValue() {
+        if (Functions.isWindows() || !Files.exists(Path.of("/etc/os-release"))) {
             return;
         }
         platformDetailsTask.setSuseRelease(new File("/etc/hosts")); // Not SuSE-release file
@@ -267,7 +268,7 @@ public class PlatformDetailsTaskTest {
     @Test
     @DisplayName("Compare operating system version")
     void compareOSVersion() throws Exception {
-        if (isWindows() || !Files.exists(Path.of("/etc/os-release"))) {
+        if (Functions.isWindows() || !Files.exists(Path.of("/etc/os-release"))) {
             return;
         }
         PlatformDetails details = platformDetailsTask.computeLabels(SPECIAL_CASE_ARCH, "linux", "xyzzy");
@@ -300,9 +301,5 @@ public class PlatformDetailsTaskTest {
         } else {
             assertThat(details.getVersion(), anyOf(is(version), is(foundValue)));
         }
-    }
-
-    private boolean isWindows() {
-        return File.pathSeparatorChar == ';';
     }
 }

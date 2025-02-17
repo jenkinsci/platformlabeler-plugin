@@ -17,14 +17,14 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
 
-public class PlatformDetailsTaskWindowsReleaseTest {
+class PlatformDetailsTaskWindowsReleaseTest {
 
     /**
      * Generate test parameters for Windows feature updates using sample files stored as resources.
      *
      * @return parameter values to be tested
      */
-    public static Stream<Object[]> generateWindowsReleaseFileNames() {
+    static Stream<Object[]> generateWindowsReleaseFileNames() {
         String packageName =
                 PlatformDetailsTaskWindowsReleaseTest.class.getPackage().getName();
         Reflections reflections = new Reflections(packageName, Scanners.Resources);

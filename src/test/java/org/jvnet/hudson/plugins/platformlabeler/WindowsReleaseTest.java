@@ -27,16 +27,19 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.matchesPattern;
 
+import hudson.Functions;
 import java.io.File;
 import java.net.URL;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class WindowsReleaseTest {
+class WindowsReleaseTest {
 
     private final WindowsRelease windowsRelease = new WindowsRelease();
-    private final WindowsRelease windowsReleaseFile;
+    private WindowsRelease windowsReleaseFile;
 
-    public WindowsReleaseTest() throws Exception {
+    @BeforeEach
+    void setUp() throws Exception {
         URL resource = getClass().getResource("windows/10.0.1903/reg-query");
         File dataFile = new File(resource.toURI());
         windowsReleaseFile = new WindowsRelease(dataFile);
@@ -49,7 +52,7 @@ public class WindowsReleaseTest {
 
     @Test
     void testRelease() {
-        if (isWindows()) {
+        if (Functions.isWindows()) {
             assertThat(windowsRelease.release(), matchesPattern("[12][0-9][0-9][0-9]"));
         } else {
             String expected = PlatformDetailsTask.UNKNOWN_WINDOWS_VALUE_STRING;
@@ -65,9 +68,5 @@ public class WindowsReleaseTest {
     @Test
     void testDistributorIdFromFile() {
         assertThat(windowsReleaseFile.distributorId(), is("Microsoft"));
-    }
-
-    private static boolean isWindows() {
-        return File.pathSeparatorChar == ';';
     }
 }

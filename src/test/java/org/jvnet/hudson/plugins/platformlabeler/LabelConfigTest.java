@@ -4,10 +4,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 import java.util.Random;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-public class LabelConfigTest {
+class LabelConfigTest {
 
     private final Random random = new Random();
 
@@ -23,10 +23,8 @@ public class LabelConfigTest {
     private boolean randomIsWindowsFeatureUpdate;
     private boolean randomIsOsName;
 
-    public LabelConfigTest() {}
-
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         LabelConfig randomSrcLabelConfig = new LabelConfig();
 
         randomIsArchitecture = random.nextBoolean();
@@ -52,7 +50,7 @@ public class LabelConfigTest {
     }
 
     @Test
-    public void testConstructorNullArg() {
+    void testConstructorNullArg() {
         LabelConfig nullLabelConfig = new LabelConfig(null);
         assertThat(nullLabelConfig.isArchitecture(), is(defaultConfig.isArchitecture()));
         assertThat(nullLabelConfig.isName(), is(defaultConfig.isName()));
@@ -63,97 +61,97 @@ public class LabelConfigTest {
     }
 
     @Test
-    public void testIsArchitecture() {
+    void testIsArchitecture() {
         assertThat(defaultConfig.isArchitecture(), is(true));
         assertThat(randomConfig.isArchitecture(), is(randomIsArchitecture));
     }
 
     @Test
-    public void testSetArchitecture() {
+    void testSetArchitecture() {
         defaultConfig.setArchitecture(!randomIsArchitecture);
         assertThat(defaultConfig.isArchitecture(), is(!randomIsArchitecture));
     }
 
     @Test
-    public void testIsName() {
+    void testIsName() {
         assertThat(defaultConfig.isName(), is(true));
         assertThat(randomConfig.isName(), is(randomIsName));
     }
 
     @Test
-    public void testSetName() {
+    void testSetName() {
         defaultConfig.setName(!randomIsName);
         assertThat(defaultConfig.isName(), is(!randomIsName));
     }
 
     @Test
-    public void testIsVersion() {
+    void testIsVersion() {
         assertThat(defaultConfig.isVersion(), is(true));
         assertThat(randomConfig.isVersion(), is(randomIsVersion));
     }
 
     @Test
-    public void testSetVersion() {
+    void testSetVersion() {
         defaultConfig.setVersion(!randomIsVersion);
         assertThat(defaultConfig.isVersion(), is(!randomIsVersion));
     }
 
     @Test
-    public void testIsArchitectureName() {
+    void testIsArchitectureName() {
         assertThat(defaultConfig.isArchitectureName(), is(true));
         assertThat(randomConfig.isArchitectureName(), is(randomIsArchitectureName));
     }
 
     @Test
-    public void testSetArchitectureName() {
+    void testSetArchitectureName() {
         defaultConfig.setArchitectureName(!randomIsArchitectureName);
         assertThat(defaultConfig.isArchitectureName(), is(!randomIsArchitectureName));
     }
 
     @Test
-    public void testIsNameVersion() {
+    void testIsNameVersion() {
         assertThat(defaultConfig.isNameVersion(), is(true));
         assertThat(randomConfig.isNameVersion(), is(randomIsNameVersion));
     }
 
     @Test
-    public void testSetNameVersion() {
+    void testSetNameVersion() {
         defaultConfig.setNameVersion(!randomIsNameVersion);
         assertThat(defaultConfig.isNameVersion(), is(!randomIsNameVersion));
     }
 
     @Test
-    public void testIsArchitectureNameVersion() {
+    void testIsArchitectureNameVersion() {
         assertThat(defaultConfig.isArchitectureNameVersion(), is(true));
         assertThat(randomConfig.isArchitectureNameVersion(), is(randomIsArchitectureNameVersion));
     }
 
     @Test
-    public void testSetArchitectureNameVersion() {
+    void testSetArchitectureNameVersion() {
         defaultConfig.setArchitectureNameVersion(!randomIsArchitectureNameVersion);
         assertThat(defaultConfig.isArchitectureNameVersion(), is(!randomIsArchitectureNameVersion));
     }
 
     @Test
-    public void testIsWindowsFeatureUpdate() {
+    void testIsWindowsFeatureUpdate() {
         assertThat(defaultConfig.isWindowsFeatureUpdate(), is(true));
         assertThat(randomConfig.isWindowsFeatureUpdate(), is(randomIsWindowsFeatureUpdate));
     }
 
     @Test
-    public void testSetWindowsFeatureUpdate() {
+    void testSetWindowsFeatureUpdate() {
         defaultConfig.setWindowsFeatureUpdate(!randomIsWindowsFeatureUpdate);
         assertThat(defaultConfig.isWindowsFeatureUpdate(), is(!randomIsWindowsFeatureUpdate));
     }
 
     @Test
-    public void testIsOsName() {
+    void testIsOsName() {
         assertThat(defaultConfig.isOsName(), is(true));
         assertThat(randomConfig.isOsName(), is(randomIsOsName));
     }
 
     @Test
-    public void testSetOsName() {
+    void testSetOsName() {
         defaultConfig.setOsName(!randomIsOsName);
         assertThat(defaultConfig.isOsName(), is(!randomIsOsName));
     }
