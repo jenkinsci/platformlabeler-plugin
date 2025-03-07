@@ -178,7 +178,6 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         return computeLabels(arch, name, version, null);
     }
 
-    @SuppressFBWarnings(value = "IMPROPER_UNICODE", justification = "Strings are ASCII, safe to lower case")
     private String toLowerCase(@NonNull String s1) {
         return s1.toLowerCase(Locale.ENGLISH);
     }
