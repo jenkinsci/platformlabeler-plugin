@@ -176,17 +176,6 @@ updates:
     schedule:
       interval: "monthly"
 
-  # Maintain dependencies for Ubuntu 20.04
-  - package-ecosystem: "docker"
-    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/ubuntu/20.04"
-    ignore:
-    - dependency-name: "Dockerfile"
-      update-types: ["version-update:semver-major"]
-    labels:
-    - "skip-changelog"
-    schedule:
-      interval: "monthly"
-
   # Maintain dependencies for Ubuntu 22.04
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/ubuntu/22.04"

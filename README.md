@@ -35,7 +35,6 @@ Labels commonly include operating system name, version, architecture, and Window
 | Rocky Linux 8              | `Rocky`            | `8.10`         | `amd64`      | // EOL: 31 May 2029
 | Rocky Linux 9              | `Rocky`            | `9.5`          | `amd64`      | // EOL: 31 May 2032
 | SLES 15                    | `SUSE`             | `15`           | `amd64`      | // EOL: 31 Jul 2031
-| Ubuntu 20                  | `Ubuntu`           | `20.04`        | `amd64`      | // EOL: 31 May 2025
 | Ubuntu 22                  | `Ubuntu`           | `22.04`        | `amd64`      | // EOL:  1 Apr 2027
 | Ubuntu 24                  | `Ubuntu`           | `24.04`        | `amd64`      | // EOL: 25 Apr 2036
 | Windows 10                 | `windows`          | `10.0`         | `amd64`      | // EOL: 14 Oct 2025
