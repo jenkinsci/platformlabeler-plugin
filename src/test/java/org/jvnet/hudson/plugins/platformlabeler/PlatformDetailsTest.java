@@ -156,8 +156,6 @@ class PlatformDetailsTest {
     };
 
     private static final String[] versions = {
-        "3.17.9",
-        "3.18.12",
         "3.19.7",
         "3.20.6",
         "3.21.3",
