@@ -32,7 +32,7 @@ args=$@
 
 # Generate os-release files
 # Generate redhat-release files for all systems that include the redhat-release file
-for Dockerfile in $(find * -type f -name Dockerfile ! -path '*7.9.2009*' -print); do
+for Dockerfile in $(find * -type f -name Dockerfile -print); do
         name_version=$(dirname $Dockerfile)
         name=$(dirname $name_version)
         version=$(basename $name_version)
