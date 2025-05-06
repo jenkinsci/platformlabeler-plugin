@@ -14,7 +14,6 @@ Labels commonly include operating system name, version, architecture, and Window
 | -------------------------- | ------------------ | -------------- | ------------ |
 | Alma Linux 8               | `AlmaLinux`        | `8.10`         | `amd64`      | // EOL: 31 Mar 2029
 | Alma Linux 9               | `AlmaLinux`        | `9.5`          | `amd64`      | // EOL: 31 May 2032
-| Alpine 3.18                | `Alpine`           | `3.18.12`      | `amd64`      | // EOL: 01 May 2025
 | Alpine 3.19                | `Alpine`           | `3.19.7`       | `amd64`      | // EOL: 01 Nov 2025
 | Alpine 3.20                | `Alpine`           | `3.20.6`       | `amd64`      | // EOL: 01 May 2026
 | Alpine 3.21                | `Alpine`           | `3.21.3`       | `amd64`      | // EOL: 01 Nov 2026
@@ -25,7 +24,6 @@ Labels commonly include operating system name, version, architecture, and Window
 | Debian unstable            | `Debian`           | `unstable`     | `amd64`      |
 | EuroLinux 8                | `EuroLinux`        | `8.10`         | `amd64`      | // EOL: 31 May 2029
 | EuroLinux 9                | `EuroLinux`        | `9.4`          | `amd64`      | // EOL: 31 May 2032
-| Fedora 40                  | `Fedora`           | `40`           | `amd64`      | // EOL: 13 May 2025
 | Fedora 41                  | `Fedora`           | `41`           | `amd64`      | // EOL: 13 May 2025
 | FreeBSD 13                 | `freebsd`          | `13.2-RELEASE` | `amd64`      | // EOL: 31 Jan 2026
 | FreeBSD 14                 | `freebsd`          | `14-RELEASE`   | `amd64`      | // EOL: 30 Nov 2028
@@ -37,7 +35,6 @@ Labels commonly include operating system name, version, architecture, and Window
 | Rocky Linux 8              | `Rocky`            | `8.10`         | `amd64`      | // EOL: 31 May 2029
 | Rocky Linux 9              | `Rocky`            | `9.5`          | `amd64`      | // EOL: 31 May 2032
 | SLES 15                    | `SUSE`             | `15`           | `amd64`      | // EOL: 31 Jul 2031
-| Ubuntu 20                  | `Ubuntu`           | `20.04`        | `amd64`      | // EOL: 31 May 2025
 | Ubuntu 22                  | `Ubuntu`           | `22.04`        | `amd64`      | // EOL:  1 Apr 2027
 | Ubuntu 24                  | `Ubuntu`           | `24.04`        | `amd64`      | // EOL: 25 Apr 2036
 | Windows 10                 | `windows`          | `10.0`         | `amd64`      | // EOL: 14 Oct 2025
