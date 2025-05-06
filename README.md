@@ -24,7 +24,6 @@ Labels commonly include operating system name, version, architecture, and Window
 | Debian unstable            | `Debian`           | `unstable`     | `amd64`      |
 | EuroLinux 8                | `EuroLinux`        | `8.10`         | `amd64`      | // EOL: 31 May 2029
 | EuroLinux 9                | `EuroLinux`        | `9.4`          | `amd64`      | // EOL: 31 May 2032
-| Fedora 40                  | `Fedora`           | `40`           | `amd64`      | // EOL: 13 May 2025
 | Fedora 41                  | `Fedora`           | `41`           | `amd64`      | // EOL: 13 May 2025
 | FreeBSD 13                 | `freebsd`          | `13.2-RELEASE` | `amd64`      | // EOL: 31 Jan 2026
 | FreeBSD 14                 | `freebsd`          | `14-RELEASE`   | `amd64`      | // EOL: 30 Nov 2028
