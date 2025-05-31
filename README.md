@@ -70,7 +70,7 @@ Common values for Windows feature update are `1809`, `1903`, `2009`, and `2109`.
 On Linux computers, the plugin uses the output of the [`lsb_release`](https://linux.die.net/man/1/lsb_release) command if the command is available.
 
 If `lsb_release` is not installed, labels on Linux agents will be guessed based on values in `/etc/os-release`.
-Red Hat Linux 9 and its derivatives intentionally do not deliver `lsb_release`.
+Fedora Linux 42, Red Hat Linux 9, and its derivatives intentionally do not deliver `lsb_release`.
 
 Red Hat Linux agents have another fallback based on `/etc/redhat-release`.
 
