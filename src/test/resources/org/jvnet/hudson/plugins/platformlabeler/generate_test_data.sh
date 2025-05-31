@@ -66,6 +66,8 @@ for Dockerfile in $(find * -type f -name Dockerfile -print); do
                 # Create empty lsb_release-a data file
                 : > $name_version/lsb_release-a
         fi
+        # Remove lsb_release-a file if it does not exist in the container image
+        grep -q -i cat:.*no.such.file $name_version/lsb_release-a && rm -rf $name_version/lsb_release-a
         if [ ! -s $name_version/lsb_release-a ]; then
                 # Remove empty lsb_release-a data file
                 rm -rf $name_version/lsb_release-a
