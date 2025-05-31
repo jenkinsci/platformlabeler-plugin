@@ -73,6 +73,8 @@ updates:
     schedule:
       interval: "monthly"
 
+  # Alpine 3.22
+
   # Amazon Linux 2023
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/amzn/2023"
