@@ -56,7 +56,7 @@ updates:
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.20.6"
     ignore:
     - dependency-name: "Dockerfile"
-      update-types: ["version-update:semver-minor"]
+      update-types: ["version-update:semver-patch"]
     labels:
     - "skip-changelog"
     schedule:
@@ -67,13 +67,22 @@ updates:
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.21.3"
     ignore:
     - dependency-name: "Dockerfile"
-      update-types: ["version-update:semver-minor"]
+      update-types: ["version-update:semver-patch"]
     labels:
     - "skip-changelog"
     schedule:
       interval: "monthly"
 
   # Alpine 3.22
+  - package-ecosystem: "docker"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.22.0"
+    ignore:
+    - dependency-name: "Dockerfile"
+      update-types: ["version-update:semver-patch"]
+    labels:
+    - "skip-changelog"
+    schedule:
+      interval: "monthly"
 
   # Amazon Linux 2023
   - package-ecosystem: "docker"
