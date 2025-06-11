@@ -1,11 +1,11 @@
 NAME="Fedora Linux"
-VERSION="42 (Container Image Prerelease)"
-RELEASE_TYPE=development
+VERSION="42 (Container Image)"
+RELEASE_TYPE=stable
 ID=fedora
 VERSION_ID=42
 VERSION_CODENAME=""
 PLATFORM_ID="platform:f42"
-PRETTY_NAME="Fedora Linux 42 (Container Image Prerelease)"
+PRETTY_NAME="Fedora Linux 42 (Container Image)"
 ANSI_COLOR="0;38;2;60;110;180"
 LOGO=fedora-logo-icon
 CPE_NAME="cpe:/o:fedoraproject:fedora:42"
