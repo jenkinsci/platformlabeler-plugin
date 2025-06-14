@@ -178,7 +178,7 @@ updates:
 
   # Rocky 9
   - package-ecosystem: "docker"
-    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/rocky/9.5"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/rocky/9.6"
     ignore:
     - dependency-name: "rockylinux/rockylinux"
       update-types: ["version-update:semver-major"]
