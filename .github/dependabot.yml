@@ -206,3 +206,12 @@ updates:
       update-types: ["version-update:semver-major"]
     schedule:
       interval: "monthly"
+
+  # Ubuntu 25.04
+  - package-ecosystem: "docker"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/ubuntu/25.04"
+    ignore:
+    - dependency-name: "Dockerfile"
+      update-types: ["version-update:semver-major"]
+    schedule:
+      interval: "monthly"
