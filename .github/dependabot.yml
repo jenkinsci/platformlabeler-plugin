@@ -204,6 +204,8 @@ updates:
     ignore:
     - dependency-name: "Dockerfile"
       update-types: ["version-update:semver-major"]
+    labels:
+    - "skip-changelog"
     schedule:
       interval: "monthly"
 
@@ -213,5 +215,7 @@ updates:
     ignore:
     - dependency-name: "Dockerfile"
       update-types: ["version-update:semver-major"]
+    labels:
+    - "skip-changelog"
     schedule:
       interval: "monthly"
