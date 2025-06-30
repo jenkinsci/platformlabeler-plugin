@@ -130,22 +130,6 @@ updates:
     schedule:
       interval: "monthly"
 
-  # EuroLinux 8
-  - package-ecosystem: "docker"
-    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/eurolinux/8.10"
-    labels:
-    - "skip-changelog"
-    schedule:
-      interval: "monthly"
-
-  # EuroLinux 9
-  - package-ecosystem: "docker"
-    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/eurolinux/9.4"
-    labels:
-    - "skip-changelog"
-    schedule:
-      interval: "monthly"
-
   # Red Hat Universal Base Image 8
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/registry.access.redhat.com/ubi8/ubi/8.10"
