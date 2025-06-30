@@ -71,7 +71,6 @@ class PlatformDetailsTaskTest {
                             is("AmazonAMI"),
                             is("CentOS"),
                             is("Debian"),
-                            is("EuroLinux"),
                             is("Fedora"),
                             is("openSUSE"),
                             is("OracleServer"),
