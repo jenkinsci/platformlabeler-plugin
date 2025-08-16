@@ -145,7 +145,7 @@ class PlatformDetailsTaskReleaseTest {
         if (parentDir.getName().equals("testing") || parentDir.getName().equals("unstable")) {
             /* Debian unstable and Debian testing are indistinguishable by package definition */
             /* See https://unix.stackexchange.com/questions/464812/ for more details */
-            return "13";
+            return "trixie";
         }
         return parentDir.getName();
     }
