@@ -122,7 +122,7 @@ updates:
     schedule:
       interval: "monthly"
 
-  # Debian unstable ("sid")
+  # Debian "sid" (unstable)
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/debian/unstable"
     labels:
