@@ -1,2 +1,2 @@
-FROM ubuntu:plucky-20250714
+FROM ubuntu:plucky-20250730
 RUN apt-get update && apt-get install -y lsb-release
