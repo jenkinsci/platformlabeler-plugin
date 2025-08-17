@@ -114,6 +114,17 @@ updates:
     schedule:
       interval: "monthly"
 
+  # Debian 13
+  - package-ecosystem: "docker"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/debian/13"
+    ignore:
+    - dependency-name: "debian"
+      update-types: ["version-update:semver-major"]
+    labels:
+    - "skip-changelog"
+    schedule:
+      interval: "monthly"
+
   # Debian "testing"
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/debian/testing"

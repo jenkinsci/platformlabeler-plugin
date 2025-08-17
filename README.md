@@ -21,6 +21,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Amazon Linux 2023          | `Amazon`           | `2023`         | `amd64`      | // EOL: 15 Mar 2028
 | Debian 11                  | `Debian`           | `11`           | `amd64`      | // EOL: 30 Jun 2026
 | Debian 12                  | `Debian`           | `12`           | `amd64`      | // EOL: 30 Jun 2028
+| Debian 13                  | `Debian`           | `13`           | `amd64`      | // EOL: 30 Jun 2030
 | Debian testing             | `Debian`           | `testing`      | `amd64`      |
 | Debian unstable            | `Debian`           | `unstable`     | `amd64`      |
 | Fedora 41                  | `Fedora`           | `41`           | `amd64`      | // EOL: 19 Nov 2025
