@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>5.24</version>
+    <version>5.26</version>
     <relativePath />
   </parent>
 
@@ -43,7 +43,7 @@
     <!-- Plugin intentionally does not deliver javadoc. -->
     <!-- No API's intended to be used, none should be called from outside. -->
     <maven.javadoc.skip>true</maven.javadoc.skip>
-    <pmdVersion>7.16.0</pmdVersion>
+    <pmdVersion>7.17.0</pmdVersion>
     <spotbugs.effort>Max</spotbugs.effort>
     <spotbugs.threshold>Low</spotbugs.threshold>
     <spotless.check.skip>false</spotless.check.skip>
@@ -55,7 +55,7 @@
       <dependency>
         <groupId>io.jenkins.tools.bom</groupId>
         <artifactId>bom-${jenkins.baseline}.x</artifactId>
-        <version>5353.v3dec76e40169</version>
+        <version>5388.v3ea_2e00a_719a_</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
