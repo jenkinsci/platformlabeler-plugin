@@ -25,7 +25,6 @@
 package org.jvnet.hudson.plugins.platformlabeler;
 
 import edu.umd.cs.findbugs.annotations.NonNull;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import hudson.Extension;
 import hudson.FilePath;
 import hudson.model.Computer;
@@ -137,12 +136,10 @@ public class NodeLabelCache extends ComputerListener {
         nodePlatformProperties.put(computer, requestComputerPlatformDetails(computer, channel));
     }
 
-    @SuppressFBWarnings(value = "CRLF_INJECTION_LOGS", justification = "CRLF not allowed in label display names")
     private void logUpdateNodeException(Node node, IOException e) {
         LOGGER.log(Level.FINE, "Exception updating node '%s' during label refresh".formatted(node.getDisplayName()), e);
     }
 
-    @SuppressFBWarnings(value = "CRLF_INJECTION_LOGS", justification = "CRLF not allowed in label display names")
     private void logUpdateNodeResult(boolean result, Node node, Set<LabelAtom> assignedLabels) {
         LOGGER.log(
                 Level.FINEST,

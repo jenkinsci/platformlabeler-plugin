@@ -89,7 +89,6 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         return computeLabels(arch, name, version);
     }
 
-    @SuppressFBWarnings(value = "IMPROPER_UNICODE", justification = "Strings are ASCII, safe to ignore case")
     private boolean equalsIgnoreCase(@NonNull String s1, @NonNull String s2) {
         return s1.equalsIgnoreCase(s2);
     }
