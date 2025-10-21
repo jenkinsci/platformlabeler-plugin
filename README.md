@@ -14,7 +14,6 @@ Labels commonly include operating system name, version, architecture, and Window
 | -------------------------- | ------------------ | -------------- | ------------ |
 | Alma Linux 8               | `AlmaLinux`        | `8.10`         | `amd64`      | // EOL: 31 Mar 2029
 | Alma Linux 9               | `AlmaLinux`        | `9.6`          | `amd64`      | // EOL: 31 May 2032
-| Alpine 3.19                | `Alpine`           | `3.19.8`       | `amd64`      | // EOL: 01 Nov 2025
 | Alpine 3.20                | `Alpine`           | `3.20.7`       | `amd64`      | // EOL: 01 May 2026
 | Alpine 3.21                | `Alpine`           | `3.21.4`       | `amd64`      | // EOL: 01 Nov 2026
 | Alpine 3.22                | `Alpine`           | `3.22.2`       | `amd64`      | // EOL: 01 May 2027
@@ -38,7 +37,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Ubuntu 22                  | `Ubuntu`           | `22.04`        | `amd64`      | // EOL:  1 Apr 2027
 | Ubuntu 24                  | `Ubuntu`           | `24.04`        | `amd64`      | // EOL: 25 Apr 2036
 | Ubuntu 25                  | `Ubuntu`           | `25.04`        | `amd64`      | // EOL: 31 Jan 2026
-| Windows 10                 | `windows`          | `10.0`         | `amd64`      | // EOL: 14 Oct 2025
+| Windows 11                 | `windows`          | `10.0`         | `amd64`      |
 | Windows Server 2016        | `WindowsServer2016`| `10.0`         | `amd64`      | // EOL: 12 Jan 2027
 | Windows Server 2019        | `WindowsServer2019`| `10.0`         | `amd64`      | // EOL:  9 Jan 2029
 | Windows Server 2022        | `WindowsServer2022`| `10.0`         | `amd64`      | // EOL: 14 Oct 2031
