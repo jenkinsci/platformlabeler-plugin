@@ -64,7 +64,7 @@ updates:
 
   # Alpine 3.22
   - package-ecosystem: "docker"
-    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.22.1"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.22.2"
     ignore:
     - dependency-name: "Dockerfile"
       update-types: ["version-update:semver-patch"]
