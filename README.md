@@ -14,7 +14,6 @@ Labels commonly include operating system name, version, architecture, and Window
 | -------------------------- | ------------------ | -------------- | ------------ |
 | Alma Linux 8               | `AlmaLinux`        | `8.10`         | `amd64`      | // EOL: 31 Mar 2029
 | Alma Linux 9               | `AlmaLinux`        | `9.6`          | `amd64`      | // EOL: 31 May 2032
-| Alpine 3.19                | `Alpine`           | `3.19.8`       | `amd64`      | // EOL: 01 Nov 2025
 | Alpine 3.20                | `Alpine`           | `3.20.7`       | `amd64`      | // EOL: 01 May 2026
 | Alpine 3.21                | `Alpine`           | `3.21.4`       | `amd64`      | // EOL: 01 Nov 2026
 | Alpine 3.22                | `Alpine`           | `3.22.1`       | `amd64`      | // EOL: 01 May 2027
