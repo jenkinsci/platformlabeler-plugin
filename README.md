@@ -37,7 +37,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Ubuntu 22                  | `Ubuntu`           | `22.04`        | `amd64`      | // EOL:  1 Apr 2027
 | Ubuntu 24                  | `Ubuntu`           | `24.04`        | `amd64`      | // EOL: 25 Apr 2036
 | Ubuntu 25                  | `Ubuntu`           | `25.04`        | `amd64`      | // EOL: 31 Jan 2026
-| Windows 10                 | `windows`          | `10.0`         | `amd64`      | // EOL: 14 Oct 2025
+| Windows 11                 | `windows`          | `10.0`         | `amd64`      |
 | Windows Server 2016        | `WindowsServer2016`| `10.0`         | `amd64`      | // EOL: 12 Jan 2027
 | Windows Server 2019        | `WindowsServer2019`| `10.0`         | `amd64`      | // EOL:  9 Jan 2029
 | Windows Server 2022        | `WindowsServer2022`| `10.0`         | `amd64`      | // EOL: 14 Oct 2031
