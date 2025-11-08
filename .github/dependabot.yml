@@ -204,7 +204,7 @@ updates:
     schedule:
       interval: "monthly"
 
-- package-ecosystem: "devcontainers"
-   directory: "/"
-   schedule:
-     interval: weekly
+  - package-ecosystem: "devcontainers"
+     directory: "/"
+     schedule:
+       interval: weekly
