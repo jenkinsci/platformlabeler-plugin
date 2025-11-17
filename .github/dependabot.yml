@@ -203,8 +203,3 @@ updates:
     - "skip-changelog"
     schedule:
       interval: "monthly"
-
-  - package-ecosystem: "devcontainers"
-    directory: "/"
-    schedule:
-      interval: weekly
