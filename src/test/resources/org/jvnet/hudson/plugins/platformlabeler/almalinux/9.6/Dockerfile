@@ -1,1 +1,1 @@
-FROM almalinux:9.6-minimal-20250909
+FROM almalinux:10.1-minimal-20251124
