@@ -22,8 +22,8 @@ updates:
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/almalinux/8.10"
     ignore:
-    - dependency-name: "almalinux-8"
-      update-types: ["version-update:semver-minor"]
+    - dependency-name: "almalinux"
+      update-types: ["version-update:semver-major"]
     labels:
     - "skip-changelog"
     schedule:
@@ -33,8 +33,8 @@ updates:
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/almalinux/9.7"
     ignore:
-    - dependency-name: "almalinux-9"
-      update-types: ["version-update:semver-minor"]
+    - dependency-name: "almalinux"
+      update-types: ["version-update:semver-major"]
     labels:
     - "skip-changelog"
     schedule:
@@ -44,8 +44,8 @@ updates:
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/almalinux/10.1"
     ignore:
-    - dependency-name: "almalinux-10"
-      update-types: ["version-update:semver-minor"]
+    - dependency-name: "almalinux"
+      update-types: ["version-update:semver-major"]
     labels:
     - "skip-changelog"
     schedule:
@@ -55,8 +55,8 @@ updates:
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.20.8"
     ignore:
-    - dependency-name: "Dockerfile"
-      update-types: ["version-update:semver-patch"]
+    - dependency-name: "alpine"
+      update-types: ["version-update:semver-minor"]
     labels:
     - "skip-changelog"
     schedule:
@@ -66,8 +66,8 @@ updates:
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.21.5"
     ignore:
-    - dependency-name: "Dockerfile"
-      update-types: ["version-update:semver-patch"]
+    - dependency-name: "alpine"
+      update-types: ["version-update:semver-minor"]
     labels:
     - "skip-changelog"
     schedule:
@@ -77,8 +77,8 @@ updates:
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.22.2"
     ignore:
-    - dependency-name: "Dockerfile"
-      update-types: ["version-update:semver-patch"]
+    - dependency-name: "alpine"
+      update-types: ["version-update:semver-minor"]
     labels:
     - "skip-changelog"
     schedule:
