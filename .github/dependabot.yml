@@ -56,7 +56,7 @@ updates:
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.20.8"
     ignore:
     - dependency-name: "alpine"
-      update-types: ["version-update:semver-minor"]
+      update-types: ["version-update:semver-major", "version-update:semver-minor"]
     labels:
     - "skip-changelog"
     schedule:
@@ -67,7 +67,7 @@ updates:
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.21.5"
     ignore:
     - dependency-name: "alpine"
-      update-types: ["version-update:semver-minor"]
+      update-types: ["version-update:semver-major", "version-update:semver-minor"]
     labels:
     - "skip-changelog"
     schedule:
@@ -78,7 +78,7 @@ updates:
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.22.2"
     ignore:
     - dependency-name: "alpine"
-      update-types: ["version-update:semver-minor"]
+      update-types: ["version-update:semver-major", "version-update:semver-minor"]
     labels:
     - "skip-changelog"
     schedule:
