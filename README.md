@@ -30,6 +30,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | openSUSE Leap              | `openSUSE`         | `16.0`         | `amd64`      | // EOL: 31 Oct 2027
 | Oracle Linux 8             | `OracleServer`     | `8.10`         | `amd64`      | // EOL: 31 May 2029
 | Oracle Linux 9             | `OracleServer`     | `9.6`          | `amd64`      | // EOL: 31 May 2032
+| Oracle Linux 10            | `OracleServer`     | `10.0`         | `amd64`      | // EOL: 31 May 2035
 | Red Hat Enterprise Linux 8 | `RedHatEnterprise` | `8.10`         | `amd64`      | // EOL: 31 May 2029
 | Red Hat Enterprise Linux 9 | `RedHatEnterprise` | `9.7`          | `amd64`      | // EOL: 31 May 2032
 | Rocky Linux 8              | `Rocky`            | `8.10`         | `amd64`      | // EOL: 31 May 2029
