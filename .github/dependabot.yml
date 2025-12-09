@@ -160,6 +160,14 @@ updates:
     schedule:
       interval: "monthly"
 
+  # Red Hat Universal Base Image 10
+  - package-ecosystem: "docker"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/registry.access.redhat.com/ubi10/ubi/10.1"
+    labels:
+    - "skip-changelog"
+    schedule:
+      interval: "monthly"
+
   # Rocky 8
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/rocky/8.10"
