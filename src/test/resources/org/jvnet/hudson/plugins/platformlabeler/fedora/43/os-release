@@ -1,10 +1,10 @@
 NAME="Fedora Linux"
-VERSION="43 (Container Image Prerelease)"
-RELEASE_TYPE=development
+VERSION="43 (Container Image)"
+RELEASE_TYPE=stable
 ID=fedora
 VERSION_ID=43
 VERSION_CODENAME=""
-PRETTY_NAME="Fedora Linux 43 (Container Image Prerelease)"
+PRETTY_NAME="Fedora Linux 43 (Container Image)"
 ANSI_COLOR="0;38;2;60;110;180"
 LOGO=fedora-logo-icon
 CPE_NAME="cpe:/o:fedoraproject:fedora:43"
