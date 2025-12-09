@@ -14,7 +14,7 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     labels:
-      - "skip-changelog"
+      - "dependencies"
     schedule:
       interval: "monthly"
 
