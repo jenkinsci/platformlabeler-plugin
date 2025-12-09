@@ -84,6 +84,17 @@ updates:
     schedule:
       interval: "monthly"
 
+  # Alpine 3.23
+  - package-ecosystem: "docker"
+    directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/alpine/3.23.0"
+    ignore:
+    - dependency-name: "alpine"
+      update-types: ["version-update:semver-major", "version-update:semver-minor"]
+    labels:
+    - "skip-changelog"
+    schedule:
+      interval: "monthly"
+
   # Amazon Linux 2023
   - package-ecosystem: "docker"
     directory: "src/test/resources/org/jvnet/hudson/plugins/platformlabeler/amzn/2023"
