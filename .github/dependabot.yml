@@ -150,7 +150,7 @@ updates:
     labels:
     - "skip-changelog"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
 
   # Red Hat Universal Base Image 8
   - package-ecosystem: "docker"
