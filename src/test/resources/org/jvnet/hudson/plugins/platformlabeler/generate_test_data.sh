@@ -16,6 +16,13 @@ if [ $eol_count != 0 ] ; then
         exit $eol_count
 fi
 
+# Check that the processor is new enough to do the work
+
+if docker run --rm -i -t almalinux:10.1-minimal cat /etc/os-release 2>&1 | grep -q 'Fatal glibc error'; then
+        echo Processor is too old to update test data
+        exit 1
+fi
+
 # Generate os-release test data files from operating system images
 
 # Copy /etc/os-release from the operating system into a directory
