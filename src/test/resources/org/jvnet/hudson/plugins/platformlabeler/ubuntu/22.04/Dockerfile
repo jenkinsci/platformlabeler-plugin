@@ -1,2 +1,2 @@
-FROM ubuntu:jammy-20260109
+FROM ubuntu:24.04
 RUN apt-get update && apt-get install -y lsb-release
