@@ -1,1 +1,1 @@
-FROM fedora:42
+FROM fedora:44
