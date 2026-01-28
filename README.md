@@ -46,6 +46,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Windows Server 2016         | `WindowsServer2016`| `10.0`         | `amd64`      | // EOL: 12 Jan 2027
 | Windows Server 2019         | `WindowsServer2019`| `10.0`         | `amd64`      | // EOL:  9 Jan 2029
 | Windows Server 2022         | `WindowsServer2022`| `10.0`         | `amd64`      | // EOL: 14 Oct 2031
+| Windows Server 2025         | `WindowsServer2025`| `10.0`         | `amd64`      | // EOL: 14 Nov 2034
 
 ## ARM 64 bit (aarch64)
 
