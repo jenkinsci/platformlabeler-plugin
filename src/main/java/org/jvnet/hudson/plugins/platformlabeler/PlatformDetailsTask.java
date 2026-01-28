@@ -226,7 +226,9 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
                 }
             }
             if (osName.startsWith("Windows Server")) {
-                if (osName.contains("2022")) {
+                if (osName.contains("2025")) {
+                    osName = "WindowsServer2025";
+                } else if (osName.contains("2022")) {
                     osName = "WindowsServer2022";
                 } else if (osName.contains("2019")) {
                     osName = "WindowsServer2019";

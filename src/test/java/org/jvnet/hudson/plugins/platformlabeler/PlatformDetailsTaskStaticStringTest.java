@@ -39,6 +39,7 @@ class PlatformDetailsTaskStaticStringTest {
             {"Windows Server 2016", "amd64", "10.0"},
             {"Windows Server 2019", "amd64", "10.0"},
             {"Windows Server 2022", "amd64", "10.0"},
+            {"Windows Server 2025", "amd64", "10.0"},
 
             /** Windows Server checks that should not include version number */
             {"Windows Server 2012", "amd64", "8.0"},
@@ -150,7 +151,9 @@ class PlatformDetailsTaskStaticStringTest {
 
     private static String computeExpectedOsName(String name) {
         if (name.startsWith("Windows Server")) {
-            if (name.contains("2022")) {
+            if (name.contains("2025")) {
+                return "WindowsServer2025";
+            } else if (name.contains("2022")) {
                 return "WindowsServer2022";
             } else if (name.contains("2019")) {
                 return "WindowsServer2019";
