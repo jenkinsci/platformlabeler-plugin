@@ -15,10 +15,10 @@ Labels commonly include operating system name, version, architecture, and Window
 | Alma Linux 8                | `AlmaLinux`        | `8.10`         | `amd64`      | // EOL: 31 Mar 2029
 | Alma Linux 9                | `AlmaLinux`        | `9.7`          | `amd64`      | // EOL: 31 May 2032
 | Alma Linux 10               | `AlmaLinux`        | `10.1`         | `amd64`      | // EOL: 31 May 2035
-| Alpine 3.20                 | `Alpine`           | `3.20.8`       | `amd64`      | // EOL: 01 May 2026
-| Alpine 3.21                 | `Alpine`           | `3.21.5`       | `amd64`      | // EOL: 01 Nov 2026
-| Alpine 3.22                 | `Alpine`           | `3.22.2`       | `amd64`      | // EOL: 01 May 2027
-| Alpine 3.23                 | `Alpine`           | `3.23.2`       | `amd64`      | // EOL: 01 Nov 2027
+| Alpine 3.20                 | `Alpine`           | `3.20.9`       | `amd64`      | // EOL: 01 May 2026
+| Alpine 3.21                 | `Alpine`           | `3.21.6`       | `amd64`      | // EOL: 01 Nov 2026
+| Alpine 3.22                 | `Alpine`           | `3.22.3`       | `amd64`      | // EOL: 01 May 2027
+| Alpine 3.23                 | `Alpine`           | `3.23.3`       | `amd64`      | // EOL: 01 Nov 2027
 | Amazon Linux 2023           | `Amazon`           | `2023`         | `amd64`      | // EOL: 15 Mar 2028
 | Debian 11                   | `Debian`           | `11`           | `amd64`      | // EOL: 30 Jun 2026
 | Debian 12                   | `Debian`           | `12`           | `amd64`      | // EOL: 30 Jun 2028
@@ -41,7 +41,6 @@ Labels commonly include operating system name, version, architecture, and Window
 | SLES 15                     | `SUSE`             | `15`           | `amd64`      | // EOL: 31 Jul 2031
 | Ubuntu 22                   | `Ubuntu`           | `22.04`        | `amd64`      | // EOL:  1 Apr 2027
 | Ubuntu 24                   | `Ubuntu`           | `24.04`        | `amd64`      | // EOL: 25 Apr 2036
-| Ubuntu 25                   | `Ubuntu`           | `25.04`        | `amd64`      | // EOL: 31 Jan 2026
 | Windows 11                  | `windows`          | `10.0`         | `amd64`      |
 | Windows Server 2016         | `WindowsServer2016`| `10.0`         | `amd64`      | // EOL: 12 Jan 2027
 | Windows Server 2019         | `WindowsServer2019`| `10.0`         | `amd64`      | // EOL:  9 Jan 2029
