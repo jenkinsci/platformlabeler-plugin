@@ -3,12 +3,13 @@
   "extends": [
     "github>jenkinsci/renovate-config"
   ],
- "packageRules": [
+  "separateMinorPatch": true,
+  "packageRules": [
     {
       "description": "Only allow patch version updates to Alpine Dockerfiles",
       "matchDatasources": ["docker"],
-      "matchPackageNames": ["alpine"],
-      "matchUpdateTypes": ["minor", "major"],
+      "matchFileNames": ["**/alpine/*/Dockerfile"],
+      "matchUpdateTypes": ["major", "minor"],
       "enabled": false
     }
   ]
