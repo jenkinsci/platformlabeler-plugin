@@ -13,11 +13,22 @@
       "enabled": false
     },
     {
-      "description": "Only allow minor version updates to AlmaLinux Dockerfiles",
-      "matchDatasources": ["docker"],
-      "matchFileNames": ["**/almalinux/*/Dockerfile"],
-      "matchUpdateTypes": ["major"],
-      "enabled": false
+      "description": "Limit AlmaLinux 8 Dockerfile version updates",
+      "matchPackageNames": ["almalinux"],
+      "matchFileNames": ["**/almalinux/8*/Dockerfile"],
+      "allowedVersions": "<9"
+    },
+    {
+      "description": "Limit AlmaLinux 9 Dockerfile version updates",
+      "matchPackageNames": ["almalinux"],
+      "matchFileNames": ["**/almalinux/9*/Dockerfile"],
+      "allowedVersions": "<10"
+    },
+    {
+      "description": "Limit AlmaLinux 10 Dockerfile version updates",
+      "matchPackageNames": ["almalinux"],
+      "matchFileNames": ["**/almalinux/10*/Dockerfile"],
+      "allowedVersions": "<11"
     }
   ]
 }
