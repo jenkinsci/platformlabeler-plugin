@@ -6,7 +6,7 @@
   "separateMinorPatch": true,
   "packageRules": [
     {
-      "description": "Only allow patch version updates to AlmaLinux, Alpine, and Rocky Dockerfiles",
+      "description": "Only allow patch version updates to Alpine, and Rocky Dockerfiles",
       "matchDatasources": ["docker"],
       "matchFileNames": ["**/alpine/*/Dockerfile", "**/rocky/*/Dockerfile"],
       "matchUpdateTypes": ["major", "minor"],
@@ -14,20 +14,26 @@
     },
     {
       "description": "Limit AlmaLinux 8 Dockerfile version updates",
+      "matchDatasources": ["docker"],
       "matchPackageNames": ["almalinux"],
-      "matchFileNames": ["**/almalinux/8*/Dockerfile"],
+      "matchFileNames": ["**/almalinux/8.*/Dockerfile"],
+      "internalChecksFilter": "lenient",
       "allowedVersions": "<9"
     },
     {
       "description": "Limit AlmaLinux 9 Dockerfile version updates",
+      "matchDatasources": ["docker"],
       "matchPackageNames": ["almalinux"],
-      "matchFileNames": ["**/almalinux/9*/Dockerfile"],
+      "matchFileNames": ["**/almalinux/9.*/Dockerfile"],
+      "internalChecksFilter": "lenient",
       "allowedVersions": "<10"
     },
     {
       "description": "Limit AlmaLinux 10 Dockerfile version updates",
+      "matchDatasources": ["docker"],
       "matchPackageNames": ["almalinux"],
-      "matchFileNames": ["**/almalinux/10*/Dockerfile"],
+      "matchFileNames": ["**/almalinux/10.*/Dockerfile"],
+      "internalChecksFilter": "lenient",
       "allowedVersions": "<11"
     }
   ]
