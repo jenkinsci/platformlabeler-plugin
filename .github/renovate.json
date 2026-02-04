@@ -6,10 +6,17 @@
   "separateMinorPatch": true,
   "packageRules": [
     {
-      "description": "Only allow patch version updates to Alpine and Rocky Dockerfiles",
+      "description": "Only allow patch version updates to AlmaLinux, Alpine, and Rocky Dockerfiles",
       "matchDatasources": ["docker"],
       "matchFileNames": ["**/alpine/*/Dockerfile", "**/rocky/*/Dockerfile"],
       "matchUpdateTypes": ["major", "minor"],
+      "enabled": false
+    },
+    {
+      "description": "Only allow minor version updates to AlmaLinux Dockerfiles",
+      "matchDatasources": ["docker"],
+      "matchFileNames": ["**/almalinux/*/Dockerfile"],
+      "matchUpdateTypes": ["major"],
       "enabled": false
     }
   ]
