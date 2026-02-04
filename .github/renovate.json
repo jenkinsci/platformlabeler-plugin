@@ -6,9 +6,9 @@
   "separateMinorPatch": true,
   "packageRules": [
     {
-      "description": "Only allow patch version updates to Alpine Dockerfiles",
+      "description": "Only allow patch version updates to Alpine and Rocky Dockerfiles",
       "matchDatasources": ["docker"],
-      "matchFileNames": ["**/alpine/*/Dockerfile"],
+      "matchFileNames": ["**/alpine/*/Dockerfile", "**/rocky/*/Dockerfile"],
       "matchUpdateTypes": ["major", "minor"],
       "enabled": false
     }
