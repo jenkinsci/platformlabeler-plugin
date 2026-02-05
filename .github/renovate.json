@@ -63,6 +63,20 @@
       "matchPackageNames": ["opensuse/leap"],
       "matchFileNames": ["**/opensuse-leap/16.*/Dockerfile"],
       "allowedVersions": "<17"
+    },
+    {
+      "description": "Limit Fedora 42 Dockerfile version updates",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["fedora"],
+      "matchFileNames": ["**/fedora/42/Dockerfile"],
+      "allowedVersions": "<43"
+    },
+    {
+      "description": "Limit Fedora 43 Dockerfile version updates",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["fedora"],
+      "matchFileNames": ["**/fedora/43/Dockerfile"],
+      "allowedVersions": "<44"
     }
   ]
 }
