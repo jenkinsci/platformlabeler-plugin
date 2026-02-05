@@ -77,6 +77,20 @@
       "matchPackageNames": ["fedora"],
       "matchFileNames": ["**/fedora/43/Dockerfile"],
       "allowedVersions": "<44"
+    },
+    {
+      "description": "Limit Ubuntu 22 Dockerfile version updates",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["ubuntu"],
+      "matchFileNames": ["**/ubuntu/22.*/Dockerfile"],
+      "allowedVersions": "<23"
+    },
+    {
+      "description": "Limit Ubuntu 24 Dockerfile version updates",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["ubuntu"],
+      "matchFileNames": ["**/ubuntu/24.*/Dockerfile"],
+      "allowedVersions": "<25"
     }
   ]
 }
