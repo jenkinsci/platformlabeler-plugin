@@ -56,6 +56,13 @@
       "matchPackageNames": ["container-registry.oracle.com/os/oraclelinux"],
       "matchFileNames": ["**/oraclelinux/10.*/Dockerfile"],
       "allowedVersions": "<11"
+    },
+    {
+      "description": "Limit openSUSE 16 Dockerfile version updates",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["opensuse/leap"],
+      "matchFileNames": ["**/opensuse-leap/16.*/Dockerfile"],
+      "allowedVersions": "<17"
     }
   ]
 }
