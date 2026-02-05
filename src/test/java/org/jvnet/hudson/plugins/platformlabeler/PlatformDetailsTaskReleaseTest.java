@@ -90,6 +90,15 @@ class PlatformDetailsTaskReleaseTest {
                 expectedVersion = result.getVersion();
             }
         }
+        if (releaseFile.getPath().contains("opensuse-tumbleweed")) {
+            /* openSUSE Tumbleweed data directory name does not
+             * include month and day in order to reduce directory name
+             * changes on each release
+             */
+            if (result.getVersion().startsWith(expectedVersion)) {
+                expectedVersion = result.getVersion();
+            }
+        }
         assertThat(result.getVersion(), is(expectedVersion));
         assertThat(result.getArchitectureName(), is(expectedArch + "-" + expectedName));
         assertThat(result.getArchitectureNameVersion(), is(expectedArch + "-" + expectedName + "-" + expectedVersion));
