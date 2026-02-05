@@ -35,6 +35,27 @@
       "matchFileNames": ["**/almalinux/10.*/Dockerfile"],
       "internalChecksFilter": "lenient",
       "allowedVersions": "<11"
+    },
+    {
+      "description": "Limit Oracle Linux 8 Dockerfile version updates",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["container-registry.oracle.com/os/oraclelinux"],
+      "matchFileNames": ["**/oraclelinux/8.*/Dockerfile"],
+      "allowedVersions": "<9"
+    },
+    {
+      "description": "Limit Oracle Linux 9 Dockerfile version updates",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["container-registry.oracle.com/os/oraclelinux"],
+      "matchFileNames": ["**/oraclelinux/9.*/Dockerfile"],
+      "allowedVersions": "<10"
+    },
+    {
+      "description": "Limit Oracle Linux 10 Dockerfile version updates",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["container-registry.oracle.com/os/oraclelinux"],
+      "matchFileNames": ["**/oraclelinux/10.*/Dockerfile"],
+      "allowedVersions": "<11"
     }
   ]
 }
