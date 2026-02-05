@@ -81,6 +81,15 @@ class PlatformDetailsTaskReleaseTest {
         PlatformDetails result = details.computeLabels("amd64", "linux", "xyzzy-abc", release);
         assertThat(result.getName(), is(expectedName));
         assertThat(result.getArchitecture(), is(expectedArch));
+        if (expectedName.equals("Alpine")) {
+            /* Alpine data directory name does not include patch
+             * number in order to reduce directory name changes on
+             * each patch release
+             */
+            if (result.getVersion().startsWith(expectedVersion)) {
+                expectedVersion = result.getVersion();
+            }
+        }
         assertThat(result.getVersion(), is(expectedVersion));
         assertThat(result.getArchitectureName(), is(expectedArch + "-" + expectedName));
         assertThat(result.getArchitectureNameVersion(), is(expectedArch + "-" + expectedName + "-" + expectedVersion));
