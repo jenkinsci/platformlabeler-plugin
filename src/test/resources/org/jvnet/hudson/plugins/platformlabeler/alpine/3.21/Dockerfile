@@ -1,1 +1,1 @@
-FROM alpine:3.21.6
+FROM alpine:3.21.7
