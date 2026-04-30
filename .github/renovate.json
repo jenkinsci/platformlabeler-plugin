@@ -19,7 +19,7 @@
       "matchFileNames": ["**/almalinux/8.*/Dockerfile"],
       "internalChecksFilter": "lenient",
       "allowedVersions": "<9",
-      "versioning": "loose"
+      "versioning": "docker"
     },
     {
       "description": "Limit AlmaLinux 9 Dockerfile version updates",
@@ -28,7 +28,7 @@
       "matchFileNames": ["**/almalinux/9.*/Dockerfile"],
       "internalChecksFilter": "lenient",
       "allowedVersions": "<10",
-      "versioning": "loose"
+      "versioning": "docker"
     },
     {
       "description": "Limit AlmaLinux 10 Dockerfile version updates",
@@ -37,7 +37,7 @@
       "matchFileNames": ["**/almalinux/10.*/Dockerfile"],
       "internalChecksFilter": "lenient",
       "allowedVersions": "<11",
-      "versioning": "loose"
+      "versioning": "docker"
     },
     {
       "description": "Limit Oracle Linux 8 Dockerfile version updates",
