@@ -6,6 +6,14 @@
   "separateMinorPatch": true,
   "packageRules": [
     {
+      "description": "Disallow Debian major version upgrades",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["debian"],
+      "matchFileNames": ["**/debian/*/Dockerfile"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
       "description": "Only allow patch version updates to Alpine and Rocky Dockerfiles",
       "matchDatasources": ["docker"],
       "matchFileNames": ["**/alpine/*/Dockerfile", "**/rocky/*/Dockerfile"],
