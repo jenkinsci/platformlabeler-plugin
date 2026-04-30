@@ -43,7 +43,7 @@ for Dockerfile in $(find * -type f -name Dockerfile -print); do
         name_version=$(dirname $Dockerfile)
         name=$(dirname $name_version)
         version=$(basename $name_version)
-        container=platformlabeler/$name:$version
+        image=platformlabeler/$name:$version
         echo "Processing Dockerfile $Dockerfile for name $name and version $version"
         (cd $name_version && docker build --pull -t platformlabeler/$name:$version .)
 
@@ -51,14 +51,14 @@ for Dockerfile in $(find * -type f -name Dockerfile -print); do
         # Extract os-release file
         #
         echo "=== Generating os-release file for $name_version"
-        docker run --rm -t $container cat /etc/os-release | tr -d '\015' > $name_version/os-release
+        container=$(docker container create $image)
+        trap "docker container rm $container" EXIT
+        docker cp -L $container:/etc/os-release $name_version/os-release
 
         #
         # Extract redhat-release file
         #
-        docker run --rm -t $container cat /etc/redhat-release | tr -d '\015' > $name_version/redhat-release
-        # Remove redhat-release file if it does not exist in the container image
-        grep -q -i cat:.*no.such.file $name_version/redhat-release && rm -rf $name_version/redhat-release
+        docker cp -L $container:/etc/redhat-release $name_version/redhat-release 2> /dev/null
         # Remove redhat-release file for Oracle Linux, it contains the wrong vendor name
         if [ "$name" = "oraclelinux" ]; then
                 rm -rf $name_version/redhat-release
@@ -67,13 +67,13 @@ for Dockerfile in $(find * -type f -name Dockerfile -print); do
         #
         # Collect lsb_release -a output
         #
-        if docker run --rm -t $container ls /usr/bin/lsb_release > /dev/null 2>&1; then
-                docker run -t $container lsb_release -a | tr -d '\015' > $name_version/lsb_release-a
+        if docker run --rm -t $image ls /usr/bin/lsb_release > /dev/null 2>&1; then
+                docker run -t $image lsb_release -a | tr -d '\015' > $name_version/lsb_release-a
         else
                 # Create empty lsb_release-a data file
                 : > $name_version/lsb_release-a
         fi
-        # Remove lsb_release-a file if it does not exist in the container image
+        # Remove lsb_release-a file if it does not exist in the image image
         grep -q -i cat:.*no.such.file $name_version/lsb_release-a && rm -rf $name_version/lsb_release-a
         if [ ! -s $name_version/lsb_release-a ]; then
                 # Remove empty lsb_release-a data file
