@@ -1,1 +1,1 @@
-FROM almalinux:9.7-minimal-20260104
+FROM almalinux:9.7-20260104
