@@ -67,9 +67,6 @@ class PlatformDetailsTaskLsbReleaseTest {
     }
 
     private static String computeExpectedName(String filename) {
-        if (filename.contains("alinux") && !filename.contains("almalinux")) {
-            return "AlibabaCloud";
-        }
         if (filename.contains("almalinux")) {
             return "AlmaLinux";
         }
