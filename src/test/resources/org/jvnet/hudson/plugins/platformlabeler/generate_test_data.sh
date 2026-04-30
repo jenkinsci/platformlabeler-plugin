@@ -50,7 +50,7 @@ for Dockerfile in $(find * -type f -name Dockerfile -print); do
         #
         # Extract os-release file
         #
-        echo "=== Generating os-release file"
+        echo "=== Generating os-release file for $name_version"
         docker run --rm -t $container cat /etc/os-release | tr -d '\015' > $name_version/os-release
 
         #
@@ -67,7 +67,7 @@ for Dockerfile in $(find * -type f -name Dockerfile -print); do
         #
         # Collect lsb_release -a output
         #
-        if [ "$(grep -c '.*' $Dockerfile)" != "1" ]; then
+        if docker run --rm -t $container ls /usr/bin/lsb_release > /dev/null 2>&1; then
                 docker run -t $container lsb_release -a | tr -d '\015' > $name_version/lsb_release-a
         else
                 # Create empty lsb_release-a data file
@@ -78,6 +78,11 @@ for Dockerfile in $(find * -type f -name Dockerfile -print); do
         if [ ! -s $name_version/lsb_release-a ]; then
                 # Remove empty lsb_release-a data file
                 rm -rf $name_version/lsb_release-a
+        fi
+        # Remove lsb_release-a file for opensuse_tumbleweed
+        # Frequent changes create too much overhead to maintain its test data
+        if [ $name_version = opensuse-tumbleweed/2026 ]; then
+               rm -rf $name_version/lsb_release-a
         fi
 
 done
