@@ -24,7 +24,6 @@ Labels commonly include operating system name, version, architecture, and Window
 | Debian 13                   | `Debian`           | `13`           | `amd64`      | // EOL: 30 Jun 2030
 | Debian testing              | `Debian`           | `testing`      | `amd64`      |
 | Debian unstable             | `Debian`           | `unstable`     | `amd64`      |
-| Fedora 42                   | `Fedora`           | `42`           | `amd64`      | // EOL: 13 May 2026
 | Fedora 43                   | `Fedora`           | `43`           | `amd64`      | // EOL: 19 Nov 2026
 | Fedora 44                   | `Fedora`           | `44`           | `amd64`      | // EOL: 13 May 2027
 | FreeBSD 14                  | `freebsd`          | `14-RELEASE`   | `amd64`      | // EOL: 30 Nov 2028
@@ -73,9 +72,9 @@ Common values for Windows feature update are `1809`, `1903`, `2009`, and `2109`.
 On Linux computers, the plugin uses the output of the [`lsb_release`](https://linux.die.net/man/1/lsb_release) command if the command is available.
 
 If `lsb_release` is not installed, labels on Linux agents will be guessed based on values in `/etc/os-release`.
-Fedora Linux 42, Red Hat Linux 9, and its derivatives intentionally do not deliver `lsb_release`.
+Fedora Linux, Red Hat Enterprise Linux 9, and its derivatives intentionally do not deliver `lsb_release`.
 
-Red Hat Linux agents have another fallback based on `/etc/redhat-release`.
+Red Hat Enterprise Linux agents have another fallback based on `/etc/redhat-release`.
 
 Agents with an older version of SuSE Linux will fallback to `/etc/SuSE-release`. Older versions of this plugin might return "sles" or "SUSE LINUX" as OS name.
 This has been unified to "SUSE".
@@ -83,10 +82,10 @@ This has been unified to "SUSE".
 When `/etc/os-release` is used, less detailed labels may be provided because more specific version information is not included in the file.
 For example:
 
-| Platform                   | Operating System   | Version        | Architecture |
-| -------------------------- | ------------------ | -------------- | ------------ |
-| Debian testing             | `Debian`           | `bookworm`     | `amd64`      |
-| Debian unstable            | `Debian`           | `bookworm`     | `amd64`      |
+| Platform        | Operating System | Version  | Architecture |
+| --------------- | ---------------- | -------- | ------------ |
+| Debian testing  | `Debian`         | `trixie` | `amd64`      |
+| Debian unstable | `Debian`         | `trixie` | `amd64`      |
 
 The types of labels can be configured globally and per agent with the 'Automatic Platform Labels' setting.
 
