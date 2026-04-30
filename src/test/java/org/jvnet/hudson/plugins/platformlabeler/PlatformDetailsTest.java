@@ -156,8 +156,7 @@ class PlatformDetailsTest {
     };
 
     private static final String[] versions = {
-        "3.21.5", "3.22.2", "3.23.2", "8.10", "9.7", "10.1", "11", "12", "13", "16.0", "22.04", "24.04", "42", "43",
-        "44"
+        "3.21.5", "3.22.2", "3.23.2", "8.10", "9.7", "10.1", "11", "12", "13", "16.0", "22.04", "24.04", "43", "44"
     };
 
     private static final String[] windowsFeatureUpdates = {
