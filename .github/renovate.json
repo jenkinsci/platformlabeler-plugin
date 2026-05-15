@@ -9,7 +9,7 @@
       "description": "Disallow Debian major version upgrades",
       "matchDatasources": ["docker"],
       "matchPackageNames": ["debian"],
-      "matchFileNames": ["**/debian/*/Dockerfile"],
+      "matchFileNames": ["**/debian/1*/Dockerfile"],
       "matchUpdateTypes": ["major"],
       "enabled": false
     },
