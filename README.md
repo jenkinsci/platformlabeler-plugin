@@ -39,7 +39,8 @@ Labels commonly include operating system name, version, architecture, and Window
 | Rocky Linux 10              | `Rocky`            | `10.1`         | `amd64`      | // EOL: 31 May 2035
 | SLES 15                     | `SUSE`             | `15`           | `amd64`      | // EOL: 31 Jul 2031
 | Ubuntu 22                   | `Ubuntu`           | `22.04`        | `amd64`      | // EOL:  1 Apr 2027
-| Ubuntu 24                   | `Ubuntu`           | `24.04`        | `amd64`      | // EOL: 25 Apr 2036
+| Ubuntu 24                   | `Ubuntu`           | `24.04`        | `amd64`      | // EOL: 31 May 2029
+| Ubuntu 26                   | `Ubuntu`           | `26.04`        | `amd64`      | // EOL: 30 Apr 2031
 | Windows 11                  | `windows`          | `10.0`         | `amd64`      |
 | Windows Server 2016         | `WindowsServer2016`| `10.0`         | `amd64`      | // EOL: 12 Jan 2027
 | Windows Server 2019         | `WindowsServer2019`| `10.0`         | `amd64`      | // EOL:  9 Jan 2029
@@ -50,7 +51,7 @@ Labels commonly include operating system name, version, architecture, and Window
 
 | Platform                    | OS Name            | Version        | Architecture |
 | --------------------------- | ------------------ | -------------- | ------------ |
-| Ubuntu 24                   | `Ubuntu`           | `24.04`        | `aarch64`    | // EOL: 25 Apr 2036
+| Ubuntu 24                   | `Ubuntu`           | `24.04`        | `aarch64`    | // EOL: 31 May 2029
 
 ## ARM 32 bit (arm)
 
@@ -63,7 +64,7 @@ Labels commonly include operating system name, version, architecture, and Window
 
 | Platform                    | OS Name            | Version        | Architecture |
 | --------------------------- | ------------------ | -------------- | ------------ |
-| Ubuntu 22                   | `Ubuntu`           | `22.04`        | `s390x`      | // EOL:  2 Apr 2027
+| Ubuntu 22                   | `Ubuntu`           | `22.04`        | `s390x`      | // EOL:  1 Apr 2027
 
 On Windows computers, the plugin assigns a label based on the Windows feature update.
 Feature update labels use a two digit year and a two digit month representation.

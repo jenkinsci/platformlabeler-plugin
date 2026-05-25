@@ -83,6 +83,13 @@
       "matchPackageNames": ["ubuntu"],
       "matchFileNames": ["**/ubuntu/24.*/Dockerfile"],
       "allowedVersions": "<25"
+    },
+    {
+      "description": "Limit Ubuntu 26 Dockerfile version updates",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["ubuntu"],
+      "matchFileNames": ["**/ubuntu/26.*/Dockerfile"],
+      "allowedVersions": "<27"
     }
   ]
 }
