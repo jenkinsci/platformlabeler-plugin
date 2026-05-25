@@ -68,6 +68,7 @@ class PlatformDetailsTaskTest {
                             is("Alpine"),
                             is("Amazon"),
                             is("AmazonAMI"),
+                            is("AzureLinux"),
                             is("CentOS"),
                             is("Debian"),
                             is("Fedora"),

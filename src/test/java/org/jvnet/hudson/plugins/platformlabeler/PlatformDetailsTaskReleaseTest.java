@@ -109,6 +109,9 @@ class PlatformDetailsTaskReleaseTest {
         if (filename.contains("almalinux")) {
             return "Alma";
         }
+        if (filename.contains("azurelinux")) {
+            return "AzureLinux";
+        }
         if (filename.contains("amzn")) {
             return "Amazon";
         }

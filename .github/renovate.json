@@ -29,6 +29,13 @@
       "enabled": false
     },
     {
+      "description": "Limit Azure Linux 3.0 version updates",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["azurelinux"],
+      "matchFileNames": ["**/azurelinux/3.0/Dockerfile"],
+      "allowedVersions": "<4"
+    },
+    {
       "description": "Limit Oracle Linux 8 Dockerfile version updates",
       "matchDatasources": ["docker"],
       "matchPackageNames": ["container-registry.oracle.com/os/oraclelinux"],
