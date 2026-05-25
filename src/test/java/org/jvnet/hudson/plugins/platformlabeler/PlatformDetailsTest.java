@@ -152,12 +152,12 @@ class PlatformDetailsTest {
     private static final Random random = new Random();
 
     private static final String[] names = {
-        "Windows 10", "alpine", "centos", "debian", "fedora", "freebsd", "macos", "raspbian", "ubuntu"
+        "Windows 10", "alpine", "azurelinux", "centos", "debian", "fedora", "freebsd", "macos", "raspbian", "ubuntu"
     };
 
     private static final String[] versions = {
-        "3.21.5", "3.22.2", "3.23.2", "8.10", "9.7", "10.1", "11", "12", "13", "16.0", "22.04", "24.04", "26.04", "43",
-        "44"
+        "3.0", "3.21.5", "3.22.2", "3.23.2", "8.10", "9.7", "10.1", "11", "12", "13", "16.0", "22.04", "24.04", "26.04",
+        "43", "44"
     };
 
     private static final String[] windowsFeatureUpdates = {
