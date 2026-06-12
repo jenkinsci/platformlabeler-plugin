@@ -1,2 +1,2 @@
-FROM debian:bookworm-20260518
+FROM debian:bookworm-20260610
 RUN apt-get update && apt-get install -y lsb-release
