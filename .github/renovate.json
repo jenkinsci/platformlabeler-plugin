@@ -6,6 +6,11 @@
   "separateMinorPatch": true,
   "packageRules": [
     {
+      "description": "Allow very large updates of plugin BOM",
+      "matchPackageNames": ["io.jenkins.tools.bom:bom-*"],
+      "maxMajorIncrement": 30000
+    },
+    {
       "description": "Disallow Debian major version upgrades",
       "matchDatasources": ["docker"],
       "matchPackageNames": ["debian"],
