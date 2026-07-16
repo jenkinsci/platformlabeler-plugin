@@ -1,2 +1,2 @@
-FROM debian:bullseye-20260623
+FROM debian:11
 RUN apt-get update && apt-get install -y lsb-release
