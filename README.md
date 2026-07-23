@@ -138,4 +138,4 @@ jenkins:
 
 ## Report an Issue
 
-Please report issues and enhancements through the [Jenkins issue tracker](https://www.jenkins.io/participate/report-issue/redirect/#15650).
+Please report issues and enhancements through the [GitHub issue tracker](https://github.com/jenkinsci/platformlabeler-plugin/issues).
