@@ -4,7 +4,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 import java.io.File;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
@@ -27,7 +26,7 @@ class LsbReleaseFakeFileTest {
                 "Distributor ID: " + fakeDistributorId,
                 "Release: " + fakeRelease);
         File dataFile = new File(dataDir, "lsb_release_fake");
-        Files.write(dataFile.toPath(), data, StandardCharsets.UTF_8);
+        Files.write(dataFile.toPath(), data);
         fakeLsbRelease = new LsbRelease(dataFile);
     }
 

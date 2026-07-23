@@ -35,7 +35,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Serial;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Locale;
@@ -401,7 +400,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
             return value;
         }
         try (BufferedReader br =
-                new BufferedReader(Files.newBufferedReader(osRelease.toPath(), StandardCharsets.UTF_8))) {
+                new BufferedReader(Files.newBufferedReader(osRelease.toPath()))) {
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.startsWith(field + "=")) {
@@ -424,7 +423,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
             return value;
         }
         try (BufferedReader br =
-                new BufferedReader(Files.newBufferedReader(redhatRelease.toPath(), StandardCharsets.UTF_8))) {
+                new BufferedReader(Files.newBufferedReader(redhatRelease.toPath()))) {
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.contains(RELEASE)) {
@@ -455,7 +454,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
             return value;
         }
         try (BufferedReader br =
-                new BufferedReader(Files.newBufferedReader(suseRelease.toPath(), StandardCharsets.UTF_8))) {
+                new BufferedReader(Files.newBufferedReader(suseRelease.toPath()))) {
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.startsWith(VERSION)) {
@@ -492,7 +491,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
     String getDebianVersionIdentifier() {
         if (debianVersion != null) {
             try (BufferedReader br =
-                    new BufferedReader(Files.newBufferedReader(debianVersion.toPath(), StandardCharsets.UTF_8))) {
+                    new BufferedReader(Files.newBufferedReader(debianVersion.toPath()))) {
                 String line = br.readLine();
                 return line != null ? line.trim() : UNKNOWN_VALUE_STRING;
             } catch (IOException notFound) {
