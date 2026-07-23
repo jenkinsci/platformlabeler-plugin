@@ -200,7 +200,7 @@ class PlatformDetailsTaskStaticStringTest {
         }
         /* Compute the expected version number value */
         try {
-            Process p = Runtime.getRuntime().exec("/bin/freebsd-version -u");
+            Process p = Runtime.getRuntime().exec(new String[]{"/bin/freebsd-version", "-u"});
             p.waitFor();
             try (BufferedReader b =
                     new BufferedReader(new InputStreamReader(p.getInputStream(), StandardCharsets.UTF_8))) {

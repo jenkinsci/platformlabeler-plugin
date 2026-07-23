@@ -128,7 +128,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
             return arch;
         }
         try {
-            Process p = Runtime.getRuntime().exec("/bin/uname -m");
+            Process p = Runtime.getRuntime().exec(new String[]{"/bin/uname", "-m"});
             p.waitFor();
             try (InputStream stream = p.getInputStream()) {
                 return getCanonicalLinuxArchStream(stream, arch);
