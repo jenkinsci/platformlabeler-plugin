@@ -186,7 +186,7 @@ class NodeLabelCacheTest {
         nodeLabelCache.preOnline(computer, null, new FilePath(new File(".")), agentListener);
 
         assertThat(
-                agentLogHandler.getView().get(0).getMessage(),
+                agentLogHandler.getView().getFirst().getMessage(),
                 startsWith("Ignored platform detail collection failure for 'unnamed agent' during preOnline phase."));
     }
 
@@ -201,7 +201,7 @@ class NodeLabelCacheTest {
         nodeLabelCache.preOnline(null, null, new FilePath(new File(".")), agentListener);
 
         assertThat(
-                agentLogHandler.getView().get(0).getMessage(),
+                agentLogHandler.getView().getFirst().getMessage(),
                 startsWith("Ignored platform detail collection failure for 'unnamed agent' during preOnline phase."));
     }
 
@@ -218,7 +218,7 @@ class NodeLabelCacheTest {
         nodeLabelCache.preOnline(minimal, null, new FilePath(new File(".")), agentListener);
 
         assertThat(
-                agentLogHandler.getView().get(0).getMessage(),
+                agentLogHandler.getView().getFirst().getMessage(),
                 startsWith("Ignored platform detail collection failure for '" + name + "' during preOnline phase."));
     }
 

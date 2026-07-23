@@ -183,13 +183,13 @@ public class LsbRelease implements PlatformDetailsRelease {
         if (results.isEmpty()) {
             LOGGER.log(Level.FINEST, "empty apt-cache policy, not testing, sid, or unstable");
             return PlatformDetailsTask.UNKNOWN_VALUE_STRING;
-        } else if (results.get(0).contains(APT_CACHE_POLICY_TESTING)) {
+        } else if (results.getFirst().contains(APT_CACHE_POLICY_TESTING)) {
             LOGGER.log(Level.FINEST, "apt-cache policy is testing");
             return "testing";
-        } else if (results.get(0).contains(APT_CACHE_POLICY_UNSTABLE)) {
+        } else if (results.getFirst().contains(APT_CACHE_POLICY_UNSTABLE)) {
             LOGGER.log(Level.FINEST, "apt-cache policy is unstable");
             return "unstable";
-        } else if (results.get(0).contains(APT_CACHE_POLICY_SID)) {
+        } else if (results.getFirst().contains(APT_CACHE_POLICY_SID)) {
             LOGGER.log(Level.FINEST, "apt-cache policy is sid");
             return "unstable";
         }
