@@ -127,7 +127,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
             return arch;
         }
         try {
-            Process p = Runtime.getRuntime().exec(new String[]{"/bin/uname", "-m"});
+            Process p = Runtime.getRuntime().exec(new String[] {"/bin/uname", "-m"});
             p.waitFor();
             try (InputStream stream = p.getInputStream()) {
                 return getCanonicalLinuxArchStream(stream, arch);
@@ -399,8 +399,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         if (osRelease == null) {
             return value;
         }
-        try (BufferedReader br =
-                new BufferedReader(Files.newBufferedReader(osRelease.toPath()))) {
+        try (BufferedReader br = new BufferedReader(Files.newBufferedReader(osRelease.toPath()))) {
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.startsWith(field + "=")) {
@@ -422,8 +421,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         if (redhatRelease == null) {
             return value;
         }
-        try (BufferedReader br =
-                new BufferedReader(Files.newBufferedReader(redhatRelease.toPath()))) {
+        try (BufferedReader br = new BufferedReader(Files.newBufferedReader(redhatRelease.toPath()))) {
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.contains(RELEASE)) {
@@ -453,8 +451,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
         if (suseRelease == null) {
             return value;
         }
-        try (BufferedReader br =
-                new BufferedReader(Files.newBufferedReader(suseRelease.toPath()))) {
+        try (BufferedReader br = new BufferedReader(Files.newBufferedReader(suseRelease.toPath()))) {
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.startsWith(VERSION)) {
@@ -490,8 +487,7 @@ class PlatformDetailsTask implements Callable<PlatformDetails, IOException> {
     @NonNull
     String getDebianVersionIdentifier() {
         if (debianVersion != null) {
-            try (BufferedReader br =
-                    new BufferedReader(Files.newBufferedReader(debianVersion.toPath()))) {
+            try (BufferedReader br = new BufferedReader(Files.newBufferedReader(debianVersion.toPath()))) {
                 String line = br.readLine();
                 return line != null ? line.trim() : UNKNOWN_VALUE_STRING;
             } catch (IOException notFound) {
