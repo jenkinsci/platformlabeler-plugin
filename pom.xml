@@ -37,8 +37,8 @@
     <hpi.compatibleSinceVersion>5.0</hpi.compatibleSinceVersion>
     <hpi.strictBundledArtifacts>true</hpi.strictBundledArtifacts>
     <!-- https://www.jenkins.io/doc/developer/plugin-development/choosing-jenkins-baseline/ -->
-    <jenkins.baseline>2.528</jenkins.baseline>
-    <jenkins.version>${jenkins.baseline}.3</jenkins.version>
+    <jenkins.baseline>2.555</jenkins.baseline>
+    <jenkins.version>${jenkins.baseline}.1</jenkins.version>
     <linkXRef>false</linkXRef>
     <!-- Plugin intentionally does not deliver javadoc. -->
     <!-- No API's intended to be used, none should be called from outside. -->
@@ -51,17 +51,6 @@
     <banObsoleteDependencyOverrides.skip>false</banObsoleteDependencyOverrides.skip>
   </properties>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>io.jenkins.tools.bom</groupId>
-        <artifactId>bom-${jenkins.baseline}.x</artifactId>
-        <version>5983.v443959746f1f</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
   <dependencies>
     <!-- https://mvnrepository.com/artifact/org.reflections/reflections -->
     <dependency>
