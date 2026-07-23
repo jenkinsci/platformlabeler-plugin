@@ -1,0 +1,1 @@
+FROM almalinux:10.2-20260602
