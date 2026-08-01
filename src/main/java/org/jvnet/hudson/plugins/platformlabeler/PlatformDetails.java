@@ -4,8 +4,11 @@ import edu.umd.cs.findbugs.annotations.CheckForNull;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import java.io.Serial;
 import java.io.Serializable;
+import org.kohsuke.stapler.export.Exported;
+import org.kohsuke.stapler.export.ExportedBean;
 
 /** Stores the platform details of a node. */
+@ExportedBean
 public class PlatformDetails implements Serializable {
 
     @Serial
@@ -83,41 +86,49 @@ public class PlatformDetails implements Serializable {
     }
 
     @NonNull
+    @Exported
     public String getName() {
         return name;
     }
 
     @NonNull
+    @Exported
     public String getArchitecture() {
         return architecture;
     }
 
     @NonNull
+    @Exported
     public String getVersion() {
         return version;
     }
 
     @NonNull
+    @Exported
     public String getArchitectureNameVersion() {
         return architectureNameVersion;
     }
 
     @NonNull
+    @Exported
     public String getArchitectureName() {
         return architectureName;
     }
 
     @NonNull
+    @Exported
     public String getNameVersion() {
         return nameVersion;
     }
 
     @CheckForNull
+    @Exported
     public String getWindowsFeatureUpdate() {
         return windowsFeatureUpdate;
     }
 
     @CheckForNull
+    @Exported
     public String getOsName() {
         return osName;
     }
