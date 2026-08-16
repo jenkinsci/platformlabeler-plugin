@@ -1,1 +1,1 @@
-FROM registry.access.redhat.com/ubi9/ubi:9.8-1786631889
+FROM registry.access.redhat.com/ubi9/ubi:1786631974
