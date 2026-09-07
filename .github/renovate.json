@@ -11,6 +11,13 @@
       "maxMajorIncrement": 30000
     },
     {
+      "description": "Limit Amazon Linux 2023 Dockerfile version updates",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["amazonlinux"],
+      "matchFileNames": ["**/amzn/2023/Dockerfile"],
+      "allowedVersions": "<2024"
+    },
+    {
       "description": "Disallow Debian major version upgrades",
       "matchDatasources": ["docker"],
       "matchPackageNames": ["debian"],
