@@ -16,6 +16,7 @@
       "matchPackageNames": ["public.ecr.aws/amazonlinux/amazonlinux"],
       "matchFileNames": ["**/amzn/*/Dockerfile"],
       "matchUpdateTypes": ["major"],
+      "enabled": false
     },
     {
       "description": "Disallow Debian major version upgrades",
