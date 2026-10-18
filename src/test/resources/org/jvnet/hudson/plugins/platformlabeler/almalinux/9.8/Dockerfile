@@ -1,1 +1,1 @@
-FROM almalinux:9.8-20260602
+FROM almalinux:9.8-20261002
