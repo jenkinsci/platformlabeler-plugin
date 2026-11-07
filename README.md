@@ -25,7 +25,6 @@ Labels commonly include operating system name, version, architecture, and Window
 | Debian 13                   | `Debian`           | `13`           | `amd64`      | // EOL: 30 Jun 2030
 | Debian testing              | `Debian`           | `testing`      | `amd64`      |
 | Debian unstable             | `Debian`           | `unstable`     | `amd64`      |
-| Fedora 43                   | `Fedora`           | `43`           | `amd64`      | // EOL: 19 Nov 2026
 | Fedora 44                   | `Fedora`           | `44`           | `amd64`      | // EOL: 13 May 2027
 | FreeBSD 15                  | `freebsd`          | `15.1-RELEASE` | `amd64`      | // EOL: 31 Mar 2027
 | openSUSE Leap               | `openSUSE`         | `16.1`         | `amd64`      | // EOL: 31 Oct 2027
