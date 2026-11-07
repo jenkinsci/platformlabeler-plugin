@@ -77,13 +77,6 @@
       "allowedVersions": "<17"
     },
     {
-      "description": "Limit Fedora 43 Dockerfile version updates",
-      "matchDatasources": ["docker"],
-      "matchPackageNames": ["fedora"],
-      "matchFileNames": ["**/fedora/43/Dockerfile"],
-      "allowedVersions": "<44"
-    },
-    {
       "description": "Limit Fedora 44 Dockerfile version updates",
       "matchDatasources": ["docker"],
       "matchPackageNames": ["fedora"],
