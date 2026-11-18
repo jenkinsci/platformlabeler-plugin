@@ -20,6 +20,7 @@ Labels commonly include operating system name, version, architecture, and Window
 | Alpine 3.24                 | `Alpine`           | `3.24.2`       | `amd64`      | // EOL: 01 May 2028
 | Amazon Linux 2023           | `Amazon`           | `2023`         | `amd64`      | // EOL: 15 Mar 2028
 | Azure Linux 3.0             | `AzureLinux`       | `3.0`          | `amd64`      | // EOL: 31 May 2027
+| Azure Linux 4.0             | `AzureLinux`       | `4.0`          | `amd64`      | // EOL: 18 Nov 2030
 | Debian 12                   | `Debian`           | `12`           | `amd64`      | // EOL: 30 Jun 2028
 | Debian 13                   | `Debian`           | `13`           | `amd64`      | // EOL: 30 Jun 2030
 | Debian testing              | `Debian`           | `testing`      | `amd64`      |
