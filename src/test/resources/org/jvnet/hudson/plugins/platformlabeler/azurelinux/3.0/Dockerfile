@@ -1,1 +1,1 @@
-FROM mcr.microsoft.com/azurelinux/base/core:3.0.20261105
+FROM mcr.microsoft.com/azurelinux/base/core:3.0.20261116
