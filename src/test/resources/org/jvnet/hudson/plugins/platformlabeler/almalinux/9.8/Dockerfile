@@ -1,1 +1,2 @@
 FROM almalinux:9.8-20261027
+RUN true
